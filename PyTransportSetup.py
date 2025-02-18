@@ -15,6 +15,7 @@ def installPyTransport(name='PyTransport'):
 
     shutil.rmtree(os.path.join(location, name+'.egg-info'))         # Remove unwanted folders
     shutil.rmtree(os.path.join(location, 'dist'))
+    os.remove(os.path.join(location, 'setup.py'))
 
 def main():
 
@@ -34,7 +35,7 @@ def main():
     print('------------------Create venv------------------')
     subprocess.run(['python -m venv venv'], shell=True) 
 
-    # # Activate virtual environment
+    # Activate virtual environment
     print('------------------Activate Venv------------------')
     subprocess.run(['chmod +x activate.sh'], shell=True)
     subprocess.run(['source activate.sh'], shell=True)

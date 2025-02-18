@@ -10,7 +10,7 @@ from pathlib import Path
 
 location = os.path.dirname(__file__)          # get the current folder
 location = Path(location)                      # transform it in a path 
-location = location.parent.absolute().parent.absolute()                       # each .parent.absolute() goes back to the parent folder up to NewPyTransport folder
+location = location.parent.absolute()                       # each .parent.absolute() goes back to the parent folder up to NewPyTransport folder
 location = os.path.join(location, 'PyTransPy')            # this should be the location of the PyTransPy folder
 sys.path.append(location)   # we add this location to the python PATH
 

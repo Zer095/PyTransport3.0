@@ -1,17 +1,84 @@
+// This file is part of PyTransport.
+
+/* -----------------------------------------------------------------------------------------------------------------
+    File: PyTrans.cpp
+    Version: PyTransport 3.0
+    Author: [Andrea Costantini, David Mulryne, John W. Ronayne]
+    Date: [Date Last Modified]
+
+    Introduction:
+    --------------
+    This file serves as the core of PyTransport 3.0, a numerical tool designed for the computation of primordial correlators in inflationary cosmology. 
+    PyTransport constitutes a straightforward code written in C++ together with Python scripts which automatically edit, compile and run the C++ code as a Python module.
+    It has been written for Unix- like systems (OS X and Linux).
+    PyTransport relies on the Transport formalism (link to the main paper for Transport formalism), which implement a differential formalism to compute inflationary correlation functions.
+    PyTransport is able to compute tree-level correlators for multi-field models with canonical and non-canonical field space. 
+    Along with the standard Transport formalism, PyTransport 3.0 also implement the Multi-point propagator (MPP) approach to inflationary correlators. 
+    The MPP approach provides an alternative way to compute two- and three-point correlation functions, and related observables, with advantages and limits discussed in (link to our paper).
+
+    New Features in PyTransport 3.0:
+    --------------------------------
+    - **Integration of the Multi-Point Propagator (MPP) Approach**:
+        - Computes two- and three-point correlation functions using MPP matrices.
+        - Enhanced numerical stability and accuracy for a wide range of inflationary models.
+    - **Support for Non-Trivial Field-Space Metrics**:
+        - Seamlessly handles models with curved field-space metrics.
+    - **Flexible Application**:
+        - Enables the construction of advanced observables.
+    - **Improved Performance**:
+        - Faster and more reliable computations compared to previous versions.
+    - **Compatibility**:
+        - Fully compatible with Python 3.x and tested on macOS and Linux.
+
+    Key Functions:
+    --------------
+    The primary functions in this file implement the MPP approach and extend the functionality of PyTransport to compute primordial correlators for multi-field inflationary models:
+
+    1. **MT_backEvolve**:
+        - Evolves the background fields and velocities, forming the foundation for perturbation computations.
+
+    2. **MT_sigEvolve**:
+        - Computes the two-point correlation function (sigma) for scalar perturbations.
+
+    3. **MT_alphaEvolve**:
+        - Evolves the three-point correlation function (alpha), enabling bispectrum calculations.
+
+    4. **MT_MPP2**:
+        - Evolves the multi-point propagator matrices for two-point correlation functions.
+
+    5. **MT_MPPSigma**:
+        - Extends the multi-point propagator evolution for sigma-related correlation functions.
+
+    6. **MT_MPP3**:
+        - Computes multi-point propagators for three-point correlation functions, enabling bispectrum and related calculations.
+
+    7. **MT_MPPAlpha**:
+        - Evolves the multi-point propagators for alpha-related observables, enhancing bispectrum analysis.
+
+    Philosophy and Usage:
+    ---------------------
+    PyTransport 3.0 emphasizes the combination of flexibility, accessibility, and computational power. 
+    Python serves as the primary interface for scripting and visualization, while the computationally intensive tasks are handled in C++ to deliver near-native performance. 
+    This hybrid design allows researchers to benefit from both ease of use and high numerical efficiency.
+
+    The modular structure of PyTransport enables users to prototype inflationary models, compute correlators, and customize workflows for advanced applications. 
+    By integrating the MPP approach, the package provides users with the tools to explore a wider range of inflationary observables while maintaining reliability and speed.
+
+    Licensing and Acknowledgments:
+    -------------------------------
+    PyTransport is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+    For more details, visit: http://www.gnu.org/licenses/.
+    For further details and examples, consult the accompanying documentation and references.
+
+----------------------------------------------------------------------------------------------------------------- */
+
+
 //#This file is part of PyTransport.
 
-//#PyTransport is free software: you can redistribute it and/or modify
-//#it under the terms of the GNU General Public License as published by
-//#the Free Software Foundation, either version 3 of the License, or
-//#(at your option) any later version.
 
-//#PyTransport is distributed in the hope that it will be useful,
-//#but WITHOUT ANY WARRANTY; without even the implied warranty of
-//#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//#GNU General Public License for more details.
- 
-//#You should have received a copy of the GNU General Public License
-//#along with PyTransport.  If not, see <http://www.gnu.org/licenses/>.
 
 // C++ file which defines the functions make available to Python through the MTeasy module.
 #include <Python.h> 
@@ -21,9 +88,9 @@
 #include "numpy/ndarraytypes.h"
 
 //don't adjust the labels at the end of the 4 lines below (they are used to fix directory structure)
-#include"/Users/apx050/Desktop/Projects/PyTransport/PyTransport/PyTransCpp/cppsrc/NC/evolve.h"//evolve
-#include"/Users/apx050/Desktop/Projects/PyTransport/PyTransport/PyTransCpp/cppsrc/NC/moments.h"//moments
-#include"/Users/apx050/Desktop/Projects/PyTransport/PyTransport/PyTransCpp/cppsrc/NC/model.h"//model
+#include"/Users/apx050/Desktop/Projects/PyTransport/PyTransport/PyTransCpp/cppsrc/evolve.h"//evolve
+#include"/Users/apx050/Desktop/Projects/PyTransport/PyTransport/PyTransCpp/cppsrc/moments.h"//moments
+#include"/Users/apx050/Desktop/Projects/PyTransport/PyTransport/PyTransCpp/cppsrc/model.h"//model
 #include"/Users/apx050/Desktop/Projects/PyTransport/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp"//stepper
 //************************************************************************************************* 
 
@@ -33,8 +100,8 @@
 #include <cstdlib>
 #include <cstdio>
 #include <time.h>
-# include <iomanip>
-# include <cmath>
+#include <iomanip>
+#include <cmath>
 
 using namespace std;
 
@@ -159,22 +226,19 @@ static PyObject* MT_dV(PyObject* self,  PyObject *args)
     /* -----------------------------------------------------------------------------------------------------------------------------------------------------
     Return the an array with derivatives of the potential with respect to the fields, computed at fieldsIn.
 
-    Arguments
-    ---------
-    fieldsIn : PyArrayObject
-        The initial values of the fields.
-    params : PyArrayObject
-        The values of the parameters of the models.
+    Arguments:
+    ----------
+    - fieldsIn : NumPy array (1D) containing the values of the fields.
+    - params :   NumPy array (1D) containing the model parameters.
 
-    Returns
-    -------
-    output : Python array 
-        The value of the potential computed with fieldsIn and params.
+    Returns:
+    --------
+    - NumPy array (1D): Derivatives of the potential evaluated at `fieldsIn`.
 
     Description
     -----------
-    This function returns an array with the values of the derivative of potential at fieldsIn. 
-    It takes as argument the values of the fields and the parameters of the model.
+    This function computes the gradient of the potential with respect to the fields, 
+    given a specific configuration of fields and model parameters.
 
     Python Prototype
     ----------------
@@ -183,36 +247,63 @@ static PyObject* MT_dV(PyObject* self,  PyObject *args)
     ----------------------------------------------------------------------------------------------------------------------------------------------------*/
     //----------------------------------------------------------------------------------------------------------------------------------------------------
 
-    // Declare variables and convert PyObjects to C-objects
-    PyArrayObject *fieldsIn, *params;     // Input PyArray Objects
-    PyArrayObject *dVI;                   // Output PyArray Objects
-    double *Cfields, *dVC, *Cparams ;     // Input C-objects
-    // Parsing args into variables
-    if (!PyArg_ParseTuple(args, "O!O!",  &PyArray_Type, &fieldsIn,&PyArray_Type,&params)) {
-        return NULL;}
-    Cfields = pyvector_to_Carray(fieldsIn);     // Convert fields to C-array
-    Cparams = pyvector_to_Carray(params);       // Convert params to C-array
-    potential pp;                               // Define potential
-    // Get number of fields and check size of fieldsIn
-    int nF = pp.getnF();if (nF!=size_pyvector(fieldsIn)){cout<< "\n \n \n field space array not of correct length \n \n \n";    Py_RETURN_NONE;}
-    // Get number of parameters and check size of params
-    int nP = pp.getnP(); if (nP!=size_pyvector(params)){cout<< "\n \n \n parameters array not of correct length \n \n \n";  Py_RETURN_NONE;}
-    // Vectori with fields values
-    vector<double> vectIn; vectIn = vector<double>(Cfields, Cfields +  nF);
-    // Vector with parameters values
-    vector<double> Vparams; Vparams = vector<double>(Cparams, Cparams +  nP);
+    // Input and output arrays
+    PyArrayObject* fieldsIn = nullptr;
+    PyArrayObject* params = nullptr;
+    PyArrayObject* dVI = nullptr;  // Output array for derivatives of the potential
+
+    double* Cfields = nullptr;  // C array for field values
+    double* Cparams = nullptr;  // C array for parameter values
+    double* dVC = nullptr;      // C array for output derivatives
+
+    // Parse Python arguments
+    if (!PyArg_ParseTuple(args, "O!O!", &PyArray_Type, &fieldsIn, &PyArray_Type, &params)) {
+        PyErr_SetString(PyExc_TypeError, "Invalid arguments: Expected two 1D NumPy arrays (fieldsIn, params).");
+        return nullptr;
+    }
+    // Convert input arrays to C arrays
+    Cfields = pyvector_to_Carray(fieldsIn);
+    Cparams = pyvector_to_Carray(params);
+
+    // Initialize the potential object
+    potential pp;                           // Define potential
+
+    // Validate the size of input arrays
+    int nF = pp.getnF();  // Number of fields
+    if (nF != size_pyvector(fieldsIn)) {
+        PyErr_SetString(PyExc_ValueError, "Field array length does not match the expected number of fields.");
+        return nullptr;
+    }
+
+    int nP = pp.getnP();  // Number of parameters
+    if (nP != size_pyvector(params)) {
+        PyErr_SetString(PyExc_ValueError, "Parameter array length does not match the expected number of parameters.");
+        return nullptr;
+    }
     //----------------------------------------------------------------------------------------------------------------------------------------------------
-    // Define dimension of output array
-    npy_intp dims[1];
-    dims[0]=nF;
-    // Define output array
-    dVI = (PyArrayObject*) PyArray_SimpleNew(1,dims,NPY_DOUBLE);
-    dVC = (double*) dVI->data;
-    // Get the derivative of potential
-    vector<double> dVect = pp.dV(vectIn,Vparams);
-    // Store values of the derivative of the potential
-    for(int i=0; i<nF;i++){dVC[i] = dVect[i];}
-    // return array
+    // Create C++ vectors for fields and parameters
+    std::vector<double> vectIn(Cfields, Cfields + nF);
+    std::vector<double> Vparams(Cparams, Cparams + nP);
+
+    // Prepare the output array
+    npy_intp dims[1] = {nF};  // Output array dimension
+    dVI = (PyArrayObject*)PyArray_SimpleNew(1, dims, NPY_DOUBLE);
+    if (!dVI) {
+        PyErr_SetString(PyExc_MemoryError, "Failed to allocate memory for the output array.");
+        return nullptr;
+    }
+
+    dVC = static_cast<double*>(PyArray_DATA(dVI));
+
+    // Compute the derivatives of the potential
+    std::vector<double> dVect = pp.dV(vectIn, Vparams);
+
+    // Copy the results to the output array
+    for (int i = 0; i < nF; ++i) {
+        dVC[i] = dVect[i];
+    }
+
+    // Return the result as a NumPy array
     return PyArray_Return(dVI);
 }
 
@@ -220,114 +311,157 @@ static PyObject* MT_dV(PyObject* self,  PyObject *args)
 static PyObject* MT_ddV(PyObject* self,  PyObject *args)
 {
     /* -----------------------------------------------------------------------------------------------------------------------------------------------------
-    Return the a matrix with 2nd derivatives of the potential with respect to the fields, computed at fieldsIn.
+    Return the Hessian matrix (second derivatives) of the potential with respect to the fields, computed at fieldsIn.
 
-    Arguments
-    ---------
-    fieldsIn : PyArrayObject
-        The initial values of the fields.
-    params : PyArrayObject
-        The values of the parameters of the models.
+    Arguments:
+    ----------
+    - fieldsIn : NumPy array (1D) containing the values of the fields.
+    - params :   NumPy array (1D) containing the model parameters.
 
-    Returns
-    -------
-    output : 2D Python array 
-        The value of the potential computed with fieldsIn and params.
+    Returns:
+    --------
+    - NumPy array (2D): Hessian matrix of the potential evaluated at `fieldsIn`.
 
-    Description
-    -----------
-    This function returns an array with the values of the derivative of potential at fieldsIn. 
-    It takes as argument the values of the fields and the parameters of the model.
+    Description:
+    ------------
+    This function computes the Hessian matrix (second derivatives) of the potential with respect to the fields, 
+    given a specific configuration of fields and model parameters.
 
-    Python Prototype
-    ----------------
+    Python Prototype:
+    -----------------
     ddV = PyT.ddV(fieldsIn, params)
 
     ----------------------------------------------------------------------------------------------------------------------------------------------------*/
     //----------------------------------------------------------------------------------------------------------------------------------------------------
+    // Input and output arrays
+    PyArrayObject* fieldsIn = nullptr;   // Input fields
+    PyArrayObject* params = nullptr;    // Input parameters
+    PyArrayObject* ddVI = nullptr;      // Output array for second derivatives (Hessian)
 
-    // Declare variables and convert PyObjects to C-objects
-    PyArrayObject *fieldsIn, *params;        // Input PyArrayObject
-    PyArrayObject *ddVI;                     // Output PyArrayObject
-    double *Cfields, *ddVC, *Cparams ;       // Input doubles array
-    // Parsing arguments into variables
-    if (!PyArg_ParseTuple(args, "O!O!",  &PyArray_Type, &fieldsIn,&PyArray_Type,&params)) {
-        return NULL;}
-    Cfields = pyvector_to_Carray(fieldsIn);     // Convert fields to C-array
-    Cparams = pyvector_to_Carray(params);       // Convert parameters to C-array
-    potential pp;                               // Define potential
-    // Get number of fields then check size of fieldsIn
-    int nF = pp.getnF();if (nF!=size_pyvector(fieldsIn)){cout<< "\n \n \n field space array not of correct length \n \n \n";    Py_RETURN_NONE;}
-    // Get number of parameters then check size of params
-    int nP = pp.getnP(); if (nP!=size_pyvector(params)){cout<< "\n \n \n parameters array not of correct length \n \n \n";  Py_RETURN_NONE;}
-    // Vector with fields
-    vector<double> vectIn; vectIn = vector<double>(Cfields, Cfields +  nF);
-    // Vector with parameters
-    vector<double> Vparams; Vparams = vector<double>(Cparams, Cparams +  nP);
-    //----------------------------------------------------------------------------------------------------------------------------------------------------
-    // Define dimension of output array
-    npy_intp dims[2];
-    dims[0]=nF; dims[1]=nF;
-    // Define output array
-    ddVI = (PyArrayObject*) PyArray_SimpleNew(2,dims,NPY_DOUBLE);
-    ddVC = (double*) ddVI->data;
-    // Get 2nd derivative of the potential
-    vector<double> ddVect = pp.dVV(vectIn,Vparams);
-    // Store values of the derivative
-    for(int i=0; i<nF;i++){for(int j=0; j<nF;j++){ddVC[i+j*nF] = ddVect[i+j*nF];}}
-    // return matrix
+    double* Cfields = nullptr;  // Pointer to the field values as a C array
+    double* Cparams = nullptr;  // Pointer to the parameter values as a C array
+    double* ddVC = nullptr;     // Pointer to the output Hessian matrix as a C array
+
+    // Parse Python arguments
+    if (!PyArg_ParseTuple(args, "O!O!", &PyArray_Type, &fieldsIn, &PyArray_Type, &params)) {
+        PyErr_SetString(PyExc_TypeError, "Invalid arguments: Expected two 1D NumPy arrays (fieldsIn, params).");
+        return nullptr;
+    }
+
+    // Convert NumPy arrays to C arrays
+    Cfields = pyvector_to_Carray(fieldsIn);
+    Cparams = pyvector_to_Carray(params);
+
+    // Initialize the potential object
+    potential pp;
+
+    // Validate the size of the input arrays
+    int nF = pp.getnF();  // Number of fields
+    if (nF != size_pyvector(fieldsIn)) {
+        PyErr_SetString(PyExc_ValueError, "Field array length does not match the expected number of fields.");
+        Py_RETURN_NONE;
+    }
+
+    int nP = pp.getnP();  // Number of parameters
+    if (nP != size_pyvector(params)) {
+        PyErr_SetString(PyExc_ValueError, "Parameter array length does not match the expected number of parameters.");
+        Py_RETURN_NONE;
+    }
+
+    // Create C++ vectors for fields and parameters
+    std::vector<double> vectIn(Cfields, Cfields + nF);
+    std::vector<double> Vparams(Cparams, Cparams + nP);
+
+    // Define the dimensions of the output array (Hessian matrix is nF x nF)
+    npy_intp dims[2] = {nF, nF};
+
+    // Allocate the output NumPy array
+    ddVI = (PyArrayObject*)PyArray_SimpleNew(2, dims, NPY_DOUBLE);
+    if (!ddVI) {
+        PyErr_SetString(PyExc_MemoryError, "Failed to allocate memory for the output array.");
+        Py_RETURN_NONE;
+    }
+
+    // Get a pointer to the output array data
+    ddVC = static_cast<double*>(PyArray_DATA(ddVI));
+
+    // Compute the Hessian matrix (second derivatives of the potential)
+    std::vector<double> ddVect = pp.dVV(vectIn, Vparams);
+
+    // Copy the computed values into the output array
+    for (int i = 0; i < nF; ++i) {
+        for (int j = 0; j < nF; ++j) {
+            ddVC[i + j * nF] = ddVect[i + j * nF];
+        }
+    }
+
+    // Return the result as a NumPy array
     return PyArray_Return(ddVI);
 }
 
-// function to calculate Hubble rate
-static PyObject* MT_H(PyObject* self,  PyObject *args)
+static PyObject* MT_H(PyObject* self, PyObject *args)
 {
+    // function to calculate Hubble rate
     /* -----------------------------------------------------------------------------------------------------------------------------------------------------
-    Return the value of the Hubble rate, given the values of the fields and the velocities
+    Return the value of the Hubble rate, given the values of the fields and the velocities.
 
-    Arguments
-    ---------
-    fields_dfieldsIn : PyArrayObject
-        The initial values of the fields and velocities
-    params : PyArrayObject
-        The values of the parameters of the models.
+    Arguments:
+    ----------
+    - fieldsIn : NumPy array (1D) containing the values of the fields.
+    - params :   NumPy array (1D) containing the model parameters.
 
-    Returns
-    -------
-    output : Python double
-        The value of the Hubble rate computed with fields_dfieldsIn and params.
+    Returns:
+    --------
+    - Python double: The value of the Hubble rate computed with fields_dfieldsIn and params.
 
-    Description
-    -----------
-    This function returns the value of the Hubble rates at fields_dfieldsIn. 
-    It takes as argument the values of the fields, the velocities and the parameters of the model.
+    Description:
+    ------------
+    This function computes the Hubble rate at the given field values and velocities, 
+    using the model parameters.
 
     Python Prototype
     ----------------
     H = PyT.H(fieldsIn, params)
 
     ----------------------------------------------------------------------------------------------------------------------------------------------------*/
-    //----------------------------------------------------------------------------------------------------------------------------------------------------
-    // Declare variables and convert PyObjects to C-objects
-    PyArrayObject *fields_dfieldsIn, *params;       // Input PyArray Objects
-    double *Cfields_dfields, *Cparams;              // Input doubles 
-    // Parsign args into variables
-    if (!PyArg_ParseTuple(args, "O!O!",  &PyArray_Type, &fields_dfieldsIn,&PyArray_Type,&params)) {
-        return NULL;}
-    Cfields_dfields = pyvector_to_Carray(fields_dfieldsIn);     // Convert fields and velocities to C-array
-    Cparams = pyvector_to_Carray(params);                       // Convert params to C-array
-    model mm;                                                   // Define model
-    // Get number of fields then check size of fieldsIn
-    int nF = mm.getnF(); if (2*nF!=size_pyvector(fields_dfieldsIn)){cout<< "\n \n \n field space array not of correct length\n \n \n ";    Py_RETURN_NONE;}
-    // Get the number of params then check size of params
-    int nP = mm.getnP(); if (nP!=size_pyvector(params)){cout<< "\n \n \n parameters array not of correct length \n \n \n";  Py_RETURN_NONE;}
-    // Vector with fields and velocities
-    vector<double> vectIn; vectIn = vector<double>(Cfields_dfields, Cfields_dfields + 2*nF);
-    // Vector with parameters
-    vector<double> Vparams; Vparams = vector<double>(Cparams, Cparams +  nP);
-    // Return the value of the Hubble rate
+    // Declare input variables
+    PyArrayObject *fields_dfieldsIn, *params; 
+    double *Cfields_dfields, *Cparams;
+
+    // Parse arguments from Python to C
+    if (!PyArg_ParseTuple(args, "O!O!", &PyArray_Type, &fields_dfieldsIn, &PyArray_Type, &params)) {
+        return NULL;
+    }
+
+    // Convert fields and parameters to C arrays
+    Cfields_dfields = pyvector_to_Carray(fields_dfieldsIn); 
+    Cparams = pyvector_to_Carray(params);
+
+    // Initialize model object
+    model mm;
+
+    // Get number of fields and validate size of input
+    int nF = mm.getnF();
+    if (2 * nF != size_pyvector(fields_dfieldsIn)) {
+        std::cout << "\n \n \n field space array not of correct length\n \n \n";
+        Py_RETURN_NONE;
+    }
+
+    // Get number of parameters and validate size of params
+    int nP = mm.getnP();
+    if (nP != size_pyvector(params)) {
+        std::cout << "\n \n \n parameters array not of correct length \n \n \n";
+        Py_RETURN_NONE;
+    }
+
+    // Create vectors for fields, velocities, and parameters
+    std::vector<double> vectIn(Cfields_dfields, Cfields_dfields + 2 * nF);
+    std::vector<double> Vparams(Cparams, Cparams + nP);
+
+    // Return the calculated Hubble rate
     return Py_BuildValue("d", mm.H(vectIn, Vparams));
 }
+
 
 // function to calculate Epsilon
 static PyObject* MT_Ep(PyObject* self,  PyObject *args)
@@ -1136,13 +1270,17 @@ static PyObject* MT_alphaEvolve(PyObject* self,  PyObject *args)
     
     // run alpha *******************************************
     vector<double> fieldIn(2*nF);
-    
+    // bool printed = true;
     for(int ii=0; ii<nt; ii++ ){
         // Evolva alpha at t = tc[ii]
         while (N<(tc[ii]-log(kscale))){
             flag = r8_rkf45(evolveAlp, 2*nF + 6*(2*nF*2*nF) + 2*nF*2*nF*2*nF, y, yp, &N, tc[ii]-log(kscale), &rtol, atol, flag, paramsIn2);
             if (flag== 50){cout<< "\n \n \n Integrator failed at time N = " <<N <<" \n \n \n"; return Py_BuildValue("d", N);}
             flag=-2;
+            // if (printed){
+            //     cout << "PyT Rtol = " << rtol << "\n";
+            //     printed = false;
+            // }
         }
         // vector with fields
         fieldIn = vector<double>(y,y+2*nF);
@@ -1194,448 +1332,7 @@ static PyObject* MT_alphaEvolve(PyObject* self,  PyObject *args)
     return PyArray_Return(alpOut);
 }
 
-// function to calculate 2pt evolution through the GAMMAs
-static PyObject* MT_rhoEvolve(PyObject* self,  PyObject *args)
-{
-    PyArrayObject *initialCs, *t, *rhoOut, *params, *tols;
-    double *CinitialCs, *tc, k, *Cparams, *tolsC;
-    double rtol, atol;                                              // Input tols
-    bool full;
-    if (!PyArg_ParseTuple(args, "O!dO!O!O!b", &PyArray_Type, &t, &k, &PyArray_Type, &initialCs,&PyArray_Type, &params, &PyArray_Type, &tols,&full)) {
-        return NULL;}
-    CinitialCs = pyvector_to_Carray(initialCs);
-    tc = pyvector_to_Carray(t);    
-    tolsC = pyvector_to_Carray(tols);
-    //Check tols size
-    if (2!=size_pyvector(tols)){cout<< "\n \n \n incorrect tolorances input, using defaults  \n \n \n";
-        atol = pow(10,-8.); rtol = pow(10,-8.);}
-    else {
-        atol =tolsC[0]; rtol = tolsC[1];}
-
-    model mm;
-    potential pott;
-    int nF=mm.getnF(); if (2*nF!=size_pyvector(initialCs)){cout<< "\n \n \n field space array not of correct length, not proceeding further \n \n \n";    Py_RETURN_NONE;}
-    vector<double> vectIn = vector<double>(CinitialCs, CinitialCs + 2*nF);
-    
-    int nP = mm.getnP(); if (nP!=size_pyvector(params)){cout<< "\n \n \n parameters array not of correct length, not proceeding further \n \n \n";  Py_RETURN_NONE;}
-    Cparams = pyvector_to_Carray(params);
-    vector<double> Vparams = vector<double>(Cparams, Cparams +  nP);
-    
-    // we use a scaling below that we rescale back at the end (so the final answer is as if the scaling was never there -- this helps standarise the rtol and atol needed for the same model run with differnet initial conditions
-    double kn = 1.0; 
-    double kscale = k;    
-    double Nstart=tc[0] - log(kscale);
-    
-    // instance of sigma object which fix ics;
-    sigma sig(nF, kn, Nstart, vectIn, Vparams);
-
-    // instance of rho object which fixs ics
-    Rho1 rho(nF, kn, Nstart, vectIn, Vparams);
-    
-
-    // Set up array for 2pt 
-    double* y = new double[2*nF + 2*nF*2*nF]; // set up array for ics
-    double* s = new double[2*nF + 2*nF*2*nF];
-    for(int i=0; i<2*nF;i++){y[i] = CinitialCs[i]; s[i] = CinitialCs[i];} // fix values of input array
-    for(int i=0; i<2*nF;i++){for(int j=0;j<2*nF;j++){y[2*nF + i + 2*nF*j] = sig.getS(i, j); s[2*nF + i + 2*nF*j] = sig.getS(i, j);}}
-
-    // Set up array for Gammas (here Rho)
-    double* r = new double[2*nF + 2*nF*2*nF];
-
-    for(int i=0; i < 2*nF;i++){r[i] = CinitialCs[i];}
-    for(int i=0; i < 2*nF;i++){for(int j=0;j<2*nF;j++){r[2*nF + i + 2*nF*j] = rho.getR(i, j);}}
-    
-
-    double* paramsIn; // array of parameters to pass to LHS of ODE routine
-    
-    paramsIn = new double[1+nP];
-    for(int i=0; i<nP;i++){paramsIn[i]=Vparams[i];};
-    paramsIn[nP]=kn;
-    
-    // evolve a 2pt run **************************
-    
-    double N = Nstart;
-    // Set up array for derivatives of 2pt and Gammas(rho)
-    double* yp = new double [2*nF + 2*nF*2*nF]; 
-    double* rp = new double [2*nF + 2*nF*2*nF];
-    vector<double> Ni;
-    double zz=0;
-    
-    int flag=-1;
-    
-    evolveRho1(N, r, rp, paramsIn);
-
-    vector<double> fieldIn = vector<double>(y,y+2*nF);
-    Ni=mm.N1(fieldIn,Vparams,N); // calculate N,i array
-    zz=0;
-    for(int i = 0; i < 2*nF; i++){
-        for(int j = 0; j < 2*nF; j++){
-        zz = zz + Ni[i]*Ni[j]*y[2*nF + i + j*2*nF];
-        }
-    }
-    
-
-    int nt = t->dimensions[0];
-    
-    int size;
-    if (full ==true){size = 1 + 2*nF + 1 + 2*nF*2*nF;}
-    if (full ==false){size = 1 + 1;}
-    
-    npy_intp dims[2];
-    dims[1]=size; dims[0]=nt;
-    double * rhoOutC;
-    rhoOut = (PyArrayObject*) PyArray_SimpleNew(2,dims,NPY_DOUBLE);
-    rhoOutC = (double *) PyArray_DATA(rhoOut);
-    
-    
-    // Evolve rho matrices
-    for(int ii=0; ii<nt; ii++ ){
-        while (N<tc[ii]-log(kscale)){
-            flag = r8_rkf45(evolveRho1 , 2*nF + 2*nF*2*nF, r, rp, &N, tc[ii]-log(kscale), &rtol, atol, flag, paramsIn);
-            if (flag== 50){cout<< "\n \n \n Integrator failed at time N = " <<N <<" \n \n \n"; return Py_BuildValue("d", N);}
-            flag = -2;
-        }
-
-        // Update fields
-        for(int i = 0; i < 2*nF; i++){y[i] = r[i];};
-
-        double sum = 0.;
-        // calculate sigma
-        for(int i = 0; i < 2*nF; i++){
-            for(int j = 0; j < 2*nF; j++)
-            {
-                sum = 0.0;
-                for(int a=0; a<2*nF; a++){
-                    for(int b=0; b<2*nF; b++)
-                    {
-                        sum = sum + s[2*nF + 2*nF*a + b]*r[2*nF + a + 2*nF*i]*r[2*nF + b + 2*nF*j];
-                    }
-                }
-                y[2*nF + 2*nF*i + j] = sum;
-            }
-        }
-
-        fieldIn = vector<double>(y,y+2*nF);
-        
-        rhoOutC[ii*size] = N+log(kscale);
-        
-        // Calculate zz
-        Ni=mm.N1(fieldIn,Vparams,N); // calculate N,i array
-        zz=0;
-        for(int i=0; i<2*nF;i++){
-            for(int j=0; j<2*nF; j++){
-                zz=zz+Ni[i]*Ni[j]*y[2*nF + 2*nF*i + j];
-            }
-        }
-        
-
-        rhoOutC[ii*size+1] = zz/kscale/kscale/kscale;
-        
-
-        if(full==true){
-            // Store the Fields
-            for(int i=0; i<2*nF; i++)
-            {
-                rhoOutC[ii*(size)+i+2] = y[i];
-            }
-            // Store Sigma's
-            for(int i = 2*nF; i<2*nF + 2*nF*2*nF; i++)
-            {
-                rhoOutC[ii*(size)+i+2] = y[i]/kscale/kscale/kscale;
-            }
-        }
-
-    }
-    
-    delete [] y; delete [] yp; delete [] r; delete [] rp; delete [] s;
-    delete [] paramsIn;
-
-    return PyArray_Return(rhoOut);
-}
-
-// function to calculate 3pt evolution through the GAMMAs
-static PyObject* MT_rhoEvolve2(PyObject* self,  PyObject *args)
-{
-    // printf("Enter the routine\n");
-    PyArrayObject *initialCs, *t, *alpROut, *params, *tols;
-    double k1, k2, k3, *CinitialCs, *tc, *Cparams, *tolsC;
-    bool full;
-    if (!PyArg_ParseTuple(args, "O!dddO!O!O!b", &PyArray_Type, &t, &k1,&k2,&k3, &PyArray_Type, &initialCs,&PyArray_Type,&params,&PyArray_Type,&tols, &full)) {
-        return NULL; }
-    CinitialCs = pyvector_to_Carray(initialCs);
-    tc = pyvector_to_Carray(t);
-    int nt = t->dimensions[0];
-
-        
-
-    tolsC = pyvector_to_Carray(tols);
-    double rtol, atol;
-    if (2!=size_pyvector(tols)){cout<< "\n \n \n incorrect tolorances input, using defaults  \n \n \n";
-        atol = pow(10,-8.); rtol = pow(10,-8.);}
-    else {
-        atol =tolsC[0];rtol = tolsC[1];
-    }
-
-    
-    model mm;
-    potential pott;
-    int nF=mm.getnF(); if (2*nF!=size_pyvector(initialCs)){cout<< "\n \n \n field space array not of correct length, not proceeding further \n \n \n";    Py_RETURN_NONE;}
-    vector<double> vectIn;
-    vectIn = vector<double>(CinitialCs, CinitialCs + 2*nF);
-    
-
-    int nP = mm.getnP(); if (nP!=size_pyvector(params)){cout<< "\n \n \n parameters array not of correct length, not proceeding further \n \n \n";  Py_RETURN_NONE;}
-    Cparams = pyvector_to_Carray(params);
-    vector<double> Vparams; Vparams = vector<double>(Cparams, Cparams +  nP);
-    
-    // we use a scaling below that we rescale back at the end (so the final answer is as if the scaling was never there -- this helps standarise the rtol and atol needed for the same model run with differnet initial conditions
-    double kscale = (k1+k2+k3)/3.; 
-    double k1n = k1/kscale; double k2n = k2/kscale; double k3n = k3/kscale;   
-    double Nstart=tc[0] - log(kscale);
-
-    double N=Nstart; // Reset N
-    
-    // instance of sigma object which fix ics;
-    sigma sig1(nF, k1n, Nstart, vectIn, Vparams);
-    sigma sig2(nF, k2n, Nstart, vectIn, Vparams);
-    sigma sig3(nF, k3n, Nstart, vectIn, Vparams);
-
-    // instance of sigma imaginary
-    sigmaI sig1I(nF, k1n, Nstart, vectIn,Vparams)  ; 
-    sigmaI sig2I(nF, k2n, Nstart, vectIn,Vparams)  ;
-    sigmaI sig3I(nF, k3n, Nstart, vectIn,Vparams)  ;
-
-    // instance of alpha objects which fix ics;
-    alpha alp(nF, k1n, k2n, k3n, Nstart, vectIn, Vparams);
-
-    // instance of rho 1 object which fixs ics
-    Rho1 rho11(nF, k1n, Nstart, vectIn, Vparams);
-    Rho1 rho12(nF, k2n, Nstart, vectIn, Vparams);
-    Rho1 rho13(nF, k3n, Nstart, vectIn, Vparams);
-
-    // instance of rho 2 object which fixs ics
-    Rho2 rho21(nF, k1n, k2n, k3n, Nstart, vectIn, Vparams);
-    Rho2 rho22(nF, k2n, k1n, k3n, Nstart, vectIn, Vparams);
-    Rho2 rho23(nF, k3n, k1n, k2n, Nstart, vectIn, Vparams);
-
-
-    // Store fields, rho1 and rho2
-    double * r = new double[2*nF + 3*(2*nF*2*nF) + 3*(2*nF*2*nF*2*nF)];
-    // store fields
-    for(int i = 0; i < 2*nF; i++){r[i] = CinitialCs[i];}
-    // store rho1
-    for(int i = 0; i< 2*nF; i++){
-        for(int j = 0; j < 2*nF; j++){
-            r[2*nF + i + 2*nF*j] = rho11.getR(i,j);
-            r[2*nF + 2*nF*2*nF + i + 2*nF*j] = rho12.getR(i,j);
-            r[2*nF + 2*(2*nF*2*nF) + i + 2*nF*j] = rho13.getR(i,j);
-        }
-    }
-    // store rho2
-    for(int i = 0; i < 2*nF; i++){
-        for(int j = 0; j < 2*nF; j++){
-            for(int k = 0; k < 2*nF; k++){
-                r[2*nF + 3*(2*nF*2*nF) + i + 2*nF*j + 2*nF*2*nF*k] = rho21.getR(i,j,k);
-                r[2*nF + 3*(2*nF*2*nF) + (2*nF*2*nF*2*nF) + i + 2*nF*j + 2*nF*2*nF*k] = rho22.getR(i,j,k);
-                r[2*nF + 3*(2*nF*2*nF) + 2*(2*nF*2*nF*2*nF) + i + 2*nF*j + 2*nF*2*nF*k] = rho23.getR(i,j,k);
-            }
-        }
-    }
-
-
-    // Store sigmas
-    double *s = new double[6*(2*nF*2*nF)];
-
-    for (int i = 0; i < 2*nF; i++){
-        for (int j = 0; j < 2*nF; j++){
-            // Real
-            s[0*(2*nF*2*nF) + i + 2*nF*j] = sig1.getS(i,j);
-            s[1*(2*nF*2*nF) + i + 2*nF*j] = sig2.getS(i,j);
-            s[2*(2*nF*2*nF) + i + 2*nF*j] = sig3.getS(i,j);
-            // Imaginary
-            s[3*(2*nF*2*nF) + i + 2*nF*j] = sig1I.getS(i,j);
-            s[4*(2*nF*2*nF) + i + 2*nF*j] = sig2I.getS(i,j);
-            s[5*(2*nF*2*nF) + i + 2*nF*j] = sig3I.getS(i,j);
-        }
-    }
-
-
-    // Store alpha
-    double *ainit = new double[ 2*nF * 2*nF * 2*nF ];
-    
-    for(int i = 0; i < 2*nF; i++){
-        for(int j = 0; j < 2*nF; j++){
-            for(int k = 0; k < 2*nF; k++){
-                ainit[i + 2*nF*j + (2*nF*2*nF)*k] = alp.getA(i,j,k);
-            }
-        }
-    }
-
-    
-
-    double* paramsIn; // Array for parameters of RHS of ODE routine
-    paramsIn = new double[3 + nP];
-    for(int i = 0; i < nP; i++){paramsIn[i] = Vparams[i];}
-    paramsIn[nP] = k1n;
-    paramsIn[nP + 1] = k2n;
-    paramsIn[nP + 2] = k3n;
-
-    double ZZZ = 0., ZZ1 = 0., ZZ2 = 0., ZZ3 = 0.; // for zeta zeta calcs
-    vector<double> Ni, Nii1, Nii2, Nii3 ; // for N transofrms to get to zeta
-
-    double *rp = new double[2*nF + 3*(2*nF*2*nF) + 3*(2*nF*2*nF*2*nF)];
-
-    double *y = new double[2*nF + 6*(2*nF*2*nF) + 2*nF*2*nF*2*nF];
-
-
-    npy_intp dims[2];
-    int size;
-    if (full==false){size = 5;}
-    if (full==true){size = 5 + 2*nF + 6*(2*nF*2*nF) + 2*nF*2*nF*2*nF;}
-    dims[1] = size; dims[0] = nt;
-    double* alpROutC;
-    alpROut = (PyArrayObject *) PyArray_SimpleNew(2,dims,NPY_DOUBLE);
-    alpROutC = (double *) PyArray_DATA(alpROut);
-
-    evolveRho2(N, r, rp, paramsIn);
-    int flag = -1;
-
-    // Run alpha **************************************************
-
-    vector<double> fieldIn(2*nF);
-
-    for(int ii = 0; ii<nt; ii++){
-        // printf("ii = %i\n", ii);
-
-        while (N<(tc[ii]-log(kscale))){
-            flag = r8_rkf45(evolveRho2, 2*nF + 3*(2*nF*2*nF) + 3*(2*nF*2*nF*2*nF), r, rp, &N, tc[ii]-log(kscale), &rtol, atol, flag, paramsIn);
-            if (flag== 50){cout<< "\n \n \n Integrator failed at time N = " <<N <<" \n \n \n"; return Py_BuildValue("d", N);}
-            flag=-2;
-        }        
-
-        // store fields
-        for(int i = 0; i < 2*nF; i++){y[i] = r[i];}
- 
-        // Calculate and store sigma
-        for(int i = 0; i < 2*nF; i++){
-            for(int j = 0; j < 2*nF; j++)
-            {
-                // Reset
-                double sumR1 = 0.;
-                double sumR2 = 0.;
-                double sumR3 = 0.;
-                double sumI1 = 0.;
-                double sumI2 = 0.;
-                double sumI3 = 0.;
-                // Calculate sigma
-                for(int a=0; a<2*nF; a++){
-                    for(int b=0; b<2*nF; b++)
-                    {
-                        // Real
-                        sumR1 = sumR1 + s[0*(2*nF*2*nF) + 2*nF*a + b]*r[2*nF + 0*(2*nF*2*nF) + a + 2*nF*i]*r[2*nF + 0*(2*nF*2*nF) + b + 2*nF*j];
-                        sumR2 = sumR2 + s[1*(2*nF*2*nF) + 2*nF*a + b]*r[2*nF + 1*(2*nF*2*nF) + a + 2*nF*i]*r[2*nF + 1*(2*nF*2*nF) + b + 2*nF*j];
-                        sumR3 = sumR3 + s[2*(2*nF*2*nF) + 2*nF*a + b]*r[2*nF + 2*(2*nF*2*nF) + a + 2*nF*i]*r[2*nF + 2*(2*nF*2*nF) + b + 2*nF*j];
-                        // Imaginary
-                        sumI1 = sumI1 + s[3*(2*nF*2*nF) + 2*nF*a + b]*r[2*nF + 0*(2*nF*2*nF) + a + 2*nF*i]*r[2*nF + 0*(2*nF*2*nF) + b + 2*nF*j];
-                        sumI2 = sumI2 + s[4*(2*nF*2*nF) + 2*nF*a + b]*r[2*nF + 1*(2*nF*2*nF) + a + 2*nF*i]*r[2*nF + 1*(2*nF*2*nF) + b + 2*nF*j];
-                        sumI3 = sumI3 + s[5*(2*nF*2*nF) + 2*nF*a + b]*r[2*nF + 2*(2*nF*2*nF) + a + 2*nF*i]*r[2*nF + 2*(2*nF*2*nF) + b + 2*nF*j];
-                    }
-                }
-                // Store
-                y[2*nF + 0*(2*nF*2*nF) + 2*nF*i + j] = sumR1;
-                y[2*nF + 1*(2*nF*2*nF) + 2*nF*i + j] = sumR2;
-                y[2*nF + 2*(2*nF*2*nF) + 2*nF*i + j] = sumR3;
-                y[2*nF + 3*(2*nF*2*nF) + 2*nF*i + j] = sumI1;
-                y[2*nF + 4*(2*nF*2*nF) + 2*nF*i + j] = sumI2;
-                y[2*nF + 5*(2*nF*2*nF) + 2*nF*i + j] = sumI3;
-            }
-        }
-        
-
-        // Calculate and store alpha
-        double term0, term1, term2, term3;
-
-        for (int a = 0; a < 2*nF; a++){
-            for(int b = 0; b < 2*nF; b++){
-                for(int c = 0; c < 2*nF; c++){
-                    // reset term
-                    term0 = 0.;
-                    term1 = 0.;
-                    term2 = 0.;
-                    term3 = 0.;
-                    // sum over i,j,k
-                    for(int i = 0; i < 2*nF; i++){
-                        for(int j = 0; j < 2*nF; j++){
-                            for(int k = 0; k < 2*nF; k++){
-
-                                term0 = term0 + r[2*nF + 2*nF*a + i]*r[2*nF + (2*nF*2*nF) + 2*nF*b + j]*r[2*nF + 2*(2*nF*2*nF) + 2*nF*c + k]*ainit[i + 2*nF*j + (2*nF*2*nF)*k];
-                                // sum over l
-                                for(int l = 0; l < 2*nF; l++){
-                                    term1 = term1 + r[2*nF + 3*(2*nF*2*nF) + (2*nF*2*nF)*a + 2*nF*i + j] * r[2*nF + (2*nF*2*nF) + 2*nF*b + k] * r[2*nF + 2*(2*nF*2*nF) + 2*nF*c + l]*( s[(2*nF*2*nF) + 2*nF*i + k]*s[2*(2*nF*2*nF) + 2*nF*j + l] - s[4*(2*nF*2*nF) + 2*nF*i + k]*s[5*(2*nF*2*nF) + 2*nF*j + l] );
-                                    term2 = term2 + r[2*nF + 3*(2*nF*2*nF) + (2*nF*2*nF*2*nF) + (2*nF*2*nF)*b + 2*nF*i + j] * r[2*nF + 2*nF*a + k] * r[2*nF + 2*(2*nF*2*nF) + 2*nF*c + l]*( s[2*nF*k + i]*s[2*(2*nF*2*nF) + 2*nF*j + l] - s[3*(2*nF*2*nF) + 2*nF*k + i]*s[5*(2*nF*2*nF) + 2*nF*j + l] );
-                                    term3 = term3 + r[2*nF + 3*(2*nF*2*nF) + 2*(2*nF*2*nF*2*nF) + (2*nF*2*nF)*c + 2*nF*i + j] * r[2*nF + 2*nF*a + k] * r[2*nF + (2*nF*2*nF) + 2*nF*b + l]*( s[2*nF*k + i]*s[(2*nF*2*nF) + 2*nF*l + j] - s[3*(2*nF*2*nF) + 2*nF*k + i]*s[4*(2*nF*2*nF) + 2*nF*l + j] );
-                                }
-                            }
-                        }
-                    }
-                    // Store alpha
-                    y[2*nF + 6*(2*nF*2*nF) + (2*nF*2*nF)*a + 2*nF*b + c] = term0 + term1 + term2 + term3;
-                }
-            }
-        }
-
-        fieldIn = vector<double>(y,y+2*nF);
-        Ni=mm.N1(fieldIn,Vparams,N); // calculate N,i array
-        Nii1=mm.N2(fieldIn,Vparams,k1n,k2n,k3n,N); // claculate N,ij array for first arrangement of ks
-        Nii2=mm.N2(fieldIn,Vparams,k2n,k1n,k3n,N); // for second
-        Nii3=mm.N2(fieldIn,Vparams,k3n,k1n,k2n,N); // etc
-        
-        ZZ1=0.;
-        ZZ2=0.;
-        ZZ3=0.;
-        for(int i=0; i<2*nF;i++){for(int j=0; j<2*nF; j++){
-            ZZ1=ZZ1+Ni[i]*Ni[j]*(y[2*nF + 2*nF*i + j] );
-            ZZ2=ZZ2+Ni[i]*Ni[j]*y[2*nF + (2*nF*2*nF) + 2*nF*i + j];
-            ZZ3=ZZ3+Ni[i]*Ni[j]*y[2*nF + 2*(2*nF*2*nF) + 2*nF*i + j];
-        }}   
-
-
-        ZZZ=0.;
-        for(int i=0; i<2*nF;i++){for(int j=0; j<2*nF;j++){for(int k=0; k<2*nF;k++){
-            ZZZ=ZZZ + Ni[i]*Ni[j]*Ni[k]*y[2*nF + 6*(2*nF*2*nF) + 2*nF*2*nF*i + j*2*nF+ k];
-            for(int l=0; l<2*nF;l++){ZZZ=ZZZ+(Nii1[i+j*2*nF]*Ni[k]*Ni[l]*y[2*nF + 1*(2*nF*2*nF) + 2*nF*i+k]*y[2*nF + 2*(2*nF*2*nF)+2*nF*j+l]
-                                              +Nii2[i+j*2*nF]*Ni[k]*Ni[l]*y[2*nF + 0*(2*nF*2*nF) + 2*nF*i+k]*y[2*nF + 2*(2*nF*2*nF) + 2*nF*j+l]
-                                              +Nii3[i+j*2*nF]*Ni[k]*Ni[l]*y[2*nF + 0*(2*nF*2*nF) + 2*nF*i+k]*y[2*nF + 1*(2*nF*2*nF) + 2*nF*j+l]);
-        }}}}
-        
-
-        alpROutC[ii*size] =  N+log(kscale);
-        alpROutC[ii*size+1] = ZZ1/kscale/kscale/kscale;
-        alpROutC[ii*size+2] = ZZ2/kscale/kscale/kscale;
-        alpROutC[ii*size+3] = ZZ3/kscale/kscale/kscale;
-        alpROutC[ii*size+4] = ZZZ/kscale/kscale/kscale/kscale/kscale/kscale;
-        
-        if(full==true){
-            for(int i=0; i<2*nF ;i++){
-                alpROutC[ii*size+5+i] =  y[i] ;   }
-            
-            for(int i=2*nF; i<2*nF + 6*(2*nF*2*nF); i++){
-                alpROutC[ii*size+5+i] =  y[i]/kscale/kscale/kscale ;   }
-
-            for(int i=2*nF + 6*(2*nF*2*nF); i<2*nF + 6*(2*nF*2*nF) + 2*nF*2*nF*2*nF; i++){
-                alpROutC[ii*size+5+i] =  y[i]/kscale/kscale/kscale/kscale/kscale/kscale ;   }
-        }
-        
-    }
-    
-    delete [] y;  delete [] paramsIn; delete [] rp; delete [] r;
-    delete [] s; delete [] ainit;
-    
-    return PyArray_Return(alpROut);
-}
-
-
-
+// function that computes the evolution of MPP2
 static PyObject* MT_MPP2(PyObject* self,  PyObject *args)
 {
     /* -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -1775,6 +1472,8 @@ static PyObject* MT_MPP2(PyObject* self,  PyObject *args)
     return PyArray_Return(rhoOut);
 }
 
+
+// Function that computes the 2pt with MPP2
 static PyObject* MT_MPPSigma(PyObject* self, PyObject *args)
 {
     /* -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2011,6 +1710,9 @@ static PyObject* MT_MPPSigma(PyObject* self, PyObject *args)
     }
 }
 
+void handleIntegrationError(int &flag, int ii, double* N, double &rtol, double &atol, double target_time, int nF, double* paramsIn, double* r, double* rp, bool used);
+
+// function that computes the evolution of MPP3
 static PyObject* MT_MPP3(PyObject* self, PyObject *args)
 {
     /* -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2071,7 +1773,7 @@ static PyObject* MT_MPP3(PyObject* self, PyObject *args)
     if (2!=size_pyvector(tols)){cout<< "\n \n \n incorrect tolorances input, using defaults  \n \n \n";
         atol = pow(10,-8.); rtol = pow(10,-8.);}
     else {
-        atol =tolsC[0];rtol = tolsC[1];
+        atol =tolsC[0]; rtol = tolsC[1];
     }
     //----------------------------------------------------------------------------------------------------------------------------------------------------
     // Define the model and compute the needed quantities
@@ -2158,68 +1860,128 @@ static PyObject* MT_MPP3(PyObject* self, PyObject *args)
 
     //----------------------------------------------------------------------------------------------------------------------------------------------------
     // Evolve rho matrices (Fields, Velocities, MPP2 and MPP3)
-    int flag = -1;
-    for(int ii = 0; ii<nt; ii++){
-        while (N < (tc[ii]-log(kscale))){
-            if (ii == 0){
-            flag = r8_rkf45(evolveRho2, 2*nF + 3*(2*nF*2*nF) + 3*(2*nF*2*nF*2*nF), r, rp, &N, tc[ii]-log(kscale), &rtol, atol, flag, paramsIn);
-            if (abs(flag) == 0) {
-                // Success: Integration step completed successfully.
-                flag = -2;
-                continue;
-            } else if (flag == 3) {
-                std::cerr << "Warning: Relative error tolerance was too small. Temporarily relaxing tolerances for one step." << std::endl;
-                // RELERR was too small; RELERR has been increased appropriately.
-                double originalRtol = rtol;
-                double originalAtol = atol;
-
-                rtol *= 10;
-                flag = -1;
-                flag = r8_rkf45(evolveRho2, 2*nF + 3*(2*nF*2*nF) + 3*(2*nF*2*nF*2*nF), r, rp, &N, tc[ii]-log(kscale), &rtol, atol, flag, paramsIn);
-                if (flag != 0){
-                    cout<< "\n \n \n Integrator failed at time N = " <<N <<" \n \n \n"; 
-                    return Py_BuildValue("d", N);
-                }
-
-                rtol = originalRtol;
-                flag = -2;
-                
-            } else if (flag == 6) {
-                // Accuracy could not be achieved; temporarily relax tolerances.
-                std::cerr << "Warning: Requested accuracy could not be achieved. Temporarily relaxing tolerances for one step." << std::endl;
-                double originalRtol = rtol;
-                double originalAtol = atol;
-                int countRetry = 0;
-                int maxRetry = 5;
     
-                while (countRetry < maxRetry) {
-                    rtol *= 10;
-                    atol *= 10;
-                    flag = -1;
-                    flag = r8_rkf45(evolveRho2, 2*nF + 3*(2*nF*2*nF) + 3*(2*nF*2*nF*2*nF), r, rp, &N, tc[ii]-log(kscale), &rtol, atol, flag, paramsIn);
-                    if (flag == 0){
-                        rtol = originalRtol;
-                        atol = originalAtol;
-                        flag = -2;
-                        break;
+    double t_star = 0.01;
+    int flag = -1;
+
+    bool text1 = true;
+    bool text2=true; 
+    bool text3 = true;
+
+    cout << "[DEBUGGING] Original tols = " << atol << ", " << rtol << "\n";
+
+    for (int ii = 0; ii < nt; ii++) {
+        double target_time = tc[ii] - log(kscale);
+        double originalAtol = atol;
+        double originalRtol = rtol;
+        while (N < target_time) {
+            // Check if we are at the first time step (ii == 1) and the time step exceeds t_star
+            if (ii == 1 && (tc[1] - tc[0]) > t_star) {
+                // Print warning message
+                std::cerr << "[INFO] The time step is greater than threshold dt = "
+                        << t_star
+                        << ". A two-step integration will be performed for initialization purposes."
+                        << std::endl;
+
+                // Perform the first integration up to target_time1
+                double target_time1 = tc[ii - 1] + t_star - log(kscale);
+                std::cerr << "[DEBUGGING] Starting time = " << tc[0] - log(kscale)
+                          << ", Middle time = " << target_time1
+                          << ", End time = " << target_time << std::endl;
+
+                cout << "[DEBUGGING] Time at beginning = " << N << "\n";
+                while(N < target_time1){
+                    flag = r8_rkf45(evolveRho2, 2 * nF + 3 * (2 * nF * 2 * nF) + 3 * (2 * nF * 2 * nF * 2 * nF),
+                                r, rp, &N, target_time1, &rtol, atol, flag, paramsIn);
+                    
+                    // cout << "Flag = " << flag << ". N = " << N << "\n";
+                    // Check for success or handle errors
+                    if (flag != -2) {
+                        handleIntegrationError(flag, ii, &N, rtol, atol, target_time1, nF, paramsIn, r, rp, true);
                     }
-                    else {
-                        countRetry += 1;
+                    if (flag == 50) {
+                        std::cerr << "[ERROR] Integration failed at time step N=" << N 
+                                  << ", iteration=" << ii
+                                  << ". Please check initial conditions or adjust tolerances.\n";
+                        throw std::runtime_error("Integration failed");
                     }
+                    flag = -2;
+                }
+                
+                cout << "[DEBUGGING] Time at middle = " << N << "\n";
+
+                // Perform the second integration up to target_time
+                while (N<target_time){
+                    flag = r8_rkf45(evolveRho2, 2 * nF + 3 * (2 * nF * 2 * nF) + 3 * (2 * nF * 2 * nF * 2 * nF),
+                                    r, rp, &N, target_time, &rtol, atol, flag, paramsIn);
+                // cout << "Flag = " << flag << ". N = " << N << "\n";
+                // Check for success or handle errors
+                    if (flag != -2) {
+                        handleIntegrationError(flag, ii, &N, rtol, atol, target_time, nF, paramsIn, r, rp, true);
+                    }
+                    if (flag == 50) {
+                    std::cerr << "[ERROR] Integration failed at time step N=" << N 
+                              << ", iteration=" << ii
+                              << ". Please check initial conditions or adjust tolerances.\n";
+                    throw std::runtime_error("Integration failed");
+                    }
+                    flag = -2;
+                }
+                flag = -2;
+                if (text1){
+                    std::cerr << "[DEBUGGING] Case step_size > t_star" << std::endl;
+                    std::cerr << "Atol = " << atol << std::endl;
+                    std::cerr << "Rtol = " << rtol << std::endl;
+                    text1 = false;
                 }
 
-                rtol = originalRtol;
-                atol = originalAtol;
+
+                // Store timestep
+                rhoOutC[ii*size] =  N + log(kscale);
+                // Store the MPP matrices
+                for(int i=0; i<2*nF + 3*(2*nF*2*nF) + 3*(2*nF*2*nF*2*nF);i++){
+                    rhoOutC[ii*size+1+i] =  r[i] ; 
+                }
+                cout << "[DEBUGGING] Time at end = " << N << "\n";
+                
+                break; // Exit the loop since target_time has been reached
+            } else if (ii == 1) {
+                // Standard integration for all other cases
+                flag = r8_rkf45(evolveRho2, 2 * nF + 3 * (2 * nF * 2 * nF) + 3 * (2 * nF * 2 * nF * 2 * nF),
+                                r, rp, &N, target_time, &rtol, atol, flag, paramsIn);
+
+                // Check for success or handle errors
+                if (flag != -2) {
+                    handleIntegrationError(flag, ii, &N, rtol, atol, target_time, nF, paramsIn, r, rp, true);
+                }
+                flag = -2;
+                if (text2) {
+                    std::cerr << "[DEBUGGING] Case ii == 1" << std::endl;
+                    std::cerr << "Atol = " << atol << std::endl;
+                    std::cerr << "Rtol = " << rtol << std::endl;
+                    text2 = false;
+                }
+                break; // Exit the loop since target_time has been reached
             }
+            else {
+                if (text3){
+                    std::cerr << "[DEBUGGING] Standard case" << std::endl;
+                    std::cerr << "Atol = " << atol << std::endl;
+                    std::cerr << "Rtol = " << rtol << std::endl;
+                    text3 = false;
+                }
+                flag = r8_rkf45(evolveRho2, 2 * nF + 3 * (2 * nF * 2 * nF) + 3 * (2 * nF * 2 * nF * 2 * nF),
+                                r, rp, &N, target_time, &rtol, atol, flag, paramsIn);
+                // cout << "ii = " << ii << " flag = " << flag << "\n";
+                if (flag == 50) {
+                    std::cerr << "[ERROR] Integration failed at time step N=" << N 
+                              << ", iteration=" << ii 
+                              << ". Please check initial conditions or adjust tolerances.\n";
+                    throw std::runtime_error("Integration failed");
+                }
+                flag = -2;
             }
         }
-
-
-        // while (N < (tc[ii]-log(kscale))){
-        //     flag = r8_rkf45(evolveRho2, 2*nF + 3*(2*nF*2*nF) + 3*(2*nF*2*nF*2*nF), r, rp, &N, tc[ii]-log(kscale), &rtol, atol, flag, paramsIn);
-        //     if (flag == 50){cout<< "\n \n \n Integrator failed at time N = " <<N <<" \n \n \n"; return Py_BuildValue("d", N);}
-        //     flag=-2;
-        // }
         // Store timestep
         rhoOutC[ii*size] =  N+log(kscale);
         // Store the MPP matrices
@@ -2227,12 +1989,85 @@ static PyObject* MT_MPP3(PyObject* self, PyObject *args)
             rhoOutC[ii*size+1+i] =  r[i] ; 
         }
     }
+
     // Delete arrays
     delete [] paramsIn; delete [] rp; delete [] r;
     
     return PyArray_Return(rhoOut);
 }
 
+// Function that handle the 2pt integration
+void handleIntegrationError(int &flag, int ii, double* N, 
+                            double &rtol, double &atol, double target_time, 
+                            int nF, double* paramsIn, double* r, double* rp, bool used) {
+    const double TEMP_TOLERANCE = 1e-6; // Temporary tolerance for retry
+    // Handle when the integrator can't reach the relative tolerance
+    if (flag == 3) {
+        std::cerr << "[WARNING]: Relative error tolerance was too small at iteration ii = " << ii
+                << ". Adjusting tolerances temporarily.\n";
+
+        std::cerr << "[DEBUG] Current tolerances - Absolute: " << atol 
+          << ", Relative: " << rtol << "\n";
+        // Store original tolerance
+        double originalRtol = rtol;
+        double originalAtol = atol;
+
+        // Temporary set tolerance to a standard value 1e-6
+        rtol = TEMP_TOLERANCE;
+        cout << "[INFO] Tols temporary set to = " << atol << ',' << rtol << "\n";
+        flag = -1;
+        // Perform integration with looser tolerance
+        flag = r8_rkf45(evolveRho2, 2 * nF + 3 * (2 * nF * 2 * nF) + 3 * (2 * nF * 2 * nF * 2 * nF),
+                        r, rp, N, target_time, &rtol, atol, flag, paramsIn);
+        
+        cout << "[DEBUG] Exception 3, Flag = " << flag << "\n";
+        if (abs(flag) == 2) {
+            // reset tolerances
+            rtol = originalRtol;
+            atol = originalAtol;
+            return;
+        }
+        else {
+            rtol = originalRtol;
+            atol = originalAtol;
+            handleIntegrationError(flag, ii, N, originalRtol, originalAtol, target_time, nF, paramsIn, r, rp, false);
+        }
+    // Handle when the integrator can't reach both relative and absolute tolerance
+    } else if (flag == 6) {
+
+        std::cerr << "[WARNING]: Requested accuracy could not be achieved at iteration ii = " << ii
+                << ". Temporarily relaxing tolerances." << std::endl;
+        std::cerr << "[INFO] Temporary tolerances set to relTol: " << rtol
+                  << ", absTol: " << atol << "\n";
+        // Store original tolerances
+        double originalRtol = rtol;
+        double originalAtol = atol;
+
+        // Temporary set tolerance to a standard value 1e-6
+        rtol = 1e-6;
+        atol = 1e-6;
+        cout << "[INFO] Tols temporary set to = " << atol << ',' << rtol << "\n";
+        flag = -1;
+        // Integrate one step with a looser tolerance
+        flag = r8_rkf45(evolveRho2, 2 * nF + 3 * (2 * nF * 2 * nF) + 3 * (2 * nF * 2 * nF * 2 * nF),
+                        r, rp, N, target_time, &rtol, atol, flag, paramsIn);
+        cout << "[DEBUG] Exception 6, Flag = " << flag << "\n";
+        // If integration succeeded return
+        if (abs(flag) == 2) {
+            // reset tolerances
+            rtol = originalRtol;
+            atol = originalAtol;
+            return;
+        }
+        else {
+            rtol = originalRtol;
+            atol = originalAtol;
+            handleIntegrationError(flag, ii, N, rtol, atol, target_time, nF, paramsIn, r, rp, false);
+        }
+    }
+}
+
+// Function that computes the 3pt function with MPP3
 static PyObject* MT_MPPAlpha(PyObject* self, PyObject *args)
 {
     /* -----------------------------------------------------------------------------------------------------------------------------------------------------
@@ -2646,55 +2481,12 @@ static PyObject* MT_MPPAlpha(PyObject* self, PyObject *args)
     
     return PyArray_Return(alpROut);
 }
-
-static PyObject* MT_getSigma(PyObject* self, PyObject *args)
-{
-    PyArrayObject *initialCs, *t, *params;
-    PyArrayObject *sigOut;
-    double *CinitialCs, *Ct, k, *Cparams;
-
-    if (!PyArg_ParseTuple(args, "O!dO!O!", &PyArray_Type, &t, &k, &PyArray_Type, &initialCs,&PyArray_Type, &params))
-    { return NULL;}
-
-    CinitialCs = pyvector_to_Carray(initialCs);
-    Ct = pyvector_to_Carray(t);
-    Cparams = pyvector_to_Carray(params);
-
-    model mm;
-    potential pott;
-    int nF = mm.getnF();
-    int nP = mm.getnP();
-    vector<double> vectIn = vector<double>(CinitialCs, CinitialCs + 2*nF);
-    vector<double> Vparams = vector<double>(Cparams, Cparams + nP);
-    double kn = 1.0;
-    double Nstart = Ct[0] - log(k);
-
-    int nt = 2;
-    int size = 2*nF*2*nF;
-    npy_intp dims[2];
-    dims[0] = nt; dims[1] = size;
-    double* sigOutC;
-    sigOut = (PyArrayObject*) PyArray_SimpleNew(2, dims, NPY_DOUBLE);
-    sigOutC = (double *) PyArray_DATA(sigOut);
-
-    sigma sigR(nF, kn, Nstart, vectIn, Vparams);
-    sigmaI sigI(nF, kn, Nstart, vectIn, Vparams);
-    for(int i = 0; i < 2*nF; i++){
-        for(int j =0; j <2*nF; j++){
-            sigOutC[i + 2*nF*j] = sigR.getS(i,j)/k/k/k;
-            sigOutC[2*nF*2*nF + i + 2*nF*j] = sigI.getS(i,j)/k/k/k;
-        }
-    }
-
-    return PyArray_Return(sigOut);
-
-}
  
 static char PyTrans_docs[] =
     "This is PyTrans, a package for solving the moment transport equations of inflationary cosmology\n";
 
 // **************************************************************************************
-static PyMethodDef PyTransLNC_methods[] = {{"H", (PyCFunction)MT_H,    METH_VARARGS, PyTrans_docs},{"Ep", (PyCFunction)MT_Ep,    METH_VARARGS, PyTrans_docs},{"Eta", (PyCFunction)MT_Eta,    METH_VARARGS, PyTrans_docs},{"nF", (PyCFunction)MT_fieldNumber,        METH_VARARGS, PyTrans_docs},{"nP", (PyCFunction)MT_paramNumber,        METH_VARARGS, PyTrans_docs},{"V", (PyCFunction)MT_V,            METH_VARARGS, PyTrans_docs},{"dV", (PyCFunction)MT_dV,                METH_VARARGS, PyTrans_docs},  {"ddV", (PyCFunction)MT_ddV,                METH_VARARGS, PyTrans_docs},  {"backEvolve", (PyCFunction)MT_backEvolve,        METH_VARARGS, PyTrans_docs},  {"sigEvolve", (PyCFunction)MT_sigEvolve,        METH_VARARGS, PyTrans_docs},  {"gamEvolve", (PyCFunction)MT_gamEvolve,        METH_VARARGS, PyTrans_docs},    {"alphaEvolve", (PyCFunction)MT_alphaEvolve,        METH_VARARGS, PyTrans_docs},  {"rhoEvolve", (PyCFunction)MT_rhoEvolve,        METH_VARARGS, PyTrans_docs}, {"rhoEvolve2", (PyCFunction)MT_rhoEvolve2,        METH_VARARGS, PyTrans_docs}, {"MPP2", (PyCFunction)MT_MPP2,        METH_VARARGS, PyTrans_docs}, {"MPPSigma", (PyCFunction)MT_MPPSigma,        METH_VARARGS, PyTrans_docs}, {"MPP3", (PyCFunction)MT_MPP3,        METH_VARARGS, PyTrans_docs},{"MPPAlpha", (PyCFunction)MT_MPPAlpha,        METH_VARARGS, PyTrans_docs},{"getSigma", (PyCFunction)MT_getSigma, METH_VARARGS, PyTrans_docs},{NULL, NULL, 0, NULL}};//FuncDef
+static PyMethodDef PyTransPBH_methods[] = {{"H", (PyCFunction)MT_H,    METH_VARARGS, PyTrans_docs},{"Ep", (PyCFunction)MT_Ep,    METH_VARARGS, PyTrans_docs},{"Eta", (PyCFunction)MT_Eta,    METH_VARARGS, PyTrans_docs},{"nF", (PyCFunction)MT_fieldNumber,        METH_VARARGS, PyTrans_docs},{"nP", (PyCFunction)MT_paramNumber,        METH_VARARGS, PyTrans_docs},{"V", (PyCFunction)MT_V,            METH_VARARGS, PyTrans_docs},{"dV", (PyCFunction)MT_dV,                METH_VARARGS, PyTrans_docs},  {"ddV", (PyCFunction)MT_ddV,                METH_VARARGS, PyTrans_docs},  {"backEvolve", (PyCFunction)MT_backEvolve,        METH_VARARGS, PyTrans_docs},  {"sigEvolve", (PyCFunction)MT_sigEvolve,        METH_VARARGS, PyTrans_docs},  {"gamEvolve", (PyCFunction)MT_gamEvolve,        METH_VARARGS, PyTrans_docs},    {"alphaEvolve", (PyCFunction)MT_alphaEvolve,        METH_VARARGS, PyTrans_docs}, {"MPP2", (PyCFunction)MT_MPP2,        METH_VARARGS, PyTrans_docs}, {"MPPSigma", (PyCFunction)MT_MPPSigma,        METH_VARARGS, PyTrans_docs}, {"MPP3", (PyCFunction)MT_MPP3,        METH_VARARGS, PyTrans_docs},{"MPPAlpha", (PyCFunction)MT_MPPAlpha,        METH_VARARGS, PyTrans_docs},{NULL, NULL, 0, NULL}};//FuncDef
 // do not alter the comment at the end of the preceding line -- it is used by the preprocessor
 
 #ifdef __cplusplus
@@ -2702,11 +2494,11 @@ extern "C" {
 #endif
 
 // **************************************************************************************    
-static struct PyModuleDef PyTransModule = {PyModuleDef_HEAD_INIT, "PyTransLNC", PyTrans_docs, -1, PyTransLNC_methods}; //modDef
+static struct PyModuleDef PyTransModule = {PyModuleDef_HEAD_INIT, "PyTransPBH", PyTrans_docs, -1, PyTransPBH_methods}; //modDef
 // do not alter the comment at the end of the preceding line -- it is used by the preprocessor
 
 // **************************************************************************************
-PyMODINIT_FUNC PyInit_PyTransLNC(void)    {    PyObject *m = PyModule_Create(&PyTransModule); import_array(); return m;} //initFunc
+PyMODINIT_FUNC PyInit_PyTransPBH(void)    {    PyObject *m = PyModule_Create(&PyTransModule); import_array(); return m;} //initFunc
 
 // do not alter the comment at the end of the preceding line -- it is used by the preprocessor
 

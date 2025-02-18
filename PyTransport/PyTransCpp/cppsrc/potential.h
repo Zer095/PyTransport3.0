@@ -27,7 +27,7 @@
 using namespace std;
 
 // #Rewrite
-// Potential file rewriten at Tue Jan  7 16:07:36 2025
+// Potential file rewriten at Fri Feb 14 13:18:35 2025
 
 class potential
 {
@@ -41,8 +41,8 @@ public:
 	potential()
 	{
 // #FP
-nF=2;
-nP=4;
+nF=1;
+nP=6;
 
 //        p.resize(nP);
         
@@ -59,8 +59,7 @@ nP=4;
 		double sum ;
         
 // Pot
-  double x0 = std::pow(f[0], 2);
-  sum=0.5*std::pow(f[1], 2)*p[2] + p[0]*x0/(std::pow(p[1], 2) + x0);
+  sum=p[0]*(-p[1]*std::tanh((f[0] - p[2])/p[3]) + 1.0)*(-std::pow(f[0], 2)*p[4]/(f[0]/p[5] + 1) + 1.0);
          return sum;
 	}
 	
@@ -70,11 +69,14 @@ nP=4;
 		vector<double> sum(nF,0.0);
 	
 // dPot
-  double x0 = std::pow(f[0], 2) + std::pow(p[1], 2);
+  double x0 = 1.0/p[3];
+  double x1 = std::tanh(x0*(f[0] - p[2]));
+  double x2 = 1.0/p[5];
+  double x3 = f[0]*x2 + 1;
+  double x4 = p[4]/x3;
+  double x5 = std::pow(f[0], 2);
 
- sum[0]=-2*std::pow(f[0], 3)*p[0]/std::pow(x0, 2) + 2*f[0]*p[0]/x0;
-
- sum[1]=1.0*f[1]*p[2];
+ sum[0]=-p[0]*p[1]*x0*(1 - std::pow(x1, 2))*(-x4*x5 + 1.0) + p[0]*(-2*f[0]*x4 + p[4]*x2*x5/std::pow(x3, 2))*(-p[1]*x1 + 1.0);
         
 		return sum;
 	}
@@ -85,21 +87,19 @@ nP=4;
 		vector<double> sum(nF*nF,0.0);
 		
 // ddPot
-  double x0 = std::pow(f[0], 2);
-  double x1 = std::pow(p[1], 2) + x0;
-  double x2 = 1.0/x1;
-  double x3 = 2*p[0];
-  double x4 = std::pow(x1, -2);
-  double x5 = 1.0*p[2];
-  double x6 = -f[1]*p[3]*x5;
+  double x0 = 1.0/p[3];
+  double x1 = std::tanh(x0*(f[0] - p[2]));
+  double x2 = p[1]*x1;
+  double x3 = 1.0/p[5];
+  double x4 = f[0]*x3 + 1;
+  double x5 = p[4]/x4;
+  double x6 = 2*x5;
+  double x7 = std::pow(x4, -2);
+  double x8 = std::pow(f[0], 2);
+  double x9 = p[4]*x8;
+  double x10 = 2*p[0]*(1 - std::pow(x1, 2));
 
- sum[0]=8*std::pow(f[0], 4)*p[0]/std::pow(x1, 3) - 10*p[0]*x0*x4 + x2*x3;
-
- sum[2]=x6;
-
- sum[1]=x6;
-
- sum[3]=1.0*p[3]*(-std::pow(f[0], 3)*x3*x4 + 2*f[0]*p[0]*x2)*std::exp(2.0*f[0]*p[3]) + x5;
+ sum[0]=p[0]*(1.0 - x2)*(4*f[0]*p[4]*x3*x7 - x6 - 2*x9/(std::pow(p[5], 2)*std::pow(x4, 3))) - p[1]*x0*x10*(-f[0]*x6 + x3*x7*x9) + x10*x2*(-x5*x8 + 1.0)/std::pow(p[3], 2);
      
         return sum;
 	}
@@ -109,44 +109,26 @@ nP=4;
 	{
         vector<double> sum(nF*nF*nF,0.0);
 // dddPot
-  double x0 = std::pow(f[0], 3);
-  double x1 = std::pow(f[0], 2);
-  double x2 = std::pow(p[1], 2) + x1;
-  double x3 = std::pow(x2, -3);
-  double x4 = std::pow(x2, -2);
-  double x5 = p[0]*x4;
-  double x6 = 1.0*p[2];
-  double x7 = std::pow(p[3], 2);
-  double x8 = f[1]*x7;
-  double x9 = x6*x8;
-  double x10 = 1.0/x2;
-  double x11 = 2*p[0];
-  double x12 = 2*f[0]*p[0]*x10 - x0*x11*x4;
-  double x13 = 2.0*p[3];
-  double x14 = std::exp(f[0]*x13);
-  double x15 = 1.0*p[3];
+  double x0 = 1.0/p[3];
+  double x1 = std::tanh(x0*(f[0] - p[2]));
+  double x2 = p[1]*x1;
+  double x3 = 6*p[4];
+  double x4 = 1.0/p[5];
+  double x5 = f[0]*x4 + 1;
+  double x6 = std::pow(x5, -2);
+  double x7 = x4*x6;
+  double x8 = 1/(std::pow(p[5], 2)*std::pow(x5, 3));
+  double x9 = std::pow(f[0], 2);
+  double x10 = p[4]/x5;
+  double x11 = 2*x10;
+  double x12 = p[4]*x9;
+  double x13 = std::pow(x1, 2);
+  double x14 = 1 - x13;
+  double x15 = p[0]*p[1];
   double x16 = x14*x15;
-  double x17 = x12*x16 + x6;
-  double x18 = 8*std::pow(f[0], 4)*p[0]*x3 - 10*x1*x5 + x10*x11;
-  double x19 = 2.0*x14;
-  double x20 = p[2]*x8;
-  double x21 = 1.0*p[3]*x14*x18 - p[3]*x6 - x15*x17;
+  double x17 = (-x10*x9 + 1.0)/std::pow(p[3], 3);
 
- sum[0]=-48*std::pow(f[0], 5)*p[0]/std::pow(x2, 4) - 24*f[0]*x5 + 72*p[0]*x0*x3;
-
- sum[4]=2.0*x20;
-
- sum[2]=x9;
-
- sum[6]=x21;
-
- sum[1]=x9;
-
- sum[5]=x21;
-
- sum[3]=x12*x19*x7 - x13*x17 + x16*x18;
-
- sum[7]=-x19*x20;
+ sum[0]=p[0]*(1.0 - x2)*(-12*f[0]*p[4]*x8 + x3*x7 + x3*x9/(std::pow(p[5], 3)*std::pow(x5, 4))) + 6*p[0]*x14*x2*(-f[0]*x11 + x12*x7)/std::pow(p[3], 2) - 3*x0*x16*(4*f[0]*p[4]*x4*x6 - x11 - 2*x12*x8) - 4*x13*x16*x17 + 2*std::pow(x14, 2)*x15*x17;
        
         return sum;
 	}

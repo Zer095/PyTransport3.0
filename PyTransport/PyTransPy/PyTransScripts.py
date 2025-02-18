@@ -245,7 +245,7 @@ def MPPSpectra(kA, back, params, NB, tols, MTE):
         k=kA[ii]
         Nstart, backExitMinus = ICs(NB, k, back, params, MTE)
         t=np.linspace(Nstart,back[-1,0], 10)
-        k1=k;k2=k;k3=k
+        k1=k; k2=k; k3=k
         # run solver for this triangle
         start_time = timeit.default_timer()
         

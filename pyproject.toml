@@ -20,14 +20,11 @@ classifiers = [
 ]
 
 [tool.setuptools]
+packages = ["PyTransport", "PyTransport.PyTransCpp", "PyTransport.PyTransPy"]
 include-package-data = true
-
-[tool.setuptools.packages.find]
-where = ["PyTransport", "PyTransport/PyTransCpp", "PyTransport/PyTransPy"]
 
 [tool.setuptools.data-files]
 "/etc/PyTransport/PyTransCpp" = ["cppsrc/*.h"]
-
 
 [tool.setuptools.package-data]
 "PyTransCpp" = [
@@ -48,5 +45,3 @@ where = ["PyTransport", "PyTransport/PyTransCpp", "PyTransport/PyTransPy"]
 "Templates" = [
     "**/*",
 ]
-
-# Note: `package_data` moved outside of `tool.setuptools`

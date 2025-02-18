@@ -145,7 +145,7 @@ def compileName(name, NC=False):
         if not  line.endswith("//FuncDef\n") and not line.endswith("//initFunc\n") and not line.endswith("//modDef\n"):
             f.write(line)
         if line.endswith("//FuncDef\n"):
-            f.write('static PyMethodDef PyTrans'+name+'_methods[] = {{"H", (PyCFunction)MT_H,    METH_VARARGS, PyTrans_docs},{"Ep", (PyCFunction)MT_Ep,    METH_VARARGS, PyTrans_docs},{"Eta", (PyCFunction)MT_Eta,    METH_VARARGS, PyTrans_docs},{"nF", (PyCFunction)MT_fieldNumber,        METH_VARARGS, PyTrans_docs},{"nP", (PyCFunction)MT_paramNumber,        METH_VARARGS, PyTrans_docs},{"V", (PyCFunction)MT_V,            METH_VARARGS, PyTrans_docs},{"dV", (PyCFunction)MT_dV,                METH_VARARGS, PyTrans_docs},  {"ddV", (PyCFunction)MT_ddV,                METH_VARARGS, PyTrans_docs},  {"backEvolve", (PyCFunction)MT_backEvolve,        METH_VARARGS, PyTrans_docs},  {"sigEvolve", (PyCFunction)MT_sigEvolve,        METH_VARARGS, PyTrans_docs},  {"gamEvolve", (PyCFunction)MT_gamEvolve,        METH_VARARGS, PyTrans_docs},    {"alphaEvolve", (PyCFunction)MT_alphaEvolve,        METH_VARARGS, PyTrans_docs},  {"rhoEvolve", (PyCFunction)MT_rhoEvolve,        METH_VARARGS, PyTrans_docs}, {"rhoEvolve2", (PyCFunction)MT_rhoEvolve2,        METH_VARARGS, PyTrans_docs}, {"MPP2", (PyCFunction)MT_MPP2,        METH_VARARGS, PyTrans_docs}, {"MPPSigma", (PyCFunction)MT_MPPSigma,        METH_VARARGS, PyTrans_docs}, {"MPP3", (PyCFunction)MT_MPP3,        METH_VARARGS, PyTrans_docs},{"MPPAlpha", (PyCFunction)MT_MPPAlpha,        METH_VARARGS, PyTrans_docs},{"getSigma", (PyCFunction)MT_getSigma, METH_VARARGS, PyTrans_docs},{NULL, NULL, 0, NULL}};//FuncDef\n')
+            f.write('static PyMethodDef PyTrans'+name+'_methods[] = {{"H", (PyCFunction)MT_H,    METH_VARARGS, PyTrans_docs},{"Ep", (PyCFunction)MT_Ep,    METH_VARARGS, PyTrans_docs},{"Eta", (PyCFunction)MT_Eta,    METH_VARARGS, PyTrans_docs},{"nF", (PyCFunction)MT_fieldNumber,        METH_VARARGS, PyTrans_docs},{"nP", (PyCFunction)MT_paramNumber,        METH_VARARGS, PyTrans_docs},{"V", (PyCFunction)MT_V,            METH_VARARGS, PyTrans_docs},{"dV", (PyCFunction)MT_dV,                METH_VARARGS, PyTrans_docs},  {"ddV", (PyCFunction)MT_ddV,                METH_VARARGS, PyTrans_docs},  {"backEvolve", (PyCFunction)MT_backEvolve,        METH_VARARGS, PyTrans_docs},  {"sigEvolve", (PyCFunction)MT_sigEvolve,        METH_VARARGS, PyTrans_docs},  {"gamEvolve", (PyCFunction)MT_gamEvolve,        METH_VARARGS, PyTrans_docs},    {"alphaEvolve", (PyCFunction)MT_alphaEvolve,        METH_VARARGS, PyTrans_docs}, {"MPP2", (PyCFunction)MT_MPP2,        METH_VARARGS, PyTrans_docs}, {"MPPSigma", (PyCFunction)MT_MPPSigma,        METH_VARARGS, PyTrans_docs}, {"MPP3", (PyCFunction)MT_MPP3,        METH_VARARGS, PyTrans_docs},{"MPPAlpha", (PyCFunction)MT_MPPAlpha,        METH_VARARGS, PyTrans_docs},{NULL, NULL, 0, NULL}};//FuncDef\n')
 
         if line.endswith("//modDef\n"):
             f.write('static struct PyModuleDef PyTransModule = {PyModuleDef_HEAD_INIT, "PyTrans'+name+'", PyTrans_docs, -1, PyTrans'+name+'_methods}; //modDef\n')
@@ -156,23 +156,33 @@ def compileName(name, NC=False):
 
     loc = '../../'
     loc = Path(os.path.dirname(__file__)).resolve().parents[0]
+
     # os.system("export CFLAGS='-I /Users/apx050/Desktop/Projects/PyTransport/env/lib/python3.11/site-packages/numpy/core/include/'")
     # os.system("export CXX=gcc")
     subprocess.run(['python -m build'], cwd=loc, shell=True)
     subprocess.run(['pip install -v .'], cwd=loc, shell=True)
     sys.path.append(location+"lib/python/")
     sys.path.append(location+"../PyTransScripts")
-    shutil.rmtree(os.path.join(loc, name_module+'.egg-info'))         # Remove unwanted folders
-    shutil.rmtree(os.path.join(loc, 'build'))
-    shutil.rmtree(os.path.join(loc, 'dist'))
+    # Remove .egg-info folder
+    try:
+        shutil.rmtree(os.path.join(loc, name_module+'.egg-info'))  
+    except FileNotFoundError:
+        print(f"File {os.path.join(loc, name_module+'.egg-info')} not found")
+    # Remove build folder
+    try:       
+        shutil.rmtree(os.path.join(loc, 'build'))
+    except FileNotFoundError:
+        print(f"File {os.path.join(loc, 'build')} not found")
+    # Remove dist folder
+    try:
+        shutil.rmtree(os.path.join(loc, 'dist'))
+    except FileNotFoundError:
+        print(f'File {os.path.join(loc, "dist")} not found')
 
 
 def deleteModule(name):
     location = os.path.join(dir, 'PyTrans/')
     [os.remove(os.path.join(location,f)) for f in os.listdir(location) if f.startswith("PyTrans"+name)]
-
-#os.remove(location+"/lib/python/PyTrans"+name+".so")
-#os.remove(location+"/lib/python/PyTrans"+name+"-1.0-py2.7.egg-info")
 
 
 def write_cse_decls(decls, g, nF, nP):

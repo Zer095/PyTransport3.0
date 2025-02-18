@@ -22,6 +22,7 @@ Then we'll show:
 In this example, we we'll use the Transport equation. 
 For an example on how to use the MPP formalism, see MPPExample.py.
 '''
+
 ################################################### Import ###################################################
 from matplotlib import pyplot as plt     # Standard package for plotting
 from pylab import *                      # contains useful stuff for plotting
