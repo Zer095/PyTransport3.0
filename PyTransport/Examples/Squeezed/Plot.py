@@ -97,12 +97,27 @@ file = open(file_path, 'r')
 csvFile = csv.reader(file)
 next(csvFile, None)
 for line in csvFile:
-    factors = [float(line[0])]
+    # factors = [float(line[0])]
+    # Ks.append(float(line[1]))
+    # PyT_Pz.append(np.abs(float(line[2])))
+    # MPP_Pz.append(np.abs(float(line[3])))
+    PyT_fNL.append(np.abs(float(line[4])))
+    MPP_fNL.append(np.abs(float(line[5])))
+
+file_path = os.path.join( os.path.dirname(__file__),  'Data/SQzz.csv')
+file = open(file_path, 'r')
+
+csvFile = csv.reader(file)
+for line in csvFile:
+    factors.append(float(line[0]))
     Ks.append(float(line[1]))
     PyT_Pz.append(np.abs(float(line[2])))
     MPP_Pz.append(np.abs(float(line[3])))
-    PyT_fNL.append(np.abs(float(line[4])))
-    MPP_fNL.append(np.abs(float(line[5])))
+
+factors = factors[:len(MPP_fNL)]
+Ks = Ks[:len(MPP_fNL)]
+PyT_Pz = PyT_Pz[:len(MPP_fNL)]
+MPP_Pz = MPP_Pz[:len(MPP_fNL)]
 
 ###########################################################################################################################################
 
@@ -166,6 +181,8 @@ factors = np.array(factors)
 
 PyT_logPz = np.log(np.array(PyT_Pz))
 MPP_logPz = np.log(np.array(MPP_Pz))
+
+print(f'Len[factors] = {len(factors)}, Len[PyT_logPz] = {len(PyT_logPz)}')
 
 PyT_logPz_func = UnivariateSpline(factors, PyT_logPz, s=10e-4)
 MPP_logPz_func = UnivariateSpline(factors, MPP_logPz, s=10e-5)

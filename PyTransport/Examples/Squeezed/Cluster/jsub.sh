@@ -13,4 +13,4 @@ module load python
 source /data/home/apx050/PyTransport/venv/bin/activate
 CMD0=${SGE_TASK_ID}
 
-python SQRed.py ${CMD0}
+python SQ3.py ${CMD0}
