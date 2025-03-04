@@ -106,7 +106,6 @@ for line in csvFile:
 
 file_path = os.path.join( os.path.dirname(__file__),  'Data/SQzz.csv')
 file = open(file_path, 'r')
-
 csvFile = csv.reader(file)
 for line in csvFile:
     factors.append(float(line[0]))
@@ -118,6 +117,20 @@ factors = factors[:len(MPP_fNL)]
 Ks = Ks[:len(MPP_fNL)]
 PyT_Pz = PyT_Pz[:len(MPP_fNL)]
 MPP_Pz = MPP_Pz[:len(MPP_fNL)]
+
+
+file_path = os.path.join( os.path.dirname(__file__),  'Data/SQ4.csv')
+file = open(file_path, 'r')
+csvFile = csv.reader(file)
+new_factors = []
+new_ks = []
+new_PyT_fnl = []
+new_MPP_fnl = []
+for line in csvFile:
+    new_factors.append(float(line[0]))
+    new_ks.append(float(line[1]))
+    new_PyT_fnl.append(np.abs(float(line[2])))
+    new_MPP_fnl.append(np.abs(float(line[3])))
 
 ###########################################################################################################################################
 
@@ -313,7 +326,7 @@ for i in range(3):
 #plt.title("Two-point correlation function "+nexit, fontsize=titsz )
 plt.vlines(x=int(NExit), ymax=10**14, ymin=10**-24, linestyle='dashed', color='gray')
 #plt.gca().invert_xaxis()
-plt.xlabel(r"$\Delta N$", fontsize=labsz)
+plt.xlabel(r"$N$", fontsize=labsz)
 plt.ylabel(r'$\Sigma$', rotation=0, fontsize=labsz, labelpad=10)
 plt.xticks(fontsize=ticksz)
 plt.yticks(fontsize=ticksz)
@@ -335,8 +348,8 @@ for i in range(4):
     plt.plot(talp, np.abs(alphaTrans[:,ind[i]]), label = 'PyT '+ labels3[ind[i]], color=clr[i])
 # plt.title("Comparison Three-point correlation functions "+nexit, fontsize=titsz )
 plt.gca().invert_xaxis()
-plt.xlabel(r"$\Delta N$", fontsize=labsz)
-plt.ylabel(r'$\alpha$', rotation=0, fontsize=labsz, labelpad=10)
+plt.xlabel(r"$N$", fontsize=labsz)
+plt.ylabel(r'$B$', rotation=0, fontsize=labsz, labelpad=10)
 plt.xticks(fontsize=ticksz)
 plt.yticks(fontsize=ticksz)
 plt.xlim(talp[0], talp[-1])
@@ -355,7 +368,9 @@ plt.plot(factors, MPP_fNL, color='black', label='MPP', linestyle=(0, (10, 5)))
 #plt.title(r"$f_{NL}$ spectrum", fontsize=titsz)
 #plt.gca().invert_xaxis()
 plt.xlabel(r"$k_{\rm short}$/$k_{\rm long}$", fontsize=labsz)
-plt.ylabel(r'$f_{NL}$', rotation=0, fontsize=labsz, labelpad=10)
+plt.ylabel(r'$f_{NL, SQ}$', rotation=0, fontsize=labsz, labelpad=10)
+ax = plt.gca()
+ax.yaxis.set_label_coords(-0.15, 0.5)
 plt.xticks(fontsize=ticksz)
 plt.yticks(fontsize=ticksz)
 plt.xlim(factors[0],factors[-1])
@@ -407,8 +422,8 @@ for i in range(4):
 plt.vlines(x=int(NExit), ymax=10**18, ymin=10**-16, linestyle='dashed', color='gray')
 # plt.title("Comparison Three-point correlation functions "+nexit, fontsize=titsz )
 #plt.gca().invert_xaxis()
-plt.xlabel(r"$\Delta N$", fontsize=labsz)
-plt.ylabel(r'$\alpha$', rotation=0, fontsize=labsz, labelpad=10)
+plt.xlabel(r"$N$", fontsize=labsz)
+plt.ylabel(r'$B$', rotation=0, fontsize=labsz, labelpad=10)
 plt.xticks(fontsize=ticksz)
 plt.yticks(fontsize=ticksz)
 plt.xlim(talp[0], talp[-1])
@@ -446,7 +461,7 @@ plt.yticks(fontsize=ticksz)
 plt.xlim(factors[0], factors[-1])
 plt.grid()
 plt.legend(fontsize=legsz, framealpha=1.0, loc='lower left')
-plt.savefig('Plots/MppMaldacena.pdf', format='pdf',bbox_inches='tight')
+plt.savefig('Plots/SQ_MppMaldacena.pdf', format='pdf',bbox_inches='tight')
 
 fig12 = plt.figure(12, figsize=(10,8))
 plt.plot(factors, np.abs(PyT_THfNL), color=clr[1], label='PyT ')
@@ -457,6 +472,47 @@ plt.grid()
 plt.legend()
 plt.savefig('Plots/Maldacena.pdf', format='pdf',bbox_inches='tight')
 
+fig13 = plt.figure(13, figsize=(10,8))
+plt.plot(new_factors, np.abs(new_PyT_fnl), color=clr[1], label='PyT ')
+plt.plot(new_factors, np.abs(new_MPP_fnl), color=clr[3], label='MPP ', linestyle='dashed')
+plt.yscale('log')
+plt.xscale('log')
+plt.grid()
+plt.legend()
+plt.savefig('Plots/NewfNL.pdf', format='pdf',bbox_inches='tight')
+
+
+import matplotlib.pyplot as plt
+
+# Create one figure with two horizontally-stacked subplots
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(18, 8), sharey=True)
+
+# --- Left subplot: PyT Maldacena ---
+ax1.plot(factors, np.abs(PyT_THfNL), color=clr[1], label='PyT Maldacena')
+ax1.plot(factors, PyT_fNL, color=colors[0], label='PyT', linestyle=(0, (10, 5)))
+ax1.set_yscale('log')
+ax1.set_xscale('log')
+ax1.set_ylabel(r'$f_{NL, SQ}$', fontsize=labsz, labelpad=10, rotation=0)
+ax1.yaxis.set_label_coords(-0.15, 0.5)
+ax1.set_xlabel(r"$k_{\rm short}$/$k_{\rm long}$", fontsize=labsz)
+ax1.tick_params(axis='both', labelsize=ticksz)
+ax1.set_xlim(factors[0], factors[-1])
+ax1.grid(True)
+ax1.legend(fontsize=legsz, framealpha=1.0)
+
+# --- Right subplot: MPP Maldacena ---
+ax2.plot(factors, np.abs(MPP_THfNL), color=clr[3], label='MPP Maldacena')
+ax2.plot(factors, MPP_fNL, color=clr[2], label='MPP', linestyle=(0, (10, 5)))
+ax2.set_yscale('log')
+ax2.set_xscale('log')
+ax2.set_xlabel(r"$k_{\rm short}$/$k_{\rm long}$", fontsize=labsz)
+ax2.tick_params(axis='both', labelsize=ticksz)
+ax2.set_xlim(factors[0], factors[-1])
+ax2.grid(True)
+ax2.legend(fontsize=legsz, framealpha=1.0, loc='lower left')
+
+plt.tight_layout()
+plt.savefig('Plots/Combined_SQ.pdf', format='pdf', bbox_inches='tight')
 
 ###########################################################################################################################################
 plt.show()

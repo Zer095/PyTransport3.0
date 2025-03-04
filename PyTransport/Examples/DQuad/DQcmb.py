@@ -113,19 +113,13 @@ pi_chi_str = r"$\pi_{\chi}$"
 fields = [phi_str, chi_str, pi_phi_str, pi_chi_str]
 
 # Generate all unique 2-point correlation function labels
-labels2 = [r"$\langle $" + A + B + r"$ \rangle$" for A, B in itertools.combinations_with_replacement(fields, 2)]
+labels2 = [r"$\langle $" + A + B + r"$ \rangle$" for A, B in itertools.product(fields, repeat=2)]
 
 # Generate all unique 3-point correlation function labels
-labels3 = [r"$\langle $" + A + B + C + r"$ \rangle$" for A, B, C in itertools.combinations_with_replacement(fields, 3)]
-
-# # Print results
-# print("2-Point Correlation Labels:")
-# print(labels2)
-# print("\n3-Point Correlation Labels:")
-# print(labels3)
+labels3 = [r"$\langle $" + A + B + C + r"$ \rangle$" for A, B, C in itertools.product(fields, repeat=3)]
 
 # Colors
-clr = ["#B30000", "#1A53FF", "#5AD45A", "#ED7F2C"]
+#clr = ["#B30000", "#1A53FF", "#5AD45A", "#ED7F2C"]
 
 # Fontsizes
 titsz = 24
@@ -137,53 +131,257 @@ ticksz = 18
 # Plot 2pt
 PyT_sigma = PyT_twoPt[:, 2 + 2*nF:]
 MPP_sigma = MPP_twoPt[:, 2 + 2*nF:]
-ind = [0,1,2,3]
+
+#ind = [0,1,2,3]
+#ind = [4,5,6,7]
+#ind = [8,9,10,11]
+#ind = [12,13,14,15]
+#ind = [0, 5, 6, 10]
+#ind = [0, 1, 2, 3, 5, 6, 7, 10, 11, 15]
+ind = [0, 1, 2, 3, 10]
 fig1, ax = plt.subplots(figsize=(10,8))
 lines = []
-for i in range(4):
-    l1 = plt.plot(tsig, np.abs(PyT_sigma[:, ind[i]]), color = clr[i], label = labels2[ind[i]])
+for i in range(len(ind)):
+    l1 = plt.plot(tsig, np.abs(PyT_sigma[:, ind[i]]), label = labels2[ind[i]])
     l2 = plt.plot(tsig, np.abs(MPP_sigma[:, ind[i]]), color = 'black', label = labels2[ind[i]], linestyle=(0, (10, 5)))
     lines.append([l1[0],l2[0]])
-plt.vlines(x=Nexit, ymax=10**-18, ymin=10**-50, color='gray', linestyle='dashed')
-#plt.text(30, 10**-42, f'NB = {6.0}\n'+r'PyT $\epsilon$ = -12' +'\n' +r'MPP $\epsilon$ = -13', fontsize=10, bbox=dict(facecolor='lightgray', edgecolor='black', boxstyle='round,pad=0.5'))
-#print(f'Handles = {[l[0][0].get_label() for l in lines]}')
+plt.vlines(x=Nexit, ymax=10**-10, ymin=10**-70, color='gray', linestyle='dashed')
 plt.xlabel(r"$N$", fontsize=labsz)
 plt.ylabel(r'$\Sigma$', rotation=0, fontsize=labsz, labelpad=10)
 plt.xticks(fontsize=ticksz)
 plt.yticks(fontsize=ticksz)
 plt.xlim(left=tsig[0], right=tsig[-1])
-plt.ylim(bottom=10**-50, top=10**-18)
+plt.ylim(bottom=10**-70, top=10**-10)
 plt.grid()
 plt.yscale('log')
-leg1 = ax.legend( lines[0], ['PyT', 'MPP'], loc='upper right', bbox_to_anchor=(40, 10**-42), bbox_transform=ax.transData, fontsize=legsz, framealpha=1.0)
+leg1 = ax.legend( lines[0], ['PyT', 'MPP'], loc='upper right', bbox_to_anchor=(36, 10**-10), bbox_transform=ax.transData, fontsize=legsz, framealpha=1.0)
 ax.add_artist(leg1)
-ax.legend(handles=[l[0] for l in lines], loc='lower center', fontsize=legsz, framealpha=1.0)
+ax.legend(handles=[l[0] for l in lines], loc='lower right', bbox_to_anchor=(37.5, 10**-70), bbox_transform=ax.transData, fontsize=legsz, framealpha=1.0)
 plt.savefig('Plots/DQ_Confront2pt.pdf', format='pdf',bbox_inches='tight')
 
 # Plot 3pt
 fig2, ax1 = plt.subplots(figsize=(10,8))
 PyT_Alpha = PyT_3pt[:, 1+4+2*nF+6*(2*nF*2*nF):]
 MPP_Alpha = MPP_3pt[:, 1+4+2*nF+6*(2*nF*2*nF):]
-ind = [0, 1, 6, 7]
+# ind = [0,1,2,3,5,6,7,10,11,15,21,22,23,26,27,31,42,43,47,63]
+ind = [0,1,2,3,6,10,11,26,42,43]
 lines = []
-for i in range(4):
-    l1 = plt.plot(tsig, np.abs(PyT_Alpha[:,ind[i]]), label = labels3[ind[i]], color=clr[i])
-    l2 = plt.plot(tsig, np.abs(MPP_Alpha[:,ind[i]]), label = labels3[ind[i]], color=clr[i], linestyle = (0, (10, 5)))
+for i in range(len(ind)):
+    l1 = plt.plot(tsig, np.abs(PyT_Alpha[:,ind[i]]), label = labels3[ind[i]])
+    l2 = plt.plot(tsig, np.abs(MPP_Alpha[:,ind[i]]), label = labels3[ind[i]], color='black', linestyle = (0, (10, 5)))
     lines.append([l1[0], l2[0]])
-plt.vlines(x=Nexit, ymax=10**-40, ymin=10**-86, color='gray', linestyle='dashed')
-#plt.text(30, 10**-76, f'NB = {6.0}\n'+r'PyT $\epsilon$ = -13'+'\n'+r'MPP $\epsilon$ = -13', fontsize=10, bbox=dict(facecolor='lightgray', edgecolor='black', boxstyle='round,pad=0.5'))
+plt.vlines(x=Nexit, ymax=10**-30, ymin=10**-96, color='gray', linestyle='dashed')
 plt.xlabel(r"$ N$", fontsize=labsz)
 plt.ylabel(r'$\alpha$', rotation=0, fontsize=labsz, labelpad=10)
 plt.xticks(fontsize=ticksz)
 plt.yticks(fontsize=ticksz)
 plt.xlim(left=tsig[0], right=tsig[-1])
-plt.ylim(bottom=10**-86, top=10**-40)
+plt.ylim(bottom=10**-96, top=10**-30)
 plt.grid()
 plt.yscale('log')
 leg2 = ax1.legend(lines[0], ['PyT', 'MPP'], loc='upper right', fontsize=legsz, framealpha=1.0)
 ax1.add_artist(leg2)
-ax1.legend(handles=[l[0] for l in lines], loc='lower center', fontsize=legsz, framealpha=1.0)
+ax1.legend(handles=[l[0] for l in lines], loc='lower center',  bbox_to_anchor=(85, 10**-70), bbox_transform=ax.transData,fontsize=legsz, framealpha=1.0)
 plt.savefig('Plots/DQ_Confront3pt.pdf', format='pdf',bbox_inches='tight')
+
+# #################################################################################################################################
+
+ind = [5, 6, 7, 11, 15]
+fig1, ax = plt.subplots(figsize=(10,8))
+lines = []
+for i in range(len(ind)):
+    l1 = plt.plot(tsig, np.abs(PyT_sigma[:, ind[i]]), label = labels2[ind[i]])
+    l2 = plt.plot(tsig, np.abs(MPP_sigma[:, ind[i]]), color = 'black', label = labels2[ind[i]], linestyle=(0, (10, 5)))
+    lines.append([l1[0],l2[0]])
+plt.vlines(x=Nexit, ymax=10**-10, ymin=10**-70, color='gray', linestyle='dashed')
+plt.xlabel(r"$N$", fontsize=labsz)
+plt.ylabel(r'$\Sigma$', rotation=0, fontsize=labsz, labelpad=10)
+plt.xticks(fontsize=ticksz)
+plt.yticks(fontsize=ticksz)
+plt.xlim(left=tsig[0], right=tsig[-1])
+plt.ylim(bottom=10**-70, top=10**-10)
+plt.grid()
+plt.yscale('log')
+leg1 = ax.legend( lines[0], ['PyT', 'MPP'], loc='upper right', bbox_to_anchor=(36, 10**-10), bbox_transform=ax.transData, fontsize=legsz, framealpha=1.0)
+ax.add_artist(leg1)
+ax.legend(handles=[l[0] for l in lines], loc='lower right', bbox_to_anchor=(37.5, 10**-70), bbox_transform=ax.transData, fontsize=legsz, framealpha=1.0)
+plt.savefig('Plots/DQ_Confront2pt2.pdf', format='pdf',bbox_inches='tight')
+
+
+# Plot 3pt
+fig2, ax1 = plt.subplots(figsize=(10,8))
+PyT_Alpha = PyT_3pt[:, 1+4+2*nF+6*(2*nF*2*nF):]
+MPP_Alpha = MPP_3pt[:, 1+4+2*nF+6*(2*nF*2*nF):]
+ind = [5,7,15,21,22,23,27,31,47,63]
+lines = []
+for i in range(len(ind)):
+    l1 = plt.plot(tsig, np.abs(PyT_Alpha[:,ind[i]]), label = labels3[ind[i]])
+    l2 = plt.plot(tsig, np.abs(MPP_Alpha[:,ind[i]]), label = labels3[ind[i]], color='black', linestyle = (0, (10, 5)))
+    lines.append([l1[0], l2[0]])
+plt.vlines(x=Nexit, ymax=10**-30, ymin=10**-96, color='gray', linestyle='dashed')
+plt.xlabel(r"$ N$", fontsize=labsz)
+plt.ylabel(r'$\alpha$', rotation=0, fontsize=labsz, labelpad=10)
+plt.xticks(fontsize=ticksz)
+plt.yticks(fontsize=ticksz)
+plt.xlim(left=tsig[0], right=tsig[-1])
+plt.ylim(bottom=10**-96, top=10**-30)
+plt.grid()
+plt.yscale('log')
+leg2 = ax1.legend(lines[0], ['PyT', 'MPP'], loc='upper right', fontsize=legsz, framealpha=1.0)
+ax1.add_artist(leg2)
+ax1.legend(handles=[l[0] for l in lines], loc='lower center',  bbox_to_anchor=(85, 10**-70), bbox_transform=ax.transData,fontsize=legsz, framealpha=1.0)
+plt.savefig('Plots/DQ_Confront3pt2.pdf', format='pdf',bbox_inches='tight')
+
+# Create one figure with two vertically-stacked subplots that share the y-axis
+fig, (ax1, ax2) = plt.subplots(1, 2, sharey=True, figsize=(18, 8))
+
+# Define common y-axis limits
+y_min, y_max = 10**-70, 10**-10
+
+# --- First panel ---
+ind1 = [0, 1, 2, 3, 10]
+lines1 = []
+for i in range(len(ind1)):
+    l1 = ax1.plot(tsig, np.abs(PyT_sigma[:, ind1[i]]), label=labels2[ind1[i]])
+    l2 = ax1.plot(tsig, np.abs(MPP_sigma[:, ind1[i]]), color='black',
+                  label=labels2[ind1[i]], linestyle=(0, (10, 5)))
+    lines1.append([l1[0], l2[0]])
+ax1.vlines(x=Nexit, ymax=y_max, ymin=y_min, color='gray', linestyle='dashed')
+ax1.set_xlabel(r"$N$", fontsize=labsz)
+ax1.set_ylabel(r'$\Sigma$', rotation=0, fontsize=labsz, labelpad=10)
+ax1.tick_params(axis='both', labelsize=ticksz)
+ax1.set_xlim(tsig[0], tsig[-1])
+ax1.set_ylim(y_min, y_max)
+ax1.grid()
+ax1.set_yscale('log')
+# Adjust legend as needed; here using sample positions
+ax1.legend(handles=[l[0] for l in lines1],
+           loc='lower right', bbox_to_anchor=(40, y_min),
+           bbox_transform=ax1.transData, fontsize=legsz, framealpha=1.0)
+
+# --- Second panel ---
+ind2 = [5, 6, 7, 11, 15]
+lines2 = []
+for i in range(len(ind2)):
+    l1 = ax2.plot(tsig, np.abs(PyT_sigma[:, ind2[i]]), label=labels2[ind2[i]])
+    l2 = ax2.plot(tsig, np.abs(MPP_sigma[:, ind2[i]]), color='black',
+                  label=labels2[ind2[i]], linestyle=(0, (10, 5)))
+    lines2.append([l1[0], l2[0]])
+ax2.vlines(x=Nexit, ymax=y_max, ymin=y_min, color='gray', linestyle='dashed')
+ax2.set_xlabel(r"$N$", fontsize=labsz)
+ax2.tick_params(axis='both', labelsize=ticksz)
+ax2.set_xlim(tsig[0], tsig[-1])
+ax2.set_ylim(y_min, y_max)
+ax2.grid()
+ax2.set_yscale('log')
+leg2 = ax2.legend(lines2[0], ['PyT', 'MPP'],
+                  loc='upper right', fontsize=legsz, framealpha=1.0)
+ax2.add_artist(leg2)
+ax2.legend(handles=[l[0] for l in lines2],
+           loc='lower right', bbox_to_anchor=(40, y_min),
+           bbox_transform=ax2.transData, fontsize=legsz, framealpha=1.0)
+
+plt.tight_layout()
+plt.savefig('Plots/DQ_Confront2pt_all.pdf', format='pdf',bbox_inches='tight')
+
+
+
+# Create one figure with two subplots arranged horizontally that share the y-axis
+fig, (ax1, ax2) = plt.subplots(1, 2, sharey=True, figsize=(18, 8))
+
+# Extract the common data
+PyT_Alpha = PyT_3pt[:, 1+4+2*nF+6*(2*nF*2*nF):]
+MPP_Alpha = MPP_3pt[:, 1+4+2*nF+6*(2*nF*2*nF):]
+
+# Define common y-axis limits
+y_min, y_max = 10**-96, 10**-30
+
+###############################################################################
+# --- First Panel: Using indices from the second block (10 lines) ---
+ind_panel1 = [0, 1, 2, 3, 6, 10, 11, 26, 42, 43]
+lines_panel1 = []
+for i in range(len(ind_panel1)):
+    l1 = ax1.plot(tsig, np.abs(PyT_Alpha[:, ind_panel1[i]]),
+                  label=labels3[ind_panel1[i]])
+    l2 = ax1.plot(tsig, np.abs(MPP_Alpha[:, ind_panel1[i]]), color='black',
+                  linestyle=(0, (10, 5)), label=labels3[ind_panel1[i]])
+    lines_panel1.append([l1[0], l2[0]])
+
+ax1.vlines(x=Nexit, ymax=y_max, ymin=y_min, color='gray', linestyle='dashed')
+ax1.set_xlabel(r"$ N$", fontsize=labsz)
+ax1.set_ylabel(r'$B$', rotation=0, fontsize=labsz, labelpad=10)
+ax1.tick_params(axis='both', labelsize=ticksz)
+ax1.set_xlim(tsig[0], tsig[-1])
+ax1.set_ylim(y_min, y_max)
+ax1.grid()
+ax1.set_yscale('log')
+
+# Get handles and labels from the plotted lines (using the first artist in each pair)
+handles1 = [l[0] for l in lines_panel1]
+labels1  = [handle.get_label() for handle in handles1]
+
+# Split the handles/labels into two groups of 5
+handles1_first = handles1[:5]
+labels1_first  = labels1[:5]
+handles1_second = handles1[5:]
+labels1_second  = labels1[5:]
+
+# Create two adjacent legends for the first panel.
+leg1a = ax1.legend(handles=handles1_first, labels=labels1_first,
+                   loc='lower center', bbox_to_anchor=(30, y_min),
+                   bbox_transform=ax1.transData, fontsize=legsz, framealpha=1.0)
+ax1.add_artist(leg1a)
+leg1b = ax1.legend(handles=handles1_second, labels=labels1_second,
+                   loc='lower center', bbox_to_anchor=(45, y_min),
+                   bbox_transform=ax1.transData, fontsize=legsz, framealpha=1.0)
+
+###############################################################################
+# --- Second Panel: Using indices from the first block (10 lines) ---
+ind_panel2 = [5, 7, 15, 21, 22, 23, 27, 31, 47, 63]
+lines_panel2 = []
+for i in range(len(ind_panel2)):
+    l1 = ax2.plot(tsig, np.abs(PyT_Alpha[:, ind_panel2[i]]),
+                  label=labels3[ind_panel2[i]])
+    l2 = ax2.plot(tsig, np.abs(MPP_Alpha[:, ind_panel2[i]]), color='black',
+                  linestyle=(0, (10, 5)), label=labels3[ind_panel2[i]])
+    lines_panel2.append([l1[0], l2[0]])
+
+ax2.vlines(x=Nexit, ymax=y_max, ymin=y_min, color='gray', linestyle='dashed')
+ax2.set_xlabel(r"$ N$", fontsize=labsz)
+ax2.tick_params(axis='both', labelsize=ticksz)
+ax2.set_xlim(tsig[0], tsig[-1])
+ax2.set_ylim(y_min, y_max)
+ax2.grid()
+ax2.set_yscale('log')
+
+# In the second panel, you already have an upper-right legend for the PyT vs. MPP style:
+leg2_upper = ax2.legend(lines_panel2[0], ['PyT', 'MPP'], loc='upper right', 
+                        fontsize=legsz, framealpha=1.0)
+ax2.add_artist(leg2_upper)
+
+# Get handles and labels for the lower legend from the second panel
+handles2 = [l[0] for l in lines_panel2]
+labels2  = [handle.get_label() for handle in handles2]
+
+# Split into two groups of 5
+handles2_first = handles2[:5]
+labels2_first  = labels2[:5]
+handles2_second = handles2[5:]
+labels2_second  = labels2[5:]
+
+# Create two adjacent legends for the second panel.
+leg2a = ax2.legend(handles=handles2_first, labels=labels2_first,
+                   loc='lower center', bbox_to_anchor=(25, y_min),
+                   bbox_transform=ax2.transData, fontsize=legsz, framealpha=1.0)
+ax2.add_artist(leg2a)
+leg2b = ax2.legend(handles=handles2_second, labels=labels2_second,
+                   loc='lower center', bbox_to_anchor=(40, y_min),
+                   bbox_transform=ax2.transData, fontsize=legsz, framealpha=1.0)
+
+plt.tight_layout()
+plt.savefig('Plots/DQ_Confront3pt_all.pdf', format='pdf', bbox_inches='tight')
+plt.show()
+
 ############################################## Show ##################################################################
 plt.show()
 ##############################################  ##################################################################

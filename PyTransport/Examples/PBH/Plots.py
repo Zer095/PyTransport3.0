@@ -357,7 +357,7 @@ for i in range(4):
 plt.vlines(x=NExit, ymax=10**6, ymin=10**-34, linestyle='dashed', color='gray')
 # plt.gca().invert_xaxis()
 plt.xlabel(r"$N$", fontsize=labsz)
-plt.ylabel(r'$\alpha$', rotation=0, fontsize=labsz, labelpad=10)
+plt.ylabel(r'$B$', rotation=0, fontsize=labsz, labelpad=10)
 plt.xticks(fontsize=ticksz)
 plt.yticks(fontsize=ticksz)
 plt.xlim(talp[0], talp[-1])
@@ -368,5 +368,53 @@ legend_1 = ax.legend(lines[0], ["MPP", "PyT"], loc='upper right', fontsize=legsz
 ax.add_artist(legend_1)
 ax.legend(handles=[l[1] for l in lines], loc='lower center', bbox_to_anchor=(15, 10**-32), bbox_transform=ax.transData, fontsize=legsz, framealpha=1.0)
 plt.savefig('Plots/PBH_New3pt.pdf', format='pdf',bbox_inches='tight')
+
+
+ind = [0,1,3]
+fig9, ax = plt.subplots(figsize=(10,8))
+lines = []
+PyT_sigma = sigmaT
+MPP_sigma = sigmaM
+for i in range(len(ind)):
+    l1 = plt.plot(tsig, np.abs(PyT_sigma[:, ind[i]]), label = labels2[ind[i]])
+    l2 = plt.plot(tsig, np.abs(MPP_sigma[:, ind[i]]), color = 'black', label = labels2[ind[i]], linestyle=(0, (10, 5)))
+    lines.append([l1[0],l2[0]])
+plt.vlines(x=NExit, ymax=10**1, ymin=10**-30, color='gray', linestyle='dashed')
+plt.xlabel(r"$N$", fontsize=labsz)
+plt.ylabel(r'$\Sigma$', rotation=0, fontsize=labsz, labelpad=10)
+plt.xticks(fontsize=ticksz)
+plt.yticks(fontsize=ticksz)
+plt.xlim(left=tsig[0], right=tsig[-1])
+plt.ylim(bottom=10**-30, top=10**1)
+plt.grid()
+plt.yscale('log')
+leg1 = ax.legend( lines[0], ['PyT', 'MPP'], loc='upper right', fontsize=legsz, framealpha=1.0)
+ax.add_artist(leg1)
+ax.legend(handles=[l[0] for l in lines], loc='lower right', bbox_to_anchor=(10, 10**-70), bbox_transform=ax.transData, fontsize=legsz, framealpha=1.0)
+plt.savefig('Plots/PBH_All2pt.pdf', format='pdf',bbox_inches='tight')
+
+# Plot 3pt
+fig10, ax1 = plt.subplots(figsize=(10,8))
+PyT_Alpha = threePtTrans[:, 1+4+2*nF+6*(2*nF*2*nF):]
+MPP_Alpha = threePtMPP[:, 1+4+2*nF+6*(2*nF*2*nF):]
+ind = [0,1,3,7]
+lines = []
+for i in range(len(ind)):
+    l1 = plt.plot(tsig, np.abs(PyT_Alpha[:,ind[i]]), label = labels3[ind[i]])
+    l2 = plt.plot(tsig, np.abs(MPP_Alpha[:,ind[i]]), label = labels3[ind[i]], color='black', linestyle = (0, (10, 5)))
+    lines.append([l1[0], l2[0]])
+plt.vlines(x=NExit, ymax=10**-40, ymin=10**6, color='gray', linestyle='dashed')
+plt.xlabel(r"$ N$", fontsize=labsz)
+plt.ylabel(r'$\alpha$', rotation=0, fontsize=labsz, labelpad=10)
+plt.xticks(fontsize=ticksz)
+plt.yticks(fontsize=ticksz)
+plt.xlim(left=tsig[0], right=tsig[-1])
+plt.ylim(bottom=10**-40, top=10**6)
+plt.grid()
+plt.yscale('log')
+leg2 = ax1.legend(lines[0], ['PyT', 'MPP'], loc='upper right', fontsize=legsz, framealpha=1.0)
+ax1.add_artist(leg2)
+ax1.legend(handles=[l[0] for l in lines], loc='lower center',  bbox_to_anchor=(10, 10**-70), bbox_transform=ax.transData,fontsize=legsz, framealpha=1.0)
+plt.savefig('Plots/DQ_All3pt.pdf', format='pdf',bbox_inches='tight')
 
 plt.show()

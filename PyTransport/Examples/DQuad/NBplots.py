@@ -148,7 +148,7 @@ clr = ["#B30000", "#1A53FF", "#5AD45A", "#ED7F2C"]
 fig1 = plt.figure(1, figsize=(10,8))
 plt.plot(nbs, goldtol2M, label='MPP', color=clr[0], linestyle='dashed')
 plt.plot(nbs, goldtol2T, label='PyT', color=clr[1])
-#plt.title('Golden Tolerance 2pt function', fontsize=titsz)
+plt.title(r'Optimal tolerance for $P_\zeta(k_{CMB})$', fontsize=titsz, pad=10)
 plt.xlabel(r'$\text{NB}$', fontsize=labsz, rotation=0)
 plt.ylabel(r'$\tilde \varepsilon$', fontsize=labsz, rotation=0, labelpad=10)
 plt.xticks(fontsize=ticsz)
@@ -162,7 +162,7 @@ plt.savefig('plots/DQ_GT_2pt.pdf', format='pdf',bbox_inches='tight')
 fig2 = plt.figure(2, figsize=(10,8))
 plt.plot(nbs,goldtol3M, label='MPP', color=clr[0], linestyle='dashed')
 plt.plot(nbs,goldtol3T, label='PyT', color=clr[1])
-#plt.title('Golden Tolerance 3pt function', fontsize=titsz)
+plt.title(r'Optimal tolerance for $f_{NL}(k_{CMB})$', fontsize=titsz, pad=10)
 plt.xlabel(r'$\text{NB}$', fontsize=labsz)
 plt.ylabel(r'$\tilde \varepsilon$', fontsize=labsz, rotation=0, labelpad=10)
 plt.xticks(fontsize=ticsz)
@@ -235,7 +235,7 @@ y2 = np.array(y2)
 stop = np.where(y2 == 0)[0][0]
 x_ticks = nbs.astype(int)
 y_ticks = np.multiply(np.linspace(8.8,9.3,6), 10**2)
-#plt.title('Two-point running time at golden tolerance vs NB', fontsize=titsz)
+plt.title(r'Running time at optimal tolerance for $P_\zeta(k_{CMB})$', fontsize=titsz, pad=10)
 plt.semilogy(nbs, y1, label='MPP', color=clr[0], linestyle='dashed')
 plt.semilogy(nbs[:stop], y2[:stop], label = 'PyT', color=clr[1])
 plt.xlabel(r'$\text{NB}$', fontsize=labsz)
@@ -265,6 +265,7 @@ for i in range(len(nbs)):
         y2.append(table[i,k2,6])
 y1 = np.array(y1)
 y2 = np.array(y2)
+print(np.where(y1 == 0))
 try:    
     stop1 = np.where(y1 == 0)[0][0]
 except IndexError:
@@ -273,10 +274,11 @@ stop2 = np.where(y2 == 0)[0][0]
 x_ticks = nbs.astype(int)
 #y_ticks = np.multiply(np.linspace(8.8,9.3,6), 10**2)
 #plt.title('Three-point running time at golden tolerance vs NB', fontsize=titsz)
+plt.title(r'Running time at optimal tolerance for $f_{NL}(k_{CMB})$', fontsize=titsz, pad=10)
 plt.semilogy(nbs[:stop1], y1[:stop1], label='MPP', color=clr[0], linestyle='dashed')
 plt.semilogy(nbs[:stop2], y2[:stop2], label = 'PyT', color=clr[1])
 plt.xlabel(r'$\text{NB}$', fontsize=labsz)
-plt.ylabel(r'$t(s)$', fontsize=labsz, rotation=0)
+plt.ylabel(r'$t(s)$', fontsize=labsz, rotation=0, labelpad=10)
 plt.xticks(fontsize=ticsz)
 plt.xlim(left=1, right=11.5)
 plt.yticks(fontsize=ticsz)
@@ -286,13 +288,13 @@ plt.savefig('plots/DQ_Time_fNL.pdf', format='pdf',bbox_inches='tight')
 
 # Reduced Delta(pz) vs tol vs NB
 fig7 = plt.figure(7, figsize=(10,8))
-#plt.title('(MPP vs PyT) '+r'$\Delta(P_\zeta)$ vs Tol '+'at different NBs')
+plt.title(r'$\Delta P_\zeta(k_{CMB})$', fontsize=titsz, pad=20)
 gs = fig7.add_gridspec(3, 2, hspace=0, wspace=0.05)
 ind = [2, 6, 10, 14, 18, 22]
 ax = plt.gca()
 ax.get_xaxis().set_visible(False)
 ax.get_yaxis().set_visible(False)
-axs = gs.subplots(sharex='col', sharey='row')
+axs = gs.subplots(sharex='col', sharey='row') 
 for i in range(3):
     for j in range(2):
         k = ind[2*i + j]
@@ -304,17 +306,17 @@ for i in range(3):
                bbox=dict(facecolor='lightgray', edgecolor='black', boxstyle='round,pad=0.5'),
                transform=axs[i, j].transAxes)  # Use axes coordinates
         axs[i,j].set_yscale('log')
-        axs[i,j].set_xlabel(r'$\epsilon$', fontsize=labsz)
+        axs[i,j].set_xlabel(r'$\varepsilon \equiv \log_{10}(Tol)$', fontsize=12)
         axs[i,j].set_xlim(-18, -5)
         axs[i,j].tick_params(axis='both', direction='in', labelsize=8)
         axs[i,j].grid()
         axs[i,j].legend(fontsize=10, framealpha=1.0)
-fig7.tight_layout(pad=3,h_pad=5,w_pad=8)
+#fig7.tight_layout(pad=3,h_pad=5,w_pad=8)
 plt.savefig('plots/DQ_DeltaPz_alt.pdf', format='pdf',bbox_inches='tight')
 
 # Reduced Delta(fnl) vs tol vs NB
 fig8 = plt.figure(8, figsize=(10,8))
-#plt.title('(MPP vs PyT) '+r'$\Delta(f_\text{NL})$ vs Tol '+'at different NBs')
+plt.title(r'$\Delta f_\text{NL}(k_{CMB})$', fontsize=titsz, pad=20)
 gs = fig8.add_gridspec(3, 2, hspace=0, wspace=0.05)
 ind = [2, 6, 10, 14, 18, 22]
 ax = plt.gca()
@@ -333,11 +335,11 @@ for i in range(3):
                transform=axs[i, j].transAxes)
         axs[i,j].set_yscale('log')
         axs[i,j].set_xlim(-18,-5)
-        axs[i,j].set_xlabel(r'$\epsilon$', fontsize=labsz)
+        axs[i,j].set_xlabel(r'$\varepsilon \equiv \log_{10}(Tol)$', fontsize=12)
         axs[i,j].tick_params(axis='both', direction='in', labelsize=8)
         axs[i,j].grid()
         axs[i,j].legend(fontsize=10, framealpha=1.0)
-fig8.tight_layout(pad=3,h_pad=5,w_pad=8)
+#fig8.tight_layout(pad=3,h_pad=5,w_pad=8)
 plt.savefig('plots/DQ_DeltafNL_alt.pdf', format='pdf',bbox_inches='tight')
 
 NB = 6.0
