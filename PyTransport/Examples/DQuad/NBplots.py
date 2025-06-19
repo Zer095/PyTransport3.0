@@ -288,7 +288,7 @@ plt.savefig('plots/DQ_Time_fNL.pdf', format='pdf',bbox_inches='tight')
 
 # Reduced Delta(pz) vs tol vs NB
 fig7 = plt.figure(7, figsize=(10,8))
-plt.title(r'$\Delta P_\zeta(k_{CMB})$', fontsize=titsz, pad=20)
+plt.title(r'$\Delta \mathcal{P}_\zeta(k_{CMB})$', fontsize=titsz, pad=20)
 gs = fig7.add_gridspec(3, 2, hspace=0, wspace=0.05)
 ind = [2, 6, 10, 14, 18, 22]
 ax = plt.gca()

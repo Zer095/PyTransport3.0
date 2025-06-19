@@ -117,7 +117,7 @@ public:
 				}
 		
 		}
-
+ 
 		return sum;
 	}
     // function returns a double dot

@@ -72,6 +72,17 @@ MPP_fnl = 5/6*MPP_3pt[-1, 4]/(MPP_3pt[-1,1]*MPP_3pt[-1, 2] + MPP_3pt[-1,1]*MPP_3
 print(f'End 3pt MPP run, fnl = {MPP_fnl}, time = {time.time()-start}')
 print('---------------------------------------------------------')
 
+# Compute ns
+Nstart1, backExit = PyS.ICsBE(NB, k+0.01, back, pvalue, PyT)
+tsig1 = np.linspace(Nstart1, back[-1, 0], 1000)
+rho1 = PyT.MPP2(tsig1, k+0.01, backExit, pvalue, tols)
+MPP_twoPt1 = PyT.MPPSigma(tsig1, k+0.01, backExit, pvalue, rho, True)
+
+
+zz1a = MPP_twoPt[-1,1]
+zz2a = MPP_twoPt1[-1,1]
+n_s = (np.log(zz2a)-np.log(zz1a))/(np.log(k+.01)-np.log(k))
+print(f'nS = {np.abs(n_s)}')
 ##############################################  Set plot parameters ##################################################################
 
 # Useful strings for titles and labels

@@ -18,10 +18,10 @@ from pathlib import Path
 #It is recommended you restart the kernel to insure any updates to PyTransPyStep are imported 
 
 from PyTransport.PyTransPy import PyTransSetup
-PyTransSetup.pathSet()  # his add sets the other paths that PyTransport uses
+from PyTransport.PyTransPy import PyTransScripts as PyS
 
 import PyTransMatt as PyT;  # import module
-from PyTransport.PyTransPy import PyTransScripts as PyS;
+
 ###########################################################################################################################################
 nF = PyT.nF()
 nP = PyT.nP()
@@ -197,8 +197,8 @@ MPP_logPz = np.log(np.array(MPP_Pz))
 
 print(f'Len[factors] = {len(factors)}, Len[PyT_logPz] = {len(PyT_logPz)}')
 
-PyT_logPz_func = UnivariateSpline(factors, PyT_logPz, s=10e-4)
-MPP_logPz_func = UnivariateSpline(factors, MPP_logPz, s=10e-5)
+PyT_logPz_func = UnivariateSpline(factors, PyT_logPz, s=10e-10)
+MPP_logPz_func = UnivariateSpline(factors, MPP_logPz, s=10e-10)
 
 PyT_ns = np.multiply(PyT_logPz_func.derivative()(factors), factors)
 MPP_ns = np.multiply(MPP_logPz_func.derivative()(factors), factors)
@@ -226,8 +226,8 @@ eps_k = eps_func(Ns)
 # PyT_THfNL = UnivariateSpline(factors, np.abs((5/12)*(PyT_ns  - 2*np.multiply(f_k, eps_k))), s = 1e-10)
 # MPP_THfNL = UnivariateSpline(factors, np.abs((5/12)*(MPP_ns  - 2*np.multiply(f_k, eps_k))), s = 1e-10)
 
-PyT_THfNL = UnivariateSpline(factors, (5/12)*(PyT_ns), s = 1e-4)
-MPP_THfNL = UnivariateSpline(factors, (5/12)*(MPP_ns), s = 1e-4)
+PyT_THfNL = UnivariateSpline(factors, (5/12)*(PyT_ns), s = 1e-10)
+MPP_THfNL = UnivariateSpline(factors, (5/12)*(MPP_ns), s = 1e-10)
 
 PyT_THfNL = PyT_THfNL(factors)
 MPP_THfNL = MPP_THfNL(factors)
@@ -396,8 +396,8 @@ plt.plot(factors, MPP_Pz_norm, color='black', label='MPP', linestyle=(0, (10, 5)
 # plt.vlines(x=k_ratios[PyT_index_1], ymin=min(PyT_Pz_norm), ymax=max(PyT_Pz_norm), color='gray', linestyle='dashed')
 # plt.title(r"$f_{NL}$ spectrum", fontsize=titsz)
 # plt.gca().invert_xaxis()
-plt.xlabel(r"$k_{\rm short}$/$k_{\rm long}$", fontsize=labsz)
-plt.ylabel(r'$\mathcal{P}_{\zeta}$', rotation=0, fontsize=labsz, labelpad=10)
+plt.xlabel(r"$k$/$k_0$", fontsize=labsz)
+plt.ylabel(r'$\frac{\mathcal{P}_{\zeta}(k)}{\mathcal{P}_{\zeta}(k_0)}$', rotation=0, fontsize=labsz, labelpad=10)
 plt.xticks(fontsize=ticksz)
 plt.yticks(fontsize=ticksz)
 plt.xlim(k_ratios[0], k_ratios[-1])
@@ -510,9 +510,41 @@ ax2.tick_params(axis='both', labelsize=ticksz)
 ax2.set_xlim(factors[0], factors[-1])
 ax2.grid(True)
 ax2.legend(fontsize=legsz, framealpha=1.0, loc='lower left')
-
 plt.tight_layout()
 plt.savefig('Plots/Combined_SQ.pdf', format='pdf', bbox_inches='tight')
+
+
+
+fig14 = plt.figure(figsize=(10,8))
+plt.plot(twoPtT[:,0], np.abs(twoPtT[:,1]), color=colors[0], label='PyT') 
+plt.plot(twoPtM[:,0], np.abs(twoPtM[:,1]), color='black', label='MPP', linestyle=(0, (10, 5)))
+plt.vlines(x=NExit, ymin=min(np.abs(twoPtM[:,1])), ymax=max(np.abs(twoPtT[:,1])), color='gray', linestyle='dashed')
+plt.xlabel(r"$N$", fontsize=labsz)
+plt.ylabel(r'$\zeta$', rotation=0, fontsize=labsz, labelpad=10)
+plt.xticks(fontsize=ticksz)
+plt.yticks(fontsize=ticksz)
+plt.ylim(0.3*10**3, 10**7)
+plt.xlim(twoPtT[0,0], twoPtT[-1,0])
+plt.grid()
+plt.yscale('log')
+plt.legend(fontsize=legsz, framealpha=1.0)
+plt.savefig('Plots/Zeta_Evo.pdf', format='pdf',bbox_inches='tight')
+
+fig15 = plt.figure(figsize=(10,8))
+plt.plot(threePtMPP[:,0], np.abs(fnlM), color=colors[0], label=r'MPP $f_\text{NL}$') 
+plt.vlines(x=NExit, ymin=10**-7, ymax=10**2, color='gray', linestyle='dashed')
+plt.xlabel(r"$N$", fontsize=labsz)
+plt.ylabel(r'$f_\text{NL}\left(k_\text{CMB}\right)$', rotation=0, fontsize=labsz, labelpad=10)
+plt.xticks(fontsize=ticksz)
+plt.yticks(fontsize=ticksz)
+plt.ylim(10**2, 10**-7)
+plt.xlim(threePtMPP[0,0], threePtMPP[-1,0])
+plt.grid()
+plt.yscale('log')
+plt.legend(fontsize=legsz, framealpha=1.0)
+plt.savefig('Plots/fnl_evo.pdf', format='pdf',bbox_inches='tight')
+
+
 
 ###########################################################################################################################################
 plt.show()

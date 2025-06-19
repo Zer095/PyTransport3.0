@@ -31,7 +31,7 @@ import numpy as np                       # Package needed to define arrays
 ###############################################################################################################
 
 ############################################## Import PyTransport ##############################################
-from PyTransPy import PyTransScripts as PyS     # Import the PyTransScript module
+from PyTransport.PyTransPy import PyTransScripts as PyS     # Import the PyTransScript module
 
 import PyTransLNC as PyT                       # Import the model. Be sure the name is the same that appears in .compileName3 in xSetup.py
 ###############################################################################################################

@@ -38,7 +38,7 @@ public:
    {
 // #FP
 nF=2;
-nP=4;
+nP=6;
 	
    }
 	
@@ -49,9 +49,9 @@ nP=4;
 		vector<double> FM((2*nF)*(2*nF),0.0) ;
         
 // metric
-  double x0 = 2.0*f[0]*p[3];
+  double x0 = f[1]/p[0];
 
- FM[0]=1;
+ FM[0]=std::exp(-x0);
 
  FM[1]=0;
 
@@ -61,7 +61,7 @@ nP=4;
 
  FM[4]=0;
 
- FM[5]=std::exp(-x0);
+ FM[5]=1;
 
  FM[6]=0;
 
@@ -71,7 +71,7 @@ nP=4;
 
  FM[9]=0;
 
- FM[10]=1;
+ FM[10]=std::exp(x0);
 
  FM[11]=0;
 
@@ -81,7 +81,7 @@ nP=4;
 
  FM[14]=0;
 
- FM[15]=std::exp(x0);
+ FM[15]=1;
 
          return FM;
 	}
@@ -94,7 +94,8 @@ nP=4;
 		vector<double> CS((2*nF)*(2*nF)*(2*nF),0.0);
 	
 // Christoffel
-  double x0 = 1.0*p[3];
+  double x0 = 1.0/p[0];
+  double x1 = (1.0/2.0)*x0;
 
  CS[0]=0;
 
@@ -118,15 +119,15 @@ nP=4;
 
  CS[10]=0;
 
- CS[11]=0;
+ CS[11]=x1;
 
  CS[12]=0;
 
  CS[13]=0;
 
- CS[14]=0;
+ CS[14]=x1;
 
- CS[15]=-x0*std::exp(2.0*f[0]*p[3]);
+ CS[15]=0;
 
  CS[16]=0;
 
@@ -148,15 +149,15 @@ nP=4;
 
  CS[25]=0;
 
- CS[26]=0;
+ CS[26]=-x1*std::exp(f[1]*x0);
 
- CS[27]=x0;
+ CS[27]=0;
 
  CS[28]=0;
 
  CS[29]=0;
 
- CS[30]=x0;
+ CS[30]=0;
 
  CS[31]=0;
 
@@ -235,7 +236,7 @@ nP=4;
 		vector<double> RM((nF)*(nF)*(nF)*(nF),0.0);
 		
 // Riemann
-  double x0 = 1.0*std::pow(p[3], 2)*std::exp(2.0*f[0]*p[3]);
+  double x0 = (1.0/4.0)*std::exp(f[1]/p[0])/std::pow(p[0], 2);
   double x1 = -x0;
 
  RM[0]=0;

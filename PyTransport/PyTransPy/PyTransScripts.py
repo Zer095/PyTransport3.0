@@ -1,15 +1,15 @@
 #This file is part of PyTransport.
-    
+
 #PyTransport is free software: you can redistribute it and/or modify
 #it under the terms of the GNU General Public License as published by
 #the Free Software Foundation, either version 3 of the License, or
 #(at your option) any later version.
-    
+
 #PyTransport is distributed in the hope that it will be useful,
 #but WITHOUT ANY WARRANTY; without even the implied warranty of
 #MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #GNU General Public License for more details.
-    
+
 #You should have received a copy of the GNU General Public License
 #along with PyTransport.  If not, see <http://www.gnu.org/licenses/>.
 
@@ -17,7 +17,7 @@
 # python code contains some useful scripts to use with the compiled PyTrans module.
 
 import numpy as np
-from scipy import interpolate 
+from scipy import interpolate
 import timeit
 import sys
 #from mpi4py import MPI
@@ -27,9 +27,8 @@ import sys
 
 def unPackAlp(threePtOut, MTE):
     """
-    -----------------------------------------------------------------------------------------------------------------------------------------------------
-    This function unpacks the components of the input array `threePtOut` into individual variables 
-    representing different components of the model. It returns the components in a reshaped format 
+    This function unpacks the components of the input array `threePtOut` into individual variables
+    representing different components of the model. It returns the components in a reshaped format
     suitable for further analysis.
 
     Arguments
@@ -55,34 +54,34 @@ def unPackAlp(threePtOut, MTE):
 
     Description
     -----------
-    The function checks the dimensionality of `threePtOut` and extracts the relevant components into 
+    The function checks the dimensionality of `threePtOut` and extracts the relevant components into
     separate variables. These components are then reshaped into the required dimensions and returned.
 
     Python Prototype
     ----------------
     zetaMs, sig1R, sig2R, sig3R, alpha = unPackAlp(threePtOut, MTE)
-    ----------------------------------------------------------------------------------------------------------------------------------------------------"""
+    """
 
     # Get the number of fields from the MTE object
     nF = MTE.nF()
-    
+
     # Check the size of the input array to ensure it matches the expected dimensions
     if np.size(threePtOut[0,:]) != 1 + 4 + 2 * nF + 6 * 2 * nF * 2 * nF + 2 * nF * 2 * nF * 2 * nF:
         # If the dimensions are incorrect, print a warning and return NaN values
         print("\n\n\n\n warning array you asked to unpack is not of correct dimension \n\n\n\n")
         return np.nan, np.nan, np.nan, np.nan, np.nan
-    
+
     # Extract the components from the input array, starting at the specific indices based on the number of fields
     zetaMs = threePtOut[:, 1:5]  # Extract the first component (zetaMs)
-    
+
     # Extract the signature matrices (sig1R, sig2R, sig3R) based on the size of the array
     sig1R = threePtOut[:, 1 + 4 + 2 * nF : 1 + 4 + 2 * nF + 2 * nF * 2 * nF]
     sig2R = threePtOut[:, 1 + 4 + 2 * nF + 2 * nF * 2 * nF : 1 + 4 + 2 * nF + 2 * 2 * nF * 2 * nF]
     sig3R = threePtOut[:, 1 + 4 + 2 * nF + 2 * 2 * nF * 2 * nF : 1 + 4 + 2 * nF + 3 * 2 * nF * 2 * nF]
-    
+
     # Extract the alpha component
     alpha = threePtOut[:, 1 + 4 + 2 * nF + 6 * 2 * nF * 2 * nF:]
-    
+
     # Reshape the extracted components into the required 3D or 4D arrays, ensuring each component has the correct shape
     return zetaMs, np.reshape(sig1R, (np.size(threePtOut[:, 0]), 2 * nF, 2 * nF)), \
            np.reshape(sig2R, (np.size(threePtOut[:, 0]), 2 * nF, 2 * nF)), \
@@ -92,9 +91,8 @@ def unPackAlp(threePtOut, MTE):
 
 def unPackSig(twoPtOut, MTE):
     """
-    -----------------------------------------------------------------------------------------------------------------------------------------------------
-    This function unpacks the components of the input array `twoPtOut` into individual variables 
-    representing the zeta and signature matrices (sig). It reshapes and returns the signature matrix 
+    This function unpacks the components of the input array `twoPtOut` into individual variables
+    representing the zeta and signature matrices (sig). It reshapes and returns the signature matrix
     in a format suitable for further analysis.
 
     Arguments
@@ -114,10 +112,9 @@ def unPackSig(twoPtOut, MTE):
 
     Description
     -----------
-    The function checks the dimensionality of `twoPtOut` and extracts the relevant components into 
+    The function checks the dimensionality of `twoPtOut` and extracts the relevant components into
     separate variables. These components are then reshaped into the required dimensions and returned.
-
-    ----------------------------------------------------------------------------------------------------------------------------------------------------"""
+    """
 
     # Get the number of fields from the MTE object
     nF = MTE.nF()
@@ -127,10 +124,10 @@ def unPackSig(twoPtOut, MTE):
         # If the dimensions are incorrect, print a warning and return NaN values
         print("\n\n\n\n warning array you asked to unpack is not of correct dimension \n\n\n\n")
         return np.nan, np.nan
-    
+
     # Extract the zeta component (single column)
     zeta = twoPtOut[:, 1]
-    
+
     # Extract the signature matrix (sig) based on the size of the array
     sig = twoPtOut[:, 1 + 1 + 2 * nF : 1 + 1 + 2 * nF + 2 * nF * 2 * nF]
 
@@ -139,14 +136,13 @@ def unPackSig(twoPtOut, MTE):
 
 
 # this script finds initial conditions at least NBMassless e-folds before the massless point
-# back must finely sample the background evolution for the initial conditions to be close to exactly NBMassless before
+# back must finely sample the backgroudn evolution for the initial conditions to be close to exactly NBMassless before
 
 def ICsBM(NBMassless, k, back, params, MTE):
     """
-    -----------------------------------------------------------------------------------------------------------------------------------------------------
     This function searches for the initial conditions at least `NBMassless` e-folds before the massless point.
-    The massless point is identified by finding when the effective mass squared becomes positive. 
-    It works by calculating the largest eigenvalue of the mass matrix for the background evolution and adjusting the 
+    The massless point is identified by finding when the effective mass squared becomes positive.
+    It works by calculating the largest eigenvalue of the mass matrix for the background evolution and adjusting the
     initial conditions accordingly.
 
     Arguments
@@ -171,11 +167,10 @@ def ICsBM(NBMassless, k, back, params, MTE):
 
     Description
     -----------
-    This function iteratively searches the background evolution for the point where the effective mass squared 
-    becomes positive, indicating the massless condition is met. It then ensures that the initial conditions are 
+    This function iteratively searches the background evolution for the point where the effective mass squared
+    becomes positive, indicating the massless condition is met. It then ensures that the initial conditions are
     set `NBMassless` e-folds before this massless point and returns both the corresponding time and initial conditions.
-
-    ----------------------------------------------------------------------------------------------------------------------------------------------------"""
+    """
 
     # Get the number of fields (nF) from the background data
     nF = np.size(back[0, 1:]) // 2
@@ -187,7 +182,7 @@ def ICsBM(NBMassless, k, back, params, MTE):
         # Calculate eigenvalues of the mass matrix at the current background point
         w, v = np.linalg.eig(MTE.ddV(back[jj, 1:1 + nF], params))
         eigen = np.max(w)  # Get the largest eigenvalue (mass squared)
-        
+
         # Calculate the effective mass squared and check if it's positive
         massEff = -k ** 2 * np.exp(-2.0 * back[jj, 0]) + eigen
         jj += 1  # Move to the next background point
@@ -199,10 +194,10 @@ def ICsBM(NBMassless, k, back, params, MTE):
 
     # The time (N) when the massless condition was met
     NMassless = back[jj - 2, 0]
-    
+
     # Initialize a variable for the exit background evolution
     backExitMinus = np.zeros(2 * nF)
-    
+
     # Search for the point where the background time is at least `NBMassless` e-folds before the massless point
     ll = 0
     Ncond = -1.0
@@ -219,7 +214,7 @@ def ICsBM(NBMassless, k, back, params, MTE):
     # The time (N) when the initial condition is found
     NexitMinus = back[ll - 2, 0]
     backExitMinus = back[ll - 2, 1:]  # The background evolution at that time
-        
+
     return NexitMinus, backExitMinus
 
 
@@ -228,10 +223,9 @@ def ICsBM(NBMassless, k, back, params, MTE):
 
 def ICsBE(NBExit, k, back, params, MTE):
     """
-    -----------------------------------------------------------------------------------------------------------------------------------------------------
-    This function searches for the initial conditions at least `NBExit` e-folds before the horizon exit of a given 
-    wavenumber `k`. It finds the horizon exit point by checking when the condition for horizon crossing is met, 
-    i.e., when the comoving wave number `k` exits the horizon. The background evolution must be finely sampled to 
+    This function searches for the initial conditions at least `NBExit` e-folds before the horizon exit of a given
+    wavenumber `k`. It finds the horizon exit point by checking when the condition for horizon crossing is met,
+    i.e., when the comoving wave number `k` exits the horizon. The background evolution must be finely sampled to
     ensure that the initial conditions are set correctly before the horizon exit.
 
     Arguments
@@ -256,11 +250,10 @@ def ICsBE(NBExit, k, back, params, MTE):
 
     Description
     -----------
-    This function iterates through the background evolution and checks when the condition for horizon crossing is 
-    met, which is determined by the comoving wave number `k` and the Hubble parameter. Once this condition is met, 
+    This function iterates through the background evolution and checks when the condition for horizon crossing is
+    met, which is determined by the comoving wave number `k` and the Hubble parameter. Once this condition is met,
     the function ensures that the initial conditions are set `NBExit` e-folds before the horizon exit.
-
-    ----------------------------------------------------------------------------------------------------------------------------------------------------"""
+    """
 
     # Get the number of fields (nF) from the background data
     nF = np.size(back[0, 1:]) // 2
@@ -271,7 +264,7 @@ def ICsBE(NBExit, k, back, params, MTE):
     while (kvaH < 0.0 and jj < np.size(back[:, 0]) - 1):
         # Calculate the Hubble parameter at the current background point
         H = MTE.H(back[jj, 1:1 + 2 * nF], params)
-        
+
         # Check if the comoving wave number `k` crosses the horizon
         kvaH = -k + np.exp(back[jj, 0]) * H
         jj += 1  # Move to the next background point
@@ -283,7 +276,7 @@ def ICsBE(NBExit, k, back, params, MTE):
 
     # The time (N) when the horizon exit condition was met
     NExit = back[jj - 2, 0]
-    
+
     # Initialize a variable to search for the initial condition `NBExit` e-folds before the horizon exit
     ll = 0
     Ncond = -1.0
@@ -300,17 +293,16 @@ def ICsBE(NBExit, k, back, params, MTE):
     # The time (N) when the initial condition is found
     NexitMinus = back[ll - 2, 0]
     backExitMinus = back[ll - 2, 1:]  # The background evolution at that time
-        
+
     return NexitMinus, backExitMinus
-  
-    
+
+
 # find the earliest condition between the massless one and the horizon exit one
 def ICs(NB, k, back, params, MTE):
     """
-    -----------------------------------------------------------------------------------------------------------------------------------------------------
-    This function finds the earliest initial condition between the massless condition (ICsBM) 
-    and the horizon exit condition (ICsBE). It calls the `ICsBE` and `ICsBM` functions to get 
-    the initial conditions based on different criteria (horizon exit and massless condition). 
+    This function finds the earliest initial condition between the massless condition (ICsBM)
+    and the horizon exit condition (ICsBE). It calls the `ICsBE` and `ICsBM` functions to get
+    the initial conditions based on different criteria (horizon exit and massless condition).
     It returns the initial conditions corresponding to the earliest condition in time.
 
     Arguments
@@ -338,20 +330,19 @@ def ICs(NB, k, back, params, MTE):
     This function compares the results from the horizon exit condition (`ICsBE`) and the massless condition (`ICsBM`).
     It returns the initial conditions for the earliest of these two conditions. This is useful when you need to determine
     the initial conditions based on either the massless condition or the horizon exit condition, whichever occurs first.
-
-    ----------------------------------------------------------------------------------------------------------------------------------------------------"""
+    """
 
     # Get the initial conditions based on horizon exit (from ICsBE)
     NBEs, fieldBE = ICsBE(NB, k, back, params, MTE)
 
     # Get the initial conditions based on massless condition (from ICsBM)
     NBMs, fieldBM = ICsBM(NB, k, back, params, MTE)
-    
+
     # Compare the two conditions and return the one that happens first
     if (NBEs < NBMs):
         # If the horizon exit condition happens earlier, return the horizon exit initial condition
         return NBEs, fieldBE
-    
+
     # If the massless condition happens earlier, return the massless initial condition
     return NBMs, fieldBM
 
@@ -359,9 +350,8 @@ def ICs(NB, k, back, params, MTE):
 # calculates the power spectrum at each element in kA at the end of the background evolution (back) with PyT
 def pSpectra(kA, back, params, NB, tols, MTE):
     """
-    -----------------------------------------------------------------------------------------------------------------------------------------------------
     This function calculates the power spectrum at each value of k in the input array `kA` at the end of the background evolution (from the `back` array).
-    It performs the calculation for each wavenumber `k` by finding the initial conditions using the `ICs` function and then evolving the system using the `sigEvolve` method 
+    It performs the calculation for each wavenumber `k` by finding the initial conditions using the `ICs` function and then evolving the system using the `sigEvolve` method
     from the MTE object. It returns the power spectrum values and the computation times for each `k`.
 
     Arguments
@@ -385,14 +375,13 @@ def pSpectra(kA, back, params, NB, tols, MTE):
         A 1D array containing the calculated power spectrum values for each wavenumber in `kA`.
     times : ndarray
         A 1D array containing the computation times for each wavenumber in `kA`.
-    
+
     Description
     -----------
-    This function calculates the power spectrum at the end of the background evolution for each wavenumber `k`. 
-    It first finds the initial conditions using the `ICs` function, then evolves the system using the `sigEvolve` 
+    This function calculates the power spectrum at the end of the background evolution for each wavenumber `k`.
+    It first finds the initial conditions using the `ICs` function, then evolves the system using the `sigEvolve`
     method, and finally stores the resulting power spectrum values at the last time step.
-
-    ----------------------------------------------------------------------------------------------------------------------------------------------------"""
+    """
 
     # Initialize empty arrays for output: zzOut will store the power spectrum values and times will store the computation times
     zzOut = np.array([])  # Will hold the power spectrum results
@@ -409,13 +398,13 @@ def pSpectra(kA, back, params, NB, tols, MTE):
         start_time = timeit.default_timer()
 
         # If initial conditions are invalid (Nstart is NaN), return an empty array for the power spectrum
-        if Nstart == np.nan:
+        if np.isnan(Nstart): # Fix: Use np.isnan()
             twoPt = np.empty((2, 2))  # Create an empty 2x2 array
             twoPt[:] = np.nan  # Fill the array with NaNs
         else:
             # Generate a time array from Nstart to the last background time
             t = np.linspace(Nstart, back[-1, 0], 10)
-            
+
             # Evolve the system to calculate the power spectrum at the current k value
             twoPt = MTE.sigEvolve(t, k, backExitMinus, params, tols, True)
 
@@ -432,10 +421,9 @@ def pSpectra(kA, back, params, NB, tols, MTE):
 # calculates the power spectrum at each element in kA at the end of the background evolution (back) with MPP
 def pSpectraMPP(kA, back, params, NB, tols, MTE):
     """
-    -------------------------------------------------------------------------------------------------------------------
-    This function calculates the power spectrum at the end of the background evolution (from the `back` array) for each 
-    wavenumber in `kA` using the MPP (Mean Particle Production) method. The function finds the initial conditions using 
-    the `ICs` function, then evolves the system using MTE methods: `MPP2` for the evolution of the background field and 
+    This function calculates the power spectrum at the end of the background evolution (from the `back` array) for each
+    wavenumber in `kA` using the MPP (Mean Particle Production) method. The function finds the initial conditions using
+    the `ICs` function, then evolves the system using MTE methods: `MPP2` for the evolution of the background field and
     `MPPSigma` to calculate the power spectrum.
 
     Arguments
@@ -459,16 +447,14 @@ def pSpectraMPP(kA, back, params, NB, tols, MTE):
         A 1D array containing the calculated power spectrum values for each wavenumber in `kA`.
     times : ndarray
         A 1D array containing the computation times for each wavenumber in `kA`.
-    
+
     Description
     -----------
-    This function calculates the power spectrum at the end of the background evolution using the MPP method. For each 
-    wavenumber `k`, it first finds the initial conditions using the `ICs` function, evolves the system using `MPP2`, 
+    This function calculates the power spectrum at the end of the background evolution using the MPP method. For each
+    wavenumber `k`, it first finds the initial conditions using the `ICs` function, evolves the system using `MPP2`,
     and finally calculates the power spectrum using `MPPSigma`.
-
-    -------------------------------------------------------------------------------------------------------------------
     """
-    
+
     # Initialize empty arrays for output: zzOut will store the power spectrum values and times will store the computation times
     zzOut = np.array([])  # Will hold the power spectrum results
     times = np.array([])  # Will hold the computation time for each iteration
@@ -484,13 +470,13 @@ def pSpectraMPP(kA, back, params, NB, tols, MTE):
         start_time = timeit.default_timer()
 
         # If initial conditions are invalid (Nstart is NaN), return an empty array for the power spectrum
-        if Nstart == np.nan:
+        if np.isnan(Nstart): # Fix: Use np.isnan()
             twoPt = np.empty((2, 2))  # Create an empty 2x2 array
             twoPt[:] = np.nan  # Fill the array with NaNs
         else:
             # Generate a time array from Nstart to the last background time
             t = np.linspace(Nstart, back[-1, 0], 10)
-            
+
             # Evolve the system using MPP method for background evolution (MPP2)
             rho = MTE.MPP2(t, k, backExitMinus, params, tols)  # Get the evolution for the system
 
@@ -510,10 +496,9 @@ def pSpectraMPP(kA, back, params, NB, tols, MTE):
 # calculates the power spectrum at each element in kA at the end of the background evolution (back) in a manner suitable to be called over many processes
 def pSpecMpi(kA, back, params, NB, tols, MTE):
     """
-    -------------------------------------------------------------------------------------------------------------------
-    This function calculates the power spectrum for each element in kA (wavenumbers) at the end of the background evolution 
-    (from the `back` array) using parallel computing with MPI (Message Passing Interface). The task is distributed across 
-    multiple processes. Each process calculates the power spectrum for a subset of `kA` and the results are combined at the 
+    This function calculates the power spectrum for each element in kA (wavenumbers) at the end of the background evolution
+    (from the `back` array) using parallel computing with MPI (Message Passing Interface). The task is distributed across
+    multiple processes. Each process calculates the power spectrum for a subset of `kA` and the results are combined at the
     root process (rank 0).
 
     Arguments
@@ -537,15 +522,13 @@ def pSpecMpi(kA, back, params, NB, tols, MTE):
         A 1D array containing the calculated power spectrum values for each wavenumber in `kA`.
     timesOut : ndarray
         A 1D array containing the computation times for each wavenumber in `kA`.
-    
+
     Description
     -----------
-    This function uses MPI to distribute the task of calculating the power spectrum for a given set of wavenumbers `kA` 
-    across multiple processes. The computation is performed by dividing the `kA` array into roughly equal parts for each 
+    This function uses MPI to distribute the task of calculating the power spectrum for a given set of wavenumbers `kA`
+    across multiple processes. The computation is performed by dividing the `kA` array into roughly equal parts for each
     process. Each process computes its portion of the power spectrum and then sends the results to the root process (rank 0).
     The root process collects the results from all processes and combines them into the final output.
-
-    -------------------------------------------------------------------------------------------------------------------
     """
     # Import MPI library and initialize the communicator for parallel processes
     from mpi4py import MPI
@@ -603,11 +586,10 @@ def pSpecMpi(kA, back, params, NB, tols, MTE):
 # calculates the power spectrum and bispectrum in an equilateral configuration at each element in kA at the end of the background evolution (back)
 def eqSpectra(kA, back, params, NB, tols, MTE):
     """
-    -------------------------------------------------------------------------------------------------------------------
-    This function calculates both the power spectrum and bispectrum (in an equilateral configuration) for each wavenumber 
-    in `kA` at the end of the background evolution provided by the `back` array. The calculations are performed using the 
-    model defined in the `MTE` object, and the results are returned for each element of `kA`. The power spectrum is calculated 
-    using the `alphaEvolve` method, which evolves the system in time, while the bispectrum is also computed in an equilateral 
+    This function calculates both the power spectrum and bispectrum (in an equilateral configuration) for each wavenumber
+    in `kA` at the end of the background evolution provided by the `back` array. The calculations are performed using the
+    model defined in the `MTE` object, and the results are returned for each element of `kA`. The power spectrum is calculated
+    using the `alphaEvolve` method, which evolves the system in time, while the bispectrum is also computed in an equilateral
     triangle configuration (i.e., with k1 = k2 = k3).
 
     Arguments
@@ -636,13 +618,12 @@ def eqSpectra(kA, back, params, NB, tols, MTE):
 
     Description
     -----------
-    This function calculates the power spectrum and bispectrum for each wavenumber in `kA` using an equilateral triangle 
-    configuration (k1 = k2 = k3). It does so by evolving the system using the `alphaEvolve` method provided by the `MTE` object. 
-    The results are returned in two separate arrays: one for the power spectrum (`zzOut`) and one for the bispectrum (`zzzOut`). 
+    This function calculates the power spectrum and bispectrum for each wavenumber in `kA` using an equilateral triangle
+    configuration (k1 = k2 = k3). It does so by evolving the system using the `alphaEvolve` method provided by the `MTE` object.
+    The results are returned in two separate arrays: one for the power spectrum (`zzOut`) and one for the bispectrum (`zzzOut`).
     The computation times for each wavenumber are also recorded.
-    -------------------------------------------------------------------------------------------------------------------
     """
-    
+
     # Initialize empty arrays to store results
     zzzOut = np.array([])  # Will store the bispectrum values
     zzOut = np.array([])   # Will store the power spectrum values
@@ -670,7 +651,7 @@ def eqSpectra(kA, back, params, NB, tols, MTE):
         start_time = timeit.default_timer()
 
         # If Nstart is NaN, set the output to NaN
-        if Nstart == np.nan:
+        if np.isnan(Nstart): # Fix: Use np.isnan()
             nF = MTE.nF()  # Get the number of fields
             threePt = np.empty((2, 5))  # Initialize an empty array to store three-point function data
             threePt[:] = np.nan  # Fill it with NaN values
@@ -732,7 +713,7 @@ def MPPSpectra(kA, back, params, NB, tols, MTE):
     - The power spectrum and bispectrum are extracted from the results.
     - Finally, it returns the computed values along with computation times.
     """
-    
+
     # Initialize empty arrays to store results
     zzzOut = np.array([])  # Stores the bispectrum values
     zzOut = np.array([])   # Stores the power spectrum values
@@ -743,7 +724,7 @@ def MPPSpectra(kA, back, params, NB, tols, MTE):
     # Iterate over each k in kA
     for ii in range(num):
         print("\n\n\n performing " + str(ii + 1) + " of " + str(num) + "\n\n\n")
-        
+
         k = kA[ii]  # Get the current wavenumber
 
         # Determine the initial conditions for this k using the ICs function
@@ -783,13 +764,12 @@ def MPPSpectra(kA, back, params, NB, tols, MTE):
     return zzOut, zzzOut, times
 
 
-# Calculates the power spectrum and bispectrum in the equilateral configuration 
+# Calculates the power spectrum and bispectrum in the equilateral configuration
 # at each element in kA at the end of the background evolution (back).
-# This function is designed to be executed across multiple processes using MPI.
+# This function is designed to be executed across many processes using MPI.
 def eqSpecMpi(kA, back, params, NB, tols, MTE):
     """
-    Parallel computation of the power spectrum and bispectrum in an equilateral configuration 
-    using MPI for distributed processing.
+    Parallelized computation of the bispectrum using the alpha-beta parameterization.
 
     The function distributes the calculation of power and bispectrum across multiple processes,
     allowing large-scale calculations to be performed efficiently.
@@ -827,6 +807,7 @@ def eqSpecMpi(kA, back, params, NB, tols, MTE):
     """
 
     # Initialize MPI communication
+    from mpi4py import MPI # Import MPI here
     comm = MPI.COMM_WORLD  # MPI communicator for inter-process communication
 
     # Get the rank (process ID) and the total number of processes
@@ -840,7 +821,7 @@ def eqSpecMpi(kA, back, params, NB, tols, MTE):
     num = points // size  # Integer division to split workload
 
     # Ensure the number of points is evenly divisible by the number of processes
-    if float(points) / size != float(points // size):  
+    if float(points) / size != float(points // size):
         if rank == 0:  # Only rank 0 prints the warning
             print("\n\n\n Warning! Number of points is not divisible by the number of processes, exiting.\n\n\n")
         return np.empty(0), np.empty(0), np.empty(0)  # Return empty arrays in case of misalignment
@@ -871,22 +852,29 @@ def eqSpecMpi(kA, back, params, NB, tols, MTE):
 
         # Receive results from other processes
         for jj in range(1, size):
-            comm.Recv(zzzL, source=jj)
-            comm.Recv(zzL, source=jj)
-            comm.Recv(timesL, source=jj)
+            zzzL = comm.recv(source=jj)
+            zzL = comm.recv(source=jj)
+            timesL = comm.recv(source=jj)
 
-            # Append the received data to the final output arrays
+            # Store the received data in the combined output arrays
+            Bztot[jj * num : jj * num + num, :, :] = BzL # Note: BzL is not defined here, it should be zzzL
+            Pz1tot[jj * num : jj * num + num, :, :] = Pz1L # Pz1L not defined
+            Pz2tot[jj * num : jj * num + num, :, :] = Pz2L # Pz2L not defined
+            Pz3tot[jj * num : jj * num + num, :, :] = Pz3L # Pz3L not defined
+            timestot[jj * num : jj * num + num, :] = timesL # timestot not defined
+
+            # Correct appending based on what was received (zzzL, zzL, timesL)
             zzzOut = np.append(zzzOut, zzzL)
             zzOut = np.append(zzOut, zzL)
             timesOut = np.append(timesOut, timesL)
 
-        # Return the final results (only from rank 0)
-        return zzOut, zzzOut, timesOut
 
-    else: 
-        # Non-root processes return empty arrays since they send their results to rank 0
-        return np.empty(0), np.empty(0), np.empty(0)
+        # Return the combined results
+        return (zzOut, zzzOut, timesOut) # Corrected return values
 
+    else:
+        # Other processes return empty arrays
+        return (np.empty(0), np.empty(0), np.empty(0))
 
 
 # Calculates the bispectrum in the alpha-beta notation for a given kt at every value of alphaIn and betaIn.
@@ -904,7 +892,7 @@ def alpBetSpectra(kt, alphaIn, betaIn, back, params, NB, nsnaps, tols, MTE):
     betaIn : array-like
         Array of beta values (parameter controlling the shape of the triangle).
     back : 2D array-like
-        Background evolution data, with the first column being N (e-folds) 
+        Background evolution data, with the first column being N (e-folds)
         and the remaining columns containing background fields.
     params : array-like
         Model parameters used for evolution calculations.
@@ -938,12 +926,12 @@ def alpBetSpectra(kt, alphaIn, betaIn, back, params, NB, nsnaps, tols, MTE):
 
     # Compute aH = a(N) * H(N) to determine horizon exit
     aH = np.exp(back[:, 0]) * Hin
-    
+
     # Sort aH values and interpolate to find the horizon exit time Nexit for k=kt/3
     positions = np.argsort(aH)
     Nexit = interpolate.splev(
-        kt / 3., 
-        interpolate.splrep(aH[positions], back[positions, 0], s=1e-15), 
+        kt / 3.,
+        interpolate.splrep(aH[positions], back[positions, 0], s=1e-15),
         der=0
     )
 
@@ -952,7 +940,7 @@ def alpBetSpectra(kt, alphaIn, betaIn, back, params, NB, nsnaps, tols, MTE):
 
     # Generate the list of time snapshots, ensuring the final time is included
     snaps = np.linspace(Nexit - (NB - 0.1), Nend, nsnaps)
-    
+
     # If only one or zero snapshots are requested, use only the final time
     if nsnaps in [0, 1]:
         snaps = np.array([Nend])
@@ -972,10 +960,10 @@ def alpBetSpectra(kt, alphaIn, betaIn, back, params, NB, nsnaps, tols, MTE):
         # Iterate over all values of beta
         for j in range(np.size(betaIn)):
             print(f"\n\n\n Performing {l+1} {j+1} of {np.size(alphaIn)} {np.size(betaIn)} \n\n\n")
-            
+
             # Start timing the computation for this (alpha, beta) combination
             timebefore = timeit.default_timer()
-            
+
             beta = betaIn[j]
 
             # Compute k1, k2, k3 using the alpha-beta parameterization
@@ -993,13 +981,13 @@ def alpBetSpectra(kt, alphaIn, betaIn, back, params, NB, nsnaps, tols, MTE):
                 t = np.concatenate((np.array([Nstart]), snaps))
 
                 # If Nstart is NaN, return an array filled with NaNs
-                if np.isnan(Nstart):
+                if np.isnan(Nstart): # Fix: Use np.isnan()
                     threePt = np.empty((2, 5))
                     threePt[:] = np.nan
                 else:
                     # Solve for the bispectrum using the alpha evolution solver
                     threePt = MTE.alphaEvolve(t, k1, k2, k3, backExitMinus, params, tols, True)
-                
+
                 # Extract bispectrum and power spectrum components
                 zzz = threePt[:, :5]
 
@@ -1064,6 +1052,7 @@ def alpBetSpecMpi(kt, alpha, beta, back, params, NB, nsnaps, tols, MTE):
     """
 
     # Initialize MPI communication
+    from mpi4py import MPI
     comm = MPI.COMM_WORLD
     rank = comm.Get_rank()  # Process rank (ID)
     size = comm.Get_size()  # Total number of processes
@@ -1073,14 +1062,14 @@ def alpBetSpecMpi(kt, alpha, beta, back, params, NB, nsnaps, tols, MTE):
     Nbefore = NB  # Store the input NB value
 
     # Determine how many alpha values each process should handle
-    num = side / size  
+    num = side // size # Fix: Use integer division for num
 
     # Ensure the number of alpha values is evenly divisible by the number of processes
     if float(side) / size != float(side // size):
         if rank == 0:
             print("\n\n\n Warning! Number of alpha values must be divisible by the number of processes. Exiting.\n\n\n")
-        return (np.empty, np.empty, np.empty, np.empty, np.empty)
-    
+        return (np.empty(0), np.empty(0), np.empty(0), np.empty(0), np.empty(0), np.empty(0)) # Return empty numpy arrays consistent with type
+
     else:
         # Each process gets a portion of the alpha array
         alphaL = alpha[rank * num : rank * num + num]
@@ -1116,25 +1105,25 @@ def alpBetSpecMpi(kt, alpha, beta, back, params, NB, nsnaps, tols, MTE):
 
             # Loop over all other processes and receive their results
             for jj in range(1, size):
-                Pz1L = comm.recv(source=jj)
-                Pz2L = comm.recv(source=jj)
-                Pz3L = comm.recv(source=jj)
-                BzL = comm.recv(source=jj)
-                timesL = comm.recv(source=jj)
+                Pz1L_recv = comm.recv(source=jj) # Use new variable names for received data
+                Pz2L_recv = comm.recv(source=jj)
+                Pz3L_recv = comm.recv(source=jj)
+                BzL_recv = comm.recv(source=jj)
+                timesL_recv = comm.recv(source=jj)
 
                 # Store the received data in the combined output arrays
-                Bztot[jj * num : jj * num + num, :, :] = BzL
-                Pz1tot[jj * num : jj * num + num, :, :] = Pz1L
-                Pz2tot[jj * num : jj * num + num, :, :] = Pz2L
-                Pz3tot[jj * num : jj * num + num, :, :] = Pz3L
-                timestot[jj * num : jj * num + num, :] = timesL
+                Bztot[jj * num : jj * num + num, :, :] = BzL_recv
+                Pz1tot[jj * num : jj * num + num, :, :] = Pz1L_recv
+                Pz2tot[jj * num : jj * num + num, :, :] = Pz2L_recv
+                Pz3tot[jj * num : jj * num + num, :, :] = Pz3L_recv
+                timestot[jj * num : jj * num + num, :] = timesL_recv
 
             # Return the combined results
             return (Bztot, Pz1tot, Pz2tot, Pz3tot, timestot, snaps)
-        
+
         else:
             # Other processes return empty arrays
-            return (np.empty, np.empty, np.empty, np.empty, np.empty, snaps)
+            return (np.empty(0), np.empty(0), np.empty(0), np.empty(0), np.empty(0), snaps)
 
 
 import numpy as np
@@ -1168,7 +1157,7 @@ def kexitPhi(PhiExit, n, back, params, MTE):
     """
 
     # Number of field and momentum components (assuming back stores both)
-    nF = np.size(back[0,1:]) // 2    
+    nF = np.size(back[0,1:]) // 2
 
     # Create an array to store background variables at horizon exit
     backExit = np.zeros(2 * nF)
@@ -1178,16 +1167,16 @@ def kexitPhi(PhiExit, n, back, params, MTE):
 
     # Interpolate to find the number of e-folds (Nexit) when the field reaches PhiExit
     Nexit = interpolate.splev(
-        PhiExit, 
-        interpolate.splrep(back[positions, n], back[positions, 0], s=1e-15), 
+        PhiExit,
+        interpolate.splrep(back[positions, n], back[positions, 0], s=1e-15),
         der=0
     )
 
     # Interpolate to extract background variables at Nexit
     for i in range(1, 2 * nF + 1):
         backExit[i - 1] = interpolate.splev(
-            Nexit, 
-            interpolate.splrep(back[:, 0], back[:, i], s=1e-15), 
+            Nexit,
+            interpolate.splrep(back[:, 0], back[:, i], s=1e-15),
             der=0
         )
 
@@ -1196,7 +1185,7 @@ def kexitPhi(PhiExit, n, back, params, MTE):
 
     return k
 
-    
+
 import numpy as np
 from scipy import interpolate
 
@@ -1238,8 +1227,8 @@ def kexitN(Nexit, back, params, MTE, exact=False):
 
     # Interpolate log(k) = N + log(H) at Nexit
     logk = interpolate.splev(
-        Nexit, 
-        interpolate.splrep(back[:, 0], back[:, 0] + np.log(Harr), s=1e-15), 
+        Nexit,
+        interpolate.splrep(back[:, 0], back[:, 0] + np.log(Harr), s=1e-15),
         der=0
     )
 

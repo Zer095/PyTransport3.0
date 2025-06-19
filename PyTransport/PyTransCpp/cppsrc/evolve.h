@@ -275,7 +275,8 @@ void evolveAlp(double N,  double yin[], double yp[], double paramsIn[])
             yp[2*nF + 3*(2*nF*2*nF) +i+2*nF*j]=sum;
         }}
     // Compute and store sigma imaginary (k2)
-    for(int i=0;i<2*nF;i++){for(int j=0;j<2*nF;j++)
+    for(int i=0;i<2*nF;i++){
+        for(int j=0;j<2*nF;j++)
         {
             double sum=0.0;
             for(int m=0;m<2*nF;m++)

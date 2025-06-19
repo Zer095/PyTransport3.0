@@ -33,7 +33,7 @@ initial = np.array([fields,-dV/np.sqrt(3.*V)])  # Initial condition with slow-ro
 Nstart = 0.0                                # Initial time 
 Nend = 50.0                                 # End time
 t = np.linspace(Nstart, Nend, 100000)         # Time steps
-back = PyT.backEvolve(t, initial, params, tols, True)       # Background evolution
+back = PyT.backEvolve(t, initial, params, tols, False)       # Background evolution
 print(f'Nend = {back[-1,0]}')               # Print End of inflation
 
 # Compute epsilon and eta for each value of the fields
@@ -139,6 +139,7 @@ fnlM = np.abs(( 5.0/6.0*zM[:,3] )/(zM[:,1]*zM[:,2]  + zM[:,0]*zM[:,1] + zM[:,0]*
 
 print('End MPP 3pt')
 
+
 # PyT Three point run
 threePtTrans = PyT.alphaEvolve(talp, k, k, k, backExitMinusA, params, tols, True)
 alphaTrans = threePtTrans[:,1+4+2*nF+6*(2*nF*2*nF):]
@@ -146,6 +147,8 @@ zT = threePtTrans[:,1:5]
 fnlT = np.abs(( 5.0/6.0*zT[:,3] )/(zT[:,1]*zT[:,2]  + zT[:,0]*zT[:,1] + zT[:,0]*zT[:,2]))
 
 print('End PyT 3pt')
+
+print(f'MPP 3pt end = {alphaMPP[-1,1]}, PyT 3pt end = {alphaTrans[-1,1]}')
 ###########################################################################################################################################
 
 # Add the current run to the lists
@@ -299,7 +302,7 @@ plt.plot(k_ratios, MPP_Pz_norm, color='black', label='MPP', linestyle=(0, (10, 5
 #plt.title(r"$P_{\zeta}$ spectrum", fontsize=titsz)
 #plt.gca().invert_xaxis()
 plt.xlabel(r"$k/k_0$", fontsize=labsz)
-plt.ylabel(r'$\mathcal{P}_{\zeta}$', rotation=0, fontsize=labsz, labelpad=10)
+plt.ylabel(r'$\frac{\mathcal{P}_{\zeta}(k)}{\mathcal{P}_{\zeta}(k_0)}$', rotation=0, fontsize=labsz, labelpad=10)
 plt.xticks(fontsize=ticksz)
 plt.yticks(fontsize=ticksz)
 plt.xlim(k_ratios[0], k_ratios[-1])

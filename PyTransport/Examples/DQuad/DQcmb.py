@@ -33,6 +33,14 @@ t = np.linspace(Nstart, Nend, 1000)
 tols = np.array([10**-18,10**-18])
 back = PyT.backEvolve(t, initial, pvalue, tols, True)
 
+fig = plt.figure(1, figsize=(10,8))
+plt.plot(back[:,0], back[:, 1])
+plt.plot(back[:,0], back[:,3])
+
+fig = plt.figure(2, figsize=(10,8))
+plt.plot(back[:,0], back[:, 2])
+plt.plot(back[:,0], back[:, 4])
+
 ############################################## Set 2pt and 3pt parameters ##################################################################
 tols = np.array([10**-12,10**-12])
 NB = 6.0

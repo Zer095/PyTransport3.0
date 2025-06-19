@@ -10,8 +10,8 @@ include_dir = [os.path.abspath(os.path.join(os.path.dirname(__file__), 'include'
 os.environ["CXXFLAGS"] = f"-I{include_dir}"
 
 # Define the extension module
-PyTransPBH = Extension(
-    "PyTransPBH",
+PyTransMatt = Extension(
+    "PyTransMatt",
     sources=["/Users/apx050/Desktop/Projects/PyTransport/PyTransport/PyTransCpp/PyTrans.cpp","/Users/apx050/Desktop/Projects/PyTransport/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.cpp"],
     include_dirs = ['/Users/apx050/Desktop/Projects/PyTransport/PyTransport/PyTransCpp', '/Users/apx050/Desktop/Projects/PyTransport/PyTransport/PyTransCpp/cppsrc/stepper', '/Users/apx050/Desktop/Projects/PyTransport/venv/lib/python3.11/site-packages/numpy/core/include'],
     language="c++",
@@ -19,9 +19,9 @@ PyTransPBH = Extension(
 
 # Setup configuration
 setup(
-    name="PyTransPBH",
-    ext_modules=[PyTransPBH],
+    name="PyTransMatt",
+    ext_modules=[PyTransMatt],
     package_data={
-        "PyTransPBH": [numpy.get_include()],
+        "PyTransMatt": [numpy.get_include()],
     },
 )
