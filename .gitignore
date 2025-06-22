@@ -1,0 +1,42 @@
+# General ignored files
+.DS_Store
+.venv/
+env/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Python build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Sphinx documentation build output
+docs/_build/
+docs/.doctrees/
+docs/_autosummary/
+# If you run doxygen inside docs/_build or a similar location, ignore that too
+docs/_build/doxygen_xml/
+
+# Doxygen related files (if generated in the root or other non-docs location)
+Doxyfile
+html/
+latex/
+man/
+rtf/
+xml/
+# If you run doxygen in the project root and it creates these output folders directly, add them.
+# Otherwise, if Doxygen's output is *inside* docs/_build, the line above (docs/_build/) is sufficient.
+
+# Specific to your project setup
+PyTransport/PyTransCpp/PyTrans.cpp # If this is a generated file that changes based on setup scripts
+PyTransport/PyTransCpp/cppsrc/fieldmetric.h # Likely generated
+PyTransport/PyTransCpp/cppsrc/potential.h # Likely generated
+
+# Logs and temporary files
+*.log
+*.tmp
+*.bak

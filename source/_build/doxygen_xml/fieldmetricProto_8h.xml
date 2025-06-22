@@ -1,0 +1,427 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="fieldmetricProto_8h" kind="file" language="C++">
+    <compoundname>fieldmetricProto.h</compoundname>
+    <includes local="no">iostream</includes>
+    <includes local="no">vector</includes>
+    <includes local="no">math.h</includes>
+    <incdepgraph>
+      <node id="1">
+        <label>PyTransport/PyTransCpp/cppsrc/fieldmetricProto.h</label>
+        <link refid="fieldmetricProto_8h"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+        <childnode refid="3" relation="include">
+        </childnode>
+        <childnode refid="4" relation="include">
+        </childnode>
+      </node>
+      <node id="2">
+        <label>iostream</label>
+      </node>
+      <node id="4">
+        <label>math.h</label>
+      </node>
+      <node id="3">
+        <label>vector</label>
+      </node>
+    </incdepgraph>
+    <sectiondef kind="var">
+      <memberdef kind="variable" id="fieldmetricProto_8h_1a777bb22f497842b6899e91c53014a591" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int nF</definition>
+        <argsstring></argsstring>
+        <name>nF</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="PyTransport/PyTransCpp/cppsrc/fieldmetricProto.h" line="27" column="12" bodyfile="PyTransport/PyTransCpp/cppsrc/fieldmetricProto.h" bodystart="27" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="fieldmetricProto_8h_1a33504e2314ffd2841b584c3d95f9a28a" prot="public" static="yes" mutable="no">
+        <type>int</type>
+        <definition>int nP</definition>
+        <argsstring></argsstring>
+        <name>nP</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="PyTransport/PyTransCpp/cppsrc/fieldmetricProto.h" line="28" column="12" bodyfile="PyTransport/PyTransCpp/cppsrc/fieldmetricProto.h" bodystart="28" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="fieldmetricProto_8h_1af374f2e8334ca8349bd99b61463eeaf3" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void FM</definition>
+        <argsstring>(double f[], double p[], double sum[])</argsstring>
+        <name>FM</name>
+        <param>
+          <type>double</type>
+          <declname>f</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>p</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sum</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+<para>Prototype function for computing the field space metric. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of field values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of model parameters. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output array for the flattened metric tensor.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Prototype function for computing the field space metric.</para>
+<para>This function is generated automatically by <computeroutput>PyTransSetup.py</computeroutput> based on the symbolic definition of the metric in Python. It evaluates the metric tensor components for given field values and parameters.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array of field values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array of model parameters. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An output array where the flattened 2D metric tensor (g_ij) will be stored. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="PyTransport/PyTransCpp/cppsrc/fieldmetricProto.h" line="36" column="6" bodyfile="PyTransport/PyTransCpp/cppsrc/fieldmetric.h" bodystart="35" bodyend="39" declfile="PyTransport/PyTransCpp/cppsrc/fieldmetricProto.h" declline="36" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="fieldmetricProto_8h_1a29192aab019af709d6974ea555667ee1" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void CS</definition>
+        <argsstring>(double f[], double p[], double sum[])</argsstring>
+        <name>CS</name>
+        <param>
+          <type>double</type>
+          <declname>f</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>p</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sum</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+<para>Prototype function for computing the Christoffel symbols. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of field values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of model parameters. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output array for the flattened Christoffel symbols.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Prototype function for computing the Christoffel symbols.</para>
+<para>This function is generated automatically by <computeroutput>PyTransSetup.py</computeroutput>. It evaluates the Christoffel symbols (Gamma^k_ij) for given field values and parameters.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array of field values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array of model parameters. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An output array where the flattened 3D Christoffel symbol tensor will be stored. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="PyTransport/PyTransCpp/cppsrc/fieldmetricProto.h" line="44" column="6" bodyfile="PyTransport/PyTransCpp/cppsrc/fieldmetric.h" bodystart="51" bodyend="54" declfile="PyTransport/PyTransCpp/cppsrc/fieldmetricProto.h" declline="44" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="fieldmetricProto_8h_1a79d1ede58ab62ddec776b08307c370fe" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RM</definition>
+        <argsstring>(double f[], double p[], double sum[])</argsstring>
+        <name>RM</name>
+        <param>
+          <type>double</type>
+          <declname>f</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>p</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sum</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+<para>Prototype function for computing the Riemann curvature tensor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of field values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of model parameters. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output array for the flattened Riemann tensor.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Prototype function for computing the Riemann curvature tensor.</para>
+<para>This function is generated automatically by <computeroutput>PyTransSetup.py</computeroutput>. It evaluates the Riemann curvature tensor components for given field values and parameters.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array of field values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array of model parameters. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An output array where the flattened 4D Riemann tensor will be stored. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="PyTransport/PyTransCpp/cppsrc/fieldmetricProto.h" line="52" column="6" bodyfile="PyTransport/PyTransCpp/cppsrc/fieldmetric.h" bodystart="66" bodyend="69" declfile="PyTransport/PyTransCpp/cppsrc/fieldmetricProto.h" declline="52" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="fieldmetricProto_8h_1aa00367fa6011c17fcf9d22684bd1b5f8" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void RMcd</definition>
+        <argsstring>(double f[], double p[], double sum[])</argsstring>
+        <name>RMcd</name>
+        <param>
+          <type>double</type>
+          <declname>f</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>p</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>sum</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+<para>Prototype function for computing the covariant derivative of the Riemann curvature tensor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of field values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Array of model parameters. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Output array for the flattened covariant Riemann tensor.</para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+Prototype function for computing the covariant derivative of the Riemann curvature tensor.</para>
+<para>This function is generated automatically by <computeroutput>PyTransSetup.py</computeroutput>. It evaluates the covariant derivative of the Riemann tensor for given field values and parameters.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array of field values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An array of model parameters. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>sum</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>An output array where the flattened 5D covariant Riemann tensor will be stored. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="PyTransport/PyTransCpp/cppsrc/fieldmetricProto.h" line="60" column="6" bodyfile="PyTransport/PyTransCpp/cppsrc/fieldmetric.h" bodystart="81" bodyend="84" declfile="PyTransport/PyTransCpp/cppsrc/fieldmetricProto.h" declline="60" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Prototype header for automatically generated field space metric and curvature calculations. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This file serves as a template that <computeroutput>PyTransSetup.py</computeroutput> uses to generate <computeroutput><ref refid="fieldmetric_8h" kindref="compound">fieldmetric.h</ref></computeroutput>. It defines the function signatures for computing the field space metric, Christoffel symbols, Riemann tensor, and its covariant derivative. The actual implementations are symbolically derived and inserted by the Python setup script.</para>
+<para><simplesect kind="copyright"><para>GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. </para>
+</simplesect>
+<simplesect kind="see"><para><ulink url="http://www.gnu.org/licenses/">http://www.gnu.org/licenses/</ulink> </para>
+</simplesect>
+</para>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="normal"></highlight></codeline>
+<codeline lineno="15"><highlight class="normal"></highlight><highlight class="preprocessor">#ifndef<sp/>FIELDMETRICPROTO_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="16"><highlight class="normal"></highlight><highlight class="preprocessor">#define<sp/>FIELDMETRICPROTO_H</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="17"><highlight class="normal"></highlight></codeline>
+<codeline lineno="18"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;iostream&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="19"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;vector&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="20"><highlight class="normal"></highlight><highlight class="preprocessor">#include<sp/>&lt;math.h&gt;</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="21"><highlight class="normal"></highlight></codeline>
+<codeline lineno="22"><highlight class="normal"></highlight><highlight class="keyword">using<sp/>namespace<sp/></highlight><highlight class="normal">std;</highlight></codeline>
+<codeline lineno="23"><highlight class="normal"></highlight></codeline>
+<codeline lineno="24"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#Rewrite</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="25"><highlight class="normal"></highlight></codeline>
+<codeline lineno="26"><highlight class="normal"></highlight><highlight class="comment">//<sp/>#FP</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="27"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nF;</highlight></codeline>
+<codeline lineno="28"><highlight class="normal"></highlight><highlight class="keyword">static</highlight><highlight class="normal"><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>nP;</highlight></codeline>
+<codeline lineno="29"><highlight class="normal"></highlight></codeline>
+<codeline lineno="36"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="fieldmetricProto_8h_1af374f2e8334ca8349bd99b61463eeaf3" kindref="member">FM</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f[],</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>p[],</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sum[]);<sp/></highlight><highlight class="comment">//<sp/>metric</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="37"><highlight class="normal"></highlight></codeline>
+<codeline lineno="44"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="fieldmetricProto_8h_1a29192aab019af709d6974ea555667ee1" kindref="member">CS</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f[],</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>p[],</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sum[]);<sp/></highlight><highlight class="comment">//<sp/>Christoffel</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="45"><highlight class="normal"></highlight></codeline>
+<codeline lineno="52"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="fieldmetricProto_8h_1a79d1ede58ab62ddec776b08307c370fe" kindref="member">RM</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f[],</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>p[],</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sum[]);<sp/></highlight><highlight class="comment">//<sp/>Riemann</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="53"><highlight class="normal"></highlight></codeline>
+<codeline lineno="60"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/><ref refid="fieldmetricProto_8h_1aa00367fa6011c17fcf9d22684bd1b5f8" kindref="member">RMcd</ref>(</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f[],</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>p[],</highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>sum[]);<sp/></highlight><highlight class="comment">//<sp/>Riemanncd</highlight><highlight class="normal"></highlight></codeline>
+<codeline lineno="61"><highlight class="normal"></highlight></codeline>
+<codeline lineno="62"><highlight class="normal"></highlight><highlight class="preprocessor">#endif</highlight></codeline>
+    </programlisting>
+    <location file="PyTransport/PyTransCpp/cppsrc/fieldmetricProto.h"/>
+  </compounddef>
+</doxygen>

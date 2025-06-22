@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_ace2ffded58417179cc6822433f98ce5" kind="dir">
+    <compoundname>PyTransport/PyTransCpp/cppsrc</compoundname>
+    <innerdir refid="dir_5404519da25317471f2540d46e3986a5">PyTransport/PyTransCpp/cppsrc/NC</innerdir>
+    <innerdir refid="dir_790169b806d3d957cbe9316b04d25fc7">PyTransport/PyTransCpp/cppsrc/stepper</innerdir>
+    <innerfile refid="cppsrc_2____init_____8py">__init__.py</innerfile>
+    <innerfile refid="evolve_8h">evolve.h</innerfile>
+    <innerfile refid="fieldmetric_8h">fieldmetric.h</innerfile>
+    <innerfile refid="fieldmetricProto_8h">fieldmetricProto.h</innerfile>
+    <innerfile refid="model_8h">model.h</innerfile>
+    <innerfile refid="moments_8h">moments.h</innerfile>
+    <innerfile refid="potential_8h">potential.h</innerfile>
+    <innerfile refid="potentialProto_8h">potentialProto.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="PyTransport/PyTransCpp/cppsrc/"/>
+  </compounddef>
+</doxygen>

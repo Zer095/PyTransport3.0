@@ -1,0 +1,287 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="classpotential" kind="class" language="C++" prot="public">
+    <compoundname>potential</compoundname>
+    <includes refid="potential_8h" local="no">cppsrc/potential.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classpotential_1ad6a452da1c8c559ac7f843f1fbeac351" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int potential::nF</definition>
+        <argsstring></argsstring>
+        <name>nF</name>
+        <qualifiedname>potential::nF</qualifiedname>
+        <briefdescription>
+<para>Number of fields in the potential. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="PyTransport/PyTransCpp/cppsrc/potential.h" line="38" column="9" bodyfile="PyTransport/PyTransCpp/cppsrc/potential.h" bodystart="38" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classpotential_1ab2c0c2d49d7644ac3bfeed2629aeface" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int potential::nP</definition>
+        <argsstring></argsstring>
+        <name>nP</name>
+        <qualifiedname>potential::nP</qualifiedname>
+        <briefdescription>
+<para>Number of parameters for the potential. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="PyTransport/PyTransCpp/cppsrc/potential.h" line="39" column="9" bodyfile="PyTransport/PyTransCpp/cppsrc/potential.h" bodystart="39" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classpotential_1afe633604fc0e41502bf498da0bb764a8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>potential::potential</definition>
+        <argsstring>()</argsstring>
+        <name>potential</name>
+        <qualifiedname>potential::potential</qualifiedname>
+        <briefdescription>
+<para>Constructor for the potential class. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the potential by retrieving the number of fields (<computeroutput>nF</computeroutput>) and parameters (<computeroutput>nP</computeroutput>) from the automatically generated definitions. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="PyTransport/PyTransCpp/cppsrc/potential.h" line="48" column="5" bodyfile="PyTransport/PyTransCpp/cppsrc/potential.h" bodystart="48" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classpotential_1ac8b0b95912daf19d4752d5cb5f5f2c7f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int potential::getnF</definition>
+        <argsstring>()</argsstring>
+        <name>getnF</name>
+        <qualifiedname>potential::getnF</qualifiedname>
+        <briefdescription>
+<para>Returns the number of fields (<computeroutput>nF</computeroutput>) associated with the potential. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>An integer representing the number of fields. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="PyTransport/PyTransCpp/cppsrc/potential.h" line="59" column="9" bodyfile="PyTransport/PyTransCpp/cppsrc/potential.h" bodystart="59" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classpotential_1a84602471e8b108304c31914918e38dc0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int potential::getnP</definition>
+        <argsstring>()</argsstring>
+        <name>getnP</name>
+        <qualifiedname>potential::getnP</qualifiedname>
+        <briefdescription>
+<para>Returns the number of parameters (<computeroutput>nP</computeroutput>) associated with the potential. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>An integer representing the number of parameters. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="PyTransport/PyTransCpp/cppsrc/potential.h" line="68" column="9" bodyfile="PyTransport/PyTransCpp/cppsrc/potential.h" bodystart="68" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classpotential_1ae9dd3db932482f26a323c31af480feee" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double potential::V</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>V</name>
+        <qualifiedname>potential::V</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Evaluates the potential function. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function returns the value of the potential for given field values and model parameters. The implementation is automatically generated.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector containing the field values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector containing the model parameters. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The value of the potential. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="PyTransport/PyTransCpp/cppsrc/potential.h" line="83" column="12" bodyfile="PyTransport/PyTransCpp/cppsrc/potential.h" bodystart="83" bodyend="88"/>
+      </memberdef>
+      <memberdef kind="function" id="classpotential_1adba6ef84c84c4664421b2c061d36e220" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; potential::dV</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>dV</name>
+        <qualifiedname>potential::dV</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Evaluates the first derivatives (gradient) of the potential. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function returns a vector containing the gradient of the potential with respect to each field, for given field values and model parameters. The implementation is automatically generated.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector containing the field values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector containing the model parameters. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A vector with the components of the potential&apos;s gradient. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="PyTransport/PyTransCpp/cppsrc/potential.h" line="101" column="12" bodyfile="PyTransport/PyTransCpp/cppsrc/potential.h" bodystart="101" bodyend="106"/>
+      </memberdef>
+      <memberdef kind="function" id="classpotential_1a91289e516436f318648799dd2b7ab582" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; potential::dVV</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>dVV</name>
+        <qualifiedname>potential::dVV</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Evaluates the second derivatives (Hessian matrix) of the potential. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function returns a flattened vector representing the Hessian matrix of the potential (second derivatives with respect to pairs of fields), for given field values and model parameters. The implementation is automatically generated.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector containing the field values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector containing the model parameters. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A flattened vector representing the Hessian matrix (size <computeroutput>nF*nF</computeroutput>). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="PyTransport/PyTransCpp/cppsrc/potential.h" line="119" column="12" bodyfile="PyTransport/PyTransCpp/cppsrc/potential.h" bodystart="119" bodyend="124"/>
+      </memberdef>
+      <memberdef kind="function" id="classpotential_1a6542cc0f572bafb1f5680e646d95ee0e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; potential::dVVV</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>dVVV</name>
+        <qualifiedname>potential::dVVV</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+<para>Evaluates the third derivatives of the potential. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>This function returns a flattened vector representing the third derivatives of the potential with respect to triplets of fields, for given field values and model parameters. The implementation is automatically generated.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>f</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector containing the field values. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>p</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>A vector containing the model parameters. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>A flattened vector representing the third derivative tensor (size <computeroutput>nF*nF*nF</computeroutput>). </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="PyTransport/PyTransCpp/cppsrc/potential.h" line="137" column="12" bodyfile="PyTransport/PyTransCpp/cppsrc/potential.h" bodystart="137" bodyend="142"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Manages the scalar field potential and its derivatives. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class provides an interface to query the potential value, its gradient, Hessian (second derivatives), and third derivatives with respect to the fields. The underlying mathematical expressions are generated dynamically from Python. </para>
+    </detaileddescription>
+    <location file="PyTransport/PyTransCpp/cppsrc/potential.h" line="35" column="1" bodyfile="PyTransport/PyTransCpp/cppsrc/potential.h" bodystart="36" bodyend="143"/>
+    <listofallmembers>
+      <member refid="classpotential_1adba6ef84c84c4664421b2c061d36e220" prot="public" virt="non-virtual"><scope>potential</scope><name>dV</name></member>
+      <member refid="classpotential_1a91289e516436f318648799dd2b7ab582" prot="public" virt="non-virtual"><scope>potential</scope><name>dVV</name></member>
+      <member refid="classpotential_1a6542cc0f572bafb1f5680e646d95ee0e" prot="public" virt="non-virtual"><scope>potential</scope><name>dVVV</name></member>
+      <member refid="classpotential_1ac8b0b95912daf19d4752d5cb5f5f2c7f" prot="public" virt="non-virtual"><scope>potential</scope><name>getnF</name></member>
+      <member refid="classpotential_1a84602471e8b108304c31914918e38dc0" prot="public" virt="non-virtual"><scope>potential</scope><name>getnP</name></member>
+      <member refid="classpotential_1ad6a452da1c8c559ac7f843f1fbeac351" prot="private" virt="non-virtual"><scope>potential</scope><name>nF</name></member>
+      <member refid="classpotential_1ab2c0c2d49d7644ac3bfeed2629aeface" prot="private" virt="non-virtual"><scope>potential</scope><name>nP</name></member>
+      <member refid="classpotential_1afe633604fc0e41502bf498da0bb764a8" prot="public" virt="non-virtual"><scope>potential</scope><name>potential</name></member>
+      <member refid="classpotential_1ae9dd3db932482f26a323c31af480feee" prot="public" virt="non-virtual"><scope>potential</scope><name>V</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

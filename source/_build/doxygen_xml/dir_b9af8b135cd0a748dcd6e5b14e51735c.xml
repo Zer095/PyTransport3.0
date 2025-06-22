@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.9.8" xml:lang="en-US">
+  <compounddef id="dir_b9af8b135cd0a748dcd6e5b14e51735c" kind="dir">
+    <compoundname>PyTransport/PyTransCpp</compoundname>
+    <innerdir refid="dir_ace2ffded58417179cc6822433f98ce5">PyTransport/PyTransCpp/cppsrc</innerdir>
+    <innerfile refid="____init_____8py">__init__.py</innerfile>
+    <innerfile refid="PyTrans_8cpp">PyTrans.cpp</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="PyTransport/PyTransCpp/"/>
+  </compounddef>
+</doxygen>
