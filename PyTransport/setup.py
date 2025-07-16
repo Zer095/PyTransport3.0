@@ -10,8 +10,8 @@ include_dir = [os.path.abspath(os.path.join(os.path.dirname(__file__), 'include'
 os.environ["CXXFLAGS"] = f"-I{include_dir}"
 
 # Define the extension module
-PyTransMatt = Extension(
-    "PyTransMatt",
+PyTransDafne = Extension(
+    "PyTransDafne",
     sources=["/Users/apx050/Desktop/Projects/PyTransport/PyTransport/PyTransCpp/PyTrans.cpp","/Users/apx050/Desktop/Projects/PyTransport/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.cpp"],
     include_dirs = ['/Users/apx050/Desktop/Projects/PyTransport/PyTransport/PyTransCpp', '/Users/apx050/Desktop/Projects/PyTransport/PyTransport/PyTransCpp/cppsrc/stepper', '/Users/apx050/Desktop/Projects/PyTransport/venv/lib/python3.11/site-packages/numpy/core/include'],
     language="c++",
@@ -19,9 +19,9 @@ PyTransMatt = Extension(
 
 # Setup configuration
 setup(
-    name="PyTransMatt",
-    ext_modules=[PyTransMatt],
+    name="PyTransDafne",
+    ext_modules=[PyTransDafne],
     package_data={
-        "PyTransMatt": [numpy.get_include()],
+        "PyTransDafne": [numpy.get_include()],
     },
 )

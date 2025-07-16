@@ -15,7 +15,7 @@ nP=PyT.nP() # gets number of parameters needed (useful check)
 
 
 pvalue = np.zeros(nP)
-pvalue[0]=8.02713424*10**-6; pvalue[1]=0.0018; pvalue[2]=14.84; pvalue[3]=0.022;
+pvalue[0]=8.02713424*10**-6; pvalue[1]=0.0018; pvalue[2]=14.84; pvalue[3]=0.022
 
 fields = np.array([17.0])
 

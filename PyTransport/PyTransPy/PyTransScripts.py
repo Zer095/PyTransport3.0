@@ -392,7 +392,7 @@ def pSpectra(kA, back, params, NB, tols, MTE):
     for ii in range(0, num):
         print("\n \n \n performing " + str(ii + 1) + " of " + str(num) + "\n \n \n")
         k = kA[ii]  # Current wavenumber
-        Nstart, backExitMinus = ICs(NB, k, back, params, MTE)  # Get the initial conditions for this wavenumber
+        Nstart, backExitMinus = ICsBE(NB, k, back, params, MTE)  # Get the initial conditions for this wavenumber
 
         # Measure the time taken for each computation
         start_time = timeit.default_timer()
@@ -464,7 +464,7 @@ def pSpectraMPP(kA, back, params, NB, tols, MTE):
     for ii in range(0, num):
         print("\n \n \n performing " + str(ii + 1) + " of " + str(num) + "\n \n \n")
         k = kA[ii]  # Current wavenumber
-        Nstart, backExitMinus = ICs(NB, k, back, params, MTE)  # Get the initial conditions for this wavenumber
+        Nstart, backExitMinus = ICsBE(NB, k, back, params, MTE)  # Get the initial conditions for this wavenumber
 
         # Measure the time taken for each computation
         start_time = timeit.default_timer()

@@ -298,7 +298,7 @@ def potential(V,nF,nP,simple=False,G=0,silent=True):
             g.write('nF='+str(nF)+';\n'+'nP='+str(nP)+';\n')
 
         if line == "// Pot\n":
-
+ 
             # extract common subexpressions from V
             if not silent:
                 timer_cse = time.process_time()
@@ -313,7 +313,7 @@ def potential(V,nF,nP,simple=False,G=0,silent=True):
             # emit main expression
             emit_expr = sym.printing.cxxcode(new_expr[0])
             rw_expr = rewrite_indices(emit_expr, nF, nP)
-            g.write('  sum='+str(rw_expr)+';\n')
+            g.write('    sum='+str(rw_expr)+';\n')
 
         if line == "// dPot\n":
 

@@ -27,7 +27,7 @@
 using namespace std;
 
 // #Rewrite
-// Potential file rewriten at Mon May 26 16:14:55 2025
+// Potential file rewriten at Fri Jul 11 15:15:23 2025
 
 class potential
 {
@@ -42,7 +42,7 @@ public:
 	{
 // #FP
 nF=1;
-nP=5;
+nP=3;
 
 //        p.resize(nP);
         
@@ -59,7 +59,7 @@ nP=5;
 		double sum ;
         
 // Pot
-  sum=p[0]*(p[1] + p[2]*(f[0]*(p[3] + p[4]) + std::log(std::cosh(f[0]*p[3]))));
+    sum=p[0]*std::pow(1 - std::exp(f[0]*p[1]), p[2]);
          return sum;
 	}
 	
@@ -69,8 +69,9 @@ nP=5;
 		vector<double> sum(nF,0.0);
 	
 // dPot
+  double x0 = std::exp(f[0]*p[1]);
 
- sum[0]=p[0]*p[2]*(p[3]*std::tanh(f[0]*p[3]) + p[3] + p[4]);
+ sum[0]=-p[0]*p[1]*p[2]*x0*std::pow(1 - x0, p[2] - 1);
         
 		return sum;
 	}
@@ -81,8 +82,11 @@ nP=5;
 		vector<double> sum(nF*nF,0.0);
 		
 // ddPot
+  double x0 = std::exp(f[0]*p[1]);
+  double x1 = x0 - 1;
+  double x2 = -x1;
 
- sum[0]=p[0]*p[2]*std::pow(p[3], 2)/std::pow(std::cosh(f[0]*p[3]), 2);
+ sum[0]=-p[0]*std::pow(p[1], 2)*p[2]*x0*(x0*std::pow(x2, p[2] + 1)*(p[2] - 1) - std::pow(x2, p[2] + 2))/std::pow(x1, 3);
      
         return sum;
 	}
@@ -92,9 +96,11 @@ nP=5;
 	{
         vector<double> sum(nF*nF*nF,0.0);
 // dddPot
-  double x0 = f[0]*p[3];
+  double x0 = f[0]*p[1];
+  double x1 = std::exp(x0);
+  double x2 = 1 - x1;
 
- sum[0]=-2*p[0]*p[2]*std::pow(p[3], 3)*std::sinh(x0)/std::pow(std::cosh(x0), 3);
+ sum[0]=p[0]*std::pow(p[1], 3)*p[2]*x1*(3*x1*std::pow(x2, p[2] + 4)*(p[2] - 1) - std::pow(x2, p[2] + 3)*(std::pow(p[2], 2) - 3*p[2] + 2)*std::exp(2*x0) - std::pow(x2, p[2] + 5))/std::pow(x2, 6);
        
         return sum;
 	}

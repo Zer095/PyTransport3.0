@@ -1,4 +1,4 @@
-############################## Set up file for the Laura's model ###########################
+############################## Set up file for the model ###########################
 import sympy as sym
 import math
 from gravipy import *

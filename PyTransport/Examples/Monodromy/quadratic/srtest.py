@@ -22,7 +22,6 @@ rho_mass_ratio = 409/4  # should be >> 1
 alpha = 30              # should be >> 1
 beta = 10e-2            # should be << 1
 
-
 # Parameters derived by this quantities
 f = (-2)/(alpha*phi_0)
 a = -(beta/alpha)*(2/m_phi)
@@ -38,6 +37,8 @@ params[2] = a
 params[3] = f
 params[4] = m_rho
 params[5] = rho_0
+
+print(params)
 
 fields = np.array([phi_0, 0.])
 
@@ -118,30 +119,10 @@ def System(N, vars, lmbd, m_phi, m_rho, rho_0):
     dh = -1*h*K
     # Ev. equation for phi
     dx = x1
-    dx1 = -3*x1 - (dh/h)*x1 - dv/(h**2) 
+    dx1 = -3*x1 - (dh/h)*x1 - dv*(1 - y/lmbd)/(h**2) - (1/lmbd)*x1*y1
     # Ev. equation for rho
     dy = y1
-    dy1 = -3*y1 - (dh/h)*y1 - dw/(h**2) + (1./(2*lmbd))*(x1**2) 
-
-    return [dh, dx, dx1, dy, dy1]
-
-def System1(N, vars, lmbd, m_phi, m_rho, rho_0):
-
-    # Unpack variables
-    h, x, x1, y, y1 = vars
-    # Kinetick energy
-    K = Kin(x1, y1, y, lmbd)
-    # Gradient of potential
-    dv, dw = DPot(x, y, m_phi, m_rho, rho_0)
-
-    # Evolution equation for H
-    dh = -1*h*K
-    # Ev. equation for phi
-    dx = x1
-    dx1 = -3*x1 - (dh/h)*x1 - dv/(h**2) - (1/lmbd)*x1*y1
-    # Ev. equation for rho
-    dy = y1
-    dy1 = -3*y1 - (dh/h)*y1 - dw/(h**2) + (1./(2*lmbd))*(x1**2) 
+    dy1 = -3*y1 - (dh/h)*y1 - dw/(h**2) + (1./(2*lmbd))*(1 + y/lmbd)*(x1**2)  
 
     return [dh, dx, dx1, dy, dy1]
 
@@ -165,7 +146,7 @@ t_span = (Nstart, back[-1,0])   # Start time, end time
 t_eval = np.linspace(Nstart, back[-1,0], len(back[:,0]))    # time array
 # Solve equations
 sol = solve_ivp(System, t_span, ics, t_eval=back[:,0], args=(lmbd, m_phi, m_rho, rho_0) )
-sol1 = solve_ivp(System1, t_span, ics, t_eval=back[:,0], args=(lmbd, m_phi, m_rho, rho_0) )
+
 ####################################### Compute background quantities with SR solutions #################################################
 
 # 1) Compute 3H^2 and it's components
@@ -200,25 +181,72 @@ rho_sr = sol.y[3]
 rho1_sr = sol.y[4]
 
 # Phi perturbed solution:
-phi1_pert = (3*beta/alpha)*phi1_sr*np.cos(phi_sr/f)
-phi_pert = -(3*beta*f/alpha)*np.sin(phi_sr/f-phi1_sr[0]/f)
+phi1_pert = -(a/(phi1_sr*h_sr))*np.cos(phi_sr/f)
+phi_pert = -(a*f/(phi1_sr/h_sr)**2)*np.sin(phi_sr/f-phi1_sr[0]/f)
 
 # Rho solution coefficients: 
 omega_f = (phi1_sr*h_sr)/f
 omega_s = 3*h_sr
 omega_n = np.sqrt(m_rho)
-a0 = a/lmbd
+a0 = -a/lmbd
 B = a0/np.sqrt( (omega_n**2 - omega_f**2)**2 + (omega_f**2)*(omega_s**2) )
 delta = np.arctan( (omega_s*omega_f)/(omega_n**2-omega_f**2) )
+delta = np.arcsin((omega_n**2 - omega_f**2)/(np.sqrt( (omega_n**2 - omega_f**2)**2 + (omega_f**2)*(omega_s**2) )))
 # Rho perturbed solution:
-rho1_pert = (-B)*(omega_f)*np.cos( (phi_sr/f) + delta - ((phi_sr[0]/f) + delta[0] - np.arccos(rho1_sr[0]))) 
-rho_pert = B*np.sin( (phi_sr/f) + delta - ((phi_sr[0]/f) + delta[0] - np.arcsin(rho_sr[0])) ) 
+rho1_pert = (-B)*(omega_f)*np.cos( (phi_sr/f) + delta - ((phi_sr[0]/f) + delta[0] - np.pi/2 )) 
+rho_pert = (B)*np.sin( (phi_sr/f) + delta - ((phi_sr[0]/f) + delta[0] ) ) 
+
+# Rho perturbed + transient solution
+A_0 = np.sqrt( (-B[0]*np.cos(delta[0]))**2 + ( (B[0]*((omega_s[0]/2)*np.cos(delta[0]) + omega_f[0]*np.sin(delta[0])) )/omega_s[0] )**2 )
+pi = np.arctan( (B[0]*((omega_s[0]/2)*np.cos(delta[0])+omega_f[0]*np.sin(delta[0])))/((omega_s[0])*(-B[0]*np.cos(delta[0]))) )
+rho_pert_test = A_0*np.exp(-(omega_s[0]/2)*N)*np.cos(omega_s[0]*N + pi) + (B)*np.sin( (phi_sr/f) + delta)
+
+u_prime = - (omega_s[0]/2) * A_0 * np.exp(-(omega_s[0]/2)*N)
+v_prime = - omega_s[0] * np.sin(omega_s[0]*N + pi)
+
+velocity_homogeneous_term = (u_prime * np.cos(omega_s[0]*N + pi) +
+                                A_0 * np.exp(-(omega_s[0]/2)*N) * v_prime)
+
+velocity_particular_term = B * np.cos((phi_sr / f) + delta) * (phi1_sr / f)
+rho_test = 1/(2*lmbd*m_rho)*(phi1_sr*h_sr)**2 + rho_0
+rho1_pert_test = velocity_homogeneous_term + velocity_particular_term
 
 # Define full analytical solutions:
 phi1_full = phi1_sr + (phi1_pert/h_sr)
 phi_full = phi_sr + phi_pert
 rho1_full = rho1_sr + (rho1_pert/h_sr)
 rho_full = rho_sr + rho_pert
+  
+# Compute the frequency:
+num = len(back[:,0])
+
+
+def dominant_frequencies(N, T, signal):
+    yf = np.fft.fft(signal)
+    xf = np.fft.fftfreq(N, T )[:N//2]
+    print(f'Len xf = {len(xf)}')
+
+    magnitude = 2.0/N * np.abs(yf[0:N//2])
+
+    # Plot the spectrum to identify the frequencies
+    plt.figure(figsize=(10, 6))
+    plt.plot(xf, magnitude)
+    plt.title('Frequency Spectrum of the Oscillatory Function')
+    plt.xlabel('Frequency (Hz)')
+    plt.ylabel('Magnitude')
+    plt.yscale('log')
+    plt.grid(True)
+    plt.show()
+
+    sorted_indices = np.argsort(magnitude)[::-1]
+    dominant_frequencies = []
+    for idx in sorted_indices:
+        if xf[idx] > 0.1:
+            dominant_frequencies.append(xf[idx])
+            if len(dominant_frequencies) == 2:
+                break
+
+    return dominant_frequencies
 
 ####################################### Compute background quantities with FA solutions #################################################
 
@@ -253,6 +281,60 @@ alpha_PyT = phi1_PyT/(h_PyT*f)
 beta_PyT = a/(m_phi*phi_PyT*f)
 lambda_PyT = phi1_PyT/(np.sqrt(alpha_PyT)*h_PyT*lmbd)
 
+
+#
+
+####################################### Compute the frequencies #################################################
+num = len(back[:,0])
+Fs = num/back[-1,0]
+T = 1/ Fs
+
+print(f'Number of points = {num}, Sampling frequency = {Fs}, Sampling period = {T}')
+
+PyT_dom_freq = dominant_frequencies(num, T, back[:,2])
+
+print(f"The two dominant frequencies of PyT are approximately: {PyT_dom_freq[0]:.2f} Hz and {PyT_dom_freq[1]:.2f} Hz")
+
+FA_dom_freq = dominant_frequencies(num, T, rho_sr+rho_pert_test)
+
+print(f"The two dominant frequencies of FA are approximately: {FA_dom_freq[0]:.2f} Hz and {FA_dom_freq[1]:.2f} Hz")
+
+
+
+####################################### Power-spectrum ############################################################
+# Build vectors for analytical solutions
+N = sol.t
+print(f'Back shape: {back.shape}')
+backAN = np.column_stack((N,phi_full,rho_full,phi1_full,rho1_full))
+print(f'Analytical Back shape: {backAN.shape}')
+
+Rho_full = rho_test + rho_pert_test
+Rho1_full = rho1_pert_test
+
+backFA = np.column_stack((N,phi_full,Rho_full,phi1_full,Rho1_full))
+# Set parameters
+NB = 6.0
+NExit = back[-1,0] - 50.0
+
+PyT_k = PyS.kexitN(NExit, back, params, PyT)
+AN_k = PyS.kexitN(NExit, backAN, params, PyT)
+FA_k = PyS.kexitN(NExit, backFA, params, PyT)
+print(f'PyT k = {PyT_k}, AN k = {AN_k}, FA k = {FA_k}')
+
+PyT_Ns, PyT_backExit = PyS.ICsBE(NB, PyT_k, back, params, PyT)
+AN_Ns, AN_backExit = PyS.ICsBE(NB, AN_k, backAN, params, PyT)
+FA_Ns, FA_backExit = PyS.ICsBE(NB, FA_k, backFA, params, PyT)
+print(f'PyT BackExit = {PyT_backExit},\n Analytical BackExit = {AN_backExit},\n Full Analytic BackExit = {FA_backExit}')
+
+PyT_tsig = np.linspace(PyT_Ns, back[-1,0], 10000)
+AN_tsig = np.linspace(AN_Ns, backAN[-1,0], 10000)
+FA_tsig = np.linspace(FA_Ns, backAN[-1,0], 10000)
+
+tols = np.array([10e-10,10e-10])
+
+PyT_twoPt = PyT.sigEvolve(PyT_tsig, PyT_k, PyT_backExit, params, tols, True)
+AN_twoPt = PyT.sigEvolve(AN_tsig, AN_k, AN_backExit, params, tols, True)
+FA_twoPt = PyT.sigEvolve(FA_tsig, FA_k, FA_backExit, params, tols, True)
 
 ############################################################ Plots ############################################################
 
@@ -434,7 +516,7 @@ ax6[0].plot(sol.t, sol.y[1] + phi_pert, label=r'Full $\phi$', linestyle='dashed'
 
 # SR + pert
 ax6[1].plot(back[:, 0], back[:, 3], label=r'PyT $\dot \phi$')
-ax6[1].plot(sol.t, np.multiply(sol.y[2], sol.y[0]) + phi1_pert * h_sr, label=r'Full $\dot \phi$', linestyle='dashed')
+ax6[1].plot(sol.t, np.multiply(sol.y[2], sol.y[0]) + phi1_pert, label=r'Full $\dot \phi$', linestyle='dashed')
 
 # Inset for phi
 axins0 = inset_axes(ax6[0], width="40%", height="40%", loc="lower left")
@@ -449,7 +531,7 @@ mark_inset(ax6[0], axins0, loc1=2, loc2=4, fc="none", ec="0.5")
 # Inset for dot phi
 axins1 = inset_axes(ax6[1], width="40%", height="40%", loc="upper center")
 axins1.plot(back[:, 0], back[:, 3])
-axins1.plot(sol.t, np.multiply(sol.y[2], sol.y[0]) + phi1_pert * h_sr, linestyle='dashed')
+axins1.plot(sol.t, np.multiply(sol.y[2], sol.y[0]) + phi1_pert, linestyle='dashed')
 axins1.set_xlim(20, 21)
 axins1.set_ylim(-0.825, -0.805)  # adjust as needed
 axins1.set_xticklabels([])
@@ -503,140 +585,136 @@ ax7[0].legend()
 ax7[1].legend()
 
 plt.savefig('Plots/rho_full_sol.pdf', format='pdf', bbox_inches='tight')
-
-
 ##################################################################################################
-fig8 = plt.figure(figsize=(10,6))
-# PyT
-plt.plot(back[:,0], PyT_3H2, label=r'PyT $3H^2$')
-# FA
-plt.plot(sol.t, FA_3H2, label=r'FA $3H^2$', linestyle='dashed')
-plt.title(r'$3H^2$ Comparison: PyTransport vs Full Analytical')
-plt.xlabel(r'$N$')
-plt.legend()
-plt.savefig('Plots/3H2_full_comparison.pdf', format='pdf', bbox_inches='tight')
-
-##################################################################################################
-fig9 = plt.figure(figsize=(10,6))
-plt.plot(back[:,0], PyT_eps, label=r'PyT $\epsilon$')
-# FA
-plt.plot(sol.t, FA_eps, label=r'FA $\epsilon$', linestyle='dashed')
-plt.title(r'$\epsilon$ Comparison: PyTransport vs Full Analytical')
-plt.xlabel(r'$N$')
-plt.legend()
-plt.savefig('Plots/eps_full_comparison.pdf', format='pdf', bbox_inches='tight')
-
-##################################################################################################
-fig10, ax10 = plt.subplots(1,2,figsize=(10,6))
-# SR
-ax10[0].plot(sol.t, sol.y[1], label=r'SR $\phi$')
-ax10[0].plot(sol1.t, sol1.y[1], label=r'Coupling $\phi$', linestyle='dashed')
-# SR + coupling
-ax10[1].plot(sol.t, sol.y[2], label=r'SR $\dot \phi$')
-ax10[1].plot(sol.t, sol1.y[2], label=r'Coupling $\dot \phi$', linestyle='dashed')
+fig8, ax8 = plt.subplots(1,3,figsize=(10,6)) # Changed from fig14 to fig8
+# alpha
+ax8[0].plot(sol.t, alpha_PyT, label=r'PyT $\alpha$')
+ax8[0].plot(sol.t, alpha_sr, label=r'SR $\alpha$', linestyle='dashed')
+# beta
+ax8[1].plot(sol.t, beta_PyT, label=r'PyT $\beta$')
+ax8[1].plot(sol.t, beta_sr, label=r'SR $\beta$', linestyle='dashed')
+# Lambda
+ax8[2].plot(sol.t, np.abs(lambda_PyT), label=r'PyT $\Lambda$ condition')
+ax8[2].plot(sol.t, np.abs(lambda_sr), label=r'SR $\Lambda$ condition', linestyle='dashed')
 # Settings
-fig10.suptitle(r'SR vs SR + coupling $\phi$ and $\dot \phi$')
+fig8.suptitle(r'Evolution of the parameters')
+ax8[0].set_xlabel(r'$N$')
+ax8[1].set_xlabel(r'$N$')
+ax8[2].set_xlabel(r'$N$')
+ax8[0].legend()
+ax8[1].legend()
+ax8[2].legend()
+plt.savefig('Plots/parameters_comparison.pdf', format='pdf',bbox_inches='tight') # Updated to fig8
+
+
+##################################################################################################
+fig9, ax9 = plt.subplots(1, 2, figsize=(10, 6)) 
+
+# \rho
+ax9[0].plot(back[:, 0], back[:, 2], label=r'PyT $\rho$')
+ax9[0].plot(sol.t, rho_pert, label=r'Pert $\rho$', linestyle='dashed')
+
+# \dot\rho
+ax9[1].plot(back[:, 0], back[:, 4], label=r'PyT $\dot \rho$')
+ax9[1].plot(sol.t,  rho1_pert, label=r'Pert $\dot \rho$', linestyle='dashed')
+
+# Settings
+fig9.suptitle(r'$\rho$ and $\dot \rho$ Perturbation analytical solution vs PyTransport')
+ax9[0].set_xlabel(r'$N$')
+ax9[1].set_xlabel(r'$N$')
+ax9[0].legend()
+ax9[1].legend()
+
+plt.savefig('Plots/rho_pert_sol.pdf', format='pdf', bbox_inches='tight') 
+
+##################################################################################################
+fig10, ax10 = plt.subplots(1, 2, figsize=(10, 6))
+
+# \rho
+ax10[0].plot(back[:, 0], back[:, 2], label=r'PyT $\rho$')
+ax10[0].plot(sol.t, sol.y[3]+rho_pert_test, label=r'Pert $\rho$', linestyle='dashed')
+
+# \dot\rho
+ax10[1].plot(back[:, 0], back[:, 4], label=r'PyT $\dot \rho$')
+ax10[1].plot(sol.t,  (sol.y[4] + rho1_pert_test)*h_sr, label=r'Pert $\dot \rho$', linestyle='dashed')
+
+# Settings
+fig10.suptitle(r'$\rho$ and $\dot \rho$ Full analytical solution vs PyTransport')
 ax10[0].set_xlabel(r'$N$')
 ax10[1].set_xlabel(r'$N$')
 ax10[0].legend()
 ax10[1].legend()
-plt.savefig('Plots/phi_coupling_comparison.pdf', format='pdf',bbox_inches='tight')
+
+plt.savefig('Plots/rho_test.pdf', format='pdf', bbox_inches='tight') # Updated to fig10
 
 ##################################################################################################
-fig11, ax11 = plt.subplots(1,2,figsize=(10,6))
-# SR
-ax11[0].plot(sol.t, sol.y[3], label=r'SR $\rho$')
-ax11[0].plot(sol1.t, sol1.y[3], label=r'Coupling $\rho$', linestyle='dashed')
-# SR + coupling
-ax11[1].plot(sol.t, sol.y[4], label=r'SR $\dot \rho$')
-ax11[1].plot(sol.t, sol1.y[4], label=r'Coupling $\dot \rho$', linestyle='dashed')
+fig10, ax10 = plt.subplots(1, 2, figsize=(10, 6))
+
+# \rho
+ax10[0].plot(back[:, 0], back[:, 2], label=r'PyT $\rho$')
+ax10[0].plot(sol.t, rho_test + rho_pert_test, label=r'Pert $\rho$', linestyle='dashed')
+
+# \dot\rho
+ax10[1].plot(back[:, 0], back[:, 4], label=r'PyT $\dot \rho$')
+ax10[1].plot(sol.t,  (sol.y[4] + rho1_pert_test)*h_sr, label=r'Pert $\dot \rho$', linestyle='dashed')
+
 # Settings
-fig11.suptitle(r'SR vs SR + coupling $\rho$ and $\dot \rho$')
-ax11[0].set_xlabel(r'$N$')
-ax11[1].set_xlabel(r'$N$')
-ax11[0].legend()
-ax11[1].legend()
-plt.savefig('Plots/rho_coupling_comparison.pdf', format='pdf',bbox_inches='tight')
+fig10.suptitle(r'$\rho$ and $\dot \rho$ Full analytical solution vs PyTransport')
+ax10[0].set_xlabel(r'$N$')
+ax10[1].set_xlabel(r'$N$')
+ax10[0].legend()
+ax10[1].legend()
 
+plt.savefig('Plots/rho_test.pdf', format='pdf', bbox_inches='tight') # Updated to fig10
 ##################################################################################################
 
-fig12, ax12 = plt.subplots(1, 2, figsize=(10, 6))
+# Plot 2pt
+PyT_sigma = PyT_twoPt[:, 2 + 2*nF:]
+MPP_sigma = AN_twoPt[:, 2+2*nF:]
+ind = [0,1,3]
+fig11, ax = plt.subplots(figsize=(10,8))
+lines = []
+for i in range(3):
+    l1 = plt.plot(PyT_tsig, np.abs(PyT_sigma[:, ind[i]]))
+    l2 = plt.plot(AN_tsig, np.abs(MPP_sigma[:, ind[i]]), color = 'black', linestyle='dashed')
+    lines.append([l1[0],l2[0]])
 
-# SR
-ax12[0].plot(sol.t, sol.y[3], label=r'SR $\rho$')
-ax12[0].plot(sol1.t, sol1.y[3], label=r'Coupling $\rho$', linestyle='dashed')
+#print(f'Handles = {[l[0][0].get_label() for l in lines]}')
+plt.xlabel(r"$N$")
+plt.ylabel(r'$\Sigma$', rotation=0)
+plt.xticks()
+plt.yticks()
+plt.grid()
+plt.yscale('log')
+leg1 = ax.legend(lines[0], ['PyT', 'Semi Analytical'], loc='upper right')
+ax.add_artist(leg1)
+ax.legend(handles=[l[0] for l in lines], loc='lower right')
+plt.savefig('Plots/Confront2pt.pdf', format='pdf',bbox_inches='tight')
 
-# SR + coupling
-ax12[1].plot(sol.t, sol.y[4], label=r'SR $\dot \rho$')
-ax12[1].plot(sol1.t, sol1.y[4], label=r'Coupling $\dot \rho$', linestyle='dashed')
+#####################################################################################################################
 
-# === Inset Zoom on ax12[0] ===
-axins0 = inset_axes(ax12[0], width="45%", height="45%", loc="upper right")
-axins0.plot(sol.t, sol.y[3], label=r'SR $\rho$')
-axins0.plot(sol1.t, sol1.y[3], label=r'Coupling $\rho$', linestyle='dashed')
+# Plot 2pt
+PyT_sigma = PyT_twoPt[:, 2 + 2*nF:]
+MPP_sigma = FA_twoPt[:, 2+2*nF:]
+ind = [0,1,3]
+fig11, ax = plt.subplots(figsize=(10,8))
+lines = []
+for i in range(3):
+    l1 = plt.plot(PyT_tsig, np.abs(PyT_sigma[:, ind[i]]))
+    l2 = plt.plot(AN_tsig, np.abs(MPP_sigma[:, ind[i]]), color = 'black', linestyle='dashed')
+    lines.append([l1[0],l2[0]])
 
-x1, x2 = 0, 5  # x-limits
-y1, y2 = -6e-6, 2.6e-5  # y-limits
-axins0.set_xlim(x1, x2)
-axins0.set_ylim(y1, y2)
-axins0.set_xticklabels([])
-axins0.set_yticklabels([])
-mark_inset(ax12[0], axins0, loc1=2, loc2=4, fc="none", ec="0.5")
-
-# === Inset Zoom on ax12[1] ===
-axins1 = inset_axes(ax12[1], width="45%", height="45%", loc="upper right")
-axins1.plot(sol.t, sol.y[4], label=r'SR $\dot \rho$')
-axins1.plot(sol1.t, sol1.y[4], label=r'Coupling $\dot \rho$', linestyle='dashed')
-
-# Set limits for the second zoom — adjust to your case
-x3, x4 = 0, 5  # x-limits
-y3, y4 = -1e-5, 1e-5  # y-limits
-axins1.set_xlim(x3, x4)
-axins1.set_ylim(y3, y4)
-axins1.set_xticklabels([])
-axins1.set_yticklabels([])
-mark_inset(ax12[1], axins1, loc1=2, loc2=4, fc="none", ec="0.5")
-
-# Labels and legend
-fig12.suptitle(r'SR vs SR + coupling $\rho$ and $\dot \rho$')
-ax12[0].set_xlabel(r'$N$')
-ax12[1].set_xlabel(r'$N$')
-ax12[0].legend()
-ax12[1].legend()
-
-plt.savefig('Plots/rho_coupling_comparison_zoom.pdf', format='pdf', bbox_inches='tight')
-
-
-##################################################################################################
-fig13 = plt.figure(figsize=(10,6))
-plt.plot(back[:,0], PyT_eta, label=r'PyT $\eta$')
-# FA
-plt.plot(sol.t, FA_eta, label=r'FA $\eta$', linestyle='dashed')
-plt.title(r'$\eta$ Comparison: PyTransport vs Full Analytical')
-plt.xlabel(r'$N$')
-plt.legend()
-plt.savefig('Plots/eta_full_comparison.pdf', format='pdf', bbox_inches='tight')
-
-##################################################################################################
-fig14, ax14 = plt.subplots(1,3,figsize=(10,6))
-# alpha
-ax14[0].plot(sol.t, alpha_PyT, label=r'PyT $\alpha$')
-ax14[0].plot(sol.t, alpha_sr, label=r'SR $\alpha$', linestyle='dashed')
-# beta
-ax14[1].plot(sol.t, beta_PyT, label=r'PyT $\beta$')
-ax14[1].plot(sol.t, beta_sr, label=r'SR $\beta$', linestyle='dashed')
-# Lambda
-ax14[2].plot(sol.t, np.abs(lambda_PyT), label=r'PyT $\Lambda$ condition')
-ax14[2].plot(sol.t, np.abs(lambda_sr), label=r'SR $\Lambda$ condition', linestyle='dashed')
-# Settings
-fig14.suptitle(r'Evolution of the parameters')
-ax14[0].set_xlabel(r'$N$')
-ax14[1].set_xlabel(r'$N$')
-ax14[2].set_xlabel(r'$N$')
-ax14[0].legend()
-ax14[1].legend()
-ax14[2].legend()
-plt.savefig('Plots/parameters_comparison.pdf', format='pdf',bbox_inches='tight')
+#print(f'Handles = {[l[0][0].get_label() for l in lines]}')
+plt.xlabel(r"$N$")
+plt.ylabel(r'$\Sigma$', rotation=0)
+plt.xticks()
+plt.yticks()
+plt.grid()
+plt.yscale('log')
+leg1 = ax.legend(lines[0], ['PyT', 'Full Analytical'], loc='upper right')
+ax.add_artist(leg1)
+ax.legend(handles=[l[0] for l in lines], loc='lower right')
+plt.savefig('Plots/Confront2pt.pdf', format='pdf',bbox_inches='tight')
 
 #####################################################################################################################
 plt.show()
