@@ -6,6 +6,11 @@ __pycache__/
 # Virtual environment
 venv/
 
+# 
+PyTransport/Examples/dafne
+PyTransport/Examples/Dibya
+PyTransport/Examples/Monodromy
+
 # Build and distribution directories
 build/
 dist/
