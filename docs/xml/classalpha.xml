@@ -1,0 +1,661 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="classalpha" kind="class" language="C++" prot="public">
+    <compoundname>alpha</compoundname>
+    <includes refid="_n_c_2moments_8h" local="no">moments.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classalpha_1ab91a913e9ea6f0d3363c8eb86fb9a053" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int alpha::nF</definition>
+        <argsstring></argsstring>
+        <name>nF</name>
+        <qualifiedname>alpha::nF</qualifiedname>
+        <briefdescription>
+<para>Number of fields. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="342" column="9" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="342" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classalpha_1a3164fe2462ebd6ec163eb7382fd6d486" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double alpha::k1</definition>
+        <argsstring></argsstring>
+        <name>k1</name>
+        <qualifiedname>alpha::k1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="343" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="343" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classalpha_1a267a522f68f2786abba5edb622521a31" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double alpha::k2</definition>
+        <argsstring></argsstring>
+        <name>k2</name>
+        <qualifiedname>alpha::k2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="343" column="15" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="343" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classalpha_1acc0cfa5cfadc9cf3e068726323a268cb" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double alpha::k3</definition>
+        <argsstring></argsstring>
+        <name>k3</name>
+        <qualifiedname>alpha::k3</qualifiedname>
+        <briefdescription>
+<para>Three wavenumbers defining the triangle configuration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="343" column="18" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="343" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classalpha_1af00b37bcd6ecb951fab7fc3b1a1afa2c" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double alpha::Nstart</definition>
+        <argsstring></argsstring>
+        <name>Nstart</name>
+        <qualifiedname>alpha::Nstart</qualifiedname>
+        <briefdescription>
+<para>Starting e-fold time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="344" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="344" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classalpha_1ae206db6cb9716100c07a1cfe40ca6e38" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; alpha::fields</definition>
+        <argsstring></argsstring>
+        <name>fields</name>
+        <qualifiedname>alpha::fields</qualifiedname>
+        <briefdescription>
+<para>Initial field values and velocities. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="345" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="345" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classalpha_1adf06de11721b8c2f31b80ed5bfc8ab1e" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; alpha::params</definition>
+        <argsstring></argsstring>
+        <name>params</name>
+        <qualifiedname>alpha::params</qualifiedname>
+        <briefdescription>
+<para>Model parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="346" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="346" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classalpha_1acc07fae01bef1faf7d41134ecedfae6d" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; alpha::A</definition>
+        <argsstring></argsstring>
+        <name>A</name>
+        <qualifiedname>alpha::A</qualifiedname>
+        <briefdescription>
+<para>The Alpha matrix (flattened 3D array). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="347" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="347" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classalpha_1a13f2b5aafa85bc2d929c0f3f220736a1" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; alpha::alp</definition>
+        <argsstring></argsstring>
+        <name>alp</name>
+        <qualifiedname>alpha::alp</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="457" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="457" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classalpha_1a3b0036415e028f6a1a46fee68e50ced5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>alpha::alpha</definition>
+        <argsstring>(int nF_in, double k1_in, double k2_in, double k3_in, double Nstart_in, vector&lt; double &gt; fields_in, vector&lt; double &gt; params_in)</argsstring>
+        <name>alpha</name>
+        <qualifiedname>alpha::alpha</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>nF_in</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1_in</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2_in</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3_in</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>Nstart_in</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>fields_in</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>params_in</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for the alpha class. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the Alpha matrix (3-point function) at a given starting time, for three wavenumbers, and initial field configuration. Initial conditions for Alpha are typically set to zero in Bunch-Davies vacuum.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nF_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of fields. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k1_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First wavenumber. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k2_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Second wavenumber. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k3_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Third wavenumber. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Nstart_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Starting e-fold time. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fields_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Initial field values and velocities. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>params_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Model parameters. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="365" column="5" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="365" bodyend="385"/>
+      </memberdef>
+      <memberdef kind="function" id="classalpha_1a05541d6cb587eb01f9b370cfdb161393" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double alpha::getA</definition>
+        <argsstring>(int i, int j, int l)</argsstring>
+        <name>getA</name>
+        <qualifiedname>alpha::getA</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a specific element from the Alpha tensor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Second index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Third index. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The value of $A_{ijl}$. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="394" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="394" bodyend="397"/>
+      </memberdef>
+      <memberdef kind="function" id="classalpha_1a498c2137ef04e6bd145e6eb22cc9e0c8" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>alpha::alpha</definition>
+        <argsstring>(int nFi, double k1, double k2, double k3, double N0, vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>alpha</name>
+        <qualifiedname>alpha::alpha</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>nFi</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N0</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="493" column="1" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="493" bodyend="529"/>
+      </memberdef>
+      <memberdef kind="function" id="classalpha_1a920ef80c114eb16a4194cc2c4d6e856e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>alpha::alpha</definition>
+        <argsstring>(int nFi, double N0, vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>alpha</name>
+        <qualifiedname>alpha::alpha</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>nFi</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N0</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="531" column="5" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="531" bodyend="540"/>
+      </memberdef>
+      <memberdef kind="function" id="classalpha_1acfc2c2b2293cc285d7b52b6192d1697f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; alpha::fffCalc</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N0)</argsstring>
+        <name>fffCalc</name>
+        <qualifiedname>alpha::fffCalc</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N0</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Auxiliary functions to compute the initial conditions. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="545" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="545" bodyend="583"/>
+      </memberdef>
+      <memberdef kind="function" id="classalpha_1a82d245bca8d0d082d6584229918d7752" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; alpha::pffCalc</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N0)</argsstring>
+        <name>pffCalc</name>
+        <qualifiedname>alpha::pffCalc</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N0</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="585" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="585" bodyend="641"/>
+      </memberdef>
+      <memberdef kind="function" id="classalpha_1adbcf060301dc8673df6bd7e275830f1b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; alpha::ppfCalc</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N0)</argsstring>
+        <name>ppfCalc</name>
+        <qualifiedname>alpha::ppfCalc</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N0</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="643" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="643" bodyend="689"/>
+      </memberdef>
+      <memberdef kind="function" id="classalpha_1afc6dc93ee1d84de2fdb17c268b70ff71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; alpha::pppCalc</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N0)</argsstring>
+        <name>pppCalc</name>
+        <qualifiedname>alpha::pppCalc</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N0</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="691" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="691" bodyend="737"/>
+      </memberdef>
+      <memberdef kind="function" id="classalpha_1ad4aa41c772608ef464734f148eef2014" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; alpha::getA</definition>
+        <argsstring>()</argsstring>
+        <name>getA</name>
+        <qualifiedname>alpha::getA</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Alpha accessor methods. It takes 0 arguments, and returns the vector alp. It takes 3 integer, it returns the (i,j,k) element of alp. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="743" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="743" bodyend="746"/>
+      </memberdef>
+      <memberdef kind="function" id="classalpha_1a897c0eade0b0893403389b8f427970c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double alpha::getA</definition>
+        <argsstring>(int i, int j, int k)</argsstring>
+        <name>getA</name>
+        <qualifiedname>alpha::getA</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="748" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="748" bodyend="751"/>
+      </memberdef>
+      <memberdef kind="function" id="classalpha_1a2f80f3aac9cdfcb745f429a819d9cf03" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void alpha::setA</definition>
+        <argsstring>(int i, int j, int k, double value)</argsstring>
+        <name>setA</name>
+        <qualifiedname>alpha::setA</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Alpha modifier methods. It takes two integer (i,j,k) and a double (value), sets alp(i,j) = value It takes 1 vector (value), it sets alp = value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="757" column="6" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="757" bodyend="760"/>
+      </memberdef>
+      <memberdef kind="function" id="classalpha_1abee518e37759c6e8ac5f9a4d46532e65" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void alpha::setA</definition>
+        <argsstring>(vector&lt; double &gt; value)</argsstring>
+        <name>setA</name>
+        <qualifiedname>alpha::setA</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="761" column="6" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="761" bodyend="764"/>
+      </memberdef>
+      <memberdef kind="function" id="classalpha_1a70393396c7a87946ea0966ecd252c2ce" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void alpha::printA</definition>
+        <argsstring>()</argsstring>
+        <name>printA</name>
+        <qualifiedname>alpha::printA</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="766" column="10" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="766" bodyend="770"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents the 3-point correlation function (Alpha). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Implementation of the REAL phase-space three-point correlation function.</para>
+<para>This class handles the initialization of the 3-point correlation function (Alpha) for a triplet of wavenumbers (k1, k2, k3) and sets up the initial conditions for its evolution based on the background fields and parameters. </para>
+    </detaileddescription>
+    <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="339" column="1" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="340" bodyend="398"/>
+    <listofallmembers>
+      <member refid="classalpha_1acc07fae01bef1faf7d41134ecedfae6d" prot="private" virt="non-virtual"><scope>alpha</scope><name>A</name></member>
+      <member refid="classalpha_1a13f2b5aafa85bc2d929c0f3f220736a1" prot="private" virt="non-virtual"><scope>alpha</scope><name>alp</name></member>
+      <member refid="classalpha_1a3b0036415e028f6a1a46fee68e50ced5" prot="public" virt="non-virtual"><scope>alpha</scope><name>alpha</name></member>
+      <member refid="classalpha_1a498c2137ef04e6bd145e6eb22cc9e0c8" prot="public" virt="non-virtual"><scope>alpha</scope><name>alpha</name></member>
+      <member refid="classalpha_1a920ef80c114eb16a4194cc2c4d6e856e" prot="public" virt="non-virtual"><scope>alpha</scope><name>alpha</name></member>
+      <member refid="classalpha_1acfc2c2b2293cc285d7b52b6192d1697f" prot="public" virt="non-virtual"><scope>alpha</scope><name>fffCalc</name></member>
+      <member refid="classalpha_1ae206db6cb9716100c07a1cfe40ca6e38" prot="private" virt="non-virtual"><scope>alpha</scope><name>fields</name></member>
+      <member refid="classalpha_1a05541d6cb587eb01f9b370cfdb161393" prot="public" virt="non-virtual"><scope>alpha</scope><name>getA</name></member>
+      <member refid="classalpha_1ad4aa41c772608ef464734f148eef2014" prot="public" virt="non-virtual"><scope>alpha</scope><name>getA</name></member>
+      <member refid="classalpha_1a897c0eade0b0893403389b8f427970c1" prot="public" virt="non-virtual"><scope>alpha</scope><name>getA</name></member>
+      <member refid="classalpha_1a3164fe2462ebd6ec163eb7382fd6d486" prot="private" virt="non-virtual"><scope>alpha</scope><name>k1</name></member>
+      <member refid="classalpha_1a267a522f68f2786abba5edb622521a31" prot="private" virt="non-virtual"><scope>alpha</scope><name>k2</name></member>
+      <member refid="classalpha_1acc0cfa5cfadc9cf3e068726323a268cb" prot="private" virt="non-virtual"><scope>alpha</scope><name>k3</name></member>
+      <member refid="classalpha_1ab91a913e9ea6f0d3363c8eb86fb9a053" prot="private" virt="non-virtual"><scope>alpha</scope><name>nF</name></member>
+      <member refid="classalpha_1af00b37bcd6ecb951fab7fc3b1a1afa2c" prot="private" virt="non-virtual"><scope>alpha</scope><name>Nstart</name></member>
+      <member refid="classalpha_1adf06de11721b8c2f31b80ed5bfc8ab1e" prot="private" virt="non-virtual"><scope>alpha</scope><name>params</name></member>
+      <member refid="classalpha_1a82d245bca8d0d082d6584229918d7752" prot="public" virt="non-virtual"><scope>alpha</scope><name>pffCalc</name></member>
+      <member refid="classalpha_1adbcf060301dc8673df6bd7e275830f1b" prot="public" virt="non-virtual"><scope>alpha</scope><name>ppfCalc</name></member>
+      <member refid="classalpha_1afc6dc93ee1d84de2fdb17c268b70ff71" prot="public" virt="non-virtual"><scope>alpha</scope><name>pppCalc</name></member>
+      <member refid="classalpha_1a70393396c7a87946ea0966ecd252c2ce" prot="public" virt="non-virtual"><scope>alpha</scope><name>printA</name></member>
+      <member refid="classalpha_1a2f80f3aac9cdfcb745f429a819d9cf03" prot="public" virt="non-virtual"><scope>alpha</scope><name>setA</name></member>
+      <member refid="classalpha_1abee518e37759c6e8ac5f9a4d46532e65" prot="public" virt="non-virtual"><scope>alpha</scope><name>setA</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

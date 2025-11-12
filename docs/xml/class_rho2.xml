@@ -1,0 +1,486 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="class_rho2" kind="class" language="C++" prot="public">
+    <compoundname>Rho2</compoundname>
+    <includes refid="_n_c_2moments_8h" local="no">moments.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_rho2_1acbbb87c1e512bad8f7dcdc660e645644" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Rho2::nF</definition>
+        <argsstring></argsstring>
+        <name>nF</name>
+        <qualifiedname>Rho2::nF</qualifiedname>
+        <briefdescription>
+<para>Number of fields. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="532" column="9" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="532" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_rho2_1a653bd7bdc59edc65d669b2ffd514254b" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Rho2::k1</definition>
+        <argsstring></argsstring>
+        <name>k1</name>
+        <qualifiedname>Rho2::k1</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="533" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="533" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_rho2_1a92de413afab10a9e6413b1db3e0da402" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Rho2::k2</definition>
+        <argsstring></argsstring>
+        <name>k2</name>
+        <qualifiedname>Rho2::k2</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="533" column="15" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="533" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_rho2_1a35c5de8ecb35e2715eceff9a2b7ed8fc" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Rho2::k3</definition>
+        <argsstring></argsstring>
+        <name>k3</name>
+        <qualifiedname>Rho2::k3</qualifiedname>
+        <briefdescription>
+<para>Three wavenumbers defining the triangle configuration. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="533" column="18" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="533" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_rho2_1a17ae0c13fbc0f43b4f9ee46ee80255ae" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Rho2::Nstart</definition>
+        <argsstring></argsstring>
+        <name>Nstart</name>
+        <qualifiedname>Rho2::Nstart</qualifiedname>
+        <briefdescription>
+<para>Starting e-fold time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="534" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="534" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_rho2_1aa0e51ce0b0023d0ecd05294919492f42" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; Rho2::fields</definition>
+        <argsstring></argsstring>
+        <name>fields</name>
+        <qualifiedname>Rho2::fields</qualifiedname>
+        <briefdescription>
+<para>Initial field values and velocities. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="535" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="535" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_rho2_1a83bce85e4cad64d6da1455275df1d1d9" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; Rho2::params</definition>
+        <argsstring></argsstring>
+        <name>params</name>
+        <qualifiedname>Rho2::params</qualifiedname>
+        <briefdescription>
+<para>Model parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="536" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="536" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_rho2_1a125dd1dab3d715dec2c2c5441276e682" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; Rho2::R</definition>
+        <argsstring></argsstring>
+        <name>R</name>
+        <qualifiedname>Rho2::R</qualifiedname>
+        <briefdescription>
+<para>The <ref refid="class_rho2" kindref="compound">Rho2</ref> tensor (flattened 3D array). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="537" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="537" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_rho2_1a30c62452d04173dc4afd470cc38bccb3" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; Rho2::rho</definition>
+        <argsstring></argsstring>
+        <name>rho</name>
+        <qualifiedname>Rho2::rho</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="854" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="854" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_rho2_1ad54827594c641420a4d65804f30ada35" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Rho2::N0</definition>
+        <argsstring></argsstring>
+        <name>N0</name>
+        <qualifiedname>Rho2::N0</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="855" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="855" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_rho2_1a2713cc01fec6f4cbf0ca963507eb4944" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Rho2::Rho2</definition>
+        <argsstring>(int nF_in, double k1_in, double k2_in, double k3_in, double Nstart_in, vector&lt; double &gt; fields_in, vector&lt; double &gt; params_in)</argsstring>
+        <name>Rho2</name>
+        <qualifiedname>Rho2::Rho2</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>nF_in</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1_in</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2_in</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3_in</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>Nstart_in</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>fields_in</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>params_in</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for the <ref refid="class_rho2" kindref="compound">Rho2</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the <ref refid="class_rho2" kindref="compound">Rho2</ref> tensor (MPP3) at a given starting time, for three wavenumbers, and initial field configuration.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nF_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of fields. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k1_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First wavenumber. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k2_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Second wavenumber. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k3_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Third wavenumber. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Nstart_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Starting e-fold time. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fields_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Initial field values and velocities. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>params_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Model parameters. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="554" column="5" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="554" bodyend="574"/>
+      </memberdef>
+      <memberdef kind="function" id="class_rho2_1abf4dec7a511dd35bc227c8f1fb3caa7b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Rho2::getR</definition>
+        <argsstring>(int i, int j, int l)</argsstring>
+        <name>getR</name>
+        <qualifiedname>Rho2::getR</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>l</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a specific element from the <ref refid="class_rho2" kindref="compound">Rho2</ref> tensor. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>First index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Second index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>l</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Third index. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The value of $R_{ijl}$. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="583" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="583" bodyend="586"/>
+      </memberdef>
+      <memberdef kind="function" id="class_rho2_1aca857731d4cce7cb8aecd49b58bff1f5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Rho2::Rho2</definition>
+        <argsstring>(int nFi, double k1, double k2, double k3, double N0, vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>Rho2</name>
+        <qualifiedname>Rho2::Rho2</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>nFi</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N0</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="859" column="1" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="859" bodyend="868"/>
+      </memberdef>
+      <memberdef kind="function" id="class_rho2_1a6efcd126494ff08b49a5d342293b9b46" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; Rho2::getR</definition>
+        <argsstring>()</argsstring>
+        <name>getR</name>
+        <qualifiedname>Rho2::getR</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="870" column="13" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="870" bodyend="873"/>
+      </memberdef>
+      <memberdef kind="function" id="class_rho2_1a2e8e40194546e5cae9780e3e077f3d6a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Rho2::getR</definition>
+        <argsstring>(int i, int j, int k)</argsstring>
+        <name>getR</name>
+        <qualifiedname>Rho2::getR</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="875" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="875" bodyend="878"/>
+      </memberdef>
+      <memberdef kind="function" id="class_rho2_1af689dd2a9684fb03b550a0117e34f695" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Rho2::setR</definition>
+        <argsstring>(int i, int j, int k, double value)</argsstring>
+        <name>setR</name>
+        <qualifiedname>Rho2::setR</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>k</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="881" column="6" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="881" bodyend="884"/>
+      </memberdef>
+      <memberdef kind="function" id="class_rho2_1ad2f539856abc46a8ad9eb2f240bef2e6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Rho2::setR</definition>
+        <argsstring>(vector&lt; double &gt; value)</argsstring>
+        <name>setR</name>
+        <qualifiedname>Rho2::setR</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="886" column="10" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="886" bodyend="889"/>
+      </memberdef>
+      <memberdef kind="function" id="class_rho2_1a956d85e57d9892314981b28dd294f81d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Rho2::printR</definition>
+        <argsstring>()</argsstring>
+        <name>printR</name>
+        <qualifiedname>Rho2::printR</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="892" column="6" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="892" bodyend="896"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents the 3-point Multi-Point Propagator (MPP3) tensor. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Instance of the second MPP matrix.</para>
+<para>This class manages the initialization of the MPP3 tensor, which is used in the Multi-Point Propagator formalism for computing 3-point correlation functions. It also computes the evolution tensor <computeroutput>M</computeroutput> for <ref refid="class_rho2" kindref="compound">Rho2</ref>. </para>
+    </detaileddescription>
+    <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="529" column="1" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="530" bodyend="660"/>
+    <listofallmembers>
+      <member refid="class_rho2_1aa0e51ce0b0023d0ecd05294919492f42" prot="private" virt="non-virtual"><scope>Rho2</scope><name>fields</name></member>
+      <member refid="class_rho2_1abf4dec7a511dd35bc227c8f1fb3caa7b" prot="public" virt="non-virtual"><scope>Rho2</scope><name>getR</name></member>
+      <member refid="class_rho2_1a6efcd126494ff08b49a5d342293b9b46" prot="public" virt="non-virtual"><scope>Rho2</scope><name>getR</name></member>
+      <member refid="class_rho2_1a2e8e40194546e5cae9780e3e077f3d6a" prot="public" virt="non-virtual"><scope>Rho2</scope><name>getR</name></member>
+      <member refid="class_rho2_1a653bd7bdc59edc65d669b2ffd514254b" prot="private" virt="non-virtual"><scope>Rho2</scope><name>k1</name></member>
+      <member refid="class_rho2_1a92de413afab10a9e6413b1db3e0da402" prot="private" virt="non-virtual"><scope>Rho2</scope><name>k2</name></member>
+      <member refid="class_rho2_1a35c5de8ecb35e2715eceff9a2b7ed8fc" prot="private" virt="non-virtual"><scope>Rho2</scope><name>k3</name></member>
+      <member refid="class_rho2_1ad54827594c641420a4d65804f30ada35" prot="private" virt="non-virtual"><scope>Rho2</scope><name>N0</name></member>
+      <member refid="class_rho2_1acbbb87c1e512bad8f7dcdc660e645644" prot="private" virt="non-virtual"><scope>Rho2</scope><name>nF</name></member>
+      <member refid="class_rho2_1a17ae0c13fbc0f43b4f9ee46ee80255ae" prot="private" virt="non-virtual"><scope>Rho2</scope><name>Nstart</name></member>
+      <member refid="class_rho2_1a83bce85e4cad64d6da1455275df1d1d9" prot="private" virt="non-virtual"><scope>Rho2</scope><name>params</name></member>
+      <member refid="class_rho2_1a956d85e57d9892314981b28dd294f81d" prot="public" virt="non-virtual"><scope>Rho2</scope><name>printR</name></member>
+      <member refid="class_rho2_1a125dd1dab3d715dec2c2c5441276e682" prot="private" virt="non-virtual"><scope>Rho2</scope><name>R</name></member>
+      <member refid="class_rho2_1a30c62452d04173dc4afd470cc38bccb3" prot="private" virt="non-virtual"><scope>Rho2</scope><name>rho</name></member>
+      <member refid="class_rho2_1a2713cc01fec6f4cbf0ca963507eb4944" prot="public" virt="non-virtual"><scope>Rho2</scope><name>Rho2</name></member>
+      <member refid="class_rho2_1aca857731d4cce7cb8aecd49b58bff1f5" prot="public" virt="non-virtual"><scope>Rho2</scope><name>Rho2</name></member>
+      <member refid="class_rho2_1af689dd2a9684fb03b550a0117e34f695" prot="public" virt="non-virtual"><scope>Rho2</scope><name>setR</name></member>
+      <member refid="class_rho2_1ad2f539856abc46a8ad9eb2f240bef2e6" prot="public" virt="non-virtual"><scope>Rho2</scope><name>setR</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

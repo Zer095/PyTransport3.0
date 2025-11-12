@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="dir_5404519da25317471f2540d46e3986a5" kind="dir">
+    <compoundname>C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC</compoundname>
+    <innerfile refid="cppsrc_2_n_c_2____init_____8py">__init__.py</innerfile>
+    <innerfile refid="_n_c_2evolve_8h">evolve.h</innerfile>
+    <innerfile refid="_n_c_2model_8h">model.h</innerfile>
+    <innerfile refid="_n_c_2moments_8h">moments.h</innerfile>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/"/>
+  </compounddef>
+</doxygen>

@@ -1,0 +1,117 @@
+# .gitignore for PyTransport3.0
+
+# --- General Python Files ---
+
+# Virtual Environments
+# Keep your project's dependencies isolated and out of version control.
+/venv/
+/env/
+/.env/
+/virtualenv/
+/pyenv/
+/.pyenv/
+*.pyenv
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Distribution / packaging
+# These are generated when you build and distribute your package.
+/build/
+/dist/
+/sdist/
+/wheelhouse/
+/eggs/
+*.egg-info/
+*.egg
+pip-wheel-metadata/
+develop-eggs/
+parts/
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.pytest_cache/
+.coverage
+.coverage.*
+/htmlcov/
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+
+# --- C++ Compilation & Build Artifacts ---
+
+# Compiled object files
+*.o
+*.obj
+*.lo
+*.la
+
+# Precompiled headers
+*.gch
+*.pch
+
+# Compiled static libraries
+*.a
+*.lib
+
+# Compiled shared libraries / executables
+*.so
+*.so.*
+*.dll
+*.dylib
+*.exe
+*.out
+*.app
+
+# --- IDEs and Editors ---
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/
+
+# JetBrains (PyCharm, CLion, etc.)
+.idea/
+*.iws
+*.iml
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# --- OS-specific files ---
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# --- Other ---
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints
+
+# Local configuration files (if any)
+local_settings.py
+*.local
+
+# Examples
+PyTransport/Examples/Dibya
+PyTransport/Examples/SR_PyT

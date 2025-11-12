@@ -1,0 +1,357 @@
+\doxysection{fieldmetric.\+h}
+\hypertarget{fieldmetric_8h_source}{}\label{fieldmetric_8h_source}\index{C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-\/master/PyTransport/PyTransCpp/cppsrc/fieldmetric.h@{C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-\/master/PyTransport/PyTransCpp/cppsrc/fieldmetric.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \#Rewrite}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifndef\ FIELDMETRIC\_H\ \ }\textcolor{comment}{//\ Prevents\ the\ class\ being\ re-\/defined}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ FIELDMETRIC\_H}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{class\ }fieldmetric}
+\DoxyCodeLine{00036\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ nF;\ \textcolor{comment}{//\ field\ number}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{int}\ nP;\ \textcolor{comment}{//\ params\ number\ which\ definFs\ potential}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \ \ fieldmetric()}
+\DoxyCodeLine{00043\ \ \ \ \{}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ \#FP}}
+\DoxyCodeLine{00045\ nF=2;}
+\DoxyCodeLine{00046\ nP=4;}
+\DoxyCodeLine{00047\ \ \ \ \ }
+\DoxyCodeLine{00048\ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//calculates\ fieldmetic()}}
+\DoxyCodeLine{00052\ \ \ \ \ vector<double>\ fmetric(vector<double>\ f,\ vector<double>\ p)}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ vector<double>\ FM((2*nF)*(2*nF),0.0)\ ;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ metric}}
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordtype}{double}\ x0\ =\ 2.0*f[0]*p[3];}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ FM[0]=1;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ FM[1]=0;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ FM[2]=1;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ FM[3]=0;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ FM[4]=0;}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ FM[5]=std::exp(-\/x0);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ FM[6]=0;}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ FM[7]=1;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ FM[8]=1;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ FM[9]=0;}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ FM[10]=1;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ FM[11]=0;}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ FM[12]=0;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ FM[13]=1;}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ FM[14]=0;}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ FM[15]=std::exp(x0);}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ FM;}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//calculates\ ChristoffelSymbole()}}
+\DoxyCodeLine{00097\ \ \ \ \ vector<double>\ Chroff(vector<double>\ f,\ vector<double>\ p)}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ vector<double>\ CS((2*nF)*(2*nF)*(2*nF),0.0);}
+\DoxyCodeLine{00100\ \ \ \ \ }
+\DoxyCodeLine{00101\ \textcolor{comment}{//\ Christoffel}}
+\DoxyCodeLine{00102\ \ \ \textcolor{keywordtype}{double}\ x0\ =\ 1.0*p[3];}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ CS[0]=0;}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ CS[1]=0;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ CS[2]=0;}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ CS[3]=0;}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ CS[4]=0;}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ CS[5]=0;}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ CS[6]=0;}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ CS[7]=0;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ CS[8]=0;}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ CS[9]=0;}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ CS[10]=0;}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ CS[11]=0;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ CS[12]=0;}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ CS[13]=0;}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ CS[14]=0;}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ CS[15]=-\/x0*std::exp(2.0*f[0]*p[3]);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ CS[16]=0;}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ CS[17]=0;}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ CS[18]=0;}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ CS[19]=0;}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ CS[20]=0;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ CS[21]=0;}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ CS[22]=0;}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ CS[23]=0;}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ CS[24]=0;}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \ CS[25]=0;}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ CS[26]=0;}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ CS[27]=x0;}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ CS[28]=0;}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ CS[29]=0;}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ CS[30]=x0;}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ CS[31]=0;}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ CS[32]=0;}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ CS[33]=0;}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ CS[34]=0;}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ CS[35]=0;}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ CS[36]=0;}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ CS[37]=0;}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ CS[38]=0;}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ CS[39]=0;}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ CS[40]=0;}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ CS[41]=0;}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ CS[42]=0;}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ CS[43]=0;}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ CS[44]=0;}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ CS[45]=0;}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ CS[46]=0;}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ CS[47]=0;}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ CS[48]=0;}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ CS[49]=0;}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ CS[50]=0;}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ CS[51]=0;}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \ CS[52]=0;}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ CS[53]=0;}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ CS[54]=0;}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ CS[55]=0;}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ CS[56]=0;}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ CS[57]=0;}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ CS[58]=0;}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ CS[59]=0;}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ CS[60]=0;}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ CS[61]=0;}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ CS[62]=0;}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ CS[63]=0;}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CS;}
+\DoxyCodeLine{00233\ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \ \ }
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{comment}{//\ calculates\ RiemannTensor()}}
+\DoxyCodeLine{00238\ \ \ \ \ vector<double>\ Riemn(vector<double>\ f,\ vector<double>\ p)}
+\DoxyCodeLine{00239\ \ \ \ \ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ vector<double>\ RM((nF)*(nF)*(nF)*(nF),0.0);}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00242\ \textcolor{comment}{//\ Riemann}}
+\DoxyCodeLine{00243\ \ \ \textcolor{keywordtype}{double}\ x0\ =\ 1.0*std::pow(p[3],\ 2)*std::exp(2.0*f[0]*p[3]);}
+\DoxyCodeLine{00244\ \ \ \textcolor{keywordtype}{double}\ x1\ =\ -\/x0;}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ RM[0]=0;}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ RM[1]=0;}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ RM[2]=0;}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ RM[3]=0;}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ RM[4]=0;}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ RM[5]=x1;}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ RM[6]=x0;}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ RM[7]=0;}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \ RM[8]=0;}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ RM[9]=x0;}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ RM[10]=x1;}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \ RM[11]=0;}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ RM[12]=0;}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ RM[13]=0;}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ RM[14]=0;}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \ RM[15]=0;}
+\DoxyCodeLine{00277\ \ \ \ \ \ }
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RM;}
+\DoxyCodeLine{00279\ \ \ \ \ \}}
+\DoxyCodeLine{00280\ }
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{comment}{//\ calculates\ RiemannTensor()\ covariant\ derivatives}}
+\DoxyCodeLine{00282\ \ \ \ \ vector<double>\ Riemncd(vector<double>\ f,\ vector<double>\ p)}
+\DoxyCodeLine{00283\ \ \ \ \ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ vector<double>\ RMcd((nF)*(nF)*(nF)*(nF)*(nF),0.0);}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00286\ \textcolor{comment}{//\ Riemanncd}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \ RMcd[0]=0;}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ RMcd[1]=0;}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \ RMcd[2]=0;}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ RMcd[3]=0;}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \ RMcd[4]=0;}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \ RMcd[5]=0;}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \ RMcd[6]=0;}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ RMcd[7]=0;}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ RMcd[8]=0;}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ RMcd[9]=0;}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ RMcd[10]=0;}
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \ RMcd[11]=0;}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ RMcd[12]=0;}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ RMcd[13]=0;}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ RMcd[14]=0;}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ RMcd[15]=0;}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ RMcd[16]=0;}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \ RMcd[17]=0;}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ RMcd[18]=0;}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ RMcd[19]=0;}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ RMcd[20]=0;}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ RMcd[21]=0;}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \ RMcd[22]=0;}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ RMcd[23]=0;}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ RMcd[24]=0;}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ RMcd[25]=0;}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ RMcd[26]=0;}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ RMcd[27]=0;}
+\DoxyCodeLine{00343\ }
+\DoxyCodeLine{00344\ \ RMcd[28]=0;}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \ RMcd[29]=0;}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \ RMcd[30]=0;}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ RMcd[31]=0;}
+\DoxyCodeLine{00351\ \ \ \ \ \ }
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ RMcd;}
+\DoxyCodeLine{00353\ \ \ \ \ \}}
+\DoxyCodeLine{00354\ \ \ \ \ }
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keywordtype}{int}\ getnF()}
+\DoxyCodeLine{00356\ \ \ \ \ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ nF;}
+\DoxyCodeLine{00358\ \ \ \ \ \}}
+\DoxyCodeLine{00359\ \ \ \ \ }
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \};}
+\DoxyCodeLine{00363\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

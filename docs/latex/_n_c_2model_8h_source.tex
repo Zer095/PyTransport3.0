@@ -1,0 +1,1289 @@
+\doxysection{model.\+h}
+\hypertarget{_n_c_2model_8h_source}{}\label{_n_c_2model_8h_source}\index{C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-\/master/PyTransport/PyTransCpp/cppsrc/NC/model.h@{C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-\/master/PyTransport/PyTransCpp/cppsrc/NC/model.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\#This\ file\ is\ part\ of\ PyTransport.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\#PyTransport\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\#it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\#the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\#(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\#PyTransport\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\#but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\#MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\#GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\#You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\#along\ with\ PyTransport.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ This\ file\ contains\ a\ prototype\ of\ the\ potential.h\ file\ of\ PyTransport\ -\/-\/\ it\ is\ edited\ by\ the\ PyTransScripts\ module}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//model\ class\ file\ contains\ the\ defining\ features\ of\ the\ model\ -\/-\/\ the\ u1,\ u2\ flow\ tesors,\ and\ the\ A\ B\ C\ tesors\ and\ u3\ flow\ tensor\ as\ well\ as\ the\ guage\ transform\ N\ tensors\ \ }}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#ifndef\ MODEL\_H\ \ }\textcolor{comment}{//\ Prevents\ the\ class\ being\ re-\/defined}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ MODEL\_H\ }}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}../fieldmetric.h"{}}\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}../potential.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classmodel}{model}}}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{int}\ nF;\ \ \textcolor{comment}{//\ field\ number}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ nP;\ \textcolor{comment}{//\ params\ number\ which\ definFs\ potential}}
+\DoxyCodeLine{00036\ \ \ \ \ potential\ pot;\ \textcolor{comment}{//\ potential\ which\ defines\ model}}
+\DoxyCodeLine{00037\ \ \ \ \ fieldmetric\ fmet;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//\ constructor}}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{classmodel_a89150458364164cfaf05f700365c1416}{model}}()}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ potential\ pot;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ fieldmetric\ fmet;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ nP=pot.\mbox{\hyperlink{classmodel_a8d4c4182198242b1fd50808edfbe578f}{getnP}}();}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ nF=pot.getnF();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ function\ returns\ Hubble\ rate}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{double}\ H(vector<double>\ f,\ vector<double>\ p\ \ \ )}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ the\ Hubble\ rate\ given\ the\ value\ of\ the\ fields\ and\ the\ value\ of\ the\ parameters.}}
+\DoxyCodeLine{00055\ \textcolor{comment}{}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{00062\ \textcolor{comment}{}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ \ \ \ \ \ H\ :\ double}}
+\DoxyCodeLine{00066\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ value\ of\ the\ Hubble\ rate}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi2;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Vi;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ Vi=pot.V(f,p);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ Hi2=0.;}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<nF;\ i++)}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \{\ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;\ j<nF;\ j++)}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Hi2=Hi2+1./3.*(FMi[(2*nF)*(i+nF)+(j+nF)]*f[nF+j]*f[nF+i]/2.);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ Hi2=Hi2\ +\ 1./3.*Vi;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sqrt(Hi2);}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ function\ returns\ H\ dot}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{double}\ Hdot(vector<double>\ f,\ vector<double>\ p)}
+\DoxyCodeLine{00093\ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ the\ derivative\ of\ Hubble\ rate\ given\ the\ value\ of\ the\ fields.}}
+\DoxyCodeLine{00096\ \textcolor{comment}{}}
+\DoxyCodeLine{00097\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00098\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00099\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00100\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{00101\ \textcolor{comment}{}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00103\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00104\ \textcolor{comment}{\ \ \ \ \ \ \ \ Hdot\ :\ double}}
+\DoxyCodeLine{00105\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ value\ of\ the\ derivative\ of\ Hubble\ rate}}
+\DoxyCodeLine{00106\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum=0.;}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<nF;\ i++)}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;\ j<nF;\ j++)}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum=\ sum\ -\/\ 1./2.*(FMi[(2*nF)*(i+nF)+(j+nF)]*f[nF+i]*f[nF+j]);}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sum;}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{//\ function\ returns\ a\ double\ dot}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{double}\ addot(vector<double>\ f,\ vector<double>\ p)}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00127\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ the\ second\ derivative\ of\ the\ expansion\ factor\ a\ given\ the\ value\ of\ the\ fields\ and\ the\ value\ of\ the\ parameters.}}
+\DoxyCodeLine{00128\ \textcolor{comment}{}}
+\DoxyCodeLine{00129\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00130\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00131\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00132\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{00133\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00134\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{00135\ \textcolor{comment}{}}
+\DoxyCodeLine{00136\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00137\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00138\ \textcolor{comment}{\ \ \ \ \ \ \ \ addot\ :\ double}}
+\DoxyCodeLine{00139\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ value\ of\ the\ second\ derivative\ of\ the\ expansion\ factor\ a}}
+\DoxyCodeLine{00140\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum=0.;}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ addot;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Vi;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ Vi=pot.V(f,p);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<nF;\ i++)}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;\ j<nF;\ j++)}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum=\ sum\ -\/1./2.*(FMi[(2*nF)*(i+nF)+(j+nF)]*f[nF+i]*f[nF+j]);}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ addot=-\/1./3.*(sum+Vi);}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ addot;}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{//\ function\ returns\ epsilon}}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{double}\ Ep(vector<double>\ f,vector<double>\ p)}
+\DoxyCodeLine{00161\ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00163\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ slow-\/roll\ parameter\ epsilon\ given\ the\ value\ of\ the\ fields\ and\ the\ value\ of\ the\ parameters.}}
+\DoxyCodeLine{00164\ \textcolor{comment}{}}
+\DoxyCodeLine{00165\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00166\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00167\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00168\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{00169\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00170\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{00171\ \textcolor{comment}{}}
+\DoxyCodeLine{00172\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00173\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00174\ \textcolor{comment}{\ \ \ \ \ \ \ \ ep\ :\ double}}
+\DoxyCodeLine{00175\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ value\ of\ the\ first\ slow-\/roll\ parameters}}
+\DoxyCodeLine{00176\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi\ =\ H(f,p);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ mdotH=0.;}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ vector<double>\ FMi;\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<nF;\ i++)}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;\ j<nF;\ j++)}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ mdotH\ =\ mdotH\ +\ 1./2.*(FMi[(2*nF)*(i+nF)+(j+nF)]*f[nF+i]*f[nF+j]);\textcolor{comment}{//\ should\ this\ be\ a\ minus?}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mdotH/(Hi*Hi);}
+\DoxyCodeLine{00192\ \ \ \ \ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ function\ returns\ the\ second\ slow\ roll\ parameter}}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordtype}{double}\ Eta(vector<double>\ f,vector<double>\ p)}
+\DoxyCodeLine{00196\ \ \ \ \ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00198\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ slow-\/roll\ parameter\ eta\ given\ the\ value\ of\ the\ fields\ and\ the\ value\ of\ the\ parameters.}}
+\DoxyCodeLine{00199\ \textcolor{comment}{}}
+\DoxyCodeLine{00200\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00201\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00202\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00203\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{00204\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00205\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{00206\ \textcolor{comment}{}}
+\DoxyCodeLine{00207\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00208\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00209\ \textcolor{comment}{\ \ \ \ \ \ \ \ Eta\ :\ double}}
+\DoxyCodeLine{00210\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ value\ of\ the\ second\ slow-\/roll\ parameters}}
+\DoxyCodeLine{00211\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ V\ =\ pot.V(f,p);}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ vector<double>\ Vp\ =\ pot.dV(f,p);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Et\ =\ 0;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi\ =\ H(f,p);}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ nF;\ i++)\{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ Et\ +=\ (3*Hi*f[nF+\ i]\ +\ Vp[i])/\ f[nF+\ i];}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Et/Hi;}
+\DoxyCodeLine{00222\ \ \ \ \ \}}
+\DoxyCodeLine{00223\ \ \ \ \ }
+\DoxyCodeLine{00224\ \ \ \ \ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{comment}{//\ function\ returns\ number\ of\ fields}}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmodel_a04f64273ec4fd6e19ca2189aeb90a8b0}{getnF}}()}
+\DoxyCodeLine{00227\ \ \ \ \ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ nF;}
+\DoxyCodeLine{00229\ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \ \ \ \ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{comment}{//\ function\ returns\ number\ of\ fields}}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classmodel_a8d4c4182198242b1fd50808edfbe578f}{getnP}}()}
+\DoxyCodeLine{00233\ \ \ \ \ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ nP;}
+\DoxyCodeLine{00235\ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{comment}{//\ a\ rescale\ function\ for\ delta\ dot\ phi\ to\ improve\ performance}}
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{keywordtype}{double}\ scale(vector<double>\ f,\ vector<double>\ p,\ \ \textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{00239\ \ \ \ \ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00241\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ the\ scale\ factor\ for\ delta\ dot\ phi}}
+\DoxyCodeLine{00242\ \textcolor{comment}{}}
+\DoxyCodeLine{00243\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00244\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00245\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00246\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{00247\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00248\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{00249\ \textcolor{comment}{\ \ \ \ \ \ \ \ N\ :\ double}}
+\DoxyCodeLine{00250\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ time}}
+\DoxyCodeLine{00251\ \textcolor{comment}{}}
+\DoxyCodeLine{00252\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00253\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00254\ \textcolor{comment}{\ \ \ \ \ \ \ \ scale\ :\ double}}
+\DoxyCodeLine{00255\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ value\ of\ the\ scale\ factor\ for\ delta\ dot\ phi}}
+\DoxyCodeLine{00256\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ k=1.0;}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ a\ =exp(N);}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi=H(f,p);}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{comment}{//\ \ \ \ return\ a;}}
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{comment}{//\ \ \ \ return\ a\ +\ (1.0-\/a)/pow(1.\ +\ k/a/Hi,2.0);}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \ a/(1.+a*Hi/k)/Hi;\ \textcolor{comment}{//+\ 1./pow(1.\ +\ k/a/Hi,10.0);}}
+\DoxyCodeLine{00264\ \ \ \ \ \}}
+\DoxyCodeLine{00265\ \ \ \ \ }
+\DoxyCodeLine{00266\ \ \ \ \ \textcolor{comment}{//\ derivative\ of\ rescaling\ function\ divided\ by\ rescaling\ function}}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keywordtype}{double}\ dscale(vector<double>\ f,\ vector<double>\ p,\ \textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{00268\ \ \ \ \ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00270\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ the\ derivative\ of\ the\ scale\ factor,\ divided\ by\ the\ scaling\ function}}
+\DoxyCodeLine{00271\ \textcolor{comment}{}}
+\DoxyCodeLine{00272\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00273\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00274\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00275\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{00276\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00277\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{00278\ \textcolor{comment}{\ \ \ \ \ \ \ \ N\ :\ double}}
+\DoxyCodeLine{00279\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ time}}
+\DoxyCodeLine{00280\ \textcolor{comment}{}}
+\DoxyCodeLine{00281\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00282\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00283\ \textcolor{comment}{\ \ \ \ \ \ \ \ dscale\ :\ double}}
+\DoxyCodeLine{00284\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ value\ of\ the\ scaled\ derivative\ of\ the\ scale\ function}}
+\DoxyCodeLine{00285\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ k\ =\ 1.0;}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ a\ =\ exp(N);}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi\ =\ H(f,p);}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hdi\ =\ Hdot(f,p);}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{comment}{//return\ a*Hi;}}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \textcolor{comment}{//\ return\ \ a*Hi\ -\/\ a\ *Hi/pow(1.\ +\ k/a/Hi,2.0)\ +\ (1.0-\/a)*2.0*k/a/a/Hi/Hi*(a*Hi*Hi+a*Hdi)/pow(1.\ +\ k/a/Hi,3.0);}}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \ -\/Hdi/Hi/Hi*a/(1.+a*Hi/k)\ +\ a/(1.+a*Hi/k)\ -\/a*(a*Hi*Hi/k\ +\ a*Hdi/k)/(1.+a*Hi/k)/(1.+a*Hi/k)/Hi;\ \textcolor{comment}{//+\ 10.0*k/a/a/Hi/Hi*(a*Hi*Hi+a*Hdi)/pow(1.\ +\ k/a/Hi,11.0);}}
+\DoxyCodeLine{00294\ \ \ \ \ \}}
+\DoxyCodeLine{00295\ \ \ \ \ }
+\DoxyCodeLine{00296\ \ \ \ \ }
+\DoxyCodeLine{00297\ \ \ \ \ }
+\DoxyCodeLine{00298\ \ \ \ \ }
+\DoxyCodeLine{00299\ \ \ \ \ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \textcolor{comment}{//ooooo\ \ oooo\ \ oo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ooooooooooo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 888\ \ \ \ 88\ o888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 88\ \ 888\ \ 88\ ooooooooo8\ oo\ oooooo\ \ \ \ oooooooo8\ \ \ \ ooooooo\ \ oo\ oooooo\ \ \ }}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 888\ \ \ \ 88\ \ 888\ \ \ \ \ \ \ ooooooooo\ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888oooooo8\ \ \ 888\ \ \ 888\ \ 888ooooooo\ \ 888\ \ \ \ \ 888\ 888\ \ \ \ 888\ }}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 888\ \ \ \ 88\ \ 888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ 888\ \ \ \ \ 888\ 888\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ 888oo88\ \ o888o\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ o888o\ \ \ \ \ 88oooo888\ o888o\ o888o\ 88oooooo88\ \ \ \ 88ooo88\ \ o888o\ \ \ \ \ \ \ }}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ }
+\DoxyCodeLine{00307\ \ \ \ \ }
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{comment}{//\ calculates\ u1\ for\ models\ with\ field\ space\ metric\ (Christoffel\ terms\ are\ included\ here)}}
+\DoxyCodeLine{00309\ \ \ \ \ }
+\DoxyCodeLine{00310\ \ \ \ \ vector<double>\ u(vector<double>\ f,vector<double>\ p)}
+\DoxyCodeLine{00311\ \ \ \ \ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00313\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ the\ first\ u-\/tensor}}
+\DoxyCodeLine{00314\ \textcolor{comment}{}}
+\DoxyCodeLine{00315\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00316\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00317\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00318\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{00319\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00320\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{00321\ \textcolor{comment}{}}
+\DoxyCodeLine{00322\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00323\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00324\ \textcolor{comment}{\ \ \ \ \ \ \ \ u1out\ :\ vector<double>}}
+\DoxyCodeLine{00325\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ The\ vector\ containing\ the\ values\ of\ the\ u1-\/tensor}}
+\DoxyCodeLine{00326\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ vector<double>\ u1out(2*nF);}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ vector<double>\ dVi;}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi;}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ Hi=H(f,p);}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ vector<double>\ CHR;}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ CHR\ =\ fmet.Chroff(f,p);}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<nF;\ i++)}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00341\ \ \ \ \ }
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ u1out[i]\ \ =\ f[nF+i]/Hi;}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ dVi=pot.dV(f,p);}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<nF;\ i++)\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum\ =0.0;}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum1\ =0.0;}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;\ j<nF;\ j++)}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;\ k<nF;\ k++)\{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum1\ =sum1\ +\ CHR[(2*nF)*(2*nF)*i\ +\ (2*nF)*(j+nF)+k+nF]*f[nF+j]*f[nF+k];}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum\ =\ sum\ \ +FMi[(2*nF)*(i)+(j)]*(-\/dVi[j])/Hi;}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ u1out[nF+i]\ \ =\ sum\ -\/3.*Hi*f[nF+i]/Hi\ -\/\ sum1/Hi;}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ u1out;}
+\DoxyCodeLine{00363\ \ \ \ \ \}}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \ \ }
+\DoxyCodeLine{00366\ \ \ \ \ }
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{comment}{//ooooo\ \ oooo\ \ ooooooo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ooooooooooo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 888\ \ \ \ 88\ o88\ \ \ \ \ 888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 88\ \ 888\ \ 88\ ooooooooo8\ oo\ oooooo\ \ \ \ oooooooo8\ \ \ \ ooooooo\ \ oo\ oooooo\ \ \ }}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 888\ \ \ \ 88\ \ \ \ \ \ \ o888\ \ \ \ \ \ \ ooooooooo\ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888oooooo8\ \ \ 888\ \ \ 888\ \ 888ooooooo\ \ 888\ \ \ \ \ 888\ 888\ \ \ \ 888\ }}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 888\ \ \ \ 88\ \ \ \ o888\ \ \ o\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ 888\ \ \ \ \ 888\ 888\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ 888oo88\ \ o8888oooo88\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ o888o\ \ \ \ \ 88oooo888\ o888o\ o888o\ 88oooooo88\ \ \ \ 88ooo88\ \ o888o\ \ \ \ \ \ \ }}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{comment}{//\ calculates\ u2\ tensor\ for\ models\ will\ non-\/trivial\ field\ space\ metric\ -\/-\/\ note\ that}}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{comment}{//\ Christoffel\ terms\ in\ the\ equations\ of\ motion\ are\ added\ in\ the\ evolve.h\ field}}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \ \ \ \ vector<double>\ u(vector<double>\ f,vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{00376\ \ \ \ \ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00378\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ the\ second\ u-\/tensor}}
+\DoxyCodeLine{00379\ \textcolor{comment}{}}
+\DoxyCodeLine{00380\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00381\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00382\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00383\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{00384\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00385\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{00386\ \textcolor{comment}{\ \ \ \ \ \ \ \ k\ :\ double}}
+\DoxyCodeLine{00387\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ value\ of\ k-\/mode}}
+\DoxyCodeLine{00388\ \textcolor{comment}{\ \ \ \ \ \ \ \ N\ :\ double}}
+\DoxyCodeLine{00389\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ time}}
+\DoxyCodeLine{00390\ \textcolor{comment}{}}
+\DoxyCodeLine{00391\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00392\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00393\ \textcolor{comment}{\ \ \ \ \ \ \ \ u2out\ :\ vector<double>}}
+\DoxyCodeLine{00394\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ value\ of\ the\ second\ u-\/tensor}}
+\DoxyCodeLine{00395\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ a\ =\ exp(N);}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ ep\ =\ Ep(f,p);}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ vector<double>\ u2out(2*nF*2*nF);}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi=H(f,p);}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s=scale(f,p,N);}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ ds=dscale(f,p,N);}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ vector<double>\ dVVi;}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ dVVi\ =\ pot.dVV(f,p);}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ vector<double>\ dVi;}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ dVi\ =\ \ pot.dV(f,p);}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ vector<double>\ RMi;}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ RMi\ =\ fmet.Riemn(f,p);}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ vector<double>\ u1\ =u(f,p);}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum1\ =\ 0.0;}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum2\ =\ 0.0;}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum3\ =\ 0.0;}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum4\ =\ 0.0;}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<nF;\ i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j\ =\ 0;\ j<nF;\ j++)\{}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ l=0;\ l<nF;\ l++)}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ m=0;\ m<nF;\ m++)}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ xx=0;\ xx<nF;\ xx++)\{}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ sum1\ =\ sum1\ +\ 1./2.*FMi[(2*nF)*xx\ +i]*(RMi[(nF)*(nF)*(nF)*(xx)+(nF)*(nF)*(l)+(nF)*(m)+(j)]+RMi[(nF)*(nF)*(nF)*(j)+(nF)*(nF)*(l)+(nF)*(m)+(xx)])*f[nF+m]*f[nF+l];}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ sum3=\ sum3\ +\ (1./Hi)*FMi[(2*nF)*l\ +i]*(-\/dVi[l])*FMi[(2*nF)*(m+nF)\ +j+nF]*f[nF+m];}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ sum2\ =\ sum2+\ FMi[(2*nF)*l\ +i]*(1./2.*dVVi[l\ +\ nF*j]\ +\ 1./2.*dVVi[j\ +\ nF*l])\ ;}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ sum4\ =\ sum4\ +\ (-\/3.+ep)*f[nF+i]*FMi[(2*nF)*(l+nF)\ +j+nF]*f[nF+l];}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ u2out[i+\ j*2*nF]=0.;}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ u2out[i+(j+nF)*2*nF]=0.;}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ u2out[i+nF+(j)*2*nF]\ =\ (sum4\ -\/sum2\ +\ sum3\ +\ 1./Hi*f[i+nF]*(-\/dVi[j])\ +sum1\ )/Hi*s\ ;}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ u2out[i+nF+(j+nF)*2*nF]=\ 0.;}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i==j)\{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ u2out[i+nF+(j)*2*nF]=u2out[i+nF+(j)*2*nF]-\/1.0*(k1*k1)/(a*a)/Hi\ \ *\ s\ ;\textcolor{comment}{//\ *a;}}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ u2out[i+(j+nF)*2*nF]=u2out[i+(j+nF)*2*nF]\ +\ 1./Hi\ \ /s;\textcolor{comment}{//\ /a\ ;}}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ u2out[i+nF+(j+nF)*2*nF]=\ u2out[i+nF+(j+nF)*2*nF]\ -\/\ 3.0*Hi/Hi\ +\ ds/s/Hi\ ;\ \textcolor{comment}{//\ -\/\ 2.0*Hi/Hi;}}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00446\ }
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ sum1=0.0;}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ sum2=0.0;}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ sum3=0.0;}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ sum4=0.0;}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \}\}}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ u2out;}
+\DoxyCodeLine{00455\ \ \ \ \ \}}
+\DoxyCodeLine{00456\ \ \ \ \ }
+\DoxyCodeLine{00457\ \ \ \ \ }
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ w\ tensor}}
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00460\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00461\ \ \ \ \ vector<double>\ \mbox{\hyperlink{classmodel_a712380a6eec709a4323af118e29078cd}{w}}(vector<double>\ f,vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{00462\ \ \ \ \ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00464\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ the\ w-\/tensor}}
+\DoxyCodeLine{00465\ \textcolor{comment}{}}
+\DoxyCodeLine{00466\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00467\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00468\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00469\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{00470\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00471\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{00472\ \textcolor{comment}{\ \ \ \ \ \ \ \ k\ :\ double}}
+\DoxyCodeLine{00473\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ value\ of\ k-\/mode}}
+\DoxyCodeLine{00474\ \textcolor{comment}{\ \ \ \ \ \ \ \ N\ :\ double}}
+\DoxyCodeLine{00475\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ time\ in\ e-\/folds}}
+\DoxyCodeLine{00476\ \textcolor{comment}{}}
+\DoxyCodeLine{00477\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00478\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00479\ \textcolor{comment}{\ \ \ \ \ \ \ \ w2out\ :\ vector<double>}}
+\DoxyCodeLine{00480\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ w2-\/tensor}}
+\DoxyCodeLine{00481\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ nT\ =\ 1;}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ a\ =\ exp(N);}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ vector<double>\ w2out(2*nT*2*nT);}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi=H(f,p);}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s=scale(f,p,N);}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ ds=dscale(f,p,N);}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ vector<double>\ dVVi;}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ dVVi\ =\ pot.dVV(f,p);}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ vector<double>\ dVi;}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ dVi\ =\ \ pot.dV(f,p);}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ w2out[0+\ 0*2*nT]=0.;}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ w2out[0+1*2*nT]=+\ 1./Hi;}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ w2out[1+(0)*2*nT]\ =\ -\/1.0*(k1*k1)/(a*a)/Hi;\textcolor{comment}{//*s\ ;}}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ w2out[1+(1)*2*nT]=\ -\/\ 3.0*Hi/Hi\ ;\textcolor{comment}{//+\ ds/s/Hi;}}
+\DoxyCodeLine{00498\ }
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ w2out;}
+\DoxyCodeLine{00500\ \ \ \ \ \}}
+\DoxyCodeLine{00501\ \ \ \ \ }
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ o\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ooooooooooo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ 888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 88\ \ 888\ \ 88\ ooooooooo8\ oo\ oooooo\ \ \ \ oooooooo8\ \ \ \ ooooooo\ \ oo\ oooooo\ \ \ }}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ 8\ \ 88\ \ \ \ \ \ \ \ \ ooooooooo\ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888oooooo8\ \ \ 888\ \ \ 888\ \ 888ooooooo\ \ 888\ \ \ \ \ 888\ 888\ \ \ \ 888\ }}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ 8oooo88\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ 888\ \ \ \ \ 888\ 888\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \textcolor{comment}{//o88o\ \ o888o\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ o888o\ \ \ \ \ 88oooo888\ o888o\ o888o\ 88oooooo88\ \ \ \ 88ooo88\ \ o888o\ \ \ \ \ \ \ }}
+\DoxyCodeLine{00507\ }
+\DoxyCodeLine{00508\ \ \ \ \ \textcolor{comment}{//\ calculates\ A\ (the\ field\ field\ field\ term\ of\ action)\ for\ the\ non-\/trival\ field\ space\ metric\ case\ -\/-\/\ this\ is\ needed\ for\ the\ u2\ tensor}}
+\DoxyCodeLine{00509\ \ \ \ \ \textcolor{comment}{//\ A\ is\ calculated\ here\ with\ indices\ AS\string^\{I\}\_\{JK\}}}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00511\ \ \ \ \ vector<double>\ Acalcudd(vector<double>\ f,\ vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{00512\ \ \ \ \ \{}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00514\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ tensor\ A}}
+\DoxyCodeLine{00515\ \textcolor{comment}{}}
+\DoxyCodeLine{00516\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00517\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00518\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00519\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{00520\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00521\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{00522\ \textcolor{comment}{\ \ \ \ \ \ \ \ k1\ :\ double}}
+\DoxyCodeLine{00523\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ first\ k-\/mode}}
+\DoxyCodeLine{00524\ \textcolor{comment}{\ \ \ \ \ \ \ \ k2\ :\ double}}
+\DoxyCodeLine{00525\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ second\ k-\/mode}}
+\DoxyCodeLine{00526\ \textcolor{comment}{\ \ \ \ \ \ \ \ k3\ :\ double}}
+\DoxyCodeLine{00527\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ third\ k-\/mode}}
+\DoxyCodeLine{00528\ \textcolor{comment}{\ \ \ \ \ \ \ \ N\ :\ double}}
+\DoxyCodeLine{00529\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ time}}
+\DoxyCodeLine{00530\ \textcolor{comment}{}}
+\DoxyCodeLine{00531\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00532\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00533\ \textcolor{comment}{\ \ \ \ \ \ \ \ A\ :\ vector<double>}}
+\DoxyCodeLine{00534\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ field-\/field-\/field\ term\ of\ action}}
+\DoxyCodeLine{00535\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ a\ =\ exp(N);}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Vi=pot.V(f,p);}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi=H(f,p);}
+\DoxyCodeLine{00540\ }
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ vector<double>\ dVVi;}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ dVVi=pot.dVV(f,p);}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ vector<double>\ dVi;}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ dVi\ =\ \ pot.dV(f,p);}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ vector<double>\ dVVVi;}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ dVVVi=pot.dVVV(f,p);}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ vector<double>\ Xiup(nF);\ }
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ vector<double>\ A(nF*nF*nF);}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ vector<double>\ Xid(nF);}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ vector<double>\ fd(nF);}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ vector<double>\ RMi;}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ RMi\ =\ fmet.Riemn(f,p);\ }
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ vector<double>\ RMCi;}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ RMCi\ =\ fmet.Riemncd(f,p);}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum1=0.0;}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum2=0.0;}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum3=0.0;}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum4=0.0;}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum5=0.0;}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum6=0.0;}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sumxx1=0.0;}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s1=0.0;}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s2=0.0;}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{s2\ =\ s2\ +\ FMi[(2*nF)*(i+nF)+(j+nF)]*f[nF\ +\ j];\}\ fd[i]=s2;\ s2=0.0;\}}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{sumxx1=sumxx1+f[nF+i]*fd[i];\}}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ sum1=sum1\ \ +\ FMi[(2*nF)*(i)+(j)]*(-\/dVi[j]);}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \ Xiup[i]\ =\ f[nF+i]/Hi*sumxx1\ +\ 2.*(sum1\ -\/\ 3.*Hi*f[nF+i]);}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ sum1\ =0.0;}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//Taken\ into\ account\ the\ covariant\ time\ derivative\ of\ phi\ dot}}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{s1\ =\ s1\ +\ Xiup[j]*FMi[(2*nF)*(i+nF)+j+nF];\}\ Xid[i]=s1;\ s1=0.0;\}}
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ l=0;l<nF;l++)\{}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum2\ =sum2\ +\ 1./6.*FMi[(2*nF)*i+l]*(dVVVi[l\ +\ j*nF\ +k*\ nF*nF]\ +dVVVi[l\ +\ k*nF\ +j*\ nF*nF]\ +\ dVVVi[j\ +\ l*nF\ +k*\ nF*nF]}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ dVVVi[j\ +\ k*nF\ +l*\ nF*nF]\ +\ dVVVi[k\ +\ l*nF\ +j*\ nF*nF]\ +\ dVVVi[k\ +\ j*nF\ +l*\ nF*nF]);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum3\ =sum3\ +\ FMi[(2*nF)*i+l]*\ 1./2.*(dVVi[l\ +\ k*nF]\ +\ dVVi[k\ +\ l*nF]);}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum4\ =sum4\ +\ FMi[(2*nF)*i+(l)]*1./2.*(dVVi[l\ +\ j*nF]\ +\ dVVi[j\ +\ l*nF]);\textcolor{comment}{//sum4\ is\ redundant\ when\ sum3\ is\ determined,\ You\ could\ optimise\ this\ by\ forming\ an\ array\ instead}}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ m=0;\ m<nF;\ m++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ n=0;\ n<nF;\ n++)\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum5\ =\ sum5\ +\ 1./6.\ *\ (RMi[(nF)*(nF)*(nF)*(l)+(nF)*(nF)*(n)+(nF)*(j)+(m)]\ +\ RMi[(nF)*(nF)*(nF)*(l)+(nF)*(nF)*(j)+(nF)*(n)+(m)]\ )*FMi[(2*nF)*(i)+n]*f[nF+l]*f[nF+m]*fd[k]}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./6.\ *\ (RMi[(nF)*(nF)*(nF)*(l)+(nF)*(nF)*(k)+(nF)*(n)+(m)]\ +\ RMi[(nF)*(nF)*(nF)*(l)+(nF)*(nF)*(n)+(nF)*(k)+(m)]\ )*FMi[(2*nF)*(i)+n]*f[nF+l]*f[nF+m]*fd[j]}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./6.\ *\ (RMi[(nF)*(nF)*(nF)*(l)+(nF)*(nF)*(j)+(nF)*(k)+(m)]\ +\ RMi[(nF)*(nF)*(nF)*(l)+(nF)*(nF)*(k)+(nF)*(j)+(m)]\ )*FMi[(2*nF)*(i)+n]*f[nF+l]*f[nF+m]*fd[i];}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum6\ =\ sum6\ +\ 1./6.\ *\ (\ \ RMCi[(nF)*(nF)*(nF)*(nF)*n+(nF)*(nF)*(nF)*l+(nF)*(nF)*m+(nF)*j+k]\ }
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ RMCi[(nF)*(nF)*(nF)*(nF)*k+(nF)*(nF)*(nF)*l+(nF)*(nF)*m+(nF)*j+n]}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ RMCi[(nF)*(nF)*(nF)*(nF)*j+(nF)*(nF)*(nF)*l+(nF)*(nF)*m+(nF)*n+k]\ }
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ RMCi[(nF)*(nF)*(nF)*(nF)*n+(nF)*(nF)*(nF)*l+(nF)*(nF)*m+(nF)*k+j]}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ RMCi[(nF)*(nF)*(nF)*(nF)*k+(nF)*(nF)*(nF)*l+(nF)*(nF)*m+(nF)*n+j]\ }
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ RMCi[(nF)*(nF)*(nF)*(nF)*j+(nF)*(nF)*(nF)*l+(nF)*(nF)*m+(nF)*k+n])*FMi[(2*nF)*(i)+n]*f[nF+l]*f[nF+m];}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\}}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ }
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \ \ \ \ A[i\ +\ j*nF\ +k*\ nF*nF]\ =\ -\/1./3.\ *\ sum2\textcolor{comment}{//moved\ to\ loop\ l}}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ 1./3.*f[nF\ +\ i]/2./Hi*1./2.*(\ dVVi[j\ +\ k*nF]\ +\ dVVi[k\ +\ j*nF])}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ 1./3.*fd[j]/2./Hi*\ sum3\textcolor{comment}{//move\ to\ loop\ l\ }}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ 1./3.*fd[k]/2./Hi*\ sum4\textcolor{comment}{//move\ to\ loop\ l\ }}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./3.*f[nF\ +\ i]\ *fd[j]/8./Hi/Hi\ *\ Xid[k]}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./3.*f[nF\ +\ i]\ *\ fd[k]/8./Hi/Hi\ *\ Xid[j]}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./3.*fd[j]\ *\ fd[k]/8./Hi/Hi\ *\ Xiup[i]}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./3.*f[nF\ +\ i]/32./Hi/Hi/Hi\ *\ Xid[j]\ *Xid[k]}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./3.*fd[j]/32./Hi/Hi/Hi\ *\ Xiup[i]\ *Xid[k]}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./3.*fd[k]/32./Hi/Hi/Hi\ *\ Xiup[i]\ *Xid[j]}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1.*f[nF\ +\ i]*fd[j]*fd[k]/8./Hi/Hi/Hi*2.*Vi}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ 1./3.*f[nF\ +\ i]/32./Hi/Hi/Hi\ *\ Xid[j]\ *\ Xid[k]\ *\ (k2*k2+k3*k3\ -\/\ k1*k1)*(k2*k2+k3*k3\ -\/\ k1*k1)/k2/k2/k3/k3/4.}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ 1./3.*fd[j]/32./Hi/Hi/Hi\ *\ Xiup[i]\ *\ Xid[k]\ *\ (k1*k1+k3*k3\ -\/\ k2*k2)*(k1*k1+k3*k3\ -\/\ k2*k2)/k1/k1/k3/k3/4.}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ 1./3.*fd[k]/32./Hi/Hi/Hi\ *\ Xiup[i]\ *\ Xid[j]\ *\ (k1*k1+k2*k2\ -\/\ k3*k3)*(k1*k1+k2*k2\ -\/\ k3*k3)/k1/k1/k2/k2/4.;}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ A[i\ +\ j*nF\ +k*\ nF*nF]\ =\ A[i\ +\ j*nF\ +k*\ nF*nF]\ +\ 1./3.*f[nF+i]*FMi[(2*nF)*(j+nF)+k+nF]/2./Hi*(-\/k2*k2-\/k3*k3+k1*k1)/a/a/2.;}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i==k)\{A[i\ +\ j*nF\ +k*\ nF*nF]\ =\ A[i\ +\ j*nF\ +k*\ nF*nF]\ +\ 1./3.*fd[j]/2./Hi*(-\/k1*k1-\/k3*k3+k2*k2)/a/a/2.;\}}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i==j)\{A[i\ +\ j*nF\ +k*\ nF*nF]\ =\ A[i\ +\ j*nF\ +k*\ nF*nF]\ +\ 1./3.*fd[k]/2./Hi*(-\/k2*k2-\/k1*k1+k3*k3)/a/a/2.;\}}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ A[i\ +\ j*nF\ +k*\ nF*nF]\ =\ A[i\ +\ j*nF\ +k*\ nF*nF]\ -\/\ 1./2.*\ sum5/Hi\ +\ 1./3.\ *\ sum6;}
+\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ sum2=0.0;}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ sum3=0.0;}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ sum4=0.0;}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \ \ \ \ sum5=0.0;}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ sum6=0.0;}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{00628\ }
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ A;}
+\DoxyCodeLine{00631\ \ \ \ \ \}\ \ \ }
+\DoxyCodeLine{00632\ }
+\DoxyCodeLine{00633\ \ \ \ \ }
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ o\ \ \ \ \ \ \ oooooooo8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ooooooooooo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ 888\ \ \ \ \ 888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 88\ \ 888\ \ 88\ ooooooooo8\ oo\ oooooo\ \ \ \ oooooooo8\ \ \ \ ooooooo\ \ oo\ oooooo\ \ \ }}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ 8\ \ 88\ \ \ \ \ 888oooooo\ ooooooooo\ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888oooooo8\ \ \ 888\ \ \ 888\ \ 888ooooooo\ \ 888\ \ \ \ \ 888\ 888\ \ \ \ 888\ }}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ 8oooo88\ \ \ \ \ \ \ \ \ \ \ 888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ 888\ \ \ \ \ 888\ 888\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \textcolor{comment}{//o88o\ \ o888o\ o88oooo888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ o888o\ \ \ \ \ 88oooo888\ o888o\ o888o\ 88oooooo88\ \ \ \ 88ooo88\ \ o888o\ \ \ \ \ \ \ }}
+\DoxyCodeLine{00639\ }
+\DoxyCodeLine{00640\ \ \ \ \ \textcolor{comment}{//calculates\ AS\ (the\ "{}slow"{}\ parts\ of\ the\ field\ field\ field\ term\ of\ action\ for\ non-\/trival\ field\ space\ case}}
+\DoxyCodeLine{00641\ \ \ \ \ \textcolor{comment}{//this\ is\ used\ only\ for\ initial\ conditions\ and\ is\ calculated\ with\ indices\ AS\string^\{I\}\_\{JK\}}}
+\DoxyCodeLine{00642\ \ \ \ \ vector<double>\ \mbox{\hyperlink{classmodel_ad34775b9f936b3db25ec0e957c68ebb6}{AScalcudd}}(vector<double>\ f,\ vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{00643\ \ \ \ \ \{}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00645\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ the\ tensor\ A-\/slow}}
+\DoxyCodeLine{00646\ \textcolor{comment}{}}
+\DoxyCodeLine{00647\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00648\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00649\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00650\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{00651\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00652\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{00653\ \textcolor{comment}{\ \ \ \ \ \ \ \ k1\ :\ double}}
+\DoxyCodeLine{00654\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ first\ k-\/mode}}
+\DoxyCodeLine{00655\ \textcolor{comment}{\ \ \ \ \ \ \ \ k2\ :\ double}}
+\DoxyCodeLine{00656\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ second\ k-\/mode}}
+\DoxyCodeLine{00657\ \textcolor{comment}{\ \ \ \ \ \ \ \ k3\ :\ double}}
+\DoxyCodeLine{00658\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ third\ k-\/mode}}
+\DoxyCodeLine{00659\ \textcolor{comment}{\ \ \ \ \ \ \ \ N\ :\ double}}
+\DoxyCodeLine{00660\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ time}}
+\DoxyCodeLine{00661\ \textcolor{comment}{}}
+\DoxyCodeLine{00662\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00663\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00664\ \textcolor{comment}{\ \ \ \ \ \ \ \ As\ :\ vector<double>}}
+\DoxyCodeLine{00665\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ "{}slow"{}\ part\ of\ the\ field-\/field-\/field\ term\ of\ action}}
+\DoxyCodeLine{00666\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Vi=pot.V(f,p);}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi=H(f,p);}
+\DoxyCodeLine{00670\ \ \ \ \ \ }
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ vector<double>\ dVVi;}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ dVVi=pot.dVV(f,p);}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ vector<double>\ dVi;}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ dVi\ =\ \ pot.dV(f,p);}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ vector<double>\ dVVVi;}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ dVVVi=pot.dVVV(f,p);}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ vector<double>\ Xiup(nF);\ }
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ vector<double>\ AS(nF*nF*nF);}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ vector<double>\ Xid(nF);}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ vector<double>\ fd(nF);}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ vector<double>\ RMi;}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ RMi\ =\ fmet.Riemn(f,p);\ }
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ vector<double>\ RMCi;}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ RMCi\ =\ fmet.Riemncd(f,p);}
+\DoxyCodeLine{00687\ }
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum1=0.0;}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum2=0.0;}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum3=0.0;}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum4=0.0;}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum5=0.0;}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum6=0.0;}
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sumxx1=0.0;}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s1=0.0;}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s2=0.0;}
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{s2\ =\ s2\ +\ FMi[(2*nF)*(i+nF)+(j+nF)]*f[nF\ +\ j];\}fd[i]=s2;\ s2=0.0;\}}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \textcolor{comment}{//for(int\ i=0;i<nF;i++)\{sum1=sum1+fd[i]*f[nF+i];\}}}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{sumxx1=sumxx1+f[nF+i]*fd[i];\}}
+\DoxyCodeLine{00703\ }
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \ \ \ \ sum1=sum1\ \ +\ FMi[(2*nF)*(i)+(j)]*(-\/dVi[j]);}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \ \ \ \ Xiup[i]\ =\ f[nF+i]/Hi*sumxx1\ +\ 2.*(sum1\ -\/\ 3.*Hi*f[nF+i]);}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ \ \ \ \ sum1\ =0.0;}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//Taken\ into\ account\ the\ covariant\ time\ derivative\ of\ phi\ dot}}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{s1\ =\ s1\ +\ Xiup[j]*FMi[(2*nF)*(i+nF)+j+nF];\}\ Xid[i]=s1;\ s1=0.0;\}}
+\DoxyCodeLine{00711\ }
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ l=0;l<nF;l++)\{}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum2\ =sum2\ +\ 1./6.*FMi[(2*nF)*i+l]*(dVVVi[l\ +\ j*nF\ +k*\ nF*nF]\ +dVVVi[l\ +\ k*nF\ +j*\ nF*nF]\ +\ dVVVi[j\ +\ l*nF\ +k*\ nF*nF]}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ dVVVi[j\ +\ k*nF\ +l*\ nF*nF]\ +\ dVVVi[k\ +\ l*nF\ +j*\ nF*nF]\ +\ dVVVi[k\ +\ j*nF\ +l*\ nF*nF]);}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum3\ =sum3\ +\ FMi[(2*nF)*i+l]*\ 1./2.*(dVVi[l\ +\ k*nF]\ +\ dVVi[k\ +\ l*nF]);}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum4\ =sum4\ +\ FMi[(2*nF)*i+(l)]*1./2.*(dVVi[l\ +\ j*nF]\ +\ dVVi[j\ +\ l*nF]);}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ m=0;\ m<nF;\ m++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ n=0;\ n<nF;\ n++)\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum5\ =\ sum5\ +\ 1./6.\ *\ (RMi[(nF)*(nF)*(nF)*(l)+(nF)*(nF)*(n)+(nF)*(j)+(m)]\ +\ RMi[(nF)*(nF)*(nF)*(l)+(nF)*(nF)*(j)+(nF)*(n)+(m)]\ )*FMi[(2*nF)*(i)+n]*f[nF+l]*f[nF+m]*fd[k]}
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./6.\ *\ (RMi[(nF)*(nF)*(nF)*(l)+(nF)*(nF)*(k)+(nF)*(n)+(m)]\ +\ RMi[(nF)*(nF)*(nF)*(l)+(nF)*(nF)*(n)+(nF)*(k)+(m)]\ )*FMi[(2*nF)*(i)+n]*f[nF+l]*f[nF+m]*fd[j]}
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./6.\ *\ (RMi[(nF)*(nF)*(nF)*(l)+(nF)*(nF)*(j)+(nF)*(k)+(m)]\ +\ RMi[(nF)*(nF)*(nF)*(l)+(nF)*(nF)*(k)+(nF)*(j)+(m)]\ )*FMi[(2*nF)*(i)+n]*f[nF+l]*f[nF+m]*fd[i];}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum6\ =\ sum6\ +\ 1./6.\ *\ (\ \ RMCi[(nF)*(nF)*(nF)*(nF)*n+(nF)*(nF)*(nF)*l+(nF)*(nF)*m+(nF)*j+k]\ }
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ RMCi[(nF)*(nF)*(nF)*(nF)*k+(nF)*(nF)*(nF)*l+(nF)*(nF)*m+(nF)*j+n]}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ RMCi[(nF)*(nF)*(nF)*(nF)*j+(nF)*(nF)*(nF)*l+(nF)*(nF)*m+(nF)*n+k]\ }
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ RMCi[(nF)*(nF)*(nF)*(nF)*n+(nF)*(nF)*(nF)*l+(nF)*(nF)*m+(nF)*k+j]}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ RMCi[(nF)*(nF)*(nF)*(nF)*k+(nF)*(nF)*(nF)*l+(nF)*(nF)*m+(nF)*n+j]\ }
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ RMCi[(nF)*(nF)*(nF)*(nF)*j+(nF)*(nF)*(nF)*l+(nF)*(nF)*m+(nF)*k+n])*FMi[(2*nF)*(i)+n]*f[nF+l]*f[nF+m];}
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\}}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \ \ \ \ \ \ }
+\DoxyCodeLine{00734\ \ \ \ \ \ \ \ \ \ \ \ \ AS[i\ +\ j*nF\ +k*\ nF*nF]\ =\ -\/1./3.\ *\ sum2\textcolor{comment}{//moved\ to\ loop\ l}}
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ 1./3.*f[nF\ +\ i]/2./Hi*1./2.*(\ dVVi[j\ +\ k*nF]\ +\ dVVi[k\ +\ j*nF])}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ 1./3.*fd[j]/2./Hi*\ sum3\textcolor{comment}{//move\ to\ loop\ l\ }}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ 1./3.*fd[k]/2./Hi*\ sum4\textcolor{comment}{//move\ to\ loop\ l\ }}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./3.*f[nF\ +\ i]\ *fd[j]/8./Hi/Hi\ *\ Xid[k]}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./3.*f[nF\ +\ i]\ *\ fd[k]/8./Hi/Hi\ *\ Xid[j]}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./3.*fd[j]\ *\ fd[k]/8./Hi/Hi\ *\ Xiup[i]}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./3.*f[nF\ +\ i]/32./Hi/Hi/Hi\ *\ Xid[j]\ *Xid[k]}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./3.*fd[j]/32./Hi/Hi/Hi\ *\ Xiup[i]\ *Xid[k]}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./3.*fd[k]/32./Hi/Hi/Hi\ *\ Xiup[i]\ *Xid[j]}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1.*f[nF\ +\ i]*fd[j]*fd[k]/8./Hi/Hi/Hi*2.*Vi}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ 1./3.*f[nF\ +\ i]/32./Hi/Hi/Hi\ *\ Xid[j]\ *\ Xid[k]\ *\ (k2*k2+k3*k3\ -\/\ k1*k1)*(k2*k2+k3*k3\ -\/\ k1*k1)/k2/k2/k3/k3/4.}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ 1./3.*fd[j]/32./Hi/Hi/Hi\ *\ Xiup[i]\ *\ Xid[k]\ *\ (k1*k1+k3*k3\ -\/\ k2*k2)*(k1*k1+k3*k3\ -\/\ k2*k2)/k1/k1/k3/k3/4.}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ 1./3.*fd[k]/32./Hi/Hi/Hi\ *\ Xiup[i]\ *\ Xid[j]\ *\ (k1*k1+k2*k2\ -\/\ k3*k3)*(k1*k1+k2*k2\ -\/\ k3*k3)/k1/k1/k2/k2/4.;}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \ \ \ \ AS[i\ +\ j*nF\ +k*\ nF*nF]\ =\ AS[i\ +\ j*nF\ +k*\ nF*nF]\ -\/\ 1./2.*\ sum5/Hi\ +\ 1./3.\ *\ sum6;}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \ \ \ \ sum2=0.0;}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \ \ \ \ sum3=0.0;}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \ \ \ \ sum4=0.0;}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ \ \ \ \ sum5=0.0;}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \ \ \ \ sum6=0.0;}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{00756\ }
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ AS;}
+\DoxyCodeLine{00758\ \ \ \ \ \}\ \ \ }
+\DoxyCodeLine{00759\ \ \ \ \ }
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ \textcolor{comment}{//oooooooooo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ooooooooooo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 888\ \ \ \ 888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 88\ \ 888\ \ 88\ ooooooooo8\ oo\ oooooo\ \ \ \ oooooooo8\ \ \ \ ooooooo\ \ oo\ oooooo\ \ \ }}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 888oooo88\ \ \ \ \ \ \ ooooooooo\ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888oooooo8\ \ \ 888\ \ \ 888\ \ 888ooooooo\ \ 888\ \ \ \ \ 888\ 888\ \ \ \ 888\ }}
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 888\ \ \ \ 888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ 888\ \ \ \ \ 888\ 888\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \textcolor{comment}{//o888ooo888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ o888o\ \ \ \ \ 88oooo888\ o888o\ o888o\ 88oooooo88\ \ \ \ 88ooo88\ \ o888o\ \ \ \ \ \ \ }}
+\DoxyCodeLine{00765\ }
+\DoxyCodeLine{00766\ \ \ \ \ \textcolor{comment}{//Calculates\ B\ term\ of\ action\ for\ non-\/trivial\ field\ space\ metric\ with\ indices\ B\string^\{I\}\_\{JK\}}}
+\DoxyCodeLine{00767\ \ \ \ \ vector<double>\ Bcalcudd(vector<double>\ f,vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{00768\ \ \ \ \ \{}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00770\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ the\ tensor\ B}}
+\DoxyCodeLine{00771\ \textcolor{comment}{}}
+\DoxyCodeLine{00772\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00773\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00774\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00775\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{00776\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00777\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{00778\ \textcolor{comment}{\ \ \ \ \ \ \ \ k1\ :\ double}}
+\DoxyCodeLine{00779\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ first\ k-\/mode}}
+\DoxyCodeLine{00780\ \textcolor{comment}{\ \ \ \ \ \ \ \ k2\ :\ double}}
+\DoxyCodeLine{00781\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ second\ k-\/mode}}
+\DoxyCodeLine{00782\ \textcolor{comment}{\ \ \ \ \ \ \ \ k3\ :\ double}}
+\DoxyCodeLine{00783\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ third\ k-\/mode}}
+\DoxyCodeLine{00784\ \textcolor{comment}{\ \ \ \ \ \ \ \ N\ :\ double}}
+\DoxyCodeLine{00785\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ time}}
+\DoxyCodeLine{00786\ \textcolor{comment}{}}
+\DoxyCodeLine{00787\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00788\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00789\ \textcolor{comment}{\ \ \ \ \ \ \ \ B\ :\ vector<double>}}
+\DoxyCodeLine{00790\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ field-\/field-\/momentum\ term\ of\ the\ action}}
+\DoxyCodeLine{00791\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi=H(f,p);}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ vector<double>\ dVVi;}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \textcolor{comment}{//\ dVVi\ =\ new\ double[nF*nF];}}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ dVVi=pot.dVV(f,p);}
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ vector<double>\ dVi;\ \textcolor{comment}{//dVi\ =\ new\ double[nF];}}
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ dVi\ =\ \ pot.dV(f,p);}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ vector<double>\ dVVVi;\ \textcolor{comment}{//dVVVi\ =\ new\ double[nF*nF*nF];}}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ dVVVi=pot.dVVV(f,p);}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ vector<double>\ Xiup(nF);}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ vector<double>\ Xid(nF);}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ vector<double>\ B(nF*nF*nF);}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ vector<double>\ fd(nF);}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ vector<double>\ RMi;}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ RMi\ =\ fmet.Riemn(f,p);\ }
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum1=0;}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum2=0;}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s1=0.0;}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s2=0.0;}
+\DoxyCodeLine{00815\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sumxx1=0.0;}
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{s2\ =\ s2\ +\ FMi[(2*nF)*(i+nF)+(j+nF)]*f[nF\ +\ j];\}fd[i]=s2;\ s2=0.0;\}}
+\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \textcolor{comment}{//for(int\ i=0;i<nF;i++)\{sum1=sum1+fd[i]*f[nF+i];\}\ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{sumxx1=sumxx1+f[nF+i]*fd[i];\}}
+\DoxyCodeLine{00821\ }
+\DoxyCodeLine{00822\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{}
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \ \ \ \ sum1=sum1\ \ +\ FMi[(2*nF)*(i)+(j)]*(-\/dVi[j]);}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00825\ \ \ \ \ \ \ \ \ \ \ \ \ Xiup[i]\ =\ f[nF+i]/Hi*sumxx1\ +\ 2.*(sum1\ -\/\ 3.*Hi*f[nF+i]);}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \ \ \ \ sum1\ =0.0;}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//Taken\ into\ account\ the\ covariant\ time\ derivative\ of\ phi\ dot}}
+\DoxyCodeLine{00828\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{s1\ =\ s1\ +\ Xiup[j]*FMi[(2*nF)*(i+nF)+j+nF];\}\ Xid[i]=s1;\ s1=0.0;\}}
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ l=0;l<nF;l++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ n=0;n<nF;n++)\{}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sum2\ =\ sum2\ +\ 1./2.\ *(\ RMi[(nF)*(nF)*(nF)*(k)+(nF)*(nF)*(n)+(nF)*(j)+(l)]\ +RMi[(nF)*(nF)*(nF)*(k)+(nF)*(nF)*(j)+(nF)*(n)+(l)]\ }
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ \ \ \ \ )*FMi[(2*nF)*(n)+(i)]*f[nF+l];\textcolor{comment}{//\ David\ fixed\ the\ index\ notation\ here,\ symmetrised\ over\ ij\ only\ as\ the\ kth\ index\ is\ the\ momentum\ so\ only\ 2\ Riemann\ tensors\ and\ hence\ factor\ of\ 1/2}}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \ \ \ \ \}\}}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \ \ \ \ B[i\ +\ j*nF\ +k*\ nF*nF]\ =\ 1.*f[nF\ +\ i]*fd[j]*fd[k]/4./Hi/Hi}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ 1./2.*f[nF\ +\ i]\ *\ fd[k]/8./Hi/Hi/Hi\ *\ Xid[j]}
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ 1./2.*fd[j]\ *\ fd[k]/8./Hi/Hi/Hi\ *\ Xiup[i]}
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./2.*f[nF\ +\ i]\ *\ fd[k]/8./Hi/Hi/Hi\ *\ Xid[j]*(k2*k2+k3*k3\ -\/\ k1*k1)*(k2*k2+k3*k3\ -\/\ k1*k1)/k2/k2/k3/k3/4.}
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \ \ \ \ +\ 1./2.*fd[j]\ *\ fd[k]/8./Hi/Hi/Hi\ *\ Xiup[i]*(k1*k1+k3*k3\ -\/\ k2*k2)*(k1*k1+k3*k3\ -\/\ k2*k2)/k1/k1/k3/k3/4.;}
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \ \ \ \ B[i\ +\ j*nF\ +k*\ nF*nF]\ =\ B[i\ +\ j*nF\ +k*\ nF*nF]\ -\/\ FMi[(2*nF)*(j+nF)+(k+nF)]*1.*Xiup[i]/4./Hi*(-\/k1*k1-\/k2*k2+k3*k3)/k1/k1/2.;}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ \ \ \ \ B[i\ +\ j*nF\ +k*\ nF*nF]\ =\ B[i\ +\ j*nF\ +k*\ nF*nF]\ +\ 4./3.*sum2;}
+\DoxyCodeLine{00843\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i==k)\{B[i\ +\ j*nF\ +k*\ nF*nF]\ =\ B[i\ +\ j*nF\ +k*\ nF*nF]\ -\/\ 1.*Xid[j]/4./Hi*(-\/k1*k1-\/k2*k2+k3*k3)/k2/k2/2.;\}}
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \ \ \ \ sum2\ =\ 0.0;}
+\DoxyCodeLine{00845\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00846\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ B;}
+\DoxyCodeLine{00851\ \ \ \ \ \}}
+\DoxyCodeLine{00852\ }
+\DoxyCodeLine{00853\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ oooooooo8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ooooooooooo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00854\ \ \ \ \ \ \ \ \ \textcolor{comment}{//o888\ \ \ \ \ 88\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 88\ \ 888\ \ 88\ ooooooooo8\ oo\ oooooo\ \ \ \ oooooooo8\ \ \ \ ooooooo\ \ oo\ oooooo\ \ \ }}
+\DoxyCodeLine{00855\ \ \ \ \ \ \ \ \ \textcolor{comment}{//888\ \ \ \ \ \ \ \ \ \ \ \ \ \ ooooooooo\ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888oooooo8\ \ \ 888\ \ \ 888\ \ 888ooooooo\ \ 888\ \ \ \ \ 888\ 888\ \ \ \ 888\ }}
+\DoxyCodeLine{00856\ \ \ \ \ \ \ \ \ \textcolor{comment}{//888o\ \ \ \ \ oo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ 888\ \ \ \ \ 888\ 888\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00857\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 888oooo88\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ o888o\ \ \ \ \ 88oooo888\ o888o\ o888o\ 88oooooo88\ \ \ \ 88ooo88\ \ o888o\ \ \ \ \ \ \ }}
+\DoxyCodeLine{00858\ \ \ \ \ }
+\DoxyCodeLine{00859\ \ \ \ \ }
+\DoxyCodeLine{00860\ \ \ \ \ \textcolor{comment}{//Calculates\ C\ term\ of\ action\ for\ non-\/trivial\ field\ space\ metric\ case\ with\ indices\ C\string^\{I\}\_\{JK\}}}
+\DoxyCodeLine{00861\ \ \ \ \ vector<double>\ Ccalcudd(vector<double>\ f,\ vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{00862\ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00864\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ the\ tensor\ C}}
+\DoxyCodeLine{00865\ \textcolor{comment}{}}
+\DoxyCodeLine{00866\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00867\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00868\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00869\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{00870\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00871\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{00872\ \textcolor{comment}{\ \ \ \ \ \ \ \ k1\ :\ double}}
+\DoxyCodeLine{00873\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ first\ k-\/mode}}
+\DoxyCodeLine{00874\ \textcolor{comment}{\ \ \ \ \ \ \ \ k2\ :\ double}}
+\DoxyCodeLine{00875\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ second\ k-\/mode}}
+\DoxyCodeLine{00876\ \textcolor{comment}{\ \ \ \ \ \ \ \ k3\ :\ double}}
+\DoxyCodeLine{00877\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ third\ k-\/mode}}
+\DoxyCodeLine{00878\ \textcolor{comment}{\ \ \ \ \ \ \ \ N\ :\ double}}
+\DoxyCodeLine{00879\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ time}}
+\DoxyCodeLine{00880\ \textcolor{comment}{}}
+\DoxyCodeLine{00881\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00882\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00883\ \textcolor{comment}{\ \ \ \ \ \ \ \ C\ :\ vector<double>}}
+\DoxyCodeLine{00884\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ field-\/momentum-\/momentum\ term\ of\ the\ action}}
+\DoxyCodeLine{00885\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi=H(f,p);}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00889\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00890\ \ \ \ \ \ \ \ \ vector<double>\ dVVi;\ \textcolor{comment}{//dVVi\ =\ new\ double[nF*nF];}}
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \ \ dVVi=pot.dVV(f,p);}
+\DoxyCodeLine{00892\ \ \ \ \ \ \ \ \ vector<double>\ dVi;\ \textcolor{comment}{//dVi\ =\ new\ double[nF];}}
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ dVi\ =\ \ pot.dV(f,p);}
+\DoxyCodeLine{00894\ \ \ \ \ \ \ \ \ vector<double>\ dVVVi;\ \textcolor{comment}{//dVVVi\ =\ new\ double[nF*nF*nF];}}
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ dVVVi=pot.dVVV(f,p);}
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \ \ vector<double>\ Xid(nF);\ vector<double>\ C(nF*nF*nF);}
+\DoxyCodeLine{00897\ \ \ \ \ \ \ \ \ vector<double>\ Xiup(nF);}
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ vector<double>\ fd(nF);}
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ vector<double>\ CHR;}
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ CHR\ =\ fmet.Chroff(f,p);}
+\DoxyCodeLine{00901\ \ \ \ \ \ \ \ \ vector<double>\ u1\ =u(f,p);}
+\DoxyCodeLine{00902\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum1=0;}
+\DoxyCodeLine{00903\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s1=0.0;}
+\DoxyCodeLine{00904\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s2=0.0;}
+\DoxyCodeLine{00905\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sumxx1=0.0;}
+\DoxyCodeLine{00906\ \ \ \ \ }
+\DoxyCodeLine{00907\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{}
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{}
+\DoxyCodeLine{00909\ \ \ \ \ \ \ \ \ \ \ \ \ s2\ =\ s2\ +\ FMi[(2*nF)*(i+nF)+(j+nF)]*f[nF\ +\ j];\}}
+\DoxyCodeLine{00910\ \ \ \ \ \ \ \ \ \ \ \ \ fd[i]=s2;\ }
+\DoxyCodeLine{00911\ \ \ \ \ \ \ \ \ \ \ \ \ s2=0.0;\}}
+\DoxyCodeLine{00912\ \ \ \ \ \ \ \ \ \textcolor{comment}{//for(int\ i=0;i<nF;i++)\{sum1=sum1+fd[i]*f[nF+i];\}\ \ \ }}
+\DoxyCodeLine{00913\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{sumxx1=sumxx1+f[nF+i]*fd[i];\}}
+\DoxyCodeLine{00914\ }
+\DoxyCodeLine{00915\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{}
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ \ \ \ \ sum1=sum1\ \ +\ FMi[(2*nF)*(i)+(j)]*(-\/dVi[j]);}
+\DoxyCodeLine{00917\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00918\ \ \ \ \ \ \ \ \ \ \ \ \ Xiup[i]\ =\ f[nF+i]/Hi*sumxx1\ +\ 2.*(sum1\ -\/\ 3.*Hi*f[nF+i]);}
+\DoxyCodeLine{00919\ \ \ \ \ \ \ \ \ \ \ \ \ sum1\ =0.0;}
+\DoxyCodeLine{00920\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00921\ \ \ \ \ \ \ \ \ \}\textcolor{comment}{//Taken\ into\ account\ the\ covariant\ time\ derivative\ of\ phi\ dot}}
+\DoxyCodeLine{00922\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{s1\ =\ s1\ +\ Xiup[j]*FMi[(2*nF)*(i+nF)+j+nF];\}\ Xid[i]=s1;\ s1=0.0;\}}
+\DoxyCodeLine{00923\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{}
+\DoxyCodeLine{00924\ \ \ \ \ \ \ \ \ \ \ \ \ C[i\ +\ j*nF\ +k*\ nF*nF]\ =\ 1.*f[nF\ +\ i]*fd[j]*fd[k]/8./Hi/Hi/Hi}
+\DoxyCodeLine{00925\ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ 1.*f[nF\ +\ i]\ *\ fd[j]\ *fd[k]/8./Hi/Hi/Hi\ *(k1*k1+k2*k2\ -\/\ k3*k3)*(k1*k1+k2*k2\ -\/\ k3*k3)/k1/k1/k2/k2/4.\ ;}
+\DoxyCodeLine{00926\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i==j)\{C[i\ +\ j*nF\ +k*\ nF*nF]\ =\ C[i\ +\ j*nF\ +k*\ nF*nF]\ -\/\ 1.*fd[k]/2./Hi;\}}
+\DoxyCodeLine{00927\ \ \ \ \ \ \ \ \ \ \ \ \ C[i\ +\ j*nF\ +k*\ nF*nF]\ =\ C[i\ +\ j*nF\ +k*\ nF*nF]\ +\ FMi[(2*nF)*(j+nF)+(k+nF)]*f[nF+i]/2./Hi*(-\/k1*k1-\/k3*k3+k2*k2)/k1/k1/2.;}
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i==k)\{C[i\ +\ j*nF\ +k*\ nF*nF]\ =\ C[i\ +\ j*nF\ +k*\ nF*nF]\ +\ fd[j]/2./Hi*(-\/k2*k2-\/k3*k3+k1*k1)/k2/k2/2.;\}}
+\DoxyCodeLine{00929\ }
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ C;}
+\DoxyCodeLine{00933\ \ \ \ \ \}}
+\DoxyCodeLine{00934\ \ \ \ \ }
+\DoxyCodeLine{00935\ \ \ \ \ }
+\DoxyCodeLine{00936\ \ \ \ \ }
+\DoxyCodeLine{00937\ \ \ \ \ }
+\DoxyCodeLine{00938\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ o\ \ \ \ \ \ oooooooooo\ \ \ \ oooooooo8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ oooooooooo\ \ \ \ \ \ \ \ \ \ \ \ \ ooooo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ oooo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00939\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ 888\ \ \ \ \ \ 888\ \ \ \ 888\ o888\ \ \ \ \ 88\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888\ ooooooooo8\ \ 888\ \ oo\ oooooo\ \ \ \ ooooo888\ \ ooooooooo8\ oooo\ \ \ oooo\ }}
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ 8\ \ 88\ \ \ \ \ 888oooo88\ \ 888\ \ \ \ \ \ \ \ \ \ \ \ \ \ ooooooooo\ \ \ \ \ \ \ 888oooo88\ 888oooooo8\ \ \ 888\ \ \ 888\ \ \ 888\ 888\ \ \ \ 888\ 888oooooo8\ \ \ \ 888o888\ \ \ }}
+\DoxyCodeLine{00941\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ 8oooo88\ \ \ \ 888\ \ \ \ 888\ 888o\ \ \ \ \ oo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 888\ \ 88o\ \ 888\ \ \ \ \ \ \ \ \ \ 888\ \ \ 888\ \ \ 888\ 888\ \ \ \ 888\ 888\ \ \ \ \ \ \ \ \ \ \ o88\ 88o\ \ \ }}
+\DoxyCodeLine{00942\ \ \ \ \ \ \ \ \ \textcolor{comment}{//o88o\ \ o888o\ o888ooo888\ \ \ 888oooo88\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ o888o\ \ 88o8\ \ 88oooo888\ o888o\ o888o\ o888o\ \ 88ooo888o\ \ 88oooo888\ o88o\ \ \ o88o\ }}
+\DoxyCodeLine{00943\ \ \ \ \ }
+\DoxyCodeLine{00944\ \ \ \ \ }
+\DoxyCodeLine{00945\ \ \ \ \ \textcolor{comment}{//\ Rearanges\ the\ indices\ of\ the\ A\ tensor\ to\ A\string^\{IJK\}}}
+\DoxyCodeLine{00946\ \ \ \ \ vector<double>\ Acalcuuu(vector<double>\ f,\ vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{00947\ \ \ \ \ \ \{}
+\DoxyCodeLine{00948\ \ \ \ \ \ \ \ \ vector<double>\ A;}
+\DoxyCodeLine{00949\ }
+\DoxyCodeLine{00950\ \ \ \ \ \ \ \ \ vector<double>\ Aout(nF*nF*nF);}
+\DoxyCodeLine{00951\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00952\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00953\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00954\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00955\ \ \ \ \ \ \ \ \ A\ =\ Acalcudd(f,p,\ k1,\ k2,\ k3,\ N);}
+\DoxyCodeLine{00956\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum\ =0.0;}
+\DoxyCodeLine{00957\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00958\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ l=0;l<nF;l++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ m=0;m<nF;m++)\{}
+\DoxyCodeLine{00959\ \ \ \ \ \ \ \ \ \ \ \ \ sum\ =\ sum\ +\ FMi[(2*nF)*(m)+k]*FMi[(2*nF)*(l)+j]*A[i+nF*l+nF*nF*m];}
+\DoxyCodeLine{00960\ \ \ \ \ \ \ \ \ \}\}}
+\DoxyCodeLine{00961\ \ \ \ \ \ \ \ \ \ \ \ \ Aout[i+nF*j+nF*nF*k]=sum;}
+\DoxyCodeLine{00962\ \ \ \ \ }
+\DoxyCodeLine{00963\ \ \ \ \ \ \ \ \ \ \ \ \ sum=0.0;}
+\DoxyCodeLine{00964\ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{00965\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Aout;}
+\DoxyCodeLine{00966\ \ \ \ \ \ \}}
+\DoxyCodeLine{00967\ \ \ \ \ \ }
+\DoxyCodeLine{00968\ \ \ \ \ \ \textcolor{comment}{//\ Rearanges\ the\ indices\ of\ the\ AS\ tensor\ to\ AS\string^\{IJK\}}}
+\DoxyCodeLine{00969\ \ \ \ \ \ vector<double>\ AScalcuuu(vector<double>\ f,\ vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{00970\ \ \ \ \ \ \{}
+\DoxyCodeLine{00971\ \ \ \ \ \ \ \ \ vector<double>\ AS;}
+\DoxyCodeLine{00972\ }
+\DoxyCodeLine{00973\ \ \ \ \ \ \ \ \ vector<double>\ ASout(nF*nF*nF);}
+\DoxyCodeLine{00974\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00975\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00976\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00977\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00978\ \ \ \ \ \ \ \ \ AS\ =\ \mbox{\hyperlink{classmodel_ad34775b9f936b3db25ec0e957c68ebb6}{AScalcudd}}(f,p,\ k1,\ k2,\ k3,\ N);}
+\DoxyCodeLine{00979\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum\ =0.0;}
+\DoxyCodeLine{00980\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00981\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ l=0;l<nF;l++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ m=0;m<nF;m++)\{}
+\DoxyCodeLine{00982\ \ \ \ \ \ \ \ \ \ \ \ \ sum\ =\ sum\ +\ FMi[(2*nF)*(m)+k]*FMi[(2*nF)*(l)+j]*AS[i+nF*l+nF*nF*m];}
+\DoxyCodeLine{00983\ \ \ \ \ \ \ \ \ \}\}}
+\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \ \ \ \ ASout[i+nF*j+nF*nF*k]=sum;}
+\DoxyCodeLine{00985\ }
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \ \ \ \ \ \ sum=0.0;}
+\DoxyCodeLine{00987\ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{00988\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ASout;}
+\DoxyCodeLine{00989\ \ \ \ \ \ \}}
+\DoxyCodeLine{00990\ \ \ \ \ \ }
+\DoxyCodeLine{00991\ \ \ \ \ \ \textcolor{comment}{//\ Rearanges\ the\ indices\ of\ the\ B\ tensor\ to\ B\string^\{IJK\}}}
+\DoxyCodeLine{00992\ \ \ \ \ \ vector<double>\ Bcalcuuu(vector<double>\ f,\ vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{00993\ \ \ \ \ \ \{}
+\DoxyCodeLine{00994\ \ \ \ \ \ \ \ \ vector<double>\ B;}
+\DoxyCodeLine{00995\ }
+\DoxyCodeLine{00996\ \ \ \ \ \ \ \ \ vector<double>\ Bout(nF*nF*nF);}
+\DoxyCodeLine{00997\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00998\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00999\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{01000\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01001\ \ \ \ \ \ \ \ \ B\ =\ Bcalcudd(f,p,\ k1,\ k2,\ k3,\ N);}
+\DoxyCodeLine{01002\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum\ =0.0;}
+\DoxyCodeLine{01003\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01004\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ l=0;l<nF;l++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ m=0;m<nF;m++)\{}
+\DoxyCodeLine{01005\ \ \ \ \ \ \ \ \ \ \ \ \ sum\ =\ sum\ +\ FMi[(2*nF)*(m)+k]*FMi[(2*nF)*(l)+j]*B[i+nF*l+nF*nF*m];}
+\DoxyCodeLine{01006\ \ \ \ \ \ \ \ \ \}\}}
+\DoxyCodeLine{01007\ \ \ \ \ \ \ \ \ \ \ \ \ Bout[i+nF*j+nF*nF*k]=sum;}
+\DoxyCodeLine{01008\ }
+\DoxyCodeLine{01009\ \ \ \ \ \ \ \ \ \ \ \ \ sum=0.0;}
+\DoxyCodeLine{01010\ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{01011\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Bout;}
+\DoxyCodeLine{01012\ \ \ \ \ \ \}}
+\DoxyCodeLine{01013\ \ \ \ \ \ }
+\DoxyCodeLine{01014\ \ \ \ \ \ \textcolor{comment}{//\ Rearanges\ the\ indices\ of\ the\ A\ tensor\ to\ B\_\{IJ\}\string^\{K\}}}
+\DoxyCodeLine{01015\ \ \ \ \ \ vector<double>\ Bcalcddu(vector<double>\ f,\ vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{01016\ \ \ \ \ \ \{}
+\DoxyCodeLine{01017\ \ \ \ \ \ \ \ \ vector<double>\ B;}
+\DoxyCodeLine{01018\ }
+\DoxyCodeLine{01019\ \ \ \ \ \ \ \ \ vector<double>\ Bout(nF*nF*nF);}
+\DoxyCodeLine{01020\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01021\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{01022\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{01023\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01024\ \ \ \ \ \ \ \ \ B\ =\ Bcalcudd(f,p,\ k1,\ k2,\ k3,\ N);}
+\DoxyCodeLine{01025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum\ =0.0;}
+\DoxyCodeLine{01026\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ l=0;l<nF;l++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ m=0;m<nF;m++)\{}
+\DoxyCodeLine{01028\ \ \ \ \ \ \ \ \ \ \ \ \ sum\ =\ sum\ +\ FMi[(2*nF)*(m+nF)+i+nF]*FMi[(2*nF)*(k)+l]*B[m+nF*j+nF*nF*l];}
+\DoxyCodeLine{01029\ \ \ \ \ \ \ \ \ \}\}}
+\DoxyCodeLine{01030\ \ \ \ \ \ \ \ \ \ \ \ \ Bout[i+nF*j+nF*nF*k]=sum;}
+\DoxyCodeLine{01031\ }
+\DoxyCodeLine{01032\ \ \ \ \ \ \ \ \ \ \ \ \ sum=0.0;}
+\DoxyCodeLine{01033\ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{01034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Bout;}
+\DoxyCodeLine{01035\ \ \ \ \ \ \}}
+\DoxyCodeLine{01036\ \ \ \ \ }
+\DoxyCodeLine{01037\ \ \ \ \ \textcolor{comment}{//\ Rearanges\ the\ indices\ of\ the\ C\ tensor\ to\ C\string^\{IJK\}}}
+\DoxyCodeLine{01038\ \ \ \ \ vector<double>\ Ccalcuuu(vector<double>\ f,\ vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{01039\ \ \ \ \ \ \{}
+\DoxyCodeLine{01040\ \ \ \ \ \ \ \ \ vector<double>\ C;}
+\DoxyCodeLine{01041\ }
+\DoxyCodeLine{01042\ \ \ \ \ \ \ \ \ vector<double>\ Cout(nF*nF*nF);}
+\DoxyCodeLine{01043\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01044\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{01045\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{01046\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01047\ \ \ \ \ \ \ \ \ C\ =\ Ccalcudd(f,p,\ k1,\ k2,\ k3,\ N);}
+\DoxyCodeLine{01048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum\ =0.0;}
+\DoxyCodeLine{01049\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ l=0;l<nF;l++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ m=0;m<nF;m++)\{}
+\DoxyCodeLine{01051\ \ \ \ \ \ \ \ \ \ \ \ \ sum\ =\ sum\ +\ FMi[(2*nF)*(m)+k]*FMi[(2*nF)*(l)+j]*C[i+nF*l+nF*nF*m];}
+\DoxyCodeLine{01052\ \ \ \ \ \ \ \ \ \}\}}
+\DoxyCodeLine{01053\ \ \ \ \ \ \ \ \ \ \ \ \ Cout[i+nF*j+nF*nF*k]=sum;}
+\DoxyCodeLine{01054\ }
+\DoxyCodeLine{01055\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01056\ \ \ \ \ \ \ \ \ \ \ \ \ sum=0.0;}
+\DoxyCodeLine{01057\ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{01058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Cout;}
+\DoxyCodeLine{01059\ \ \ \ \ \ \}}
+\DoxyCodeLine{01060\ }
+\DoxyCodeLine{01061\ \ \ \ \ \ }
+\DoxyCodeLine{01062\ \ \ \ \ \ \textcolor{comment}{//\ Rearanges\ the\ indices\ of\ the\ C\ tensor\ to\ C\_\{IJ\}\string^K}}
+\DoxyCodeLine{01063\ \ \ \ \ \ vector<double>\ Ccalcddu(vector<double>\ f,\ vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{01064\ \ \ \ \ \ \{}
+\DoxyCodeLine{01065\ \ \ \ \ \ \ \ \ vector<double>\ C;}
+\DoxyCodeLine{01066\ }
+\DoxyCodeLine{01067\ \ \ \ \ \ \ \ \ vector<double>\ Cout(nF*nF*nF);}
+\DoxyCodeLine{01068\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01069\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{01070\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{01071\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01072\ \ \ \ \ \ \ \ \ C\ =\ Ccalcudd(f,p,\ k1,\ k2,\ k3,\ N);}
+\DoxyCodeLine{01073\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum\ =0.0;}
+\DoxyCodeLine{01074\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ l=0;l<nF;l++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ m=0;m<nF;m++)\{}
+\DoxyCodeLine{01076\ \ \ \ \ \ \ \ \ \ \ \ \ sum\ =\ sum\ +\ FMi[(2*nF)*(i+nF)+m+nF]*FMi[(2*nF)*(k)+l]*C[m+nF*j+nF*nF*l];}
+\DoxyCodeLine{01077\ \ \ \ \ \ \ \ \ \}\}}
+\DoxyCodeLine{01078\ \ \ \ \ \ \ \ \ \ \ \ \ Cout[i+nF*j+nF*nF*k]=sum;}
+\DoxyCodeLine{01079\ }
+\DoxyCodeLine{01080\ \ \ \ \ \ \ \ \ \ \ \ \ sum=0.0;}
+\DoxyCodeLine{01081\ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{01082\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Cout;}
+\DoxyCodeLine{01083\ \ \ \ \ \ \}}
+\DoxyCodeLine{01084\ \ \ \ \ \ }
+\DoxyCodeLine{01085\ \ \ \ \ \ }
+\DoxyCodeLine{01086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//ooooo\ \ oooo\ \ ooooooo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ooooooooooo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{01087\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 888\ \ \ \ 88\ o88\ \ \ \ 888o\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 88\ \ 888\ \ 88\ ooooooooo8\ oo\ oooooo\ \ \ \ oooooooo8\ \ \ \ ooooooo\ \ oo\ oooooo\ \ \ }}
+\DoxyCodeLine{01088\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 888\ \ \ \ 88\ \ \ \ \ 88888o\ \ \ \ \ \ \ ooooooooo\ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888oooooo8\ \ \ 888\ \ \ 888\ \ 888ooooooo\ \ 888\ \ \ \ \ 888\ 888\ \ \ \ 888\ }}
+\DoxyCodeLine{01089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 888\ \ \ \ 88\ 88o\ \ \ \ o888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ 888\ \ \ \ \ 888\ 888\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{01090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ 888oo88\ \ \ \ 88ooo88\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ o888o\ \ \ \ \ 88oooo888\ o888o\ o888o\ 88oooooo88\ \ \ \ 88ooo88\ \ o888o\ \ \ \ \ \ \ }}
+\DoxyCodeLine{01091\ }
+\DoxyCodeLine{01092\ \ \ \ \ }
+\DoxyCodeLine{01093\ \ \ \ \ \textcolor{comment}{//calculates\ u3}}
+\DoxyCodeLine{01094\ \ \ \ \ vector<double>\ u(vector<double>\ f,\ vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{01095\ \ \ \ \ \{}
+\DoxyCodeLine{01096\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01097\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ the\ third\ u-\/tensor}}
+\DoxyCodeLine{01098\ \textcolor{comment}{}}
+\DoxyCodeLine{01099\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{01100\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01101\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{01102\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{01103\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{01104\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{01105\ \textcolor{comment}{\ \ \ \ \ \ \ \ k1\ :\ double}}
+\DoxyCodeLine{01106\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ first\ k-\/mode}}
+\DoxyCodeLine{01107\ \textcolor{comment}{\ \ \ \ \ \ \ \ k2\ :\ double}}
+\DoxyCodeLine{01108\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ second\ k-\/mode}}
+\DoxyCodeLine{01109\ \textcolor{comment}{\ \ \ \ \ \ \ \ k3\ :\ double}}
+\DoxyCodeLine{01110\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ third\ k-\/mode}}
+\DoxyCodeLine{01111\ \textcolor{comment}{\ \ \ \ \ \ \ \ N\ :\ double}}
+\DoxyCodeLine{01112\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ time}}
+\DoxyCodeLine{01113\ \textcolor{comment}{}}
+\DoxyCodeLine{01114\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{01115\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01116\ \textcolor{comment}{\ \ \ \ \ \ \ \ u3out\ :\ vector<double>}}
+\DoxyCodeLine{01117\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ third\ u-\/tensors}}
+\DoxyCodeLine{01118\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{01119\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01120\ \ \ \ \ \ \ \ \ vector<double>\ \ A,\ B,B2,\ B3,\ C,\ C2,C3;}
+\DoxyCodeLine{01121\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi;}
+\DoxyCodeLine{01122\ \ \ \ \ \ \ \ \ Hi=H(f,p);}
+\DoxyCodeLine{01123\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s=scale(f,p,N);}
+\DoxyCodeLine{01124\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01125\ \ \ \ \ \ \ \ \ A\ =\ Acalcudd(f,p,\ k1,\ k2,\ k3\ ,N);}
+\DoxyCodeLine{01126\ \ \ \ \ \ \ \ \ B=\ Bcalcddu(f,p,\ k2,\ k3,\ k1\ ,N);}
+\DoxyCodeLine{01127\ \ \ \ \ \ \ \ \ B2=\ \ Bcalcudd(f,p,\ k1,\ k2,\ k3\ ,N);}
+\DoxyCodeLine{01128\ \ \ \ \ \ \ \ \ B3=Bcalcudd(f,p,\ k1,\ k3,\ k2\ ,N);}
+\DoxyCodeLine{01129\ \ \ \ \ \ \ \ \ C=\ \ Ccalcudd(f,p,\ k1,\ k2,\ k3\ ,N);}
+\DoxyCodeLine{01130\ \ \ \ \ \ \ \ \ C2=\ \ Ccalcudd(f,p,\ k1,\ k3,\ k2\ ,N);}
+\DoxyCodeLine{01131\ \ \ \ \ \ \ \ \ C3\ =\ Ccalcddu(f,p,\ k3,\ k2,\ k1\ ,N);}
+\DoxyCodeLine{01132\ }
+\DoxyCodeLine{01133\ }
+\DoxyCodeLine{01134\ \ \ \ \ \ \ \ \ vector<double>\ u3out(2*nF*2*nF*2*nF);}
+\DoxyCodeLine{01135\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{}
+\DoxyCodeLine{01137\ \ \ \ \ \ \ \ \ \ \ \ \ u3out[i+j*2*nF+k*2*nF*2*nF]=\ -\/B[j+k*nF+i*nF*nF]/Hi;}
+\DoxyCodeLine{01138\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01139\ \ \ \ \ \ \ \ \ \ \ \ \ u3out[(i)+(nF+j)*2*nF+k*2*nF*2*nF]=\ -\/C[i+j*nF+k*nF*nF]/Hi\ \ /s;\ \textcolor{comment}{//\ /a;}}
+\DoxyCodeLine{01140\ \ \ \ \ \ \ \ \ \ \ \ \ u3out[(i)+j*2*nF+(k+nF)*2*nF*2*nF]=\ -\/C2[i+k*nF+j*nF*nF]/Hi\ /s;\textcolor{comment}{//\ /a;}}
+\DoxyCodeLine{01141\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01142\ \ \ \ \ \ \ \ \ \ \ \ \ u3out[(i)+(j+nF)*2*nF+(k+nF)*2*nF*2*nF]=\ 0.;}
+\DoxyCodeLine{01143\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01144\ \ \ \ \ \ \ \ \ \ \ \ \ u3out[(nF+i)\ +\ j*2*nF\ +\ k*2*nF*2*nF]=\ 3.*A[i+j*nF+k*nF*nF]/Hi\ \ *s;\textcolor{comment}{//\ *a;}}
+\DoxyCodeLine{01145\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01146\ \ \ \ \ \ \ \ \ \ \ \ \ u3out[(nF+i)+(nF+j)*2*nF+k*2*nF*2*nF]=B3[i+k*nF+j*nF*nF]/Hi\ ;\textcolor{comment}{//momentum}}
+\DoxyCodeLine{01147\ \ \ \ \ \ \ \ \ \ \ \ \ u3out[(nF+i)+(j)*2*nF+(k+nF)*2*nF*2*nF]=B2[i+j*nF+k*nF*nF]/Hi\ ;\textcolor{comment}{//field}}
+\DoxyCodeLine{01148\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01149\ \ \ \ \ \ \ \ \ \ \ \ \ u3out[(nF+i)+(j+nF)*2*nF\ +\ (k+nF)*2*nF*2*nF]=C3[k+j*nF+i*nF*nF]/Hi\ \ /s;\textcolor{comment}{//\ /a;k\ down\ i\ up}}
+\DoxyCodeLine{01150\ }
+\DoxyCodeLine{01151\ }
+\DoxyCodeLine{01152\ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{01153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ u3out;}
+\DoxyCodeLine{01154\ \ \ \ \ \}}
+\DoxyCodeLine{01155\ }
+\DoxyCodeLine{01156\ \ \ \ \ \ \ \ \ \textcolor{comment}{//oooo\ \ \ oooo\ \ oo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ooooooooooo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{01157\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 8888o\ \ 88\ o888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 88\ \ 888\ \ 88\ ooooooooo8\ oo\ oooooo\ \ \ \ oooooooo8\ \ \ \ ooooooo\ \ oo\ oooooo\ \ \ }}
+\DoxyCodeLine{01158\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 88\ 888o88\ \ 888\ \ \ \ \ \ \ ooooooooo\ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888oooooo8\ \ \ 888\ \ \ 888\ \ 888ooooooo\ \ 888\ \ \ \ \ 888\ 888\ \ \ \ 888\ }}
+\DoxyCodeLine{01159\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 88\ \ \ 8888\ \ 888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ 888\ \ \ \ \ 888\ 888\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{01160\ \ \ \ \ \ \ \ \ \textcolor{comment}{//o88o\ \ \ \ 88\ o888o\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ o888o\ \ \ \ \ 88oooo888\ o888o\ o888o\ 88oooooo88\ \ \ \ 88ooo88\ \ o888o\ \ \ \ \ \ \ }}
+\DoxyCodeLine{01161\ }
+\DoxyCodeLine{01162\ \ \ \ \ \textcolor{comment}{//calculates\ N1\_I\ tesnor}}
+\DoxyCodeLine{01163\ \ \ \ \ vector<double>\ N1(vector<double>\ f,vector<double>\ p,\ \textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{01164\ \ \ \ \ \{}
+\DoxyCodeLine{01165\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01166\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ the\ first\ Gauge-\/tensor}}
+\DoxyCodeLine{01167\ \textcolor{comment}{}}
+\DoxyCodeLine{01168\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{01169\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01170\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{01171\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{01172\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{01173\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{01174\ \textcolor{comment}{\ \ \ \ \ \ \ \ N\ :\ double}}
+\DoxyCodeLine{01175\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ time}}
+\DoxyCodeLine{01176\ \textcolor{comment}{}}
+\DoxyCodeLine{01177\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{01178\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01179\ \textcolor{comment}{\ \ \ \ \ \ \ \ Ni\ :\ vector<double>}}
+\DoxyCodeLine{01180\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ first\ Gauge-\/tensor}}
+\DoxyCodeLine{01181\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{01182\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01183\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi=H(f,p);}
+\DoxyCodeLine{01184\ \ \ \ \ \ \ \ \ vector<double>\ dVi;}
+\DoxyCodeLine{01185\ \ \ \ \ \ \ \ \ vector<double>\ Ni(2*nF);}
+\DoxyCodeLine{01186\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ ep=Ep(f,p);}
+\DoxyCodeLine{01187\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{01188\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{01189\ \ \ \ \ \ \ \ \ dVi=pot.dV(f,p);}
+\DoxyCodeLine{01190\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum=0.0;}
+\DoxyCodeLine{01191\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{}
+\DoxyCodeLine{01192\ \ \ \ \ \ \ \ \ \ \ \ \ sum=0.0;}
+\DoxyCodeLine{01193\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ l=0;l<nF;l++)\{}
+\DoxyCodeLine{01194\ \ \ \ \ \ \ \ \ \ \ \ \ sum\ =\ \ sum\ +\ \ FMi[(2*nF)*(l+nF)+i+nF]*f[nF+l];}
+\DoxyCodeLine{01195\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01196\ \ \ \ \ \ \ \ \ \ \ \ \ Ni[i]=-\/1./2.0/Hi/ep*sum;}
+\DoxyCodeLine{01197\ \ \ \ \ \ \ \ \ \ \ \ \ Ni[nF+i]\ =\ 0.\ ;}
+\DoxyCodeLine{01198\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01199\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01200\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01201\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ni;}
+\DoxyCodeLine{01202\ \ \ \ \ \}}
+\DoxyCodeLine{01203\ }
+\DoxyCodeLine{01204\ \ \ \ \ \ \ \ \ \textcolor{comment}{//oooo\ \ \ oooo\ \ ooooooo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ooooooooooo\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{01205\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 8888o\ \ 88\ o88\ \ \ \ \ 888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 88\ \ 888\ \ 88\ ooooooooo8\ oo\ oooooo\ \ \ \ oooooooo8\ \ \ \ ooooooo\ \ oo\ oooooo\ \ \ }}
+\DoxyCodeLine{01206\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 88\ 888o88\ \ \ \ \ \ \ o888\ \ \ \ \ \ \ ooooooooo\ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888oooooo8\ \ \ 888\ \ \ 888\ \ 888ooooooo\ \ 888\ \ \ \ \ 888\ 888\ \ \ \ 888\ }}
+\DoxyCodeLine{01207\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 88\ \ \ 8888\ \ \ \ o888\ \ \ o\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 888\ \ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ \ \ 888\ \ \ \ \ \ \ \ \ \ 888\ 888\ \ \ \ \ 888\ 888\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{01208\ \ \ \ \ \ \ \ \ \textcolor{comment}{//o88o\ \ \ \ 88\ o8888oooo88\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ o888o\ \ \ \ \ 88oooo888\ o888o\ o888o\ 88oooooo88\ \ \ \ 88ooo88\ \ o888o\ \ \ \ \ \ \ }}
+\DoxyCodeLine{01209\ }
+\DoxyCodeLine{01210\ }
+\DoxyCodeLine{01211\ \ \ \ \ \ \textcolor{comment}{//\ Calculates\ the\ N2\_\{IJ\}\ tensor}}
+\DoxyCodeLine{01212\ \ \ \ \ vector<double>\ N2(vector<double>\ f,\ vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\ \textcolor{keywordtype}{double}\ N)}
+\DoxyCodeLine{01213\ \ \ \ \ \{}
+\DoxyCodeLine{01214\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01215\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ function\ returns\ the\ second\ Gauge-\/tensor}}
+\DoxyCodeLine{01216\ \textcolor{comment}{}}
+\DoxyCodeLine{01217\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{01218\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01219\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{01220\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ fields\ values}}
+\DoxyCodeLine{01221\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{01222\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ vector\ with\ the\ parameters\ values}}
+\DoxyCodeLine{01223\ \textcolor{comment}{\ \ \ \ \ \ \ \ k1\ :\ double}}
+\DoxyCodeLine{01224\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ first\ k-\/mode}}
+\DoxyCodeLine{01225\ \textcolor{comment}{\ \ \ \ \ \ \ \ k2\ :\ double}}
+\DoxyCodeLine{01226\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ second\ k-\/mode}}
+\DoxyCodeLine{01227\ \textcolor{comment}{\ \ \ \ \ \ \ \ k3\ :\ double}}
+\DoxyCodeLine{01228\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ third\ k-\/mode}}
+\DoxyCodeLine{01229\ \textcolor{comment}{\ \ \ \ \ \ \ \ N\ :\ double}}
+\DoxyCodeLine{01230\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ time}}
+\DoxyCodeLine{01231\ \textcolor{comment}{}}
+\DoxyCodeLine{01232\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{01233\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{01234\ \textcolor{comment}{\ \ \ \ \ \ \ \ Nii\ :\ vector<double>}}
+\DoxyCodeLine{01235\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ the\ second\ Gauge-\/tensor}}
+\DoxyCodeLine{01236\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{01237\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01238\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hd=Hdot(f,p);}
+\DoxyCodeLine{01239\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hin=H(f,p);}
+\DoxyCodeLine{01240\ \ \ \ \ \ \ \ \ vector<double>\ dVi,\ dVVi;}
+\DoxyCodeLine{01241\ \ \ \ \ \ \ \ \ vector<double>\ Nii(2*nF*2*nF);}
+\DoxyCodeLine{01242\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s\ =\ scale(f,p,N);}
+\DoxyCodeLine{01243\ \ \ \ \ \ \ \ \ dVi=pot.dV(f,p);}
+\DoxyCodeLine{01244\ \ \ \ \ \ \ \ \ dVVi=pot.dVV(f,p);}
+\DoxyCodeLine{01245\ \ \ \ \ \ \ \ \ vector<double>\ fd(nF);}
+\DoxyCodeLine{01246\ \ \ \ \ \ \ \ \ vector<double>\ N11;}
+\DoxyCodeLine{01247\ \ \ \ \ \ \ \ \ N11=\ N1(f,p,N);}
+\DoxyCodeLine{01248\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{01249\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{01250\ \ \ \ \ \ \ \ \ vector<double>\ RMi;}
+\DoxyCodeLine{01251\ \ \ \ \ \ \ \ \ RMi\ =\ fmet.Riemn(f,p);\ }
+\DoxyCodeLine{01252\ \ \ \ \ \ \ \ \ vector<double>\ CHi;}
+\DoxyCodeLine{01253\ \ \ \ \ \ \ \ \ CHi\ =\ fmet.Chroff(f,p);}
+\DoxyCodeLine{01254\ }
+\DoxyCodeLine{01255\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum3\ =\ 0.0;}
+\DoxyCodeLine{01256\ }
+\DoxyCodeLine{01257\ }
+\DoxyCodeLine{01258\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{sum3=sum3+dVi[i]*f[nF+i]/Hin/Hin/Hin;\}}
+\DoxyCodeLine{01259\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01260\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s2=0.0;}
+\DoxyCodeLine{01261\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{s2\ =\ s2\ +\ FMi[(2*nF)*(i+nF)+(j+nF)]*f[nF\ +\ j];\}\ fd[i]=s2;\ s2=0.0;\}}
+\DoxyCodeLine{01262\ }
+\DoxyCodeLine{01263\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ ep\ =\ -\/Hd/Hin/Hin;}
+\DoxyCodeLine{01264\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;\ j<nF;\ j++)\{}
+\DoxyCodeLine{01265\ \ \ \ \ \ \ \ \ Nii[i+(j)*2*nF]=\ 2./ep/Hin/Hin/6.\ *\ (fd[i]*fd[j]\ *(-\/3./2.\ +\ 9./2./ep\ +\ 3./4.*sum3/ep/ep));}
+\DoxyCodeLine{01266\ \ \ \ \ \ \ \ \ Nii[i+(j+nF)*2*nF]=2./ep/Hin/Hin/6.*3./2.*fd[i]*fd[j]/Hin/ep\ /s;}
+\DoxyCodeLine{01267\ \ \ \ \ \ \ \ \ Nii[i+nF+(j)*2*nF]=2./ep/Hin/Hin/6.*3./2.*fd[i]*fd[j]/Hin/ep\ /s;}
+\DoxyCodeLine{01268\ \ \ \ \ \ \ \ \ Nii[i+nF+(j+nF)*2*nF]=0.;}
+\DoxyCodeLine{01269\ \ \ \ \ \ \ \ \ Nii[i+nF+(j)*2*nF]\ =\ Nii[i+nF\ +\ (j)\ *\ 2*nF]\ -\/\ FMi[(2*nF)*(i+nF)+j+nF]*2./ep/Hin/Hin/6.\ *\ 3./2.*Hin/k1/k1*((-\/k2*k2-\/k3*k3+k1*k1)/2.\ +\ k3*k3)\ \ /s;\textcolor{comment}{//\ /a\ ;}}
+\DoxyCodeLine{01270\ \ \ \ \ \ \ \ \ Nii[i+(j+nF)*2*nF]\ =\ Nii[i\ +\ (j+nF)\ *\ 2*nF]\ -\/\ FMi[(2*nF)*(i+nF)+j+nF]*2./ep/Hin/Hin/6.\ *\ 3./2.*Hin/k1/k1*((-\/k2*k2-\/k3*k3+k1*k1)/2.\ +\ k2*k2)\ \ /s;\textcolor{comment}{//\ /a;\}}}
+\DoxyCodeLine{01271\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01272\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01273\ }
+\DoxyCodeLine{01274\ \ \ \ \ \ \ \ \ \}\}}
+\DoxyCodeLine{01275\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01276\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01277\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Nii;}
+\DoxyCodeLine{01279\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01280\ \ \ \ \ \}}
+\DoxyCodeLine{01281\ }
+\DoxyCodeLine{01282\ \};}
+\DoxyCodeLine{01283\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "PyTransport"
+version = "3.0.0"
+authors = [
+  { name="Andrea Costantini", email="a.costantini@qmul.ac.uk" },
+  { name="David Mulryne", email="d.mulryne@qmul.ac.uk" },
+  { name="John Ronayne", email="j.ronayne@qmul.ac.uk" },
+]
+description = "A package to compute inflationary correlators for Multi-field models."
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[tool.setuptools]
+packages = ["PyTransport", "PyTransport.PyTransCpp", "PyTransport.PyTransPy"]
+include-package-data = true
+
+[tool.setuptools.data-files]
+"/etc/PyTransport/PyTransCpp" = ["cppsrc/*.h"]
+
+[tool.setuptools.package-data]
+"PyTransCpp" = [
+    "cppsrc/**/*.h",
+    "cppsrc/**/*.cpp",
+    "cppsrc/**/*.hpp",
+    "cppsrc/**/*.txt",
+    "cppsrc/stepper/*.txt",
+]
+
+"Examples" = [
+    "OtherModel/*.py",
+    "TestModel/*.py",
+    "TestModel/*.png",
+    "TestModel/*.txt",
+]
+
+"Templates" = [
+    "**/*",
+]

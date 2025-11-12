@@ -1,0 +1,104 @@
+\doxysection{Rho1 Class Reference}
+\hypertarget{class_rho1}{}\label{class_rho1}\index{Rho1@{Rho1}}
+
+
+Represents the 2-\/point Multi-\/\+Point Propagator (MPP2) matrix.  
+
+
+
+
+{\ttfamily \#include $<$moments.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_rho1_aa13a9d1a50f049beda300467565a502d}{Rho1}} (int n\+F\+\_\+in, double k\+\_\+in, double Nstart\+\_\+in, vector$<$ double $>$ fields\+\_\+in, vector$<$ double $>$ params\+\_\+in)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_rho1}{Rho1} class. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_rho1_af81b5605d389bb997f6a5fd4071abd40}{getR}} (int i, int j)
+\begin{DoxyCompactList}\small\item\em Retrieves a specific element from the \doxylink{class_rho1}{Rho1} matrix. \end{DoxyCompactList}\item 
+\Hypertarget{class_rho1_a491b7e092c9ab1318e3c862b1e8b50d6}\label{class_rho1_a491b7e092c9ab1318e3c862b1e8b50d6} 
+{\bfseries Rho1} (int n\+Fi, double k1, double N0, vector$<$ double $>$ f, vector$<$ double $>$ p)
+\item 
+\Hypertarget{class_rho1_aecc2878c1df3328c8cf53a78195df977}\label{class_rho1_aecc2878c1df3328c8cf53a78195df977} 
+vector$<$ double $>$ {\bfseries getR} ()
+\item 
+\Hypertarget{class_rho1_af81b5605d389bb997f6a5fd4071abd40}\label{class_rho1_af81b5605d389bb997f6a5fd4071abd40} 
+double {\bfseries getR} (int i, int j)
+\item 
+\Hypertarget{class_rho1_a6520f91ef9af4260c9e3fa0557764ebd}\label{class_rho1_a6520f91ef9af4260c9e3fa0557764ebd} 
+void {\bfseries setR} (int i, int j, double value)
+\item 
+\Hypertarget{class_rho1_a113c2f05df45798dc03f1e01c0f407e4}\label{class_rho1_a113c2f05df45798dc03f1e01c0f407e4} 
+void {\bfseries setR} (vector$<$ double $>$value)
+\item 
+\Hypertarget{class_rho1_af62ea6bdf46fc9d9e329e5ed81d490ff}\label{class_rho1_af62ea6bdf46fc9d9e329e5ed81d490ff} 
+void {\bfseries printR} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the 2-\/point Multi-\/\+Point Propagator (MPP2) matrix. 
+
+Instance of the first MPP matrix.
+
+This class manages the initialization of the MPP2 matrix, which is used in the Multi-\/\+Point Propagator formalism for computing 2-\/point correlation functions. It also computes the evolution matrix {\ttfamily M} for \doxylink{class_rho1}{Rho1}. 
+
+\label{doc-constructors}
+\Hypertarget{class_rho1_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_rho1_aa13a9d1a50f049beda300467565a502d}\index{Rho1@{Rho1}!Rho1@{Rho1}}
+\index{Rho1@{Rho1}!Rho1@{Rho1}}
+\doxysubsubsection{\texorpdfstring{Rho1()}{Rho1()}}
+{\footnotesize\ttfamily \label{class_rho1_aa13a9d1a50f049beda300467565a502d} 
+Rho1\+::\+Rho1 (\begin{DoxyParamCaption}\item[{int}]{n\+F\+\_\+in}{, }\item[{double}]{k\+\_\+in}{, }\item[{double}]{Nstart\+\_\+in}{, }\item[{vector$<$ double $>$}]{fields\+\_\+in}{, }\item[{vector$<$ double $>$}]{params\+\_\+in}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for the \doxylink{class_rho1}{Rho1} class. 
+
+Initializes the \doxylink{class_rho1}{Rho1} matrix (MPP2) at a given starting time, wavenumber, and initial field configuration.
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+F\+\_\+in} & Number of fields. \\
+\hline
+{\em k\+\_\+in} & Wavenumber. \\
+\hline
+{\em Nstart\+\_\+in} & Starting e-\/fold time. \\
+\hline
+{\em fields\+\_\+in} & Initial field values and velocities. \\
+\hline
+{\em params\+\_\+in} & Model parameters. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_rho1_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_rho1_af81b5605d389bb997f6a5fd4071abd40}\index{Rho1@{Rho1}!getR@{getR}}
+\index{getR@{getR}!Rho1@{Rho1}}
+\doxysubsubsection{\texorpdfstring{getR()}{getR()}}
+{\footnotesize\ttfamily \label{class_rho1_af81b5605d389bb997f6a5fd4071abd40} 
+double Rho1\+::getR (\begin{DoxyParamCaption}\item[{int}]{i}{, }\item[{int}]{j}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves a specific element from the \doxylink{class_rho1}{Rho1} matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Row index. \\
+\hline
+{\em j} & Column index. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of \$\+R\+\_\+\{ij\}\$. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/shcos/\+One\+Drive/\+Desktop/\+Py\+Transport3.\+0-\/master/\+Py\+Transport/\+Py\+Trans\+Cpp/cppsrc/\mbox{\hyperlink{moments_8h}{moments.\+h}}\item 
+C\+:/\+Users/shcos/\+One\+Drive/\+Desktop/\+Py\+Transport3.\+0-\/master/\+Py\+Transport/\+Py\+Trans\+Cpp/cppsrc/\+NC/moments.\+h\end{DoxyCompactItemize}

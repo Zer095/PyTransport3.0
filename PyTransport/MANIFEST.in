@@ -1,0 +1,5 @@
+include PyTransCpp/cppsrc/*.h
+include PyTransCpp/cppsrc/nc/*.h
+include PyTransCpp/cppsrc/stepper/*.cpp
+include PyTransCpp/cppsrc/stepper/*.hpp
+include PyTransCpp/cppsrc/stepper/*.txt

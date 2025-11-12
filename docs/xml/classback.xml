@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="classback" kind="class" language="C++" prot="public">
+    <compoundname>back</compoundname>
+    <includes refid="moments_8h" local="no">moments.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classback_1a37ff9a899c7e651c3753184a0eb6972c" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int back::nF</definition>
+        <argsstring></argsstring>
+        <name>nF</name>
+        <qualifiedname>back::nF</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="30" column="9" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="30" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classback_1aaff3a00e34f1dd6a303aae36ffc708ef" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; back::f</definition>
+        <argsstring></argsstring>
+        <name>f</name>
+        <qualifiedname>back::f</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="31" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="31" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classback_1a3066da4a7b73db2ecac303a20ca6119f" prot="private" static="no" mutable="no">
+        <type><ref refid="classfieldmetric" kindref="compound">fieldmetric</ref></type>
+        <definition>fieldmetric back::fmet</definition>
+        <argsstring></argsstring>
+        <name>fmet</name>
+        <qualifiedname>back::fmet</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="37" column="17" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classback_1a093b245d02b5c7658dae22da1e890519" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>back::back</definition>
+        <argsstring>(int nFi, vector&lt; double &gt; f)</argsstring>
+        <name>back</name>
+        <qualifiedname>back::back</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>nFi</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="35" column="5" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="35" bodyend="39"/>
+      </memberdef>
+      <memberdef kind="function" id="classback_1aa10a491cd65468e4626ffb3fcb95d792" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; back::getB</definition>
+        <argsstring>()</argsstring>
+        <name>getB</name>
+        <qualifiedname>back::getB</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="41" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="41" bodyend="44"/>
+      </memberdef>
+      <memberdef kind="function" id="classback_1a6db4a5ec16f03e9a4dd597c789ecf5a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double back::getB</definition>
+        <argsstring>(int i)</argsstring>
+        <name>getB</name>
+        <qualifiedname>back::getB</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="45" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="45" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classback_1aae82317664801c927ce0a8207def2c1d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void back::setB</definition>
+        <argsstring>(int i, double value)</argsstring>
+        <name>setB</name>
+        <qualifiedname>back::setB</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="50" column="10" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="50" bodyend="53"/>
+      </memberdef>
+      <memberdef kind="function" id="classback_1a861305a68758e55fc6dc0df016ff31f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void back::setB</definition>
+        <argsstring>(vector&lt; double &gt; y)</argsstring>
+        <name>setB</name>
+        <qualifiedname>back::setB</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="54" column="10" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="54" bodyend="57"/>
+      </memberdef>
+      <memberdef kind="function" id="classback_1a4369eefc4feb97e15f7734a31e4b810e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void back::printB</definition>
+        <argsstring>()</argsstring>
+        <name>printB</name>
+        <qualifiedname>back::printB</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="59" column="10" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="59" bodyend="63"/>
+      </memberdef>
+      <memberdef kind="function" id="classback_1a093b245d02b5c7658dae22da1e890519" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>back::back</definition>
+        <argsstring>(int nFi, vector&lt; double &gt; f)</argsstring>
+        <name>back</name>
+        <qualifiedname>back::back</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>nFi</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="41" column="1" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="41" bodyend="45"/>
+      </memberdef>
+      <memberdef kind="function" id="classback_1aa10a491cd65468e4626ffb3fcb95d792" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; back::getB</definition>
+        <argsstring>()</argsstring>
+        <name>getB</name>
+        <qualifiedname>back::getB</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="47" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="47" bodyend="50"/>
+      </memberdef>
+      <memberdef kind="function" id="classback_1a6db4a5ec16f03e9a4dd597c789ecf5a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double back::getB</definition>
+        <argsstring>(int i)</argsstring>
+        <name>getB</name>
+        <qualifiedname>back::getB</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="52" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="52" bodyend="55"/>
+      </memberdef>
+      <memberdef kind="function" id="classback_1aae82317664801c927ce0a8207def2c1d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void back::setB</definition>
+        <argsstring>(int i, double value)</argsstring>
+        <name>setB</name>
+        <qualifiedname>back::setB</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="57" column="6" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="57" bodyend="60"/>
+      </memberdef>
+      <memberdef kind="function" id="classback_1a861305a68758e55fc6dc0df016ff31f6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void back::setB</definition>
+        <argsstring>(vector&lt; double &gt; y)</argsstring>
+        <name>setB</name>
+        <qualifiedname>back::setB</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="61" column="6" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="61" bodyend="64"/>
+      </memberdef>
+      <memberdef kind="function" id="classback_1a4369eefc4feb97e15f7734a31e4b810e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void back::printB</definition>
+        <argsstring>()</argsstring>
+        <name>printB</name>
+        <qualifiedname>back::printB</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="66" column="6" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="66" bodyend="70"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+<para>Implementation of the inflationary background i.e. field and fields&apos; derivatives values. </para>
+    </detaileddescription>
+    <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="27" column="1" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="28" bodyend="64"/>
+    <listofallmembers>
+      <member refid="classback_1a093b245d02b5c7658dae22da1e890519" prot="public" virt="non-virtual"><scope>back</scope><name>back</name></member>
+      <member refid="classback_1a093b245d02b5c7658dae22da1e890519" prot="public" virt="non-virtual"><scope>back</scope><name>back</name></member>
+      <member refid="classback_1aaff3a00e34f1dd6a303aae36ffc708ef" prot="private" virt="non-virtual"><scope>back</scope><name>f</name></member>
+      <member refid="classback_1a3066da4a7b73db2ecac303a20ca6119f" prot="private" virt="non-virtual"><scope>back</scope><name>fmet</name></member>
+      <member refid="classback_1aa10a491cd65468e4626ffb3fcb95d792" prot="public" virt="non-virtual"><scope>back</scope><name>getB</name></member>
+      <member refid="classback_1a6db4a5ec16f03e9a4dd597c789ecf5a5" prot="public" virt="non-virtual"><scope>back</scope><name>getB</name></member>
+      <member refid="classback_1aa10a491cd65468e4626ffb3fcb95d792" prot="public" virt="non-virtual"><scope>back</scope><name>getB</name></member>
+      <member refid="classback_1a6db4a5ec16f03e9a4dd597c789ecf5a5" prot="public" virt="non-virtual"><scope>back</scope><name>getB</name></member>
+      <member refid="classback_1a37ff9a899c7e651c3753184a0eb6972c" prot="private" virt="non-virtual"><scope>back</scope><name>nF</name></member>
+      <member refid="classback_1a4369eefc4feb97e15f7734a31e4b810e" prot="public" virt="non-virtual"><scope>back</scope><name>printB</name></member>
+      <member refid="classback_1a4369eefc4feb97e15f7734a31e4b810e" prot="public" virt="non-virtual"><scope>back</scope><name>printB</name></member>
+      <member refid="classback_1aae82317664801c927ce0a8207def2c1d" prot="public" virt="non-virtual"><scope>back</scope><name>setB</name></member>
+      <member refid="classback_1a861305a68758e55fc6dc0df016ff31f6" prot="public" virt="non-virtual"><scope>back</scope><name>setB</name></member>
+      <member refid="classback_1aae82317664801c927ce0a8207def2c1d" prot="public" virt="non-virtual"><scope>back</scope><name>setB</name></member>
+      <member refid="classback_1a861305a68758e55fc6dc0df016ff31f6" prot="public" virt="non-virtual"><scope>back</scope><name>setB</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

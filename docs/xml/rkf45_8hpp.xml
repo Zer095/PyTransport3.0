@@ -1,0 +1,276 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="rkf45_8hpp" kind="file" language="C++">
+    <compoundname>rkf45.hpp</compoundname>
+    <includedby refid="_py_trans_8cpp" local="yes">C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/PyTrans.cpp</includedby>
+    <includedby refid="rkf45_8cpp" local="yes">C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.cpp</includedby>
+    <invincdepgraph>
+      <node id="2">
+        <label>C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/PyTrans.cpp</label>
+        <link refid="_py_trans_8cpp"/>
+      </node>
+      <node id="1">
+        <label>C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp</label>
+        <link refid="rkf45_8hpp"/>
+        <childnode refid="2" relation="include">
+        </childnode>
+      </node>
+    </invincdepgraph>
+    <sectiondef kind="func">
+      <memberdef kind="function" id="rkf45_8hpp_1a764d529be849adbbb2865d6c886710dc" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double r8_abs</definition>
+        <argsstring>(double x)</argsstring>
+        <name>r8_abs</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" line="1" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.cpp" bodystart="13" bodyend="48" declfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" declline="1" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="rkf45_8hpp_1a61698c70227f179c1e5546d7d30f7d05" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double r8_epsilon</definition>
+        <argsstring>()</argsstring>
+        <name>r8_epsilon</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" line="2" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.cpp" bodystart="51" bodyend="94" declfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" declline="2" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="rkf45_8hpp_1a04c6f0d9d90d4e3afbdae42c1d02c7c5" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void r8_fehl</definition>
+        <argsstring>(void f(double t, double y[], double yp[], double params[]), int neqn, double y[], double t, double h, double yp[], double f1[], double f2[], double f3[], double f4[], double f5[], double s[], double params[])</argsstring>
+        <name>r8_fehl</name>
+        <param>
+          <type>void </type>
+          <declname>f</declname>
+          <array>double t, double y[], double yp[], double params[]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>neqn</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>h</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>yp</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>f1</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>f2</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>f3</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>f4</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>f5</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>s</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>params</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" line="3" column="6" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.cpp" bodystart="97" bodyend="251" declfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" declline="3" declcolumn="6"/>
+      </memberdef>
+      <memberdef kind="function" id="rkf45_8hpp_1add31fc483ea093dc4ed605b9a6b095ba" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double r8_max</definition>
+        <argsstring>(double x, double y)</argsstring>
+        <name>r8_max</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" line="6" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.cpp" bodystart="254" bodyend="289" declfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" declline="6" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="rkf45_8hpp_1a8ae11ffe2d6373fd9ef8ccb641bcbe01" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double r8_min</definition>
+        <argsstring>(double x, double y)</argsstring>
+        <name>r8_min</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" line="7" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.cpp" bodystart="292" bodyend="327" declfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" declline="7" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="rkf45_8hpp_1adb270b82c7391832d2b6b86737e7f0f9" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>int</type>
+        <definition>int r8_rkf45</definition>
+        <argsstring>(void f(double t, double y[], double yp[], double params[]), int neqn, double y[], double yp[], double *t, double tout, double *relerr, double abserr, int flag, double params[])</argsstring>
+        <name>r8_rkf45</name>
+        <param>
+          <type>void </type>
+          <declname>f</declname>
+          <array>double t, double y[], double yp[], double params[]</array>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>neqn</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>y</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>yp</declname>
+          <array>[]</array>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>t</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>tout</declname>
+        </param>
+        <param>
+          <type>double *</type>
+          <declname>relerr</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>abserr</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>flag</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>params</declname>
+          <array>[]</array>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" line="8" column="5" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.cpp" bodystart="330" bodyend="1042" declfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" declline="8" declcolumn="5"/>
+      </memberdef>
+      <memberdef kind="function" id="rkf45_8hpp_1a1420dbaa964dd7d85f6f6536680c252e" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>double</type>
+        <definition>double r8_sign</definition>
+        <argsstring>(double x)</argsstring>
+        <name>r8_sign</name>
+        <param>
+          <type>double</type>
+          <declname>x</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" line="11" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.cpp" bodystart="1045" bodyend="1080" declfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" declline="11" declcolumn="8"/>
+      </memberdef>
+      <memberdef kind="function" id="rkf45_8hpp_1a2219d86aef2195ff323e8349d92abe86" prot="public" static="no" const="no" explicit="no" inline="no" virt="non-virtual">
+        <type>void</type>
+        <definition>void timestamp</definition>
+        <argsstring>()</argsstring>
+        <name>timestamp</name>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" line="13" column="6" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.cpp" bodystart="1083" bodyend="1128" declfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp" declline="13" declcolumn="6"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+    </briefdescription>
+    <detaileddescription>
+    </detaileddescription>
+    <programlisting>
+<codeline lineno="1"><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>r8_abs<sp/>(<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x<sp/>);</highlight></codeline>
+<codeline lineno="2"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>r8_epsilon<sp/>(<sp/>);</highlight></codeline>
+<codeline lineno="3"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>r8_fehl<sp/>(<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>f<sp/>(<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>t,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yp[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>params[]<sp/>),<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>neqn,</highlight></codeline>
+<codeline lineno="4"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>t,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>h,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yp[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f1[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f2[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f3[],<sp/></highlight></codeline>
+<codeline lineno="5"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f4[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>f5[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>s[]<sp/>,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>params[]);</highlight></codeline>
+<codeline lineno="6"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>r8_max<sp/>(<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y<sp/>);</highlight></codeline>
+<codeline lineno="7"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>r8_min<sp/>(<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y<sp/>);</highlight></codeline>
+<codeline lineno="8"><highlight class="normal"></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>r8_rkf45<sp/>(<sp/></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>f<sp/>(<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>t,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yp[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>params[]<sp/>),<sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>neqn,</highlight></codeline>
+<codeline lineno="9"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>y[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>yp[],<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*t,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>tout,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>*relerr,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>abserr,<sp/></highlight></codeline>
+<codeline lineno="10"><highlight class="normal"><sp/><sp/></highlight><highlight class="keywordtype">int</highlight><highlight class="normal"><sp/>flag,<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>params[]<sp/>);</highlight></codeline>
+<codeline lineno="11"><highlight class="normal"></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>r8_sign<sp/>(<sp/></highlight><highlight class="keywordtype">double</highlight><highlight class="normal"><sp/>x<sp/>);</highlight></codeline>
+<codeline lineno="12"><highlight class="normal"></highlight></codeline>
+<codeline lineno="13"><highlight class="normal"></highlight><highlight class="keywordtype">void</highlight><highlight class="normal"><sp/>timestamp<sp/>(<sp/>);</highlight></codeline>
+    </programlisting>
+    <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp"/>
+  </compounddef>
+</doxygen>

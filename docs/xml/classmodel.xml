@@ -1,0 +1,934 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="classmodel" kind="class" language="C++" prot="public">
+    <compoundname>model</compoundname>
+    <includes refid="model_8h" local="no">model.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classmodel_1a92af1aabeb2e5189297ef2ffa839b353" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int model::nF</definition>
+        <argsstring></argsstring>
+        <name>nF</name>
+        <qualifiedname>model::nF</qualifiedname>
+        <briefdescription>
+<para>Number of fields in the model. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/model.h" line="43" column="5" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/model.h" bodystart="43" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmodel_1a2dcb8a68c650c3eb5154f1851050eb17" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int model::nP</definition>
+        <argsstring></argsstring>
+        <name>nP</name>
+        <qualifiedname>model::nP</qualifiedname>
+        <briefdescription>
+<para>Number of parameters defining the potential. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/model.h" line="44" column="5" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/model.h" bodystart="44" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmodel_1ad106254eaa8dd9efc2d5978c2ef81530" prot="private" static="no" mutable="no">
+        <type><ref refid="classpotential" kindref="compound">potential</ref></type>
+        <definition>potential model::pot</definition>
+        <argsstring></argsstring>
+        <name>pot</name>
+        <qualifiedname>model::pot</qualifiedname>
+        <briefdescription>
+<para>Instance of the potential class, defining the model&apos;s potential. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/model.h" line="45" column="11" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/model.h" bodystart="45" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classmodel_1a5d10ab68fe8fd986a7ec93e2f715d770" prot="private" static="no" mutable="no">
+        <type><ref refid="classfieldmetric" kindref="compound">fieldmetric</ref></type>
+        <definition>fieldmetric model::fmet</definition>
+        <argsstring></argsstring>
+        <name>fmet</name>
+        <qualifiedname>model::fmet</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="37" column="17" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="37" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classmodel_1a89150458364164cfaf05f700365c1416" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>model::model</definition>
+        <argsstring>()</argsstring>
+        <name>model</name>
+        <qualifiedname>model::model</qualifiedname>
+        <briefdescription>
+<para>Constructor for the model class. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the model by setting the number of fields (<computeroutput>nF</computeroutput>) and parameters (<computeroutput>nP</computeroutput>) based on the default <computeroutput>potential</computeroutput> object. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/model.h" line="54" column="1" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/model.h" bodystart="54" bodyend="62"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a04f64273ec4fd6e19ca2189aeb90a8b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int model::getnF</definition>
+        <argsstring>()</argsstring>
+        <name>getnF</name>
+        <qualifiedname>model::getnF</qualifiedname>
+        <briefdescription>
+<para>Returns the number of fields (<computeroutput>nF</computeroutput>) in the current model. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>An integer representing the number of fields. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/model.h" line="68" column="9" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/model.h" bodystart="68" bodyend="71"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a8d4c4182198242b1fd50808edfbe578f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int model::getnP</definition>
+        <argsstring>()</argsstring>
+        <name>getnP</name>
+        <qualifiedname>model::getnP</qualifiedname>
+        <briefdescription>
+<para>Returns the number of parameters (<computeroutput>nP</computeroutput>) for the current model&apos;s potential. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><simplesect kind="return"><para>An integer representing the number of parameters. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/model.h" line="77" column="9" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/model.h" bodystart="77" bodyend="80"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a89150458364164cfaf05f700365c1416" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>model::model</definition>
+        <argsstring>()</argsstring>
+        <name>model</name>
+        <qualifiedname>model::model</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="41" column="1" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="41" bodyend="48"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1ac0682e228495ea313102ff73ab534c23" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double model::H</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>H</name>
+        <qualifiedname>model::H</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="51" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="51" bodyend="89"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a871f041dd75f608905f062dbe15d4c9a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double model::Hdot</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>Hdot</name>
+        <qualifiedname>model::Hdot</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="92" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="92" bodyend="122"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a8d5c6cd783a2c46ea481af0fd954a500" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double model::addot</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>addot</name>
+        <qualifiedname>model::addot</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="124" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="124" bodyend="158"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1ab3f76d13d9725833e4f4f6aace4d9c95" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double model::Ep</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>Ep</name>
+        <qualifiedname>model::Ep</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="160" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="160" bodyend="192"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a6cb5d217e9403c9a2cedef537cca5924" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double model::Eta</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>Eta</name>
+        <qualifiedname>model::Eta</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="195" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="195" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a04f64273ec4fd6e19ca2189aeb90a8b0" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int model::getnF</definition>
+        <argsstring>()</argsstring>
+        <name>getnF</name>
+        <qualifiedname>model::getnF</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="226" column="9" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="226" bodyend="229"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a8d4c4182198242b1fd50808edfbe578f" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>int</type>
+        <definition>int model::getnP</definition>
+        <argsstring>()</argsstring>
+        <name>getnP</name>
+        <qualifiedname>model::getnP</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="232" column="9" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="232" bodyend="235"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a8d11ec979047d57508dc7a9cce5e9c71" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double model::scale</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double N)</argsstring>
+        <name>scale</name>
+        <qualifiedname>model::scale</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="238" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="238" bodyend="264"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a04a6ba1942b186f29c31fe34c46fd25d" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double model::dscale</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double N)</argsstring>
+        <name>dscale</name>
+        <qualifiedname>model::dscale</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="267" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="267" bodyend="294"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a70187b7f5d99178a51797de24e81cb33" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::u</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>u</name>
+        <qualifiedname>model::u</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="310" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="310" bodyend="363"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1abcfbb5aa64e4679b6aaa5c155aa8fefd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::u</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double N)</argsstring>
+        <name>u</name>
+        <qualifiedname>model::u</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="375" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="375" bodyend="455"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a712380a6eec709a4323af118e29078cd" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::w</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double N)</argsstring>
+        <name>w</name>
+        <qualifiedname>model::w</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>s;</para>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="461" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="461" bodyend="500"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a3adba7172af0a3b523b99547827765c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::Acalcudd</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N)</argsstring>
+        <name>Acalcudd</name>
+        <qualifiedname>model::Acalcudd</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="511" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="511" bodyend="631"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1ad34775b9f936b3db25ec0e957c68ebb6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::AScalcudd</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N)</argsstring>
+        <name>AScalcudd</name>
+        <qualifiedname>model::AScalcudd</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+<para>sum4 is redundant when sum3 is determined, You could optimise this by forming an array instead</para>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="642" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="642" bodyend="758"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a42e224bdf203b15d432f315763a1fee4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::Bcalcudd</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N)</argsstring>
+        <name>Bcalcudd</name>
+        <qualifiedname>model::Bcalcudd</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="767" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="767" bodyend="851"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a67bb7c2211037be192edca6730d2bad6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::Ccalcudd</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N)</argsstring>
+        <name>Ccalcudd</name>
+        <qualifiedname>model::Ccalcudd</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="861" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="861" bodyend="933"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a42c60769cf8d6279537c27d5618e569a" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::Acalcuuu</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N)</argsstring>
+        <name>Acalcuuu</name>
+        <qualifiedname>model::Acalcuuu</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="946" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="946" bodyend="966"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1ad64d1ac8c035e26ea66185fb95f2f888" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::AScalcuuu</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N)</argsstring>
+        <name>AScalcuuu</name>
+        <qualifiedname>model::AScalcuuu</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="969" column="9" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="969" bodyend="989"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a89e63e007cb0ea76e528b9893e31cb65" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::Bcalcuuu</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N)</argsstring>
+        <name>Bcalcuuu</name>
+        <qualifiedname>model::Bcalcuuu</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="992" column="9" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="992" bodyend="1012"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a9f24124fc75365c7c6b038dda9a2f7a6" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::Bcalcddu</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N)</argsstring>
+        <name>Bcalcddu</name>
+        <qualifiedname>model::Bcalcddu</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="1015" column="9" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="1015" bodyend="1035"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1ae22c6911864d8f519f63e12163dce82e" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::Ccalcuuu</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N)</argsstring>
+        <name>Ccalcuuu</name>
+        <qualifiedname>model::Ccalcuuu</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="1038" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="1038" bodyend="1059"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a6608c3027d245c9faf2a5355cfbe30e9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::Ccalcddu</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N)</argsstring>
+        <name>Ccalcddu</name>
+        <qualifiedname>model::Ccalcddu</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="1063" column="9" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="1063" bodyend="1083"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1aef8667827cbb4c49c23740c9f87b1bf9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::u</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N)</argsstring>
+        <name>u</name>
+        <qualifiedname>model::u</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="1094" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="1094" bodyend="1154"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1a52cbafd59bb3759a47a75e53969f2952" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::N1</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double N)</argsstring>
+        <name>N1</name>
+        <qualifiedname>model::N1</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="1163" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="1163" bodyend="1202"/>
+      </memberdef>
+      <memberdef kind="function" id="classmodel_1ab9255ee92c9c6cdbe4da7640be6415a5" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; model::N2</definition>
+        <argsstring>(vector&lt; double &gt; f, vector&lt; double &gt; p, double k1, double k2, double k3, double N)</argsstring>
+        <name>N2</name>
+        <qualifiedname>model::N2</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k2</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k3</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" line="1212" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/model.h" bodystart="1212" bodyend="1280"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents an inflationary model, encapsulating its key physical properties and calculations. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>This class provides methods to compute various cosmological quantities relevant to inflationary models, such as the Hubble parameter, slow-roll parameters, and the flow tensors (u1, u2, u3) and action-related tensors (A, B, C) required by the Transport formalism. It relies on a <computeroutput>potential</computeroutput> object to define the scalar field potential and its derivatives. </para>
+    </detaileddescription>
+    <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/model.h" line="40" column="1" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/model.h" bodystart="41" bodyend="648"/>
+    <listofallmembers>
+      <member refid="classmodel_1a3adba7172af0a3b523b99547827765c1" prot="public" virt="non-virtual"><scope>model</scope><name>Acalcudd</name></member>
+      <member refid="classmodel_1a42c60769cf8d6279537c27d5618e569a" prot="public" virt="non-virtual"><scope>model</scope><name>Acalcuuu</name></member>
+      <member refid="classmodel_1a8d5c6cd783a2c46ea481af0fd954a500" prot="public" virt="non-virtual"><scope>model</scope><name>addot</name></member>
+      <member refid="classmodel_1ad34775b9f936b3db25ec0e957c68ebb6" prot="public" virt="non-virtual"><scope>model</scope><name>AScalcudd</name></member>
+      <member refid="classmodel_1ad64d1ac8c035e26ea66185fb95f2f888" prot="public" virt="non-virtual"><scope>model</scope><name>AScalcuuu</name></member>
+      <member refid="classmodel_1a9f24124fc75365c7c6b038dda9a2f7a6" prot="public" virt="non-virtual"><scope>model</scope><name>Bcalcddu</name></member>
+      <member refid="classmodel_1a42e224bdf203b15d432f315763a1fee4" prot="public" virt="non-virtual"><scope>model</scope><name>Bcalcudd</name></member>
+      <member refid="classmodel_1a89e63e007cb0ea76e528b9893e31cb65" prot="public" virt="non-virtual"><scope>model</scope><name>Bcalcuuu</name></member>
+      <member refid="classmodel_1a6608c3027d245c9faf2a5355cfbe30e9" prot="public" virt="non-virtual"><scope>model</scope><name>Ccalcddu</name></member>
+      <member refid="classmodel_1a67bb7c2211037be192edca6730d2bad6" prot="public" virt="non-virtual"><scope>model</scope><name>Ccalcudd</name></member>
+      <member refid="classmodel_1ae22c6911864d8f519f63e12163dce82e" prot="public" virt="non-virtual"><scope>model</scope><name>Ccalcuuu</name></member>
+      <member refid="classmodel_1a04a6ba1942b186f29c31fe34c46fd25d" prot="public" virt="non-virtual"><scope>model</scope><name>dscale</name></member>
+      <member refid="classmodel_1ab3f76d13d9725833e4f4f6aace4d9c95" prot="public" virt="non-virtual"><scope>model</scope><name>Ep</name></member>
+      <member refid="classmodel_1a6cb5d217e9403c9a2cedef537cca5924" prot="public" virt="non-virtual"><scope>model</scope><name>Eta</name></member>
+      <member refid="classmodel_1a5d10ab68fe8fd986a7ec93e2f715d770" prot="private" virt="non-virtual"><scope>model</scope><name>fmet</name></member>
+      <member refid="classmodel_1a04f64273ec4fd6e19ca2189aeb90a8b0" prot="public" virt="non-virtual"><scope>model</scope><name>getnF</name></member>
+      <member refid="classmodel_1a04f64273ec4fd6e19ca2189aeb90a8b0" prot="public" virt="non-virtual"><scope>model</scope><name>getnF</name></member>
+      <member refid="classmodel_1a8d4c4182198242b1fd50808edfbe578f" prot="public" virt="non-virtual"><scope>model</scope><name>getnP</name></member>
+      <member refid="classmodel_1a8d4c4182198242b1fd50808edfbe578f" prot="public" virt="non-virtual"><scope>model</scope><name>getnP</name></member>
+      <member refid="classmodel_1ac0682e228495ea313102ff73ab534c23" prot="public" virt="non-virtual"><scope>model</scope><name>H</name></member>
+      <member refid="classmodel_1a871f041dd75f608905f062dbe15d4c9a" prot="public" virt="non-virtual"><scope>model</scope><name>Hdot</name></member>
+      <member refid="classmodel_1a89150458364164cfaf05f700365c1416" prot="public" virt="non-virtual"><scope>model</scope><name>model</name></member>
+      <member refid="classmodel_1a89150458364164cfaf05f700365c1416" prot="public" virt="non-virtual"><scope>model</scope><name>model</name></member>
+      <member refid="classmodel_1a52cbafd59bb3759a47a75e53969f2952" prot="public" virt="non-virtual"><scope>model</scope><name>N1</name></member>
+      <member refid="classmodel_1ab9255ee92c9c6cdbe4da7640be6415a5" prot="public" virt="non-virtual"><scope>model</scope><name>N2</name></member>
+      <member refid="classmodel_1a92af1aabeb2e5189297ef2ffa839b353" prot="private" virt="non-virtual"><scope>model</scope><name>nF</name></member>
+      <member refid="classmodel_1a2dcb8a68c650c3eb5154f1851050eb17" prot="private" virt="non-virtual"><scope>model</scope><name>nP</name></member>
+      <member refid="classmodel_1ad106254eaa8dd9efc2d5978c2ef81530" prot="private" virt="non-virtual"><scope>model</scope><name>pot</name></member>
+      <member refid="classmodel_1a8d11ec979047d57508dc7a9cce5e9c71" prot="public" virt="non-virtual"><scope>model</scope><name>scale</name></member>
+      <member refid="classmodel_1a70187b7f5d99178a51797de24e81cb33" prot="public" virt="non-virtual"><scope>model</scope><name>u</name></member>
+      <member refid="classmodel_1abcfbb5aa64e4679b6aaa5c155aa8fefd" prot="public" virt="non-virtual"><scope>model</scope><name>u</name></member>
+      <member refid="classmodel_1aef8667827cbb4c49c23740c9f87b1bf9" prot="public" virt="non-virtual"><scope>model</scope><name>u</name></member>
+      <member refid="classmodel_1a712380a6eec709a4323af118e29078cd" prot="public" virt="non-virtual"><scope>model</scope><name>w</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

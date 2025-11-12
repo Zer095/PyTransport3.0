@@ -1,0 +1,93 @@
+\doxysection{C\+:/\+Users/shcos/\+One\+Drive/\+Desktop/\+Py\+Transport3.0-\/master/\+Py\+Transport/\+Py\+Trans\+Cpp/\+Py\+Trans.cpp File Reference}
+\hypertarget{_py_trans_8cpp}{}\label{_py_trans_8cpp}\index{C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-\/master/PyTransport/PyTransCpp/PyTrans.cpp@{C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-\/master/PyTransport/PyTransCpp/PyTrans.cpp}}
+
+
+Core C++ implementations for the Py\+Transport 3.\+0 module.  
+
+
+{\ttfamily \#include $<$Python.\+h$>$}\newline
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$cstdio$>$}\newline
+{\ttfamily \#include "{}numpy/arrayobject.\+h"{}}\newline
+{\ttfamily \#include "{}numpy/ndarraytypes.\+h"{}}\newline
+{\ttfamily \#include "{}C\+:\textbackslash{}\+Users\textbackslash{}shcos\textbackslash{}\+One\+Drive\textbackslash{}\+Desktop\textbackslash{}\+Py\+Transport3.\+0-\/master\textbackslash{}\+Py\+Transport\textbackslash{}\+Py\+Trans\+Cpp\textbackslash{}cppsrc\textbackslash{}evolve.\+h"{}}\newline
+{\ttfamily \#include "{}C\+:\textbackslash{}\+Users\textbackslash{}shcos\textbackslash{}\+One\+Drive\textbackslash{}\+Desktop\textbackslash{}\+Py\+Transport3.\+0-\/master\textbackslash{}\+Py\+Transport\textbackslash{}\+Py\+Trans\+Cpp\textbackslash{}cppsrc\textbackslash{}moments.\+h"{}}\newline
+{\ttfamily \#include "{}C\+:\textbackslash{}\+Users\textbackslash{}shcos\textbackslash{}\+One\+Drive\textbackslash{}\+Desktop\textbackslash{}\+Py\+Transport3.\+0-\/master\textbackslash{}\+Py\+Transport\textbackslash{}\+Py\+Trans\+Cpp\textbackslash{}cppsrc\textbackslash{}model.\+h"{}}\newline
+{\ttfamily \#include "{}C\+:\textbackslash{}\+Users\textbackslash{}shcos\textbackslash{}\+One\+Drive\textbackslash{}\+Desktop\textbackslash{}\+Py\+Transport3.\+0-\/master\textbackslash{}\+Py\+Transport\textbackslash{}\+Py\+Trans\+Cpp\textbackslash{}cppsrc\textbackslash{}stepper\textbackslash{}rkf45.\+hpp"{}}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$cmath$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include $<$cstdlib$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$algorithm$>$}\newline
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+double \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{_py_trans_8cpp_a2e74afabc8cda4e7d6bbcc43e11ebec7}{pyvector\+\_\+to\+\_\+\+Carray}} (Py\+Array\+Object \texorpdfstring{$\ast$}{*}arrayin)
+\begin{DoxyCompactList}\small\item\em Converts a Num\+Py array object to a C-\/style double array. \end{DoxyCompactList}\item 
+npy\+\_\+intp \mbox{\hyperlink{_py_trans_8cpp_a1c6c636536decdfc1406f62cdf47aebc}{size\+\_\+pyvector}} (Py\+Array\+Object \texorpdfstring{$\ast$}{*}arrayin)
+\begin{DoxyCompactList}\small\item\em Returns the size of the first dimension of a Py\+Array\+Object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Core C++ implementations for the Py\+Transport 3.\+0 module. 
+
+This file defines the C++ functions that are exposed to Python through the Py\+Transport module. It provides the numerical backbone for computing primordial correlators in inflationary cosmology, implementing both the standard Transport formalism and the Multi-\/point propagator (MPP) approach.
+
+\begin{DoxyVersion}{Version}
+3.\+0.\+7 (Corrected Logic and Memory Initialization) 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Andrea Costantini, David Mulryne, John W. Ronayne 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+Sat Aug 02 16\+:03\+:00 2025
+\end{DoxyDate}
+\hypertarget{_py_trans_8cpp_intro}{}\doxysubsection{\texorpdfstring{Introduction}{Introduction}}\label{_py_trans_8cpp_intro}
+Py\+Transport constitutes a straightforward code written in C++ together with Python scripts which automatically edit, compile and run the C++ code as a Python module. It has been written for Unix-\/like systems (OS X and Linux). Py\+Transport relies on the Transport formalism, which implements a differential formalism to compute inflationary correlation functions. It is able to compute tree-\/level correlators for multi-\/field models with canonical and non-\/canonical field space. Along with the standard Transport formalism, Py\+Transport 3.\+0 also implements the Multi-\/point propagator (MPP) approach to inflationary correlators. The MPP approach provides an alternative way to compute two-\/ and three-\/point correlation functions, and related observables, with advantages and limits discussed in related literature. 
+
+\label{doc-func-members}
+\Hypertarget{_py_trans_8cpp_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{_py_trans_8cpp_a2e74afabc8cda4e7d6bbcc43e11ebec7}\index{PyTrans.cpp@{PyTrans.cpp}!pyvector\_to\_Carray@{pyvector\_to\_Carray}}
+\index{pyvector\_to\_Carray@{pyvector\_to\_Carray}!PyTrans.cpp@{PyTrans.cpp}}
+\doxysubsubsection{\texorpdfstring{pyvector\_to\_Carray()}{pyvector\_to\_Carray()}}
+{\footnotesize\ttfamily \label{_py_trans_8cpp_a2e74afabc8cda4e7d6bbcc43e11ebec7} 
+double \texorpdfstring{$\ast$}{*} pyvector\+\_\+to\+\_\+\+Carray (\begin{DoxyParamCaption}\item[{Py\+Array\+Object \texorpdfstring{$\ast$}{*}}]{arrayin}{}\end{DoxyParamCaption})}
+
+
+
+Converts a Num\+Py array object to a C-\/style double array. 
+
+This function provides a pointer to the underlying data of a Py\+Array\+Object, assuming the Py\+Array is contiguous in memory. It allows C++ functions to directly access data passed from Python Num\+Py arrays.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arrayin} & A pointer to the Py\+Array\+Object to be converted. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the C-\/style double array representing the data. 
+\end{DoxyReturn}
+\Hypertarget{_py_trans_8cpp_a1c6c636536decdfc1406f62cdf47aebc}\index{PyTrans.cpp@{PyTrans.cpp}!size\_pyvector@{size\_pyvector}}
+\index{size\_pyvector@{size\_pyvector}!PyTrans.cpp@{PyTrans.cpp}}
+\doxysubsubsection{\texorpdfstring{size\_pyvector()}{size\_pyvector()}}
+{\footnotesize\ttfamily \label{_py_trans_8cpp_a1c6c636536decdfc1406f62cdf47aebc} 
+npy\+\_\+intp size\+\_\+pyvector (\begin{DoxyParamCaption}\item[{Py\+Array\+Object \texorpdfstring{$\ast$}{*}}]{arrayin}{}\end{DoxyParamCaption})}
+
+
+
+Returns the size of the first dimension of a Py\+Array\+Object. 
+
+This function retrieves the size of the leading dimension of a Num\+Py array.
+
+
+\begin{DoxyParams}{Parameters}
+{\em arrayin} & A pointer to the Py\+Array\+Object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An integer representing the size of the first dimension. 
+\end{DoxyReturn}

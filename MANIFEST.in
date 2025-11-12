@@ -1,0 +1,9 @@
+# Include all files recursively in the cppsrc directory
+recursive-include PyTransport/PyTransCpp *.cpp
+recursive-include PyTransport/PyTransCpp/cppsrc *.h 
+recursive-include PyTransport/PyTransCpp/cppsrc/NC *.h 
+recursive-include PyTransport/PyTransCpp *.cpp/stepper *.cpp
+recursive-include PyTransport/PyTransCpp/cppsrc/stepper *.h 
+recursive-include PyTransport/PyTransCpp/cppsrc/stepper *.hpp 
+recursive-include PyTransport/PyTransCpp/cppsrc/stepper *.txt
+

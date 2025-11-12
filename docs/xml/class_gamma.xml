@@ -1,0 +1,406 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="class_gamma" kind="class" language="C++" prot="public">
+    <compoundname>Gamma</compoundname>
+    <includes refid="_n_c_2moments_8h" local="no">moments.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="class_gamma_1afe7b8fa2c568c1d76ccf8d81b5d364aa" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Gamma::nT</definition>
+        <argsstring></argsstring>
+        <name>nT</name>
+        <qualifiedname>Gamma::nT</qualifiedname>
+        <briefdescription>
+<para>Number of tensor modes. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="259" column="9" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="259" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gamma_1ac04e6f249254e3c6f7147ea6c1103542" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Gamma::k</definition>
+        <argsstring></argsstring>
+        <name>k</name>
+        <qualifiedname>Gamma::k</qualifiedname>
+        <briefdescription>
+<para>Wavenumber. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="260" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="260" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gamma_1aa442bdc2af4f53e7294ee308f73afd78" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double Gamma::Nstart</definition>
+        <argsstring></argsstring>
+        <name>Nstart</name>
+        <qualifiedname>Gamma::Nstart</qualifiedname>
+        <briefdescription>
+<para>Starting e-fold time. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="261" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="261" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gamma_1acad77dc77aae741d401d35d72a064803" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; Gamma::fields</definition>
+        <argsstring></argsstring>
+        <name>fields</name>
+        <qualifiedname>Gamma::fields</qualifiedname>
+        <briefdescription>
+<para>Initial field values and velocities. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="262" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="262" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gamma_1a9688b54021ee5977a42e24955e19b039" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; Gamma::params</definition>
+        <argsstring></argsstring>
+        <name>params</name>
+        <qualifiedname>Gamma::params</qualifiedname>
+        <briefdescription>
+<para>Model parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="263" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="263" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gamma_1a337d83d8c60c5c51018b7fd1469d2bc8" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; Gamma::G</definition>
+        <argsstring></argsstring>
+        <name>G</name>
+        <qualifiedname>Gamma::G</qualifiedname>
+        <briefdescription>
+<para>The <ref refid="class_gamma" kindref="compound">Gamma</ref> matrix (flattened 2D array). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="264" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="264" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gamma_1a9c335042c116a08b732d938eb9d05353" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int Gamma::nF</definition>
+        <argsstring></argsstring>
+        <name>nF</name>
+        <qualifiedname>Gamma::nF</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="352" column="5" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="352" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="class_gamma_1a541d2af62812b356aab026adbc00f4f4" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; Gamma::gam</definition>
+        <argsstring></argsstring>
+        <name>gam</name>
+        <qualifiedname>Gamma::gam</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="353" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="353" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="class_gamma_1aeeebdaeedaf36a93281708fa880f1e53" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Gamma::Gamma</definition>
+        <argsstring>(int nT_in, double k_in, double Nstart_in, vector&lt; double &gt; fields_in, vector&lt; double &gt; params_in)</argsstring>
+        <name>Gamma</name>
+        <qualifiedname>Gamma::Gamma</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>nT_in</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k_in</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>Nstart_in</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>fields_in</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>params_in</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for the <ref refid="class_gamma" kindref="compound">Gamma</ref> class. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the <ref refid="class_gamma" kindref="compound">Gamma</ref> matrix (2-point function for tensor perturbations) at a given starting time, wavenumber, and initial field configuration.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nT_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of tensor modes. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Wavenumber. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Nstart_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Starting e-fold time. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fields_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Initial field values and velocities. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>params_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Model parameters. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="279" column="5" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="279" bodyend="317"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gamma_1a55351fe5812b3784cea01ce2cfafe6c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Gamma::getG</definition>
+        <argsstring>(int i, int j)</argsstring>
+        <name>getG</name>
+        <qualifiedname>Gamma::getG</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a specific element from the <ref refid="class_gamma" kindref="compound">Gamma</ref> matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Row index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Column index. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The value of $G_{ij}$. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="325" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="325" bodyend="328"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gamma_1a630a940c1a2d13eac3275a31d178f6db" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>Gamma::Gamma</definition>
+        <argsstring>(int nFi, double k1, double N0, vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>Gamma</name>
+        <qualifiedname>Gamma::Gamma</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>nFi</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N0</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="383" column="1" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="383" bodyend="404"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gamma_1a21bd9d1c6a0a667538dbde2a6ee3bff9" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; Gamma::getG</definition>
+        <argsstring>()</argsstring>
+        <name>getG</name>
+        <qualifiedname>Gamma::getG</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="class_gamma" kindref="compound">Gamma</ref> accessor methods. It takes 0 arguments, and returns the vector gam. It takes 2 integer, it returns the (i,j) element of gam. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="410" column="13" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="410" bodyend="413"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gamma_1a55351fe5812b3784cea01ce2cfafe6c1" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double Gamma::getG</definition>
+        <argsstring>(int i, int j)</argsstring>
+        <name>getG</name>
+        <qualifiedname>Gamma::getG</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="415" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="415" bodyend="418"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gamma_1a32c35815a01a7caa4d71fc8da2b84816" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Gamma::setG</definition>
+        <argsstring>(int i, int j, double value)</argsstring>
+        <name>setG</name>
+        <qualifiedname>Gamma::setG</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para><ref refid="class_gamma" kindref="compound">Gamma</ref> modifier methods. It takes two integer (i,j) and a double (value), sets gam(i,j) = value It takes 1 vector (value), it sets gam = value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="424" column="6" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="424" bodyend="427"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gamma_1ab6b681eaa4d9d4d1d7da813f33ba0382" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Gamma::setG</definition>
+        <argsstring>(vector&lt; double &gt; value)</argsstring>
+        <name>setG</name>
+        <qualifiedname>Gamma::setG</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="429" column="10" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="429" bodyend="432"/>
+      </memberdef>
+      <memberdef kind="function" id="class_gamma_1a6a002b686ff2487a569c6e8d83605f11" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void Gamma::printG</definition>
+        <argsstring>()</argsstring>
+        <name>printG</name>
+        <qualifiedname>Gamma::printG</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="434" column="6" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="434" bodyend="438"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents the 2-point correlation function for tensor perturbations. </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Implementation of the Tensor two-point correlation function.</para>
+<para>This class handles the initialization and provides methods related to the 2-point correlation function for tensor modes, denoted as <ref refid="class_gamma" kindref="compound">Gamma</ref>. </para>
+    </detaileddescription>
+    <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="256" column="1" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="257" bodyend="329"/>
+    <listofallmembers>
+      <member refid="class_gamma_1acad77dc77aae741d401d35d72a064803" prot="private" virt="non-virtual"><scope>Gamma</scope><name>fields</name></member>
+      <member refid="class_gamma_1a337d83d8c60c5c51018b7fd1469d2bc8" prot="private" virt="non-virtual"><scope>Gamma</scope><name>G</name></member>
+      <member refid="class_gamma_1a541d2af62812b356aab026adbc00f4f4" prot="private" virt="non-virtual"><scope>Gamma</scope><name>gam</name></member>
+      <member refid="class_gamma_1aeeebdaeedaf36a93281708fa880f1e53" prot="public" virt="non-virtual"><scope>Gamma</scope><name>Gamma</name></member>
+      <member refid="class_gamma_1a630a940c1a2d13eac3275a31d178f6db" prot="public" virt="non-virtual"><scope>Gamma</scope><name>Gamma</name></member>
+      <member refid="class_gamma_1a55351fe5812b3784cea01ce2cfafe6c1" prot="public" virt="non-virtual"><scope>Gamma</scope><name>getG</name></member>
+      <member refid="class_gamma_1a21bd9d1c6a0a667538dbde2a6ee3bff9" prot="public" virt="non-virtual"><scope>Gamma</scope><name>getG</name></member>
+      <member refid="class_gamma_1a55351fe5812b3784cea01ce2cfafe6c1" prot="public" virt="non-virtual"><scope>Gamma</scope><name>getG</name></member>
+      <member refid="class_gamma_1ac04e6f249254e3c6f7147ea6c1103542" prot="private" virt="non-virtual"><scope>Gamma</scope><name>k</name></member>
+      <member refid="class_gamma_1a9c335042c116a08b732d938eb9d05353" prot="private" virt="non-virtual"><scope>Gamma</scope><name>nF</name></member>
+      <member refid="class_gamma_1aa442bdc2af4f53e7294ee308f73afd78" prot="private" virt="non-virtual"><scope>Gamma</scope><name>Nstart</name></member>
+      <member refid="class_gamma_1afe7b8fa2c568c1d76ccf8d81b5d364aa" prot="private" virt="non-virtual"><scope>Gamma</scope><name>nT</name></member>
+      <member refid="class_gamma_1a9688b54021ee5977a42e24955e19b039" prot="private" virt="non-virtual"><scope>Gamma</scope><name>params</name></member>
+      <member refid="class_gamma_1a6a002b686ff2487a569c6e8d83605f11" prot="public" virt="non-virtual"><scope>Gamma</scope><name>printG</name></member>
+      <member refid="class_gamma_1a32c35815a01a7caa4d71fc8da2b84816" prot="public" virt="non-virtual"><scope>Gamma</scope><name>setG</name></member>
+      <member refid="class_gamma_1ab6b681eaa4d9d4d1d7da813f33ba0382" prot="public" virt="non-virtual"><scope>Gamma</scope><name>setG</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>

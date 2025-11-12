@@ -1,0 +1,842 @@
+\doxysection{moments.\+h}
+\hypertarget{_n_c_2moments_8h_source}{}\label{_n_c_2moments_8h_source}\index{C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-\/master/PyTransport/PyTransCpp/cppsrc/NC/moments.h@{C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-\/master/PyTransport/PyTransCpp/cppsrc/NC/moments.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\#This\ file\ is\ part\ of\ PyTransport.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\#PyTransport\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\#it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\#the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\#(at\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\#PyTransport\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\#but\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\#MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\#GNU\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\#You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\#along\ with\ PyTransport.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ This\ file\ contains\ a\ prototype\ of\ the\ potential.h\ file\ of\ PyTransport\ -\/-\/\ it\ is\ edited\ by\ the\ PyTransScripts\ module}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ back\_H\ \ }\textcolor{comment}{//\ Prevents\ the\ class\ being\ re-\/definFd}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ back\_H\ }}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}model.h"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}../fieldmetric.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00028\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classback}{back}}\ }
+\DoxyCodeLine{00033\ \{\ \ \ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{int}\ nF;}
+\DoxyCodeLine{00036\ \ \ \ \ vector<double>\ f;}
+\DoxyCodeLine{00037\ \ \ \ \ fieldmetric\ fmet;}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//constructor\ for\ background\ store}}
+\DoxyCodeLine{00041\ \ \ \ \ back(\textcolor{keywordtype}{int}\ nFi,\ vector<double>\ f\ )}
+\DoxyCodeLine{00042\ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ nF=nFi;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ f.resize(2*nF);}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//back\ accessor\ methods}}
+\DoxyCodeLine{00047\ \ \ \ \ vector<double>\ getB()}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ f;}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{double}\ getB(\textcolor{keywordtype}{int}\ i)}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ f[i];}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//back\ modifier\ methods}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{void}\ setB(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{double}\ value)}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ f[i]=value;}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ setB(vector<double>\ y)}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ f=y;}
+\DoxyCodeLine{00064\ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{comment}{//print\ back\ to\ screen}}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ printB()}
+\DoxyCodeLine{00067\ \ \ \ \ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<2*nF;i++)\{std::cout\ <<\ f[i]\ <<\ \textcolor{charliteral}{'\(\backslash\)t'};\}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \};}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif\ }}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#ifndef\ sigma\_H\ \ }\textcolor{comment}{//\ Prevents\ the\ class\ being\ re-\/definFd}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ sigma\_H\ }}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#include\ "{}model.h"{}}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00081\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsigma}{sigma}}\ }
+\DoxyCodeLine{00084\ \{\ \ \ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{int}\ nF;}
+\DoxyCodeLine{00087\ \ \ \ \ vector<double>\ sig;}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{double}\ k;}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00093\ \textcolor{comment}{\ \ \ \ \ \ \ \ Constructor\ methods\ for\ Sigma.\ Define\ the\ initial\ conditions\ for\ Sigma\ deep\ inside\ the\ horizon,\ or\ at\ horizon\ crossing.\ }}
+\DoxyCodeLine{00094\ \textcolor{comment}{}}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00096\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00097\ \textcolor{comment}{\ \ \ \ \ \ \ \ nFi\ :\ int}}
+\DoxyCodeLine{00098\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Number\ of\ fields.}}
+\DoxyCodeLine{00099\ \textcolor{comment}{\ \ \ \ \ \ \ \ k1\ :\ double}}
+\DoxyCodeLine{00100\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ k\ mode.\ If\ given,\ it\ returns\ the\ initial\ conditions\ deep\ inside\ the\ horizon.}}
+\DoxyCodeLine{00101\ \textcolor{comment}{\ \ \ \ \ \ \ \ N0\ :\ double}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ initial\ time.}}
+\DoxyCodeLine{00103\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00104\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Values\ of\ the\ background.}}
+\DoxyCodeLine{00105\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00106\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Values\ of\ the\ model's\ parameters}}
+\DoxyCodeLine{00107\ \textcolor{comment}{}}
+\DoxyCodeLine{00108\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00109\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00110\ \textcolor{comment}{\ \ \ \ \ \ \ \ None}}
+\DoxyCodeLine{00111\ \textcolor{comment}{}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ \ \ \ \ \ \ \ Description}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00114\ \textcolor{comment}{}}
+\DoxyCodeLine{00115\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ constructor\ methods\ populates\ the\ Sigma\ class\ with\ initial\ conditions.}}
+\DoxyCodeLine{00116\ \textcolor{comment}{\ \ \ \ \ \ \ \ If\ k1\ is\ given,\ the\ constructor\ computes\ the\ initial\ conditions\ deep\ inside\ the\ horizon.}}
+\DoxyCodeLine{00117\ \textcolor{comment}{\ \ \ \ \ \ \ \ If\ k1\ is\ NOT\ given,\ the\ contructor\ computes\ the\ initial\ conditions\ at\ horizon\ crossing\ (for\ canonical\ light\ fields).}}
+\DoxyCodeLine{00118\ \textcolor{comment}{\ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//constructor\ for\ sig\ deep\ inside\ horizon}}
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{classsigma_a7b31c7d455a1ff770644549258d61017}{sigma}}(\textcolor{keywordtype}{int}\ nFi,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ N0,\ vector<double>\ f,\ vector<double>\ p)}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ nF=nFi;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ k=k1;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ fieldmetric\ fmet;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ model\ m;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ a\ =\ exp(N0);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s\ =\ m.scale(f,p,N0);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ sig.resize(2*nFi*2*nFi);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<2*nFi*2*nFi;i++)\{sig[i]=0.;\}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ Hi=m.H(f,p);}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ ff\ =\ 0.5*Hi*Hi/k\ *\ 1./((a*Hi)*(a*Hi));}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ fp\ =\ -\/ff*Hi*s;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ pp\ =\ ff*k*k/(a*a)*s*s;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<nFi;\ i++)\{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;\ j<nFi;j++)\{\ }
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sig[i\ +\ 2*nFi*j]=FMi[((2*nF)*(i)+j)]*ff;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ nFi;\ i<2*nFi;\ i++)\{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=nFi;\ j<2*nFi;j++)\{\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sig[i\ +\ 2*nFi*j]=FMi[((2*nF)*(i-\/nFi)+j-\/nFi)]*pp;}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<nFi;\ i++)\{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=nFi;\ j<2*nFi;j++)\{\ }
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sig[i\ +\ 2*nFi*(j)]=FMi[((2*nF)*(i)+j-\/nFi)]*fp;\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ nFi;\ i<2*nFi;\ i++)\{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;\ j<nFi;j++)\{\ }
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sig[(i)\ +\ 2*nFi*(j)]=FMi[((2*nF)*(i-\/nFi)+j)]*fp;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{comment}{//constuctor\ for\ sig\ at\ horizon\ crossing\ (for\ canonical\ light\ field)}}
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{classsigma_a7b31c7d455a1ff770644549258d61017}{sigma}}(\textcolor{keywordtype}{int}\ nFi,\ \textcolor{keywordtype}{double}\ N0,\ vector<double>\ f,vector<double>\ p)}
+\DoxyCodeLine{00165\ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ nF=nFi;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ model\ m;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ potential\ pot;}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ fieldmetric\ fmet;}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{comment}{//double\ a\ =\ exp(N0);}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ sig.resize(2*nF*2*nF);}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<2*nFi*2*nFi;i++)\{sig[i]=0.;\}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ Hi=m.H(f,p);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ vector<double>\ dVVi,\ dVi;}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Vi\ ;}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ Vi\ =\ pot.V(f,p);}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ dVi\ =\ pot.dV(f,p);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ dVVi\ =\ pot.dVV(f,p);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{//double\ Hdi\ =\ m.Hdot(f,p);}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ ff\ =\ 0.5*0.5*Hi*Hi/(3.142)/3.142;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<2*nFi*2*nFi;i++)\{sig[i]=0;\}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<nFi;\ i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j\ =\ 0;\ j<nFi;\ j++)\{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i==j)\{sig[i\ +\ 2*nFi*j]=ff;}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ sum1=0;}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nFi;k++)\{\ sum1\ =\ sum1\ +\ (-\/dVVi[i\ +k*nFi]/Vi\ +\ dVi[i]*dVi[i]/Vi/Vi\ );\}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sig[i+nF\ +\ 2*nFi*(j)]\ =\ sum1*ff*Hi;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sig[i+\ 2*nFi*(j+nFi)]\ =\ sum1*ff*Hi;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sig[i+nFi\ +2*nF*(j+nFi)]\ =\ sum1*sum1*ff*Hi*Hi;\}\}\}}
+\DoxyCodeLine{00194\ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ vector<double>\ \ \mbox{\hyperlink{classsigma_a18820558b22066d63ad10b40c9017246}{getS}}()}
+\DoxyCodeLine{00201\ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sig;}
+\DoxyCodeLine{00203\ \ \ \ \ \}}
+\DoxyCodeLine{00204\ \ \ \ \ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classsigma_a18820558b22066d63ad10b40c9017246}{getS}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)}
+\DoxyCodeLine{00206\ \ \ \ \ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sig[i+j*2*nF];}
+\DoxyCodeLine{00208\ \ \ \ \ \}}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsigma_af52f6137ef1924fdc857f2ac65770be4}{setS}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{double}\ value)}
+\DoxyCodeLine{00215\ \ \ \ \ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ sig[i+j*2*nF]=value;}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \ \ }
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsigma_af52f6137ef1924fdc857f2ac65770be4}{setS}}(vector<double>\ value)}
+\DoxyCodeLine{00220\ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ sig=value;}
+\DoxyCodeLine{00222\ \ \ \ \ \}}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{comment}{//print\ sig\ to\ screen}}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordtype}{void}\ printS()}
+\DoxyCodeLine{00225\ \ \ \ \ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<2*nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<2*nF;j++)\ \{std::cout\ <<\ sig[i+j*2*nF]\ <<\ \textcolor{charliteral}{'\(\backslash\)t'};\}\}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00228\ \ \ \ \ \}}
+\DoxyCodeLine{00229\ \};}
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#endif\ }}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#ifndef\ sigmaI\_H\ \ }\textcolor{comment}{//\ Prevents\ the\ class\ being\ re-\/definFd}}
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#define\ sigmaI\_H\ }}
+\DoxyCodeLine{00236\ \textcolor{preprocessor}{\#include\ "{}model.h"{}}}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00238\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00239\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00243\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsigma_i}{sigmaI}}\ }
+\DoxyCodeLine{00244\ \{\ \ \ }
+\DoxyCodeLine{00245\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordtype}{int}\ nF;}
+\DoxyCodeLine{00247\ \ \ \ \ vector<double>\ sigI;}
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordtype}{double}\ k;}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00252\ \textcolor{comment}{\ \ \ \ \ \ \ \ Constructor\ methods\ for\ Sigma.\ Define\ the\ initial\ conditions\ for\ Sigma\ deep\ inside\ the\ horizon.}}
+\DoxyCodeLine{00253\ \textcolor{comment}{}}
+\DoxyCodeLine{00254\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00255\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00256\ \textcolor{comment}{\ \ \ \ \ \ \ \ nFi\ :\ int}}
+\DoxyCodeLine{00257\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Number\ of\ fields.}}
+\DoxyCodeLine{00258\ \textcolor{comment}{\ \ \ \ \ \ \ \ k1\ :\ double}}
+\DoxyCodeLine{00259\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ k\ mode.}}
+\DoxyCodeLine{00260\ \textcolor{comment}{\ \ \ \ \ \ \ \ N0\ :\ double}}
+\DoxyCodeLine{00261\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ initial\ time.}}
+\DoxyCodeLine{00262\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00263\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Values\ of\ the\ background.}}
+\DoxyCodeLine{00264\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00265\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Values\ of\ the\ model's\ parameters}}
+\DoxyCodeLine{00266\ \textcolor{comment}{}}
+\DoxyCodeLine{00267\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00268\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00269\ \textcolor{comment}{\ \ \ \ \ \ \ \ None}}
+\DoxyCodeLine{00270\ \textcolor{comment}{}}
+\DoxyCodeLine{00271\ \textcolor{comment}{\ \ \ \ \ \ \ \ Description}}
+\DoxyCodeLine{00272\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00273\ \textcolor{comment}{}}
+\DoxyCodeLine{00274\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ constructor\ methods\ populates\ the\ Sigma\ class\ with\ initial\ conditions.}}
+\DoxyCodeLine{00275\ \textcolor{comment}{\ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{comment}{//constructor\ for\ sigI}}
+\DoxyCodeLine{00277\ \ \ \ \ \mbox{\hyperlink{classsigma_i_a75c0b62f3fe9668575085b7ee7caed08}{sigmaI}}(\textcolor{keywordtype}{int}\ nFi,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ N0,\ vector<double>\ f,vector<double>\ p)}
+\DoxyCodeLine{00278\ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ nF=nFi;}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ fieldmetric\ fmet;}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi;}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ k=k1;}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ model\ m;}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ a\ =\ exp(N0);}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s=m.scale(f,p,N0);}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ sigI.resize(2*nF*2*nF);}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<2*nFi*2*nFi;i++)\{sigI[i]=0.;\}}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ Hi=m.H(f,p);}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ fpI\ =\ 0.5*Hi*Hi\ *\ 1./(a*Hi)/(a*Hi)/a\ *s;}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<nF;\ i++)\{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j\ =\ 0;\ j<nF;\ j++)\{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sigI[i+(nF+j)*2*nF]\ =\ +FMi[((2*nF)*(i)+j)]*fpI;}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sigI[i+nF+(j)*2*nF]\ =\ -\/FMi[((2*nF)*(i)+j)]*fpI;}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \}\ \ \ }
+\DoxyCodeLine{00302\ \ \ \ \ \}}
+\DoxyCodeLine{00308\ \ \ \ \ vector<double>\ \ \mbox{\hyperlink{classsigma_i_aeaac88ef389106a1083054e5708f292f}{getSI}}()}
+\DoxyCodeLine{00309\ \ \ \ \ \{}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sigI;\ \ \ \ }
+\DoxyCodeLine{00311\ \ \ \ \ \}}
+\DoxyCodeLine{00312\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classsigma_i_a6ef96390370b7cb37053689886b32d4e}{getS}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)}
+\DoxyCodeLine{00313\ \ \ \ \ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ sigI[i+j*2*nF];}
+\DoxyCodeLine{00315\ \ \ \ \ \}}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsigma_i_a5dc7d70868d39714453bc358b1af52b6}{setS}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{double}\ value)}
+\DoxyCodeLine{00322\ \ \ \ \ \{}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ sigI[i+j*2*nF]=value;}
+\DoxyCodeLine{00324\ \ \ \ \ \}}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsigma_i_a5dc7d70868d39714453bc358b1af52b6}{setS}}(vector<double>\ value)}
+\DoxyCodeLine{00326\ \ \ \ \ \{}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ sigI=value;}
+\DoxyCodeLine{00328\ \ \ \ \ \}}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{comment}{//print\ sig\ to\ screen\ }}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keywordtype}{void}\ printS()}
+\DoxyCodeLine{00331\ \ \ \ \ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<2*nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<2*nF;j++)\ \{std::cout\ <<\ sigI[i+j*2*nF]\ <<\ \textcolor{charliteral}{'\(\backslash\)t'};\}\}}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00334\ \ \ \ \ \}}
+\DoxyCodeLine{00335\ \};}
+\DoxyCodeLine{00336\ \textcolor{preprocessor}{\#endif\ }}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{\#ifndef\ Gamma\_H\ \ }\textcolor{comment}{//\ Prevents\ the\ class\ being\ re-\/definFd}}
+\DoxyCodeLine{00341\ \textcolor{preprocessor}{\#define\ Gamma\_H\ }}
+\DoxyCodeLine{00342\ \textcolor{preprocessor}{\#include\ "{}model.h"{}}}
+\DoxyCodeLine{00343\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00344\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00345\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00349\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_gamma}{Gamma}}}
+\DoxyCodeLine{00350\ \{\ \ \ }
+\DoxyCodeLine{00351\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00352\ \ \ \ \ \textcolor{keywordtype}{int}\ nF;}
+\DoxyCodeLine{00353\ \ \ \ \ vector<double>\ gam;}
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keywordtype}{double}\ k;}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00357\ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00358\ \textcolor{comment}{\ \ \ \ \ \ \ \ Constructor\ methods\ for\ Gamma.\ Define\ the\ initial\ conditions\ for\ Gamma\ deep\ inside\ the\ horizon.}}
+\DoxyCodeLine{00359\ \textcolor{comment}{}}
+\DoxyCodeLine{00360\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00361\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00362\ \textcolor{comment}{\ \ \ \ \ \ \ \ nFi\ :\ int}}
+\DoxyCodeLine{00363\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Number\ of\ fields.}}
+\DoxyCodeLine{00364\ \textcolor{comment}{\ \ \ \ \ \ \ \ k1\ :\ double}}
+\DoxyCodeLine{00365\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ k\ mode.}}
+\DoxyCodeLine{00366\ \textcolor{comment}{\ \ \ \ \ \ \ \ N0\ :\ double}}
+\DoxyCodeLine{00367\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ initial\ time.}}
+\DoxyCodeLine{00368\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00369\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Values\ of\ the\ background.}}
+\DoxyCodeLine{00370\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00371\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Values\ of\ the\ model's\ parameters}}
+\DoxyCodeLine{00372\ \textcolor{comment}{}}
+\DoxyCodeLine{00373\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00374\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00375\ \textcolor{comment}{\ \ \ \ \ \ \ \ None}}
+\DoxyCodeLine{00376\ \textcolor{comment}{}}
+\DoxyCodeLine{00377\ \textcolor{comment}{\ \ \ \ \ \ \ \ Description}}
+\DoxyCodeLine{00378\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00379\ \textcolor{comment}{}}
+\DoxyCodeLine{00380\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ constructor\ methods\ populates\ the\ Gamma\ class\ with\ initial\ conditions.}}
+\DoxyCodeLine{00381\ \textcolor{comment}{\ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00382\ \ \ \ \ \textcolor{comment}{//constructor\ for\ gam\ deep\ inside\ horizon}}
+\DoxyCodeLine{00383\ \ \ \ \ \mbox{\hyperlink{class_gamma_aeeebdaeedaf36a93281708fa880f1e53}{Gamma}}(\textcolor{keywordtype}{int}\ nFi,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ N0,\ vector<double>\ f,\ vector<double>\ p)}
+\DoxyCodeLine{00384\ \ \ \ \ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ nT\ =\ 1;}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ k=k1;}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi;}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ model\ m;}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ gam.resize(2*nT*2*nT);}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ a\ =\ exp(N0);}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<2*nT*2*nT;i++)\{gam[i]=0.;\}}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ Hi=m.H(f,p);}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ ff\ =\ 0.5*Hi*Hi/k\ *\ 1./((a*Hi)*(a*Hi));}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ fp\ =\ -\/ff*Hi;}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ pp\ =\ ff*k*k/(a*a);}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ gam[0\ +\ 2*nT*0]=ff;}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ gam[1\ +\ 2*nT*1]=pp;}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ gam[0\ +\ 2*nT*1]=fp;\ }
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ gam[1\ +\ 2*nT*(0)]=fp;}
+\DoxyCodeLine{00404\ \ \ \ \ \}}
+\DoxyCodeLine{00410\ \ \ \ \ vector<double>\ \ \mbox{\hyperlink{class_gamma_a21bd9d1c6a0a667538dbde2a6ee3bff9}{getG}}()}
+\DoxyCodeLine{00411\ \ \ \ \ \{}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ gam;}
+\DoxyCodeLine{00413\ \ \ \ \ \}}
+\DoxyCodeLine{00414\ \ \ \ \ }
+\DoxyCodeLine{00415\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_gamma_a21bd9d1c6a0a667538dbde2a6ee3bff9}{getG}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)}
+\DoxyCodeLine{00416\ \ \ \ \ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ gam[i+j*2];}
+\DoxyCodeLine{00418\ \ \ \ \ \}}
+\DoxyCodeLine{00424\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_gamma_a32c35815a01a7caa4d71fc8da2b84816}{setG}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{double}\ value)}
+\DoxyCodeLine{00425\ \ \ \ \ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ gam[i+j*2]=value;}
+\DoxyCodeLine{00427\ \ \ \ \ \}}
+\DoxyCodeLine{00428\ \ \ \ \ }
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_gamma_a32c35815a01a7caa4d71fc8da2b84816}{setG}}(vector<double>\ value)}
+\DoxyCodeLine{00430\ \ \ \ \ \{}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ gam=value;}
+\DoxyCodeLine{00432\ \ \ \ \ \}}
+\DoxyCodeLine{00433\ \ \ \ \ \textcolor{comment}{//print\ gam\ to\ screen}}
+\DoxyCodeLine{00434\ \ \ \ \ \textcolor{keywordtype}{void}\ printG()}
+\DoxyCodeLine{00435\ \ \ \ \ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<2;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<2;j++)\ \{std::cout\ <<\ gam[i+j*2]\ <<\ \textcolor{charliteral}{'\(\backslash\)t'};\}\}}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00438\ \ \ \ \ \}}
+\DoxyCodeLine{00439\ \};}
+\DoxyCodeLine{00440\ \textcolor{preprocessor}{\#endif\ }}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \textcolor{preprocessor}{\#ifndef\ alpha\_H\ \ }\textcolor{comment}{//\ Prevents\ the\ class\ being\ re-\/definFd}}
+\DoxyCodeLine{00445\ \textcolor{preprocessor}{\#define\ alpha\_H\ }}
+\DoxyCodeLine{00446\ \textcolor{preprocessor}{\#include\ "{}model.h"{}}}
+\DoxyCodeLine{00447\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00448\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00449\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00453\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classalpha}{alpha}}}
+\DoxyCodeLine{00454\ \{\ \ \ }
+\DoxyCodeLine{00455\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00456\ \ \ \ \ \textcolor{keywordtype}{int}\ nF;}
+\DoxyCodeLine{00457\ \ \ \ \ vector<double>\ alp;}
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keywordtype}{double}\ k1,\ k2,\ k3;}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00460\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{comment}{/*-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00462\ \textcolor{comment}{\ \ \ \ \ \ \ \ Constructor\ methods\ for\ Alpha.\ Define\ the\ initial\ conditions\ for\ Alpha\ deep\ inside\ the\ horizon.}}
+\DoxyCodeLine{00463\ \textcolor{comment}{}}
+\DoxyCodeLine{00464\ \textcolor{comment}{\ \ \ \ \ \ \ \ Arguments}}
+\DoxyCodeLine{00465\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00466\ \textcolor{comment}{\ \ \ \ \ \ \ \ nFi\ :\ int}}
+\DoxyCodeLine{00467\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Number\ of\ fields.}}
+\DoxyCodeLine{00468\ \textcolor{comment}{\ \ \ \ \ \ \ \ k1\ :\ double}}
+\DoxyCodeLine{00469\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ first\ k\ mode.}}
+\DoxyCodeLine{00470\ \textcolor{comment}{\ \ \ \ \ \ \ \ k2\ :\ double}}
+\DoxyCodeLine{00471\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ second\ k\ mode.}}
+\DoxyCodeLine{00472\ \textcolor{comment}{\ \ \ \ \ \ \ \ k3\ :\ double}}
+\DoxyCodeLine{00473\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Value\ of\ the\ third\ k\ mode.}}
+\DoxyCodeLine{00474\ \textcolor{comment}{\ \ \ \ \ \ \ \ N0\ :\ double}}
+\DoxyCodeLine{00475\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ initial\ time.}}
+\DoxyCodeLine{00476\ \textcolor{comment}{\ \ \ \ \ \ \ \ f\ :\ vector<double>}}
+\DoxyCodeLine{00477\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Values\ of\ the\ background.}}
+\DoxyCodeLine{00478\ \textcolor{comment}{\ \ \ \ \ \ \ \ p\ :\ vector<double>}}
+\DoxyCodeLine{00479\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Values\ of\ the\ model's\ parameters}}
+\DoxyCodeLine{00480\ \textcolor{comment}{}}
+\DoxyCodeLine{00481\ \textcolor{comment}{\ \ \ \ \ \ \ \ Returns}}
+\DoxyCodeLine{00482\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00483\ \textcolor{comment}{\ \ \ \ \ \ \ \ None}}
+\DoxyCodeLine{00484\ \textcolor{comment}{}}
+\DoxyCodeLine{00485\ \textcolor{comment}{\ \ \ \ \ \ \ \ Description}}
+\DoxyCodeLine{00486\ \textcolor{comment}{\ \ \ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00487\ \textcolor{comment}{}}
+\DoxyCodeLine{00488\ \textcolor{comment}{\ \ \ \ \ \ \ \ The\ constructor\ methods\ populates\ the\ Alpha\ class\ with\ initial\ conditions.}}
+\DoxyCodeLine{00489\ \textcolor{comment}{\ \ \ \ \ \ \ \ If\ the\ k\ modes\ aren't\ given,\ the\ constructor\ initialize\ Alpha\ =\ 0.}}
+\DoxyCodeLine{00490\ \textcolor{comment}{\ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/*/}}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00492\ \ \ \ \ \textcolor{comment}{//constructor\ for\ alp\ on\ subhorizon\ scales}}
+\DoxyCodeLine{00493\ \ \ \ \ \mbox{\hyperlink{classalpha_a3b0036415e028f6a1a46fee68e50ced5}{alpha}}(\textcolor{keywordtype}{int}\ nFi,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\ \textcolor{keywordtype}{double}\ N0,\ vector<double>\ f,vector<double>\ p)}
+\DoxyCodeLine{00494\ \ \ \ \ \{}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ vector<double>\ \ fff,\ pff,\ fpf,\ ffp,\ ppf,\ fpp,pfp,ppp;}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ a;}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ nF=nFi;}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ model\ m;}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ s=m.scale(f,p,N0);}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ a\ =\ exp(N0);}
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ fff\ =\ \mbox{\hyperlink{classalpha_acfc2c2b2293cc285d7b52b6192d1697f}{fffCalc}}(f,p,\ k1,\ k2,\ k3,N0);}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ pff\ =\ pffCalc(f,p,k1,k2,k3,N0);}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ fpf\ =\ pffCalc(f,p,k2,k1,k3,N0);}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ ffp\ =\ pffCalc(f,p,k3,k1,k2,N0);}
+\DoxyCodeLine{00507\ }
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ ppf\ =\ ppfCalc(f,p,k1,k2,k3,N0);}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ pfp\ =\ ppfCalc(f,p,k1,k3,k2,N0);}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ fpp\ =\ ppfCalc(f,p,k2,k3,k1,N0);}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ ppp\ =\ pppCalc(f,p,k1,k2,k3,N0);}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00514\ }
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ alp.resize(2*nF*2*nF*2*nF);}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ alp[i\ +\ j*2*nF\ +\ k*2*nF*2*nF]\ =\ fff[i\ +\ j*nF\ +\ k*nF*nF]\ ;}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ alp[nF+i\ +\ j*2*nF\ +\ k*2*nF*2*nF]\ =\ pff[i\ +\ j*nF\ +\ k*nF*nF]/a\ \ \ *s;\textcolor{comment}{//\ *a;}}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ alp[i\ +\ (nF+j)*2*nF\ +\ k*2*nF*2*nF]\ =\ fpf[j\ +\ i*nF\ +\ k*nF*nF]/a\ \ \ *s;\textcolor{comment}{//\ *a;}}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ alp[i\ +\ j*2*nF\ +\ (nF+k)*2*nF*2*nF\ ]\ =\ ffp[k\ +\ i*nF\ +\ j*nF*nF\ ]/a\ \ \ *s;\textcolor{comment}{//\ *a;}}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ alp[i\ +\ (nF+j)*2*nF\ +\ (nF+k)*2*nF*2*nF]\ =\ fpp[j\ +\ k*nF\ +\ i*nF*nF]/a/a\ \ *s*s;\textcolor{comment}{//\ *a*a;}}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ alp[(nF+i)\ +\ (nF+j)*2*nF\ +\ (k)*2*nF*2*nF]\ =\ ppf[i\ +\ j*nF\ +\ k*nF*nF\ ]/a/a\ \ *s*s;\textcolor{comment}{//\ *a*a;}}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ alp[(nF+i)\ +\ (j)*2*nF\ +\ (nF+k)*2*nF*2*nF]\ =\ pfp[i\ +\ k*nF\ +\ j*nF*nF\ ]/a/a\ \ \ *s*s;\textcolor{comment}{//\ *a*a;}}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ alp[(nF+i)\ +\ (nF+j)*2*nF\ +\ (nF+k)*2*nF*2*nF\ ]\ =\ ppp[i\ +\ j*nF\ +\ k*nF*nF\ ]/a/a/a\ \ *s*s*s;\textcolor{comment}{//\ *a*a*a;}}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \ \ \ \ \}}
+\DoxyCodeLine{00530\ \ \ \ \ }
+\DoxyCodeLine{00531\ \ \ \ \ \mbox{\hyperlink{classalpha_a3b0036415e028f6a1a46fee68e50ced5}{alpha}}(\textcolor{keywordtype}{int}\ nFi,\ \textcolor{keywordtype}{double}\ N0,\ vector<double>\ f,vector<double>\ p)}
+\DoxyCodeLine{00532\ \ \ \ \ \{}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ k1=0.;k2=0;k3=3;}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ nF=nFi;}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ alp.resize(2*nF*2*nF*2*nF);}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<2*nF*2*nF*2*nF;i++)\{}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ alp[i]=0;}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00540\ \ \ \ \ \}}
+\DoxyCodeLine{00545\ \ \ \ \ vector<double>\ \mbox{\hyperlink{classalpha_acfc2c2b2293cc285d7b52b6192d1697f}{fffCalc}}(vector<double>\ f,\ vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\ \textcolor{keywordtype}{double}\ N0)}
+\DoxyCodeLine{00546\ \ \ \ \ \{}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \ ks,\ K2;}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ vector<double>\ C123,\ C132,\ C231,\ B123,\ B132,\ B231,\ AS123,\ AS132,\ AS231;}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classfieldmetric}{fieldmetric}}\ fmet;}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classmodel}{model}}\ m;}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ C123\ =\ m.Ccalcuuu(f,p,\ k1,\ k2,\ k3,\ N0);}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ C132\ =\ m.Ccalcuuu(f,p,\ k1,\ k3,\ k2,\ N0);}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ C231\ =\ m.Ccalcuuu(f,p,\ k2,\ k3,\ k1,\ N0);}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ AS123\ =\ m.AScalcuuu(f,\ p,\ k1,\ k2,\ k3,\ N0);}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ AS132\ =\ m.AScalcuuu(f,\ p,\ k1,\ k3,\ k2,\ N0);}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ AS231\ =\ m.AScalcuuu(f,\ p,\ k2,\ k3,\ k1,\ N0);}
+\DoxyCodeLine{00561\ }
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ B123\ =\ m.Bcalcuuu(f,\ p,\ k1,\ k2,\ k3,\ N0);}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ B132\ =\ m.Bcalcuuu(f,\ p,\ k1,\ k3,\ k2,\ N0);}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ B231\ =\ m.Bcalcuuu(f,\ p,\ k2,\ k3,\ k1,\ N0);}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ vector<double>\ fff(nF*nF*nF);}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ Hi=\ m.H(f,p);}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ a\ =exp(N0);}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ ks\ =\ k1\ +\ k2\ +\ k3;}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ K2\ =\ k1*k2\ +\ k1*k3\ +\ k2*k3;}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fff[i+j*nF+k*nF*nF]\ =\ 1./(a*a*a*a)/4.\ /\ (k1*k2*k3)/ks*(-\/C123[i+nF*j+nF*nF*k]*k1*k2\ -\/\ C132[i+nF*k+nF*nF*j]*k1*k3\ -\/\ C231[j+nF*k+nF*nF*i]*k2*k3}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ a*a*AS123[i+nF*j+nF*nF*k]\ +\ a*a*AS132[i+nF*k+nF*nF*j]\ +\ a*a*AS231[j+nF*k+nF*nF*i]}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ a*a*Hi*B123[i+nF*j+nF*nF*k]*((k1+k2)*k3/k1/k2\ -\/\ K2/k1/k2)}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ a*a*Hi*B132[i+nF*k+nF*nF*j]*((k1+k3)*k1/k1/k3\ -\/\ K2/k1/k3)}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ a*a*Hi*B231[j+nF*k+nF*nF*i]*((k2+k3)*k1/k2/k3\ -\/\ K2/k2/k3));\ }
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ fff[i+j*nF+k*nF*nF]\ =\ fff[i+j*nF+k*nF*nF]\ +\ FMi[((2*nF)*(j)+k)]*1./(a*a*a*a)/4./(k1*k2*k3)/ks*f[nF+i]/2./Hi*(-\/k2*k2-\/k3*k3+k1*k1)/2.;}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \ \ \ \ fff[i+j*nF+k*nF*nF]\ =\ fff[i+j*nF+k*nF*nF]\ +\ FMi[((2*nF)*(i)+k)]*1./(a*a*a*a)/4./(k1*k2*k3)/ks*f[nF+j]/2./Hi*(-\/k1*k1-\/k3*k3+k2*k2)/2.;}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \ \ \ \ fff[i+j*nF+k*nF*nF]\ =\ fff[i+j*nF+k*nF*nF]\ +\ FMi[((2*nF)*(i)+j)]*1./(a*a*a*a)/4./(k1*k2*k3)/ks*f[nF+k]/2./Hi*(-\/k1*k1-\/k2*k2+k3*k3)/2.;}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ fff;}
+\DoxyCodeLine{00583\ \ \ \ \ \}}
+\DoxyCodeLine{00584\ }
+\DoxyCodeLine{00585\ \ \ \ \ vector<double>\ pffCalc(vector\ <double>\ f,vector<double>\ p,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\ \textcolor{keywordtype}{double}\ N0)}
+\DoxyCodeLine{00586\ \ \ \ \ \{}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ a,\ Hi,\ ks,\ k3s,\ K2;}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ vector<double>\ pff(nF*nF*nF);}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ vector<double>\ C123,\ C132,\ C231,\ B123,\ B132,\ B231,\ AS123,\ AS132,\ AS231;}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classfieldmetric}{fieldmetric}}\ fmet;}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classmodel}{model}}\ m;}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ C123\ =\ m.Ccalcuuu(f,\ p,\ k1,\ k2,\ k3,\ N0);}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ C132\ =\ m.Ccalcuuu(f,\ p,\ k1,\ k3,\ k2,\ N0);}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ C231\ =\ m.Ccalcuuu(f,\ p,\ k2,\ k3,\ k1,\ N0);}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ B123\ =\ m.Bcalcuuu(f,\ p,\ k1,\ k2,\ k3,\ N0);}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ B132\ =\ m.Bcalcuuu(f,\ p,\ k1,\ k3,\ k2,\ N0);}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ B231\ =\ m.Bcalcuuu(f,\ p,\ k2,\ k3,\ k1,\ N0);}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ AS123\ =\ m.AScalcuuu(f,\ p,\ k1,\ k2,\ k3,\ N0);}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ AS132\ =\ m.AScalcuuu(f,\ p,\ k1,\ k3,\ k2,\ N0);}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ AS231\ =\ m.AScalcuuu(f,\ p,\ k2,\ k3,\ k1,\ N0);}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ Hi=m.H(f,p);}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ a=exp(N0);}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ k3s\ =\ k1*k1*k1\ *\ k2*k2*k2\ *\ k3*k3*k3;}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ ks\ =\ k1\ +\ k2\ +\ k3;}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ K2\ =\ k1*k2\ +\ k1*k3\ +\ k2*k3;}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ pff[i+j*nF+k*nF*nF]\ =\ -\/\ 1./(a*a*a)/4./k3s\ *\ Hi\ *\ (-\/k1*k1*(k2+k3)/ks*\ k1*k2*k3)\ *\ (-\/C123[i+nF*j+nF*nF*k]*k1*k2\ -\/\ C132[i+nF*k+nF*nF*j]*k1*k3\ -\/\ C231[j+nF*k+nF*nF*i]*k2*k3}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ a*a*AS123[i+nF*j+nF*nF*k]\ +\ a*a*AS132[i+nF*k+nF*nF*j]\ +\ a*a*AS231[j+nF*k+nF*nF*i]}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ pff[i+j*nF+k*nF*nF]\ =\ pff[i+j*nF+k*nF*nF]\ -\/\ FMi[((2*nF)*(j)+k)]*1./(a*a*a)/4./k3s\ *\ Hi\ *\ (-\/k1*k1*(k2+k3)/ks*\ k1*k2*k3)\ *\ f[nF+i]/2./Hi*(-\/k2*k2-\/k3*k3+k1*k1)/2.;}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ pff[i+j*nF+k*nF*nF]\ =\ pff[i+j*nF+k*nF*nF]\ -\/\ FMi[((2*nF)*(i)+k)]*1./(a*a*a)/4./k3s\ *\ Hi\ *\ (-\/k1*k1*(k2+k3)/ks*\ k1*k2*k3)\ *\ f[nF+j]/2./Hi*(-\/k1*k1-\/k3*k3+k2*k2)/2.;}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ pff[i+j*nF+k*nF*nF]\ =\ pff[i+j*nF+k*nF*nF]\ -\/\ FMi[((2*nF)*(i)+j)]*1./(a*a*a)/4./k3s\ *\ Hi\ *\ (-\/k1*k1*(k2+k3)/ks*\ k1*k2*k3)\ *\ f[nF+k]/2./Hi*(-\/k1*k1-\/k2*k2+k3*k3)/2.;}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ pff[i+j*nF+k*nF*nF]\ =\ pff[i+j*nF+k*nF*nF]\ -\/\ 1./(a*a*a)/4./k3s\ *\ Hi\ *\ (-\/k1*k1*k2*k3/ks)\ *\ (C123[i+j*nF+k*nF*nF]*k1*k1*k2*k2*(1.+k3/ks)}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ C132[i+k*nF+j*nF*nF]*k1*k1*k3*k3*(1.+k2/ks)}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ C231[j+k*nF+i*nF*nF]*k3*k3*k2*k2*(1.+k1/ks)}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ a*a*AS123[i+nF*j+nF*nF*k]*(K2\ -\/\ k1*k2*k3/ks)}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ a*a*AS132[i+nF*k+nF*nF*j]*(K2\ -\/\ k1*k2*k3/ks)}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ a*a*AS231[j+nF*k+nF*nF*i]*(K2\ -\/\ k1*k2*k3/ks)}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ pff[i+j*nF+k*nF*nF]\ =\ pff[i+j*nF+k*nF*nF]\ -\/\ 1./(a*a*a)/4./k3s\ *\ Hi\ *\ (-\/k1*k1*k2*k3/ks)\ *\ (B123[i+j*nF+k*nF*nF]/Hi*k1*k2*k3*k3}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ B132[i+k*nF+j*nF*nF]/Hi*k1*k3*k2*k2}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ B231[j+k*nF+i*nF*nF]/Hi*k2*k3*k1*k1);}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ pff[i+j*nF+k*nF*nF]\ =\ pff[i+j*nF+k*nF*nF]\ -\/\ FMi[((2*nF)*(j)+k)]*1./(a*a*a)/4./k3s\ *\ Hi\ *\ (-\/k1*k1*k2*k3/ks)\ *\ f[nF+i]/2./Hi*(-\/1.)*(-\/k2*k2-\/k3*k3+k1*k1)/2.*(K2\ +k1*k2*k3/ks);}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ pff[i+j*nF+k*nF*nF]\ =\ pff[i+j*nF+k*nF*nF]\ -\/\ FMi[((2*nF)*(i)+k)]*1./(a*a*a)/4./k3s\ *\ Hi\ *\ (-\/k1*k1*k2*k3/ks)\ *\ f[nF+j]/2./Hi*(-\/1.)*(-\/k1*k1-\/k3*k3+k2*k2)/2.*(K2\ +k1*k2*k3/ks);}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ pff[i+j*nF+k*nF*nF]\ =\ pff[i+j*nF+k*nF*nF]\ -\/\ FMi[((2*nF)*(i)+j)]*1./(a*a*a)/4./k3s\ *\ Hi\ *\ (-\/k1*k1*k2*k3/ks)\ *\ f[nF+k]/2./Hi*(-\/1.)*(-\/k1*k1-\/k2*k2+k3*k3)/2.*(K2\ +k1*k2*k3/ks);}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pff;}
+\DoxyCodeLine{00641\ \ \ \ \ \}}
+\DoxyCodeLine{00642\ \ \ \ \ }
+\DoxyCodeLine{00643\ \ \ \ \ vector<double>\ ppfCalc(vector<double>\ f,vector<double>\ p,\ \ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\textcolor{keywordtype}{double}\ N0)}
+\DoxyCodeLine{00644\ \ \ \ \ \{}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ a,\ H,\ ks,\ k3s;}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ vector<double>\ ppf(nF*nF*nF);}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ vector<double>\ C123,\ C132,\ C231,\ B123,\ B132,\ B231,\ AS123,\ AS132,\ AS231;}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ model\ m;}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ fieldmetric\ fmet;}
+\DoxyCodeLine{00650\ }
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ C123\ =\ m.Ccalcuuu(f,p,\ k1,\ k2,\ k3,\ N0);}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ C132\ =\ m.Ccalcuuu(f,p,\ k1,\ k3,\ k2,\ N0);}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ C231\ =\ m.Ccalcuuu(f,p,\ k2,\ k3,\ k1,\ N0);}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ B123\ =\ m.Bcalcuuu(f,\ p,\ k1,\ k2,\ k3,\ N0);}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ B132\ =\ m.Bcalcuuu(f,\ p,\ k1,\ k3,\ k2,\ N0);}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ B231\ =\ m.Bcalcuuu(f,\ p,\ k2,\ k3,\ k1,\ N0);}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ AS123\ =\ m.AScalcuuu(f,\ p,\ k1,\ k2,\ k3,\ N0);}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ AS132\ =\ m.AScalcuuu(f,\ p,\ k1,\ k3,\ k2,\ N0);}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ AS231\ =\ m.AScalcuuu(f,\ p,\ k2,\ k3,\ k1,\ N0);}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ H=m.H(f,p);}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ a=exp(N0);}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ k3s\ =\ k1*k1*k1\ *\ k2*k2*k2\ *\ k3*k3*k3;}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ ks\ =\ k1\ +\ k2\ +\ k3;}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \ \ \ \ ppf[i+j*nF+k*nF*nF]\ =\ -\/1./(a*a*a*a)/4./k3s\ *\ (k1*k2*k3)*(k1*k2*k3)/ks*k1*k2*(-\/C123[i+j*nF+k*nF*nF]*k1*k2\ -\/\ C132[i+k*nF+j*nF*nF]*k1*k3\ -\/\ C231[j+k*nF+i*nF*nF]*k2*k3}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ a*a*AS123[i+nF*j+nF*nF*k]\ +\ a*a*AS132[i+nF*k+nF*nF*j]\ +\ a*a*AS231[j+nF*k+nF*nF*i]}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ a*a*H*B123[i+nF*j+nF*nF*k]*(k1+k2)*k3/k1/k2}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ a*a*H*B132[i+nF*k+nF*nF*j]*(k1+k3)*k2/k1/k3}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ a*a*H*B231[j+nF*k+nF*nF*i]*(k2+k3)*k1/k2/k3}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ k1*k1*k2*k2*a*a*H*B123[i+nF*j+nF*nF*k]*k1*k2*k3*k3}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ k1*k1*k2*k2*a*a*H*B132[i+nF*k+nF*nF*j]*k1*k3*k2*k2}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ k1*k1*k2*k2*a*a*H*B231[j+nF*k+nF*nF*i]*k2*k3*k1*k1);}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \ \ \ \ ppf[i+j*nF+k*nF*nF]\ =\ ppf[i+j*nF+k*nF*nF]\ -\/\ FMi[((2*nF)*(j)+k)]*1./(a*a*a*a)/4/k3s\ *\ (k1*k2*k3)*(k1*k2*k3)/ks*k1*k2*f[nF+i]/2./H*(-\/k2*k2-\/k3*k3+k1*k1)/2.;}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \ \ \ \ ppf[i+j*nF+k*nF*nF]\ =\ ppf[i+j*nF+k*nF*nF]\ -\/\ FMi[((2*nF)*(i)+k)]*1./(a*a*a*a)/4/k3s\ *\ (k1*k2*k3)*(k1*k2*k3)/ks*k1*k2*f[nF+j]/2./H*(-\/k1*k1-\/k3*k3+k2*k2)/2.;}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \ \ \ \ ppf[i+j*nF+k*nF*nF]\ =\ ppf[i+j*nF+k*nF*nF]\ -\/\ FMi[((2*nF)*(i)+j)]*1./(a*a*a*a)/4/k3s\ *\ (k1*k2*k3)*(k1*k2*k3)/ks*k1*k2*f[nF+k]/2./H*(-\/k1*k1-\/k2*k2+k3*k3)/2.;}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ppf;}
+\DoxyCodeLine{00689\ \ \ \ \ \}}
+\DoxyCodeLine{00690\ \ \ \ \ }
+\DoxyCodeLine{00691\ \ \ \ \ vector<double>\ pppCalc(vector<double>\ f,vector<double>\ p,\ \ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\textcolor{keywordtype}{double}\ N0)}
+\DoxyCodeLine{00692\ \ \ \ \ \{}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ a,\ H,\ ks,\ k3s,\ K2;}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ vector<double>\ ppp(nF*nF*nF);}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ vector<double>\ C123,\ C132,\ C231,\ B123,\ B132,\ B231,\ AS123,\ AS132,\ AS231;}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ model\ m;}
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ fieldmetric\ fmet;}
+\DoxyCodeLine{00699\ }
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ vector<double>\ FMi;}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ FMi\ =\ fmet.fmetric(f,p);}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ C123\ =\ m.Ccalcuuu(f,p,\ k1,\ k2,\ k3,\ N0);}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ C132\ =\ m.Ccalcuuu(f,p,\ k1,\ k3,\ k2,\ N0);}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ C231\ =\ m.Ccalcuuu(f,p,\ k2,\ k3,\ k1,\ N0);}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ B123\ =\ m.Bcalcuuu(f,p,\ k1,\ k2,\ k3,\ N0);}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ B132\ =\ m.Bcalcuuu(f,p,\ k1,\ k3,\ k2,\ N0);}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ B231\ =\ m.Bcalcuuu(f,p,\ k2,\ k3,\ k1,\ N0);}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ AS123\ =\ m.AScalcuuu(f,\ p,\ k1,\ k2,\ k3,\ N0);}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ AS132\ =\ m.AScalcuuu(f,\ p,\ k1,\ k3,\ k2,\ N0);}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ AS231\ =\ m.AScalcuuu(f,\ p,\ k2,\ k3,\ k1,\ N0);}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ H=m.H(f,p);}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ a=exp(N0);}
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ k3s\ =\ k1*k1*k1\ *\ k2*k2*k2\ *\ k3*k3*k3;}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ ks\ =\ k1\ +\ k2\ +\ k3;}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ K2\ =\ k1*k2\ +\ k1*k3\ +\ k2*k3;}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<nF;k++)\{}
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ \ \ \ \ ppp[i+j*nF+k*nF*nF]\ =\ -\/\ 1./(a*a*a)/4./k3s\ *\ H\ *\ (k1*k1*k2*k2*k3*k3)/ks\ \ *\ (C123[i+j*nF+k*nF*nF]*k1*k1*k2*k2*(1.+k3/ks)}
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ C132[i+k*nF+j*nF*nF]*k1*k1*k3*k3*(1.+k2/ks)}
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ C231[j+k*nF+i*nF*nF\ ]*k3*k3*k2*k2*(1.+k1/ks)}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ a*a*AS123[i+nF*j+nF*nF*k]*(K2\ -\/\ k1*k2*k3/ks)}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ a*a*AS132[i+nF*k+nF*nF*j]*(K2\ -\/\ k1*k2*k3/ks)}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ a*a*AS231[j+nF*k+nF*nF*i]*(K2\ -\/\ k1*k2*k3/ks)}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \ \ \ \ ppp[i+j*nF+k*nF*nF\ ]\ =\ ppp[i+j*nF+k*nF*nF]\ -\/\ 1./(a*a*a)/4./k3s\ *\ H\ *\ (k1*k1*k2*k2*k3*k3)/ks\ *\ (B123[i+j*nF+k*nF*nF]/H*k1*k2*k3*k3}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ B132[i+k*nF+j*nF*nF]/H*k1*k3*k2*k2}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ B231[j+k*nF+i*nF*nF]/H*k2*k3*k1*k1);}
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ \ \ \ \ ppp[i+j*nF+k*nF*nF]\ =\ ppp[i+j*nF+k*nF*nF]\ -\/\ FMi[((2*nF)*(j)+k)]*1./(a*a*a)/4./k3s\ *\ H\ *\ (k1*k1*k2*k2*k3*k3)/ks\ *\ f[nF+i]/2./H*(-\/1.)*(-\/k2*k2-\/k3*k3+k1*k1)/2.*(K2\ +k1*k2*k3/ks);}
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \ \ \ \ ppp[i+j*nF+k*nF*nF]\ =\ ppp[i+j*nF+k*nF*nF]\ -\/\ FMi[((2*nF)*(i)+k)]*1./(a*a*a)/4./k3s\ *\ H\ *\ (k1*k1*k2*k2*k3*k3)/ks\ *\ f[nF+j]/2./H*(-\/1.)*(-\/k1*k1-\/k3*k3+k2*k2)/2.*(K2\ +k1*k2*k3/ks);}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \ \ \ \ ppp[i+j*nF+k*nF*nF]\ =\ ppp[i+j*nF+k*nF*nF]\ -\/\ FMi[((2*nF)*(i)+j)]*1./(a*a*a)/4./k3s\ *\ H\ *\ (k1*k1*k2*k2*k3*k3)/ks\ *\ f[nF+k]/2./H*(-\/1.)*(-\/k1*k1-\/k2*k2+k3*k3)/2.*(K2\ +k1*k2*k3/ks);}
+\DoxyCodeLine{00734\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \}\}\}}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ppp;}
+\DoxyCodeLine{00737\ \ \ \ \ \}}
+\DoxyCodeLine{00743\ \ \ \ \ vector<double>\ \mbox{\hyperlink{classalpha_ad4aa41c772608ef464734f148eef2014}{getA}}()}
+\DoxyCodeLine{00744\ \ \ \ \ \{}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ alp;}
+\DoxyCodeLine{00746\ \ \ \ \ \}}
+\DoxyCodeLine{00747\ \ \ \ \ }
+\DoxyCodeLine{00748\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classalpha_ad4aa41c772608ef464734f148eef2014}{getA}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{int}\ k)}
+\DoxyCodeLine{00749\ \ \ \ \ \{}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ alp[i+j*2*nF\ +\ k*2*2*nF*nF];}
+\DoxyCodeLine{00751\ \ \ \ \ \}}
+\DoxyCodeLine{00757\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classalpha_a2f80f3aac9cdfcb745f429a819d9cf03}{setA}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{int}\ k,\ \textcolor{keywordtype}{double}\ value)}
+\DoxyCodeLine{00758\ \ \ \ \ \{}
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ alp[i+j*2*nF\ +\ k*2*2*nF*nF]=value;}
+\DoxyCodeLine{00760\ \ \ \ \ \}}
+\DoxyCodeLine{00761\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classalpha_a2f80f3aac9cdfcb745f429a819d9cf03}{setA}}(vector<double>\ value)}
+\DoxyCodeLine{00762\ \ \ \ \ \{}
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ alp=value;}
+\DoxyCodeLine{00764\ \ \ \ \ \}}
+\DoxyCodeLine{00765\ \ \ \ \ \textcolor{comment}{//print\ sig\ to\ screen\ }}
+\DoxyCodeLine{00766\ \ \ \ \ \textcolor{keywordtype}{void}\ printA()}
+\DoxyCodeLine{00767\ \ \ \ \ \{}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<2*nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<2*nF;j++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k=0;k<2*nF;k++)\ \{std::cout\ <<\ alp[i+j*2*nF+k*2*2*nF*nF]\ <<\ \textcolor{charliteral}{'\(\backslash\)t'};\}\}\}}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00770\ \ \ \ \ \}}
+\DoxyCodeLine{00771\ \};}
+\DoxyCodeLine{00772\ \textcolor{preprocessor}{\#endif\ }}
+\DoxyCodeLine{00773\ }
+\DoxyCodeLine{00774\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00775\ }
+\DoxyCodeLine{00776\ \textcolor{preprocessor}{\#ifndef\ Rho\_1\ \ }\textcolor{comment}{//\ Prevents\ the\ class\ being\ re-\/definFd}}
+\DoxyCodeLine{00777\ \textcolor{preprocessor}{\#define\ Rho\_1\ }}
+\DoxyCodeLine{00778\ \textcolor{preprocessor}{\#include\ "{}model.h"{}}}
+\DoxyCodeLine{00779\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00780\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00781\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00785\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_rho1}{Rho1}}\ }
+\DoxyCodeLine{00786\ \{\ \ \ }
+\DoxyCodeLine{00787\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00788\ \ \ \ \ \textcolor{keywordtype}{int}\ nF;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Number\ of\ fields}}
+\DoxyCodeLine{00789\ \ \ \ \ vector<double>\ rho;\ \ \ \textcolor{comment}{//\ Vector\ storing\ elements\ of\ Rho\_ij(N0,N0)}}
+\DoxyCodeLine{00790\ \ \ \ \ \textcolor{keywordtype}{double}\ N0;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initial\ time\ }}
+\DoxyCodeLine{00791\ }
+\DoxyCodeLine{00792\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00793\ \ \ \ \ \textcolor{comment}{//constructor\ for\ rho\ at\ initial\ time\ (it's\ a\ delta\ function)}}
+\DoxyCodeLine{00794\ \ \ \ \ \mbox{\hyperlink{class_rho1_aa13a9d1a50f049beda300467565a502d}{Rho1}}(\textcolor{keywordtype}{int}\ nFi,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ N0,\ vector<double>\ f,\ vector<double>\ p)}
+\DoxyCodeLine{00795\ \ \ \ \ \{}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ nF\ =\ nFi;\ \ }
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ N0\ \ =\ N0;}
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ rho.resize(2*nF*2*nF);}
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ count\ =\ 0\ ;\ }
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 2*nF*2*nF;\ i++)}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \ \ \ \ count\ =\ i\ \%\ (2*nF+1);}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (count\ ==\ 0)\{}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rho[i]\ =\ 1.\ ;}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rho[i]\ =\ 0.\ ;}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00809\ \ \ \ \ \}}
+\DoxyCodeLine{00810\ \ \ \ \ \textcolor{comment}{//Rho1\ accessors}}
+\DoxyCodeLine{00811\ \ \ \ \ vector<double>\ \ \mbox{\hyperlink{class_rho1_af81b5605d389bb997f6a5fd4071abd40}{getR}}()}
+\DoxyCodeLine{00812\ \ \ \ \ \{}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ rho;}
+\DoxyCodeLine{00814\ \ \ \ \ \}}
+\DoxyCodeLine{00815\ \ \ \ \ }
+\DoxyCodeLine{00816\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_rho1_af81b5605d389bb997f6a5fd4071abd40}{getR}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j)}
+\DoxyCodeLine{00817\ \ \ \ \ \{}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ rho[i+j*2*nF];}
+\DoxyCodeLine{00819\ \ \ \ \ \}}
+\DoxyCodeLine{00820\ \ \ \ \ \textcolor{comment}{//Rho1\ modifiers}}
+\DoxyCodeLine{00821\ \ \ \ \ \textcolor{keywordtype}{void}\ setR(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{double}\ value)}
+\DoxyCodeLine{00822\ \ \ \ \ \{}
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ rho[i\ +\ 2*nF*j]\ =\ value;}
+\DoxyCodeLine{00824\ \ \ \ \ \}}
+\DoxyCodeLine{00825\ \ \ \ \ }
+\DoxyCodeLine{00826\ \ \ \ \ \textcolor{keywordtype}{void}\ setR(vector<double>value)}
+\DoxyCodeLine{00827\ \ \ \ \ \{}
+\DoxyCodeLine{00828\ \ \ \ \ \ \ \ \ rho\ =\ value;}
+\DoxyCodeLine{00829\ \ \ \ \ \}}
+\DoxyCodeLine{00830\ \ \ \ \ \textcolor{comment}{//print\ Rho1\ to\ screen}}
+\DoxyCodeLine{00831\ \ \ \ \ \textcolor{keywordtype}{void}\ printR()}
+\DoxyCodeLine{00832\ \ \ \ \ \{}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\ \{std::cout\ <<\ rho[nF*i\ +\ j]\ <<\ \textcolor{charliteral}{'\(\backslash\)t'};\}\}}
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00835\ \ \ \ \ \}}
+\DoxyCodeLine{00836\ \};}
+\DoxyCodeLine{00837\ \textcolor{preprocessor}{\#endif\ }}
+\DoxyCodeLine{00838\ }
+\DoxyCodeLine{00839\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00840\ }
+\DoxyCodeLine{00841\ \textcolor{preprocessor}{\#ifndef\ Rho\_2\ \ }\textcolor{comment}{//\ Prevents\ the\ class\ being\ re-\/definFd}}
+\DoxyCodeLine{00842\ \textcolor{preprocessor}{\#define\ Rho\_2\ }}
+\DoxyCodeLine{00843\ \textcolor{preprocessor}{\#include\ "{}model.h"{}}}
+\DoxyCodeLine{00844\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00845\ \textcolor{preprocessor}{\#include\ <math.h>}}
+\DoxyCodeLine{00846\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00850\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_rho2}{Rho2}}\ }
+\DoxyCodeLine{00851\ \{\ \ \ }
+\DoxyCodeLine{00852\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00853\ \ \ \ \ \textcolor{keywordtype}{int}\ nF;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Number\ of\ fields}}
+\DoxyCodeLine{00854\ \ \ \ \ vector<double>\ rho;\ \ \ \textcolor{comment}{//\ Vector\ storing\ elements\ of\ Rho\_abc(N0,N0)}}
+\DoxyCodeLine{00855\ \ \ \ \ \textcolor{keywordtype}{double}\ N0;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initial\ time\ }}
+\DoxyCodeLine{00856\ }
+\DoxyCodeLine{00857\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00858\ \ \ \ \ \textcolor{comment}{//constructor\ for\ rho\ at\ initial\ time\ (it's\ a\ delta\ function)}}
+\DoxyCodeLine{00859\ \ \ \ \ \mbox{\hyperlink{class_rho2_a2713cc01fec6f4cbf0ca963507eb4944}{Rho2}}(\textcolor{keywordtype}{int}\ nFi,\ \textcolor{keywordtype}{double}\ k1,\ \textcolor{keywordtype}{double}\ k2,\ \textcolor{keywordtype}{double}\ k3,\ \textcolor{keywordtype}{double}\ N0,\ vector<double>\ f,\ vector<double>\ p)}
+\DoxyCodeLine{00860\ \ \ \ \ \{}
+\DoxyCodeLine{00861\ \ \ \ \ \ \ \ \ nF\ =\ nFi;\ \ }
+\DoxyCodeLine{00862\ \ \ \ \ \ \ \ \ N0\ \ =\ N0;}
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ rho.resize(2*nF*2*nF*2*nF);}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 2*nF*2*nF*2*nF;\ i++)}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \ \ \ \ rho[i]\ =\ 0;}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00868\ \ \ \ \ \}}
+\DoxyCodeLine{00869\ \ \ \ \ \textcolor{comment}{//Rho2\ accessors}}
+\DoxyCodeLine{00870\ \ \ \ \ vector<double>\ \ \mbox{\hyperlink{class_rho2_abf4dec7a511dd35bc227c8f1fb3caa7b}{getR}}()}
+\DoxyCodeLine{00871\ \ \ \ \ \{}
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ rho;}
+\DoxyCodeLine{00873\ \ \ \ \ \}}
+\DoxyCodeLine{00874\ \ \ \ \ }
+\DoxyCodeLine{00875\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_rho2_abf4dec7a511dd35bc227c8f1fb3caa7b}{getR}}(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{int}\ k)}
+\DoxyCodeLine{00876\ \ \ \ \ \{}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ rho[i\ +\ 2*nF*j\ +\ 2*nF*2*nF*k];}
+\DoxyCodeLine{00878\ \ \ \ \ \}}
+\DoxyCodeLine{00879\ }
+\DoxyCodeLine{00880\ \ \ \ \ \textcolor{comment}{//Rho2\ modifiers}}
+\DoxyCodeLine{00881\ \ \ \ \ \textcolor{keywordtype}{void}\ setR(\textcolor{keywordtype}{int}\ i,\ \textcolor{keywordtype}{int}\ j,\ \textcolor{keywordtype}{int}\ k,\ \textcolor{keywordtype}{double}\ value)}
+\DoxyCodeLine{00882\ \ \ \ \ \{}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ rho[i\ +\ 2*nF*j\ +\ 2*nF*2*nF*k]=value;}
+\DoxyCodeLine{00884\ \ \ \ \ \}}
+\DoxyCodeLine{00885\ \ \ \ \ }
+\DoxyCodeLine{00886\ \ \ \ \ \textcolor{keywordtype}{void}\ setR(vector<double>\ value)}
+\DoxyCodeLine{00887\ \ \ \ \ \{}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ rho=value;}
+\DoxyCodeLine{00889\ \ \ \ \ \}}
+\DoxyCodeLine{00890\ \ \ \ \ }
+\DoxyCodeLine{00891\ \ \ \ \ \textcolor{comment}{//print\ Rho2\ to\ screen}}
+\DoxyCodeLine{00892\ \ \ \ \ \textcolor{keywordtype}{void}\ printR()}
+\DoxyCodeLine{00893\ \ \ \ \ \{}
+\DoxyCodeLine{00894\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<nF;i++)\{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<nF;j++)\ \{\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ k\ =0;\ i<2*nF;\ k++)\{std::cout\ <<\ rho[nF*i\ +\ j]\ <<\ \textcolor{charliteral}{'\(\backslash\)t'};\}\}\}}
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::endl;}
+\DoxyCodeLine{00896\ \ \ \ \ \}}
+\DoxyCodeLine{00897\ \};}
+\DoxyCodeLine{00898\ \textcolor{preprocessor}{\#endif\ }}
+
+\end{DoxyCode}

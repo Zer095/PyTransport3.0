@@ -1,0 +1,114 @@
+\doxysection{Gamma Class Reference}
+\hypertarget{class_gamma}{}\label{class_gamma}\index{Gamma@{Gamma}}
+
+
+Represents the 2-\/point correlation function for tensor perturbations.  
+
+
+
+
+{\ttfamily \#include $<$moments.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_gamma_aeeebdaeedaf36a93281708fa880f1e53}{Gamma}} (int n\+T\+\_\+in, double k\+\_\+in, double Nstart\+\_\+in, vector$<$ double $>$ fields\+\_\+in, vector$<$ double $>$ params\+\_\+in)
+\begin{DoxyCompactList}\small\item\em Constructor for the \doxylink{class_gamma}{Gamma} class. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_gamma_a55351fe5812b3784cea01ce2cfafe6c1}{getG}} (int i, int j)
+\begin{DoxyCompactList}\small\item\em Retrieves a specific element from the \doxylink{class_gamma}{Gamma} matrix. \end{DoxyCompactList}\item 
+\Hypertarget{class_gamma_a630a940c1a2d13eac3275a31d178f6db}\label{class_gamma_a630a940c1a2d13eac3275a31d178f6db} 
+{\bfseries Gamma} (int n\+Fi, double k1, double N0, vector$<$ double $>$ f, vector$<$ double $>$ p)
+\item 
+vector$<$ double $>$ \mbox{\hyperlink{class_gamma_a21bd9d1c6a0a667538dbde2a6ee3bff9}{getG}} ()
+\item 
+\Hypertarget{class_gamma_a55351fe5812b3784cea01ce2cfafe6c1}\label{class_gamma_a55351fe5812b3784cea01ce2cfafe6c1} 
+double {\bfseries getG} (int i, int j)
+\item 
+void \mbox{\hyperlink{class_gamma_a32c35815a01a7caa4d71fc8da2b84816}{setG}} (int i, int j, double value)
+\item 
+\Hypertarget{class_gamma_ab6b681eaa4d9d4d1d7da813f33ba0382}\label{class_gamma_ab6b681eaa4d9d4d1d7da813f33ba0382} 
+void {\bfseries setG} (vector$<$ double $>$ value)
+\item 
+\Hypertarget{class_gamma_a6a002b686ff2487a569c6e8d83605f11}\label{class_gamma_a6a002b686ff2487a569c6e8d83605f11} 
+void {\bfseries printG} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents the 2-\/point correlation function for tensor perturbations. 
+
+Implementation of the Tensor two-\/point correlation function.
+
+This class handles the initialization and provides methods related to the 2-\/point correlation function for tensor modes, denoted as \doxylink{class_gamma}{Gamma}. 
+
+\label{doc-constructors}
+\Hypertarget{class_gamma_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_gamma_aeeebdaeedaf36a93281708fa880f1e53}\index{Gamma@{Gamma}!Gamma@{Gamma}}
+\index{Gamma@{Gamma}!Gamma@{Gamma}}
+\doxysubsubsection{\texorpdfstring{Gamma()}{Gamma()}}
+{\footnotesize\ttfamily \label{class_gamma_aeeebdaeedaf36a93281708fa880f1e53} 
+Gamma\+::\+Gamma (\begin{DoxyParamCaption}\item[{int}]{n\+T\+\_\+in}{, }\item[{double}]{k\+\_\+in}{, }\item[{double}]{Nstart\+\_\+in}{, }\item[{vector$<$ double $>$}]{fields\+\_\+in}{, }\item[{vector$<$ double $>$}]{params\+\_\+in}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructor for the \doxylink{class_gamma}{Gamma} class. 
+
+Initializes the \doxylink{class_gamma}{Gamma} matrix (2-\/point function for tensor perturbations) at a given starting time, wavenumber, and initial field configuration.
+
+
+\begin{DoxyParams}{Parameters}
+{\em n\+T\+\_\+in} & Number of tensor modes. \\
+\hline
+{\em k\+\_\+in} & Wavenumber. \\
+\hline
+{\em Nstart\+\_\+in} & Starting e-\/fold time. \\
+\hline
+{\em fields\+\_\+in} & Initial field values and velocities. \\
+\hline
+{\em params\+\_\+in} & Model parameters. \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-func-members}
+\Hypertarget{class_gamma_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_gamma_a21bd9d1c6a0a667538dbde2a6ee3bff9}\index{Gamma@{Gamma}!getG@{getG}}
+\index{getG@{getG}!Gamma@{Gamma}}
+\doxysubsubsection{\texorpdfstring{getG()}{getG()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_gamma_a21bd9d1c6a0a667538dbde2a6ee3bff9} 
+vector$<$ double $>$ Gamma\+::getG (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\doxylink{class_gamma}{Gamma} accessor methods. It takes 0 arguments, and returns the vector gam. It takes 2 integer, it returns the (i,j) element of gam. \Hypertarget{class_gamma_a55351fe5812b3784cea01ce2cfafe6c1}\index{Gamma@{Gamma}!getG@{getG}}
+\index{getG@{getG}!Gamma@{Gamma}}
+\doxysubsubsection{\texorpdfstring{getG()}{getG()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_gamma_a55351fe5812b3784cea01ce2cfafe6c1} 
+double Gamma\+::getG (\begin{DoxyParamCaption}\item[{int}]{i}{, }\item[{int}]{j}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retrieves a specific element from the \doxylink{class_gamma}{Gamma} matrix. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & Row index. \\
+\hline
+{\em j} & Column index. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The value of \$\+G\+\_\+\{ij\}\$. 
+\end{DoxyReturn}
+\Hypertarget{class_gamma_a32c35815a01a7caa4d71fc8da2b84816}\index{Gamma@{Gamma}!setG@{setG}}
+\index{setG@{setG}!Gamma@{Gamma}}
+\doxysubsubsection{\texorpdfstring{setG()}{setG()}}
+{\footnotesize\ttfamily \label{class_gamma_a32c35815a01a7caa4d71fc8da2b84816} 
+void Gamma\+::setG (\begin{DoxyParamCaption}\item[{int}]{i}{, }\item[{int}]{j}{, }\item[{double}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\doxylink{class_gamma}{Gamma} modifier methods. It takes two integer (i,j) and a double (value), sets gam(i,j) = value It takes 1 vector (value), it sets gam = value. 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/shcos/\+One\+Drive/\+Desktop/\+Py\+Transport3.\+0-\/master/\+Py\+Transport/\+Py\+Trans\+Cpp/cppsrc/\mbox{\hyperlink{moments_8h}{moments.\+h}}\item 
+C\+:/\+Users/shcos/\+One\+Drive/\+Desktop/\+Py\+Transport3.\+0-\/master/\+Py\+Transport/\+Py\+Trans\+Cpp/cppsrc/\+NC/moments.\+h\end{DoxyCompactItemize}

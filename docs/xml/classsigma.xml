@@ -1,0 +1,422 @@
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<doxygen xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="compound.xsd" version="1.14.0" xml:lang="en-US">
+  <compounddef id="classsigma" kind="class" language="C++" prot="public">
+    <compoundname>sigma</compoundname>
+    <includes refid="moments_8h" local="no">moments.h</includes>
+    <sectiondef kind="private-attrib">
+      <memberdef kind="variable" id="classsigma_1a7316b79d9c448e01a707ac7a7f711459" prot="private" static="no" mutable="no">
+        <type>int</type>
+        <definition>int sigma::nF</definition>
+        <argsstring></argsstring>
+        <name>nF</name>
+        <qualifiedname>sigma::nF</qualifiedname>
+        <briefdescription>
+<para>Number of fields. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="92" column="9" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="92" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsigma_1a41763e1d6aa0c8ff6f8d69cae8d4febd" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sigma::k</definition>
+        <argsstring></argsstring>
+        <name>k</name>
+        <qualifiedname>sigma::k</qualifiedname>
+        <briefdescription>
+<para>Wavenumber for which Sigma is being evolved. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="93" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="93" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsigma_1a2d5321d8e1fce9617bbec598b7133a7d" prot="private" static="no" mutable="no">
+        <type>double</type>
+        <definition>double sigma::Nstart</definition>
+        <argsstring></argsstring>
+        <name>Nstart</name>
+        <qualifiedname>sigma::Nstart</qualifiedname>
+        <briefdescription>
+<para>Starting e-fold time for evolution. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="94" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="94" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsigma_1adede0221ac1ae78dd68fd72a24e1a44b" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; sigma::fields</definition>
+        <argsstring></argsstring>
+        <name>fields</name>
+        <qualifiedname>sigma::fields</qualifiedname>
+        <briefdescription>
+<para>Initial field values and velocities. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="95" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="95" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsigma_1a396757e10b88aa4247c9632ee6e0f0c7" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; sigma::params</definition>
+        <argsstring></argsstring>
+        <name>params</name>
+        <qualifiedname>sigma::params</qualifiedname>
+        <briefdescription>
+<para>Model parameters. </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="96" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="96" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsigma_1a1a7063a8ff795ca95c951849d78ad71c" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; sigma::S</definition>
+        <argsstring></argsstring>
+        <name>S</name>
+        <qualifiedname>sigma::S</qualifiedname>
+        <briefdescription>
+<para>The Sigma matrix (flattened 2D array). </para>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="97" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="97" bodyend="-1"/>
+      </memberdef>
+      <memberdef kind="variable" id="classsigma_1a145b53744b44f4d4c8f26a411387fb47" prot="private" static="no" mutable="no">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt;double&gt; sigma::sig</definition>
+        <argsstring></argsstring>
+        <name>sig</name>
+        <qualifiedname>sigma::sig</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="87" column="8" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="87" bodyend="-1"/>
+      </memberdef>
+    </sectiondef>
+    <sectiondef kind="public-func">
+      <memberdef kind="function" id="classsigma_1a7b31c7d455a1ff770644549258d61017" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sigma::sigma</definition>
+        <argsstring>(int nF_in, double k_in, double Nstart_in, vector&lt; double &gt; fields_in, vector&lt; double &gt; params_in)</argsstring>
+        <name>sigma</name>
+        <qualifiedname>sigma::sigma</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>nF_in</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k_in</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>Nstart_in</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>fields_in</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>params_in</declname>
+        </param>
+        <briefdescription>
+<para>Constructor for the sigma class. </para>
+        </briefdescription>
+        <detaileddescription>
+<para>Initializes the Sigma matrix (2-point function) at a given starting time, wavenumber, and initial field configuration. The initial conditions for Sigma are typically set to Bunch-Davies vacuum.</para>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>nF_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Number of fields. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>k_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Wavenumber. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>Nstart_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Starting e-fold time. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>fields_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Initial field values and velocities. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>params_in</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Model parameters. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="113" column="5" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="113" bodyend="156"/>
+      </memberdef>
+      <memberdef kind="function" id="classsigma_1aaaacb6d70eabbb6372d6b2f855dfaa5c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double sigma::getS</definition>
+        <argsstring>(int i, int j)</argsstring>
+        <name>getS</name>
+        <qualifiedname>sigma::getS</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+<para>Retrieves a specific element from the Sigma matrix. </para>
+        </briefdescription>
+        <detaileddescription>
+<para><parameterlist kind="param"><parameteritem>
+<parameternamelist>
+<parametername>i</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Row index. </para>
+</parameterdescription>
+</parameteritem>
+<parameteritem>
+<parameternamelist>
+<parametername>j</parametername>
+</parameternamelist>
+<parameterdescription>
+<para>Column index. </para>
+</parameterdescription>
+</parameteritem>
+</parameterlist>
+<simplesect kind="return"><para>The value of $S_{ij}$. </para>
+</simplesect>
+</para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="164" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="164" bodyend="167"/>
+      </memberdef>
+      <memberdef kind="function" id="classsigma_1a46d7ec6cb36e98bec96342117517b089" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sigma::sigma</definition>
+        <argsstring>(int nFi, double k1, double N0, vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>sigma</name>
+        <qualifiedname>sigma::sigma</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>nFi</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>k1</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N0</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="121" column="1" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="121" bodyend="162"/>
+      </memberdef>
+      <memberdef kind="function" id="classsigma_1a4962d8e5c19bec21add0bf4726ca4d73" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type></type>
+        <definition>sigma::sigma</definition>
+        <argsstring>(int nFi, double N0, vector&lt; double &gt; f, vector&lt; double &gt; p)</argsstring>
+        <name>sigma</name>
+        <qualifiedname>sigma::sigma</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>nFi</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>N0</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>f</declname>
+        </param>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>p</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="164" column="5" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="164" bodyend="194"/>
+      </memberdef>
+      <memberdef kind="function" id="classsigma_1a18820558b22066d63ad10b40c9017246" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>vector&lt; double &gt;</type>
+        <definition>vector&lt; double &gt; sigma::getS</definition>
+        <argsstring>()</argsstring>
+        <name>getS</name>
+        <qualifiedname>sigma::getS</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sigma accessor methods. It takes 0 arguments, and returns the vector sig. It takes 2 integer, it returns the (i,j) element of sigma. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="200" column="13" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="200" bodyend="203"/>
+      </memberdef>
+      <memberdef kind="function" id="classsigma_1aaaacb6d70eabbb6372d6b2f855dfaa5c" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>double</type>
+        <definition>double sigma::getS</definition>
+        <argsstring>(int i, int j)</argsstring>
+        <name>getS</name>
+        <qualifiedname>sigma::getS</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="205" column="12" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="205" bodyend="208"/>
+      </memberdef>
+      <memberdef kind="function" id="classsigma_1af52f6137ef1924fdc857f2ac65770be4" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void sigma::setS</definition>
+        <argsstring>(int i, int j, double value)</argsstring>
+        <name>setS</name>
+        <qualifiedname>sigma::setS</qualifiedname>
+        <param>
+          <type>int</type>
+          <declname>i</declname>
+        </param>
+        <param>
+          <type>int</type>
+          <declname>j</declname>
+        </param>
+        <param>
+          <type>double</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+<para>Sigma modifier methods. It takes two integer (i,j) and a double (value), sets sig(i,j) = value It takes 1 vector (value), it sets sig = value. </para>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="214" column="6" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="214" bodyend="217"/>
+      </memberdef>
+      <memberdef kind="function" id="classsigma_1aafe6c00e296504e44f0427976f8a2a4b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void sigma::setS</definition>
+        <argsstring>(vector&lt; double &gt; value)</argsstring>
+        <name>setS</name>
+        <qualifiedname>sigma::setS</qualifiedname>
+        <param>
+          <type>vector&lt; double &gt;</type>
+          <declname>value</declname>
+        </param>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="219" column="10" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="219" bodyend="222"/>
+      </memberdef>
+      <memberdef kind="function" id="classsigma_1a3d898dec407df07f9993f42a570e8b7b" prot="public" static="no" const="no" explicit="no" inline="yes" virt="non-virtual">
+        <type>void</type>
+        <definition>void sigma::printS</definition>
+        <argsstring>()</argsstring>
+        <name>printS</name>
+        <qualifiedname>sigma::printS</qualifiedname>
+        <briefdescription>
+        </briefdescription>
+        <detaileddescription>
+        </detaileddescription>
+        <inbodydescription>
+        </inbodydescription>
+        <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" line="224" column="6" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/NC/moments.h" bodystart="224" bodyend="228"/>
+      </memberdef>
+    </sectiondef>
+    <briefdescription>
+<para>Represents the 2-point correlation function for scalar perturbations (Sigma). </para>
+    </briefdescription>
+    <detaileddescription>
+<para>Implementation of the REAL phase-space two-point correlation function.</para>
+<para>This class handles the initialization of the 2-point correlation function (Sigma) for a given wavenumber <computeroutput>k</computeroutput> and sets up the initial conditions for its evolution based on the background fields and parameters. It also computes the evolution matrix <computeroutput>M</computeroutput> for Sigma. </para>
+    </detaileddescription>
+    <location file="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" line="89" column="1" bodyfile="C:/Users/shcos/OneDrive/Desktop/PyTransport3.0-master/PyTransport/PyTransCpp/cppsrc/moments.h" bodystart="90" bodyend="168"/>
+    <listofallmembers>
+      <member refid="classsigma_1adede0221ac1ae78dd68fd72a24e1a44b" prot="private" virt="non-virtual"><scope>sigma</scope><name>fields</name></member>
+      <member refid="classsigma_1aaaacb6d70eabbb6372d6b2f855dfaa5c" prot="public" virt="non-virtual"><scope>sigma</scope><name>getS</name></member>
+      <member refid="classsigma_1a18820558b22066d63ad10b40c9017246" prot="public" virt="non-virtual"><scope>sigma</scope><name>getS</name></member>
+      <member refid="classsigma_1aaaacb6d70eabbb6372d6b2f855dfaa5c" prot="public" virt="non-virtual"><scope>sigma</scope><name>getS</name></member>
+      <member refid="classsigma_1a41763e1d6aa0c8ff6f8d69cae8d4febd" prot="private" virt="non-virtual"><scope>sigma</scope><name>k</name></member>
+      <member refid="classsigma_1a7316b79d9c448e01a707ac7a7f711459" prot="private" virt="non-virtual"><scope>sigma</scope><name>nF</name></member>
+      <member refid="classsigma_1a2d5321d8e1fce9617bbec598b7133a7d" prot="private" virt="non-virtual"><scope>sigma</scope><name>Nstart</name></member>
+      <member refid="classsigma_1a396757e10b88aa4247c9632ee6e0f0c7" prot="private" virt="non-virtual"><scope>sigma</scope><name>params</name></member>
+      <member refid="classsigma_1a3d898dec407df07f9993f42a570e8b7b" prot="public" virt="non-virtual"><scope>sigma</scope><name>printS</name></member>
+      <member refid="classsigma_1a1a7063a8ff795ca95c951849d78ad71c" prot="private" virt="non-virtual"><scope>sigma</scope><name>S</name></member>
+      <member refid="classsigma_1af52f6137ef1924fdc857f2ac65770be4" prot="public" virt="non-virtual"><scope>sigma</scope><name>setS</name></member>
+      <member refid="classsigma_1aafe6c00e296504e44f0427976f8a2a4b" prot="public" virt="non-virtual"><scope>sigma</scope><name>setS</name></member>
+      <member refid="classsigma_1a145b53744b44f4d4c8f26a411387fb47" prot="private" virt="non-virtual"><scope>sigma</scope><name>sig</name></member>
+      <member refid="classsigma_1a7b31c7d455a1ff770644549258d61017" prot="public" virt="non-virtual"><scope>sigma</scope><name>sigma</name></member>
+      <member refid="classsigma_1a46d7ec6cb36e98bec96342117517b089" prot="public" virt="non-virtual"><scope>sigma</scope><name>sigma</name></member>
+      <member refid="classsigma_1a4962d8e5c19bec21add0bf4726ca4d73" prot="public" virt="non-virtual"><scope>sigma</scope><name>sigma</name></member>
+    </listofallmembers>
+  </compounddef>
+</doxygen>
