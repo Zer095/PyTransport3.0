@@ -12,7 +12,8 @@
  * @see http://www.gnu.org/licenses/
  */
 
-#ifndef back_H  // Prevents the class being re-defined
+
+#ifndef back_H  // Prevents the class being re-definFd
 #define back_H 
 #include "model.h"
 #include <iostream>
@@ -20,51 +21,51 @@
 #include <cmath>
 #include <vector>
 using namespace std;
-/**
- * Implementation of the inflationary background i.e. field and fields' derivatives values.
- */
 
 class back 
-{   
+{	
 private:
-    int nF;             // Number of fields
-    vector<double> f;   // Vector storing values of fields and fields' derivatives
+	int nF;
+	vector<double> f;
     
 public:
-    //constructor for background
-    back(int nFi, vector<double> f )
-    {
-        nF=nFi;
+	//constructor for background store
+	back(int nFi, vector<double> f )
+	{
+    nF=nFi;
         f.resize(2*nF);
     }
+	
     //back asscessors
-    vector<double> getB()
-    {
-        return f;
-    }
+	vector<double> getB()
+	{
+		return f;
+	}
+	
     double getB(int i)
-    {
-        return f[i];
-    }
+	{
+		return f[i];
+	}
+	
     //back modifiers
-    void setB(int i, double value)
-    {
-        f[i]=value;
-    }
-    void setB(vector<double> y)
-    {
-        f=y;
-    }
+	void setB(int i, double value)
+	{
+		f[i]=value;
+	}
+	void setB(vector<double> y)
+	{
+		f=y;
+	}
+	
     //print back to screen
-    void printB()
-    {
-        for(int i=0;i<2*nF;i++){std::cout << f[i] << '\t';}
-        std::cout << std::endl;
-    }
+	void printB()
+	{
+		for(int i=0;i<2*nF;i++){std::cout << f[i] << '\t';}
+		std::cout << std::endl;
+	}
 };
 #endif 
 
-//-------------------------------------------------------------------------------------------------------------------------------------------
 
 #ifndef sigma_H  // Prevents the class being re-definFd
 #define sigma_H 
@@ -73,329 +74,514 @@ public:
 #include <math.h>
 using namespace std;
 
-/**
- * Implementation of the REAL phase-space two-point correlation function.
-*/
-
-/**
- * @class sigma
- * @brief Represents the 2-point correlation function for scalar perturbations (Sigma).
- *
- * This class handles the initialization of the 2-point correlation function
- * (Sigma) for a given wavenumber `k` and sets up the initial conditions
- * for its evolution based on the background fields and parameters. It also
- * computes the evolution matrix `M` for Sigma.
- */
-class sigma
-{
+class sigma 
+{	
 private:
-    int nF;         //!< @brief Number of fields.
-    double k;       //!< @brief Wavenumber for which Sigma is being evolved.
-    double Nstart;  //!< @brief Starting e-fold time for evolution.
-    vector<double> fields; //!< @brief Initial field values and velocities.
-    vector<double> params; //!< @brief Model parameters.
-    vector<double> S; //!< @brief The Sigma matrix (flattened 2D array).
+	int nF;
+	vector<double> sig;
+	double k;
 
 public:
-    /**
-     * @brief Constructor for the sigma class.
-     *
-     * Initializes the Sigma matrix (2-point function) at a given starting time,
-     * wavenumber, and initial field configuration. The initial conditions for
-     * Sigma are typically set to Bunch-Davies vacuum.
-     *
-     * @param nF_in Number of fields.
-     * @param k_in Wavenumber.
-     * @param Nstart_in Starting e-fold time.
-     * @param fields_in Initial field values and velocities.
-     * @param params_in Model parameters.
-     */
-    sigma(int nF_in, double k_in, double Nstart_in, vector<double> fields_in, vector<double> params_in)
-    {
-        nF = nF_in;
-        k = k_in;
-        Nstart = Nstart_in;
-        fields = fields_in;
-        params = params_in;
-
-        S.resize(2 * nF * 2 * nF); // Sigma is a (2*nF) x (2*nF) matrix
-
-        double Hi = 0;
-        model m;
-        Hi = m.H(fields, params); // Hubble rate at Nstart
-
-        for (int i = 0; i < 2 * nF; i++)
-        {
-            for (int j = 0; j < 2 * nF; j++)
-            {
-                if (i < nF) // Phi components
-                {
-                    if (i == j) // Diagonal elements
-                    {
-                        S[i + 2 * nF * j] = 1. / (2. * k * k * k); // Initial condition for field-field correlation
-                    }
-                    else
-                    {
-                        S[i + 2 * nF * j] = 0; // Off-diagonal field-field
-                    }
-                }
-                else // Pi components
-                {
-                    if (j == i)
-                    {
-                        S[i + 2 * nF * j] = (k * k) / (2. * k * k * k); // Initial condition for momentum-momentum correlation
-                    }
-                    else
-                    {
-                        S[i + 2 * nF * j] = 0; // Off-diagonal momentum-momentum
-                    }
-                }
-                // Off-diagonal field-momentum and momentum-field components are initially zero
-            }
-        }
+	//constructor for sig deep inside horizon
+	sigma(int nFi, double k1, double N0, vector<double> f, vector<double> p)
+	{
+		nF=nFi;
+		k=k1;
+        double Hi;
+		model m;
+		double a = exp(N0);
+        double s = m.scale(f,p,N0);
+		sig.resize(2*nFi*2*nFi);
+		for(int i=0; i<2*nFi*2*nFi;i++){sig[i]=0.;}
+		Hi=m.H(f,p);
+    	double ff = 0.5*Hi*Hi/k * 1./((a*Hi)*(a*Hi));
+        double fp = -ff*Hi  *s;//*a;
+        double pp = ff*k*k/(a*a)  *s*s;//*a*a;
+        for(int i = 0; i<nFi; i++){sig[i + 2*nFi*i]=ff;}
+		for(int i = nFi; i<2*nFi; i++){sig[i + 2*nFi*i]=pp;}
+		for(int i = 0; i<nFi; i++){sig[i + 2*nFi*(i+nFi)]=fp; sig[(i+nFi) + 2*nFi*(i)]=fp;}
     }
+    
+    //constuctor for sig at horizon crossing (for canonical light field)
+    sigma(int nFi, double N0, vector<double> f,vector<double> p)
+	{
+    	nF=nFi;
+	    double Hi;
+		model m;
+        potential pot;
+		//double a = exp(N0);
+        sig.resize(2*nF*2*nF);
+		for(int i=0; i<2*nFi*2*nFi;i++){sig[i]=0.;}
+		Hi=m.H(f,p);
+        vector<double> dVVi, dVi;
+        double Vi ;
+        Vi = pot.V(f,p);
+        dVi = pot.dV(f,p);
+        dVVi = pot.dVV(f,p);
+        //double Hdi = m.Hdot(f);
+    	double ff = 0.5*0.5*Hi*Hi/(3.142)/3.142;
+		
+        
+        for(int i=0;i<2*nFi*2*nFi;i++){sig[i]=0;}
+        
+        for(int i = 0; i<nFi; i++){for(int j = 0; j<nFi; j++){
+            if (i==j){sig[i + 2*nFi*j]=ff;
+                double sum1=0;
+                for(int k=0;k<nFi;k++){ sum1 = sum1 + (-dVVi[i +k*nFi]/Vi + dVi[i]*dVi[i]/Vi/Vi );}
+                sig[i+nF + 2*nFi*(j)] = sum1*ff*Hi;
+                sig[i+ 2*nFi*(j+nFi)] = sum1*ff*Hi;
+                sig[i+nFi +2*nF*(j+nFi)] = sum1*sum1*ff*Hi*Hi;}}}
+    }
+    
 
-    /**
-     * @brief Retrieves a specific element from the Sigma matrix.
-     * @param i Row index.
-     * @param j Column index.
-     * @return The value of $S_{ij}$.
-     */
+	
+	//sig asscessors
+    vector<double>  getS()
+	{
+		return sig;
+	}
+	
     double getS(int i, int j)
-    {
-        return S[i + 2 * nF * j];
-    }
-};
+	{
+		return sig[i+j*2*nF];
+	}
 
-/**
- * @class sigmaI
- * @brief Represents the imaginary part of the 2-point correlation function for scalar perturbations (Sigma).
- *
- * This class is similar to `sigma` but specifically handles the imaginary component of the
- * 2-point function, which can arise from certain quantum mechanical treatments or specific initial states.
- */
-class sigmaI
-{
+	//Sigma modifier
+	void setS(int i, int j, double value)
+	{
+		sig[i+j*2*nF]=value;
+	}
+	
+    void setS(vector<double> value)
+	{
+		sig=value;
+	}
+	
+    //print sig to screen
+	void printS()
+	{
+		for(int i=0;i<2*nF;i++){for(int j=0;j<2*nF;j++) {std::cout << sig[i+j*2*nF] << '\t';}}
+		std::cout << std::endl;
+	}
+};
+#endif 
+
+#ifndef sigmaI_H  // Prevents the class being re-definFd
+#define sigmaI_H 
+#include "model.h"
+#include <iostream>
+#include <math.h>
+using namespace std;
+
+class sigmaI 
+{	
 private:
-    int nF;
-    double k;
-    double Nstart;
-    vector<double> fields;
-    vector<double> params;
-    vector<double> S; //!< @brief The imaginary Sigma matrix (flattened 2D array).
+	int nF;
+	vector<double> sigI;
+	double k;
 
 public:
-    /**
-     * @brief Constructor for the sigmaI class (Imaginary Sigma).
-     *
-     * Initializes the imaginary part of the Sigma matrix. In many common
-     * initial states (like Bunch-Davies vacuum), the imaginary part is initially zero.
-     *
-     * @param nF_in Number of fields.
-     * @param k_in Wavenumber.
-     * @param Nstart_in Starting e-fold time.
-     * @param fields_in Initial field values and velocities.
-     * @param params_in Model parameters.
-     */
-    sigmaI(int nF_in, double k_in, double Nstart_in, vector<double> fields_in, vector<double> params_in)
-    {
-        nF = nF_in;
-        k = k_in;
-        Nstart = Nstart_in;
-        fields = fields_in;
-        params = params_in;
-
-        S.resize(2 * nF * 2 * nF);
-
-        double Hi = 0;
-        model m;
-        Hi = m.H(fields, params);
-
-        for (int i = 0; i < 2 * nF; i++)
-        {
-            for (int j = 0; j < 2 * nF; j++)
-            {
-                if (i < nF)
-                {
-                    if (j == (i + nF)) // This component corresponds to $Re[\phi_i \dot{\phi}_j]$ or $Im[\phi_i \dot{\phi}_j]$
-                    {
-                        S[i + 2 * nF * j] = -1. / (2. * k * k); // Non-zero initial condition for imaginary part
-                    }
-                    else
-                    {
-                        S[i + 2 * nF * j] = 0;
-                    }
-                }
-                else
-                {
-                    S[i + 2 * nF * j] = 0;
-                }
-            }
+	//constructor for sigI
+	sigmaI(int nFi, double k1, double N0, vector<double> f,vector<double> p)
+	{
+		nF=nFi;
+		double Hi;
+        k=k1;
+		model m;
+        double s=m.scale(f,p,N0);
+		double a = exp(N0);
+        sigI.resize(2*nF*2*nF);
+        for(int i=0; i<2*nFi*2*nFi;i++){sigI[i]=0.;}
+		Hi=m.H(f,p);
+		
+        double fpI = 0.5*Hi*Hi * 1./(a*Hi)/(a*Hi)/a  *s;// *a;
+		
+        for(int i = 0; i<nF; i++){
+            sigI[i+(nF+i)*2*nF] = +fpI;
+            sigI[i+nF+(i)*2*nF] = -fpI;
         }
-    }
+	}
+    
+	//sig asscessors
+	vector<double>  getSI()
+	{
+		return sigI;
+	}
+	double getS(int i, int j)
+	{
+		return sigI[i+j*2*nF];
+	}
 
-    /**
-     * @brief Retrieves a specific element from the imaginary Sigma matrix.
-     * @param i Row index.
-     * @param j Column index.
-     * @return The value of $S_{ij}$.
-     */
-    double getS(int i, int j)
-    {
-        return S[i + 2 * nF * j];
-    }
+	//Sigma modifier
+	void setS(int i, int j, double value)
+	{
+		sigI[i+j*2*nF]=value;
+	}
+	void setS(vector<double> value)
+	{
+		sigI=value;
+	}
+	//print sig to screen 
+	void printS()
+	{
+		for(int i=0;i<2*nF;i++){for(int j=0;j<2*nF;j++) {std::cout << sigI[i+j*2*nF] << '\t';}}
+		std::cout << std::endl;
+	}
 };
+#endif 
 
-/**
- * @class Gamma
- * @brief Represents the 2-point correlation function for tensor perturbations.
- *
- * This class handles the initialization and provides methods related to
- * the 2-point correlation function for tensor modes, denoted as Gamma.
- */
+
+#ifndef Gamma_H  // Prevents the class being re-definFd
+#define Gamma_H 
+#include "model.h"
+#include <iostream>
+#include <math.h>
+using namespace std;
+
 class Gamma
-{
+{	
 private:
-    int nT;         //!< @brief Number of tensor modes.
-    double k;       //!< @brief Wavenumber.
-    double Nstart;  //!< @brief Starting e-fold time.
-    vector<double> fields; //!< @brief Initial field values and velocities.
-    vector<double> params; //!< @brief Model parameters.
-    vector<double> G; //!< @brief The Gamma matrix (flattened 2D array).
+	int nF;
+	vector<double> gam;
+	double k;
 
 public:
-    /**
-     * @brief Constructor for the Gamma class.
-     *
-     * Initializes the Gamma matrix (2-point function for tensor perturbations)
-     * at a given starting time, wavenumber, and initial field configuration.
-     *
-     * @param nT_in Number of tensor modes.
-     * @param k_in Wavenumber.
-     * @param Nstart_in Starting e-fold time.
-     * @param fields_in Initial field values and velocities.
-     * @param params_in Model parameters.
-     */
-    Gamma(int nT_in, double k_in, double Nstart_in, vector<double> fields_in, vector<double> params_in)
-    {
-        nT = nT_in;
-        k = k_in;
-        Nstart = Nstart_in;
-        fields = fields_in;
-        params = params_in;
+	//constructor for gam deep inside horizon
+	Gamma(int nFi, double k1, double N0, vector<double> f, vector<double> p)
+	{
+		int nT = 1;
+		k=k1;
+        double Hi;
+		model m;
+        gam.resize(2*nT*2*nT);
+		double a = exp(N0);
 
-        G.resize(2 * nT * 2 * nT); // Gamma is a (2*nT) x (2*nT) matrix
 
-        for (int i = 0; i < 2 * nT; i++)
-        {
-            for (int j = 0; j < 2 * nT; j++)
-            {
-                if (i < nT)
-                {
-                    if (i == j)
-                    {
-                        G[i + 2 * nT * j] = 1. / (2. * k * k * k); // Initial condition for field-field correlation
-                    }
-                    else
-                    {
-                        G[i + 2 * nT * j] = 0;
-                    }
-                }
-                else
-                {
-                    if (j == i)
-                    {
-                        G[i + 2 * nT * j] = (k * k) / (2. * k * k * k); // Initial condition for momentum-momentum correlation
-                    }
-                    else
-                    {
-                        G[i + 2 * nT * j] = 0;
-                    }
-                }
-            }
-        }
+        for(int i=0; i<2*nT*2*nT;i++){gam[i]=0.;}
+        Hi=m.H(f,p);
+        double ff = 0.5*Hi*Hi/k * 1./((a*Hi)*(a*Hi));
+        double fp = -ff*Hi;
+        double pp = ff*k*k/(a*a);
+
+
+        gam[0 + 2*nT*0]=ff;
+		gam[1 + 2*nT*1]=pp;
+		gam[0 + 2*nT*1]=fp; 
+		gam[1 + 2*nT*(0)]=fp;
     }
-
-    /**
-     * @brief Retrieves a specific element from the Gamma matrix.
-     * @param i Row index.
-     * @param j Column index.
-     * @return The value of $G_{ij}$.
-     */
+	
+	//gam asscessors
+    vector<double>  getG()
+	{
+		return gam;
+	}
+	
     double getG(int i, int j)
-    {
-        return G[i + 2 * nT * j];
-    }
+	{
+		return gam[i+j*2];
+	}
+
+	//Gamma modifier
+	void setG(int i, int j, double value)
+	{
+		gam[i+j*2]=value;
+	}
+	
+    void setG(vector<double> value)
+	{
+		gam=value;
+	}
+	
+    //print gam to screen
+	void printG()
+	{
+		for(int i=0;i<2;i++){for(int j=0;j<2;j++) {std::cout << gam[i+j*2] << '\t';}}
+		std::cout << std::endl;
+	}
 };
+#endif 
 
-/**
- * @class alpha
- * @brief Represents the 3-point correlation function (Alpha).
- *
- * This class handles the initialization of the 3-point correlation function (Alpha)
- * for a triplet of wavenumbers (k1, k2, k3) and sets up the initial conditions
- * for its evolution based on the background fields and parameters.
- */
+#ifndef alpha_H  // Prevents the class being re-definFd
+#define alpha_H 
+#include "model.h"
+#include <iostream>
+#include <math.h>
+using namespace std;
+
 class alpha
-{
+{	
 private:
-    int nF;         //!< @brief Number of fields.
-    double k1, k2, k3; //!< @brief Three wavenumbers defining the triangle configuration.
-    double Nstart;  //!< @brief Starting e-fold time.
-    vector<double> fields; //!< @brief Initial field values and velocities.
-    vector<double> params; //!< @brief Model parameters.
-    vector<double> A; //!< @brief The Alpha matrix (flattened 3D array).
-
-public:
-    /**
-     * @brief Constructor for the alpha class.
-     *
-     * Initializes the Alpha matrix (3-point function) at a given starting time,
-     * for three wavenumbers, and initial field configuration. Initial conditions
-     * for Alpha are typically set to zero in Bunch-Davies vacuum.
-     *
-     * @param nF_in Number of fields.
-     * @param k1_in First wavenumber.
-     * @param k2_in Second wavenumber.
-     * @param k3_in Third wavenumber.
-     * @param Nstart_in Starting e-fold time.
-     * @param fields_in Initial field values and velocities.
-     * @param params_in Model parameters.
-     */
-    alpha(int nF_in, double k1_in, double k2_in, double k3_in, double Nstart_in, vector<double> fields_in, vector<double> params_in)
+	int nF;
+	vector<double> alp;
+	double k1, k2, k3;
+         
+    public:
+    //constructor for alp on subhorizon scales
+    alpha(int nFi, double k1, double k2, double k3, double N0, vector<double> f,vector<double> p)
     {
-        nF = nF_in;
-        k1 = k1_in; k2 = k2_in; k3 = k3_in;
-        Nstart = Nstart_in;
-        fields = fields_in;
-        params = params_in;
+        vector<double>  fff, pff, fpf, ffp, ppf, fpp,pfp,ppp;
+        double a, Hi;
+        nF=nFi;
+        model m;
+        double s=m.scale(f,p,N0);
+        Hi = m.H(f,p);
+        a = exp(N0);
+        fff = fffCalc(f,p, k1, k2, k3,N0);
+    
+        pff = pffCalc(f,p,k1,k2,k3,N0);
+        fpf = pffCalc(f,p,k2,k1,k3,N0);
+        ffp = pffCalc(f,p,k3,k1,k2,N0);
+      
+        ppf = ppfCalc(f,p,k1,k2,k3,N0);
+        pfp = ppfCalc(f,p,k1,k3,k2,N0);
+        fpp = ppfCalc(f,p,k2,k3,k1,N0);
+        
+        ppp = pppCalc(f,p,k1,k2,k3,N0);
+            
 
-        A.resize(2 * nF * 2 * nF * 2 * nF); // Alpha is a (2*nF) x (2*nF) x (2*nF) tensor
 
-        for (int i = 0; i < 2 * nF; i++)
-        {
-            for (int j = 0; j < 2 * nF; j++)
-            {
-                for (int l = 0; l < 2 * nF; l++)
-                {
-                    A[i + j * 2 * nF + l * 2 * nF * 2 * nF] = 0; // Initialize to zero
-                }
-            }
+        alp.resize(2*nF*2*nF*2*nF);
+        
+        for(int i=0;i<nF;i++){for(int j=0;j<nF;j++){for(int k=0;k<nF;k++){
+          alp[i + j*2*nF + k*2*nF*2*nF] = fff[i + j*nF + k*nF*nF] ;
+            alp[nF+i + j*2*nF + k*2*nF*2*nF] = pff[i + j*nF + k*nF*nF]/a   *s;// *a;
+            alp[i + (nF+j)*2*nF + k*2*nF*2*nF] = fpf[j + i*nF + k*nF*nF]/a   *s;// *a;
+            alp[i + j*2*nF + (nF+k)*2*nF*2*nF ] = ffp[k + i*nF + j*nF*nF ]/a   *s;// *a;
+            alp[i + (nF+j)*2*nF + (nF+k)*2*nF*2*nF] = fpp[j + k*nF + i*nF*nF]/a/a  *s*s;// *a*a;
+            alp[(nF+i) + (nF+j)*2*nF + (k)*2*nF*2*nF] = ppf[i + j*nF + k*nF*nF ]/a/a  *s*s;// *a*a;
+            alp[(nF+i) + (j)*2*nF + (nF+k)*2*nF*2*nF] = pfp[i + k*nF + j*nF*nF ]/a/a   *s*s;// *a*a;
+            alp[(nF+i) + (nF+j)*2*nF + (nF+k)*2*nF*2*nF ] = ppp[i + j*nF + k*nF*nF ]/a/a/a  *s*s*s;// *a*a*a;
+        }}}
+    }
+
+    alpha(int nFi, double N0, vector<double> f,vector<double> p)
+    {
+        k1=0.;k2=0;k3=3;
+        nF=nFi;
+        alp.resize(2*nF*2*nF*2*nF);
+        for(int i=0;i<2*nF*2*nF*2*nF;i++){
+            alp[i]=0;
         }
     }
-
-    /**
-     * @brief Retrieves a specific element from the Alpha tensor.
-     * @param i First index.
-     * @param j Second index.
-     * @param l Third index.
-     * @return The value of $A_{ijl}$.
-     */
-    double getA(int i, int j, int l)
+    
+    // functions that calculate the intial conditions
+    vector<double> fffCalc(vector<double> f, vector<double> p, double k1, double k2, double k3, double N0)
     {
-        return A[i + j * 2 * nF + l * 2 * nF * 2 * nF];
+        double  ks, k3s, K2;
+        vector<double> C123, C132, C231, B123, B132, B231, AS123, AS132, AS231;
+        model m;
+        C123 = m.Ccalc(f,p, k1, k2, k3, N0);
+        C132 = m.Ccalc(f,p, k1, k3, k2, N0);
+        C231 = m.Ccalc(f,p, k2, k3, k1, N0);
+        
+        AS123 = m.AScalc(f, p, k1, k2, k3, N0);
+        AS132 = m.AScalc(f, p, k1, k3, k2, N0);
+        AS231 = m.AScalc(f, p, k2, k3, k1, N0);
+ 
+        B123 = m.Bcalc(f, p, k1, k2, k3, N0);
+        B132 = m.Bcalc(f, p, k1, k3, k2, N0);
+        B231 = m.Bcalc(f, p, k2, k3, k1, N0);
+        
+        
+        vector<double> fff(nF*nF*nF);
+        double Hi= m.H(f,p);
+        
+        double a =exp(N0);
+        k3s = k1*k1*k1 * k2*k2*k2 * k3*k3*k3;
+        ks = k1 + k2 + k3;
+        K2 = k1*k2 + k1*k3 + k2*k3;
+        for(int i=0;i<nF;i++){for(int j=0;j<nF;j++){for(int k=0;k<nF;k++){
+            fff[i+j*nF+k*nF*nF] = 1./(a*a*a*a)/4. / (k1*k2*k3)/ks*(-C123[i+nF*j+nF*nF*k]*k1*k2 - C132[i+nF*k+nF*nF*j]*k1*k3 - C231[j+nF*k+nF*nF*i]*k2*k3
+                                                                   + a*a*AS123[i+nF*j+nF*nF*k] + a*a*AS132[i+nF*k+nF*nF*j] + a*a*AS231[j+nF*k+nF*nF*i]
+                                                                   + a*a*Hi*B123[i+nF*j+nF*nF*k]*((k1+k2)*k3/k1/k2 - K2/k1/k2)
+                                                                   + a*a*Hi*B132[i+nF*k+nF*nF*j]*((k1+k3)*k1/k1/k3 - K2/k1/k3)
+                                                                   + a*a*Hi*B231[j+nF*k+nF*nF*i]*((k2+k3)*k1/k2/k3 - K2/k2/k3)
+                                                                   );
+            if(j==k){fff[i+j*nF+k*nF*nF] = fff[i+j*nF+k*nF*nF] + 1./(a*a*a*a)/4./(k1*k2*k3)/ks*f[nF+i]/2./Hi*(-k2*k2-k3*k3+k1*k1)/2.;}
+            if(i==k){fff[i+j*nF+k*nF*nF] = fff[i+j*nF+k*nF*nF] + 1./(a*a*a*a)/4./(k1*k2*k3)/ks*f[nF+j]/2./Hi*(-k1*k1-k3*k3+k2*k2)/2.;}
+            if(i==j){fff[i+j*nF+k*nF*nF] = fff[i+j*nF+k*nF*nF] + 1./(a*a*a*a)/4./(k1*k2*k3)/ks*f[nF+k]/2./Hi*(-k1*k1-k2*k2+k3*k3)/2.;}
+        }}}
+        return fff;
     }
+    
+    vector<double> pffCalc(vector <double> f,vector<double> p, double k1, double k2, double k3, double N0)
+    {
+        double a, Hi, ks, k3s, K2;
+        vector<double> pff(nF*nF*nF);
+        vector<double> C123, C132, C231, B123, B132, B231, AS123, AS132, AS231;
+        
+        model m;
+        
+        C123 = m.Ccalc(f, p, k1, k2, k3, N0);
+        C132 = m.Ccalc(f, p, k1, k3, k2, N0);
+        C231 = m.Ccalc(f, p, k2, k3, k1, N0);
+        
+        B123 = m.Bcalc(f, p, k1, k2, k3, N0);
+        B132 = m.Bcalc(f, p, k1, k3, k2, N0);
+        B231 = m.Bcalc(f, p, k2, k3, k1, N0);
+        
+        AS123 = m.AScalc(f, p, k1, k2, k3, N0);
+        AS132 = m.AScalc(f, p, k1, k3, k2, N0);
+        AS231 = m.AScalc(f, p, k2, k3, k1, N0);
+        
+        Hi=m.H(f,p);
+        
+        a=exp(N0);
+        k3s = k1*k1*k1 * k2*k2*k2 * k3*k3*k3;
+        ks = k1 + k2 + k3;
+        K2 = k1*k2 + k1*k3 + k2*k3;
+        
+        for(int i=0;i<nF;i++){for(int j=0;j<nF;j++){for(int k=0;k<nF;k++){
+            pff[i+j*nF+k*nF*nF] = - 1./(a*a*a)/4./k3s * Hi * (-k1*k1*(k2+k3)/ks* k1*k2*k3) * (-C123[i+nF*j+nF*nF*k]*k1*k2 - C132[i+nF*k+nF*nF*j]*k1*k3 - C231[j+nF*k+nF*nF*i]*k2*k3
+                                                                                              + a*a*AS123[i+nF*j+nF*nF*k] + a*a*AS132[i+nF*k+nF*nF*j] + a*a*AS231[j+nF*k+nF*nF*i]
+                                                                                              );
+            if(j==k){pff[i+j*nF+k*nF*nF] = pff[i+j*nF+k*nF*nF] - 1./(a*a*a)/4./k3s * Hi * (-k1*k1*(k2+k3)/ks* k1*k2*k3) * f[nF+i]/2./Hi*(-k2*k2-k3*k3+k1*k1)/2.;}
+            if(i==k){pff[i+j*nF+k*nF*nF] = pff[i+j*nF+k*nF*nF] - 1./(a*a*a)/4./k3s * Hi * (-k1*k1*(k2+k3)/ks* k1*k2*k3) * f[nF+j]/2./Hi*(-k1*k1-k3*k3+k2*k2)/2.;}
+            if(i==j){pff[i+j*nF+k*nF*nF] = pff[i+j*nF+k*nF*nF] - 1./(a*a*a)/4./k3s * Hi * (-k1*k1*(k2+k3)/ks* k1*k2*k3) * f[nF+k]/2./Hi*(-k1*k1-k2*k2+k3*k3)/2.;}
+            
+        }}}
+        for(int i=0;i<nF;i++){for(int j=0;j<nF;j++){for(int k=0;k<nF;k++){
+            pff[i+j*nF+k*nF*nF] = pff[i+j*nF+k*nF*nF] - 1./(a*a*a)/4./k3s * Hi * (-k1*k1*k2*k3/ks) * (C123[i+j*nF+k*nF*nF]*k1*k1*k2*k2*(1.+k3/ks)
+                                                                                                      + C132[i+k*nF+j*nF*nF]*k1*k1*k3*k3*(1.+k2/ks)
+                                                                                                      + C231[j+k*nF+i*nF*nF]*k3*k3*k2*k2*(1.+k1/ks)
+                                                                                                      - a*a*AS123[i+nF*j+nF*nF*k]*(K2 - k1*k2*k3/ks)
+                                                                                                      - a*a*AS132[i+nF*k+nF*nF*j]*(K2 - k1*k2*k3/ks)
+                                                                                                      - a*a*AS231[j+nF*k+nF*nF*i]*(K2 - k1*k2*k3/ks)
+                                                                                                      );
+            
+            pff[i+j*nF+k*nF*nF] = pff[i+j*nF+k*nF*nF] - 1./(a*a*a)/4./k3s * Hi * (-k1*k1*k2*k3/ks) * (B123[i+j*nF+k*nF*nF]/Hi*k1*k2*k3*k3
+                                                                                                      + B132[i+k*nF+j*nF*nF]/Hi*k1*k3*k2*k2
+                                                                                                      + B231[j+k*nF+i*nF*nF]/Hi*k2*k3*k1*k1);
+            if(j==k){pff[i+j*nF+k*nF*nF] = pff[i+j*nF+k*nF*nF] - 1./(a*a*a)/4./k3s * Hi * (-k1*k1*k2*k3/ks) * f[nF+i]/2./Hi*(-1.)*(-k2*k2-k3*k3+k1*k1)/2.*(K2 +k1*k2*k3/ks);}
+            if(i==k){pff[i+j*nF+k*nF*nF] = pff[i+j*nF+k*nF*nF] - 1./(a*a*a)/4./k3s * Hi * (-k1*k1*k2*k3/ks) * f[nF+j]/2./Hi*(-1.)*(-k1*k1-k3*k3+k2*k2)/2.*(K2 +k1*k2*k3/ks);}
+            if(i==j){pff[i+j*nF+k*nF*nF] = pff[i+j*nF+k*nF*nF] - 1./(a*a*a)/4./k3s * Hi * (-k1*k1*k2*k3/ks) * f[nF+k]/2./Hi*(-1.)*(-k1*k1-k2*k2+k3*k3)/2.*(K2 +k1*k2*k3/ks);}
+        }}}
+        return pff;
+    }
+    
+    vector<double> ppfCalc(vector<double> f,vector<double> p,  double k1, double k2, double k3,double N0)
+    {
+        double a, H, ks, k3s, K2;
+        vector<double> ppf(nF*nF*nF);
+        vector<double> C123, C132, C231, B123, B132, B231, AS123, AS132, AS231;
+        model m;
+        
+        
+        C123 = m.Ccalc(f,p, k1, k2, k3, N0);
+        C132 = m.Ccalc(f,p, k1, k3, k2, N0);
+        C231 = m.Ccalc(f,p, k2, k3, k1, N0);
+        
+        B123 = m.Bcalc(f, p, k1, k2, k3, N0);
+        B132 = m.Bcalc(f, p, k1, k3, k2, N0);
+        B231 = m.Bcalc(f, p, k2, k3, k1, N0);
+        
+        AS123 = m.AScalc(f, p, k1, k2, k3, N0);
+        AS132 = m.AScalc(f, p, k1, k3, k2, N0);
+        AS231 = m.AScalc(f, p, k2, k3, k1, N0);
+        
+        
+        H=m.H(f,p);
+        
+        a=exp(N0);
+        k3s = k1*k1*k1 * k2*k2*k2 * k3*k3*k3;
+        ks = k1 + k2 + k3;
+        K2 = k1*k2 + k1*k3 + k2*k3;
+        
+        
+        for(int i=0;i<nF;i++){for(int j=0;j<nF;j++){for(int k=0;k<nF;k++){
+            ppf[i+j*nF+k*nF*nF] = -1./(a*a*a*a)/4./k3s * (k1*k2*k3)*(k1*k2*k3)/ks*k1*k2*(-C123[i+j*nF+k*nF*nF]*k1*k2 - C132[i+k*nF+j*nF*nF]*k1*k3 - C231[j+k*nF+i*nF*nF]*k2*k3
+                                                                                         + a*a*AS123[i+nF*j+nF*nF*k] + a*a*AS132[i+nF*k+nF*nF*j] + a*a*AS231[j+nF*k+nF*nF*i]
+                                                                                         + a*a*H*B123[i+nF*j+nF*nF*k]*(k1+k2)*k3/k1/k2
+                                                                                         + a*a*H*B132[i+nF*k+nF*nF*j]*(k1+k3)*k2/k1/k3
+                                                                                         + a*a*H*B231[j+nF*k+nF*nF*i]*(k2+k3)*k1/k2/k3
+                                                                                         + k1*k1*k2*k2*a*a*H*B123[i+nF*j+nF*nF*k]*k1*k2*k3*k3
+                                                                                         + k1*k1*k2*k2*a*a*H*B132[i+nF*k+nF*nF*j]*k1*k3*k2*k2
+                                                                                         + k1*k1*k2*k2*a*a*H*B231[j+nF*k+nF*nF*i]*k2*k3*k1*k1
+                                                                                         );
+            if(j==k){ppf[i+j*nF+k*nF*nF] = ppf[i+j*nF+k*nF*nF]   - 1./(a*a*a*a)/4/k3s * (k1*k2*k3)*(k1*k2*k3)/ks*k1*k2*f[nF+i]/2./H*(-k2*k2-k3*k3+k1*k1)/2.;}
+            if(i==k){ppf[i+j*nF+k*nF*nF] = ppf[i+j*nF+k*nF*nF]   - 1./(a*a*a*a)/4/k3s * (k1*k2*k3)*(k1*k2*k3)/ks*k1*k2*f[nF+j]/2./H*(-k1*k1-k3*k3+k2*k2)/2.;}
+            if(i==j){ppf[i+j*nF+k*nF*nF] = ppf[i+j*nF+k*nF*nF]    -1./(a*a*a*a)/4/k3s * (k1*k2*k3)*(k1*k2*k3)/ks*k1*k2*f[nF+k]/2./H*(-k1*k1-k2*k2+k3*k3)/2.;}
+            
+        }}}
+        return ppf;
+    }
+    
+    vector<double> pppCalc(vector<double> f,vector<double> p,  double k1, double k2, double k3,double N0)
+    {
+        
+        double a, H, ks, k3s, K2;
+        vector<double> ppp(nF*nF*nF);
+        vector<double> C123, C132, C231, B123, B132, B231, AS123, AS132, AS231;
+        model m;
+        
+        C123 = m.Ccalc(f,p, k1, k2, k3, N0);
+        C132 = m.Ccalc(f,p, k1, k3, k2, N0);
+        C231 = m.Ccalc(f,p, k2, k3, k1, N0);
+        
+        B123 = m.Bcalc(f,p, k1, k2, k3, N0);
+        B132 = m.Bcalc(f,p, k1, k3, k2, N0);
+        B231 = m.Bcalc(f,p, k2, k3, k1, N0);
+        
+        AS123 = m.AScalc(f, p, k1, k2, k3, N0);
+        AS132 = m.AScalc(f, p, k1, k3, k2, N0);
+        AS231 = m.AScalc(f, p, k2, k3, k1, N0);
+        
+        H=m.H(f,p);
+        a=exp(N0);
+        k3s = k1*k1*k1 * k2*k2*k2 * k3*k3*k3;
+        ks = k1 + k2 + k3;
+        K2 = k1*k2 + k1*k3 + k2*k3;
+        
+        for(int i=0;i<nF;i++){for(int j=0;j<nF;j++){for(int k=0;k<nF;k++){
+            ppp[i+j*nF+k*nF*nF] = - 1./(a*a*a)/4./k3s * H * (k1*k1*k2*k2*k3*k3)/ks  * (C123[i+j*nF+k*nF*nF]*k1*k1*k2*k2*(1.+k3/ks)
+                                                                                       + C132[i+k*nF+j*nF*nF]*k1*k1*k3*k3*(1.+k2/ks)
+                                                                                       + C231[j+k*nF+i*nF*nF ]*k3*k3*k2*k2*(1.+k1/ks)
+                                                                                       - a*a*AS123[i+nF*j+nF*nF*k]*(K2 - k1*k2*k3/ks)
+                                                                                       - a*a*AS132[i+nF*k+nF*nF*j]*(K2 - k1*k2*k3/ks)
+                                                                                       - a*a*AS231[j+nF*k+nF*nF*i]*(K2 - k1*k2*k3/ks)
+                                                                                       );
+            ppp[i+j*nF+k*nF*nF ] = ppp[i+j*nF+k*nF*nF] - 1./(a*a*a)/4./k3s * H * (k1*k1*k2*k2*k3*k3)/ks * (B123[i+j*nF+k*nF*nF]/H*k1*k2*k3*k3
+                                                                                                           + B132[i+k*nF+j*nF*nF]/H*k1*k3*k2*k2
+                                                                                                           + B231[j+k*nF+i*nF*nF]/H*k2*k3*k1*k1);
+            if(j==k){ppp[i+j*nF+k*nF*nF] = ppp[i+j*nF+k*nF*nF] - 1./(a*a*a)/4./k3s * H * (k1*k1*k2*k2*k3*k3)/ks * f[nF+i]/2./H*(-1.)*(-k2*k2-k3*k3+k1*k1)/2.*(K2 +k1*k2*k3/ks);}
+            if(i==k){ppp[i+j*nF+k*nF*nF] = ppp[i+j*nF+k*nF*nF] - 1./(a*a*a)/4./k3s * H * (k1*k1*k2*k2*k3*k3)/ks * f[nF+j]/2./H*(-1.)*(-k1*k1-k3*k3+k2*k2)/2.*(K2 +k1*k2*k3/ks);}
+            if(i==j){ppp[i+j*nF+k*nF*nF] = ppp[i+j*nF+k*nF*nF] - 1./(a*a*a)/4./k3s * H * (k1*k1*k2*k2*k3*k3)/ks * f[nF+k]/2./H*(-1.)*(-k1*k1-k2*k2+k3*k3)/2.*(K2 +k1*k2*k3/ks);}
+            
+        }}}
+        return ppp;
+    }
+    
+    
+    
+	//alpha asscessors
+	vector<double> getA()
+	{
+		return alp;
+	}
+	
+	double getA(int i, int j, int k)
+	{
+        return alp[i+j*2*nF + k*2*2*nF*nF];
+	}
+
+	//Alpha modifier
+	void setA(int i, int j, int k, double value)
+	{
+		alp[i+j*2*nF + k*2*2*nF*nF]=value;
+	}
+	void setA(vector<double> value)
+	{
+		alp=value;
+	}
+	//print sig to screen 
+	
+    void printA()
+	{
+		for(int i=0;i<2*nF;i++){for(int j=0;j<2*nF;j++){for(int k=0;k<2*nF;k++) {std::cout << alp[i+j*2*nF+k*2*2*nF*nF] << '\t';}}}
+		std::cout << std::endl;
+	}
 };
+
 
 /**
  * @class Rho1
@@ -403,7 +589,6 @@ public:
  *
  * This class manages the initialization of the MPP2 matrix, which is used
  * in the Multi-Point Propagator formalism for computing 2-point correlation functions.
- * It also computes the evolution matrix `M` for Rho1.
  */
 class Rho1
 {
@@ -442,24 +627,17 @@ public:
         model m;
         Hi = m.H(fields, params); // Hubble rate at Nstart
 
-        for (int i = 0; i < 2 * nF; i++)
+        for (int i = 0; i < 2 * nF; i++) 
         {
-            for (int j = 0; j < 2 * nF; j++)
+            for (int j = 0; j < 2 * nF; j++) 
             {
-                if (i < nF)
+                if (i == j) 
                 {
-                    if (j == (i + nF)) // Off-diagonal elements related to field-momentum
-                    {
-                        R[i + 2 * nF * j] = 1. / (2. * Hi); // Initial condition for Rho1
-                    }
-                    else
-                    {
-                        R[i + 2 * nF * j] = 0;
-                    }
-                }
-                else
+                    R[i + 2 * nF * j] = 1.0; 
+                } 
+                else 
                 {
-                    R[i + 2 * nF * j] = 0;
+                    R[i + 2 * nF * j] = 0.0;
                 }
             }
         }
@@ -474,47 +652,6 @@ public:
     double getR(int i, int j)
     {
         return R[i + 2 * nF * j];
-    }
-
-    /**
-     * @brief Calculates the evolution matrix `M` for Rho1.
-     *
-     * This matrix dictates the time evolution of the Rho1 (MPP2) elements.
-     * It depends on the background fields, potentials, and wavenumber.
-     *
-     * @param f A vector containing the field values and their velocities ($ \phi_i, \dot{\phi}_i $).
-     * @param p A vector containing the model parameters.
-     * @param N Value of the e-fold time.
-     * @return A vector representing the flattened 2D matrix M (size $2nF \times 2nF$).
-     */
-    vector<double> M(vector<double> f, vector<double> p, double N)
-    {
-        vector<double> M_matrix(2 * nF * 2 * nF); // M is a (2*nF) x (2*nF) matrix
-        double a = exp(N); // Scale factor
-        model m;
-        potential pot;
-        double ep = m.Ep(f, p); // Epsilon slow-roll parameter
-        double Hi = m.H(f, p); // Hubble rate
-        vector<double> dVVi = pot.dVV(f, p); // Second derivative of potential
-
-        for (int i = 0; i < nF; i++)
-        {
-            for (int j = 0; j < nF; j++)
-            {
-                // Fill elements of M
-                M_matrix[i + j * 2 * nF] = 0.;
-                M_matrix[i + (j + nF) * 2 * nF] = -1. / a / a; // Related to kinetic terms
-                M_matrix[i + nF + j * 2 * nF] = -a * a * dVVi[i + j * nF]; // Related to potential terms
-                M_matrix[i + nF + (j + nF) * 2 * nF] = -3. * Hi; // Damping term from Hubble expansion
-
-                if (i == j)
-                {
-                    M_matrix[i + (j + nF) * 2 * nF] = M_matrix[i + (j + nF) * 2 * nF] - k * k / (Hi); // Wavenumber contribution
-                    M_matrix[i + nF + (j + nF) * 2 * nF] = M_matrix[i + nF + (j + nF) * 2 * nF] - ep * Hi; // Epsilon contribution
-                }
-            }
-        }
-        return M_matrix;
     }
 };
 
@@ -585,78 +722,7 @@ public:
         return R[i + j * 2 * nF + l * 2 * nF * 2 * nF];
     }
 
-    /**
-     * @brief Calculates the evolution tensor `M` for Rho2.
-     *
-     * This tensor dictates the time evolution of the Rho2 (MPP3) elements.
-     * It depends on the background fields, potentials, and wavenumbers (k1, k2, k3).
-     *
-     * @param f A vector containing the field values and their velocities ($ \phi_i, \dot{\phi}_i $).
-     * @param p A vector containing the model parameters.
-     * @param N Value of the e-fold time.
-     * @return A vector representing the flattened 3D tensor M (size $2nF \times 2nF \times 2nF$).
-     */
-    vector<double> M(vector<double> f, vector<double> p, double N)
-    {
-        vector<double> M_tensor(2 * nF * 2 * nF * 2 * nF); // M is (2*nF)x(2*nF)x(2*nF) tensor
-        model m;
-        potential pot;
-        double a = exp(N); // Scale factor
-        double Hi = m.H(f, p); // Hubble rate
-        double ep = m.Ep(f, p); // Epsilon slow-roll parameter
-
-        vector<double> dV = pot.dV(f, p); // First derivative of potential
-        vector<double> ddV = pot.dVV(f, p); // Second derivative of potential
-        vector<double> dddV = pot.dVVV(f, p); // Third derivative of potential
-
-        for (int i = 0; i < 2 * nF; i++)
-        {
-            for (int j = 0; j < 2 * nF; j++)
-            {
-                for (int l = 0; l < 2 * nF; l++)
-                {
-                    // Initialization to zero
-                    M_tensor[i + j * 2 * nF + l * 2 * nF * 2 * nF] = 0;
-
-                    // Terms from the (phi, phi, phi) block
-                    if (i < nF && j < nF && l < nF)
-                    {
-                        // M_tensor[i + j * 2 * nF + l * 2 * nF * 2 * nF] += ... (specific terms)
-                    }
-
-                    // Terms from (phi, phi, pi) block
-                    if (i < nF && j < nF && l >= nF)
-                    {
-                        M_tensor[i + j * 2 * nF + l * 2 * nF * 2 * nF] += -1. / (a * a) * (ddV[i + j * nF]); // Kinetic coupling
-                    }
-
-                    // ... similar logic for other blocks (pi, phi, phi), (phi, pi, phi), etc.
-                    // The actual implementation would involve numerous terms derived from the equations of motion.
-                    // This is a simplified representation.
-
-                    // Damping terms
-                    M_tensor[i + j * 2 * nF + l * 2 * nF * 2 * nF] += -3. * Hi;
-
-                    // Wavenumber terms
-                    if (i < nF && i == j && l >= nF)
-                    {
-                        M_tensor[i + j * 2 * nF + l * 2 * nF * 2 * nF] += -k1 * k1 / Hi; // Example k1 term
-                    }
-                    if (i < nF && i == l && j >= nF)
-                    {
-                        M_tensor[i + j * 2 * nF + l * 2 * nF * 2 * nF] += -k2 * k2 / Hi; // Example k2 term
-                    }
-                    if (j < nF && j == l && i >= nF)
-                    {
-                        M_tensor[i + j * 2 * nF + l * 2 * nF * 2 * nF] += -k3 * k3 / Hi; // Example k3 term
-                    }
-                    // This is a placeholder for the full expression of the M matrix for Rho2.
-                    // The complete derivation would be extensive based on the Transport formalism equations.
-                }
-            }
-        }
-        return M_tensor;
-    }
 };
 
-#endif
+
+#endif 

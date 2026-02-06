@@ -37,9 +37,9 @@
 #include "numpy/ndarraytypes.h"
 
 //don't adjust the labels at the end of the 4 lines below (they are used to fix directory structure)
-#include"/Users/apx050/Desktop/Projects/PyTransport3.0/PyTransport/PyTransCpp/cppsrc/NC/evolve.h"//evolve
-#include"/Users/apx050/Desktop/Projects/PyTransport3.0/PyTransport/PyTransCpp/cppsrc/NC/moments.h"//moments
-#include"/Users/apx050/Desktop/Projects/PyTransport3.0/PyTransport/PyTransCpp/cppsrc/NC/model.h"//model
+#include"/Users/apx050/Desktop/Projects/PyTransport3.0/PyTransport/PyTransCpp/cppsrc/evolve.h"//evolve
+#include"/Users/apx050/Desktop/Projects/PyTransport3.0/PyTransport/PyTransCpp/cppsrc/moments.h"//moments
+#include"/Users/apx050/Desktop/Projects/PyTransport3.0/PyTransport/PyTransCpp/cppsrc/model.h"//model
 #include"/Users/apx050/Desktop/Projects/PyTransport3.0/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.hpp"//stepper
 //*************************************************************************************************
 
@@ -693,22 +693,9 @@ static PyObject* MT_sigEvolve(PyObject* self,  PyObject *args)
 
         // compute zz
         Ni=mm.N1(fieldIn,Vparams,N); // calculate N,i array
-        
-        // This computes N^T * Y * N where Y is the matrix part of y.
-        vector<double> temp(2 * nF, 0.0);
-        // temp = Y * N (Matrix-vector product)
-        for (int j = 0; j < 2 * nF; ++j) {
-            for (int i = 0; i < 2 * nF; ++i) {
-                // The matrix Y is stored in column-major format in y
-                temp[i] += y[2 * nF + i + j * 2 * nF] * Ni[j];
-            }
-        }
-        // zz = N^T * temp (Dot product)
-        zz = 0.0;
-        for (int i = 0; i < 2 * nF; ++i) {
-            zz += Ni[i] * temp[i];
-        }
-
+        zz=0;
+        for(int i=0; i<2*nF;i++){for(int j=0; j<2*nF; j++){
+            zz=zz+Ni[i]*Ni[j]*y[2*nF + i + j*2*nF];}}
         // store zz
         sigOutC[ii*size+1] = zz/kscale/kscale/kscale;
 
@@ -1081,7 +1068,6 @@ static PyObject* MT_alphaEvolve(PyObject* self,  PyObject *args)
  */
 static PyObject* MT_MPP2(PyObject* self,  PyObject *args)
 {
-    cout << "Enter MPP\n";
 
     // Convert PyObjects to C-Objects
     PyArrayObject *initialCs, *t, *params, *tols;   // Input PyArrayObject
@@ -1178,7 +1164,7 @@ static PyObject* MT_MPP2(PyObject* self,  PyObject *args)
         // Store timestep
         rhoOutC[ii*size] = N+log(kscale);
         // Store the Fields, Velocities and Rho
-        for(npy_intp i=0; i<2*nF + 2*nF*2*nF; i++)
+        for(int i=0; i<2*nF + 2*nF*2*nF; i++)
         {
             rhoOutC[ii*size + 1 + i] = r[i];
         }
@@ -1521,7 +1507,7 @@ void handleIntegrationError(int &flag, npy_intp ii, double* N,
  */
 static PyObject* MT_MPP3(PyObject* self, PyObject *args)
 {
-    cout << "Enter MPP\n";
+
 
     // Convert PyObjects to C-Objects
     PyArrayObject *initialCs, *t, *params, *tols;           // Input PyArrayObject
@@ -2055,7 +2041,7 @@ static char PyTrans_docs[] =
 /** \endcond */ // Doxygen will resume parsing from here
 // **************************************************************************************
 /** \cond */ // Doxygen will start ignoring from here
-static PyMethodDef PyTransAxQ0_methods[] = {{"H", (PyCFunction)MT_H,    METH_VARARGS, PyTrans_docs},{"Ep", (PyCFunction)MT_Ep,    METH_VARARGS, PyTrans_docs},{"Eta", (PyCFunction)MT_Eta,    METH_VARARGS, PyTrans_docs},{"nF", (PyCFunction)MT_fieldNumber,        METH_VARARGS, PyTrans_docs},{"nP", (PyCFunction)MT_paramNumber,        METH_VARARGS, PyTrans_docs},{"V", (PyCFunction)MT_V,            METH_VARARGS, PyTrans_docs},{"dV", (PyCFunction)MT_dV,                METH_VARARGS, PyTrans_docs},  {"ddV", (PyCFunction)MT_ddV,                METH_VARARGS, PyTrans_docs},  {"backEvolve", (PyCFunction)MT_backEvolve,        METH_VARARGS, PyTrans_docs},  {"sigEvolve", (PyCFunction)MT_sigEvolve,        METH_VARARGS, PyTrans_docs},  {"gamEvolve", (PyCFunction)MT_gamEvolve,        METH_VARARGS, PyTrans_docs},    {"alphaEvolve", (PyCFunction)MT_alphaEvolve,        METH_VARARGS, PyTrans_docs}, {"MPP2", (PyCFunction)MT_MPP2,        METH_VARARGS, PyTrans_docs}, {"MPPSigma", (PyCFunction)MT_MPPSigma,        METH_VARARGS, PyTrans_docs}, {"MPP3", (PyCFunction)MT_MPP3,        METH_VARARGS, PyTrans_docs},{"MPPAlpha", (PyCFunction)MT_MPPAlpha,        METH_VARARGS, PyTrans_docs},{NULL, NULL, 0, NULL}};//FuncDef
+static PyMethodDef PyTransSFA_methods[] = {{"H", (PyCFunction)MT_H,    METH_VARARGS, PyTrans_docs},{"Ep", (PyCFunction)MT_Ep,    METH_VARARGS, PyTrans_docs},{"Eta", (PyCFunction)MT_Eta,    METH_VARARGS, PyTrans_docs},{"nF", (PyCFunction)MT_fieldNumber,        METH_VARARGS, PyTrans_docs},{"nP", (PyCFunction)MT_paramNumber,        METH_VARARGS, PyTrans_docs},{"V", (PyCFunction)MT_V,            METH_VARARGS, PyTrans_docs},{"dV", (PyCFunction)MT_dV,                METH_VARARGS, PyTrans_docs},  {"ddV", (PyCFunction)MT_ddV,                METH_VARARGS, PyTrans_docs},  {"backEvolve", (PyCFunction)MT_backEvolve,        METH_VARARGS, PyTrans_docs},  {"sigEvolve", (PyCFunction)MT_sigEvolve,        METH_VARARGS, PyTrans_docs},  {"gamEvolve", (PyCFunction)MT_gamEvolve,        METH_VARARGS, PyTrans_docs},    {"alphaEvolve", (PyCFunction)MT_alphaEvolve,        METH_VARARGS, PyTrans_docs}, {"MPP2", (PyCFunction)MT_MPP2,        METH_VARARGS, PyTrans_docs}, {"MPPSigma", (PyCFunction)MT_MPPSigma,        METH_VARARGS, PyTrans_docs}, {"MPP3", (PyCFunction)MT_MPP3,        METH_VARARGS, PyTrans_docs},{"MPPAlpha", (PyCFunction)MT_MPPAlpha,        METH_VARARGS, PyTrans_docs},{NULL, NULL, 0, NULL}};//FuncDef
 // do not alter the comment at the end of the preceding line -- it is used by the preprocessor
 /** \endcond */ // Doxygen will resume parsing from here
 #ifdef __cplusplus
@@ -2064,12 +2050,12 @@ extern "C" {
 
 // **************************************************************************************
 /** \cond */ // Doxygen will start ignoring from here
-static struct PyModuleDef PyTransModule = {PyModuleDef_HEAD_INIT, "PyTransAxQ0", PyTrans_docs, -1, PyTransAxQ0_methods}; //modDef
+static struct PyModuleDef PyTransModule = {PyModuleDef_HEAD_INIT, "PyTransSFA", PyTrans_docs, -1, PyTransSFA_methods}; //modDef
 // do not alter the comment at the end of the preceding line -- it is used by the preprocessor
 /** \endcond */ // Doxygen will resume parsing from here
 // **************************************************************************************
 /** \cond */ // Doxygen will start ignoring from here
-PyMODINIT_FUNC PyInit_PyTransAxQ0(void)    {    PyObject *m = PyModule_Create(&PyTransModule); import_array(); return m;} //initFunc
+PyMODINIT_FUNC PyInit_PyTransSFA(void)    {    PyObject *m = PyModule_Create(&PyTransModule); import_array(); return m;} //initFunc
 /** \endcond */ // Doxygen will resume parsing from here
 // do not alter the comment at the end of the preceding line -- it is used by the preprocessor
 

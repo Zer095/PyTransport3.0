@@ -108,14 +108,14 @@ def Energy_SR(sol, params, SR=True, n_max=-1):
     return pot_phi, pot_rho, k_phi, k_rho
 
 def deltaP(eps, lmbd, b):
-    E = 0.01
-    delta = -2*(eps/lmbd**2)*E*b
+    E = 0.02
+    delta = -2.*(eps/lmbd**2)*E*b
     return delta
 
 def P_z(k, H, eps, alpha, lmbd, b):
     delta = deltaP(eps, lmbd, b)
     theta = 0
-    p_k = H**2/(2*k**3)*(1 + delta*np.cos(alpha*np.log(k) + theta))
+    p_k = (H**2/(2*k**3))*(1. + delta*np.cos(alpha*np.log(k) + theta))
     return p_k
 
 def get_sol(N, params, phi_0):
@@ -135,3 +135,22 @@ def get_sol(N, params, phi_0):
     v_rho = np.zeros(len(N))
 
     return h, phi, rho, v_phi, v_rho
+
+def transform(sol1, sol2, omega, b, n):
+    # Unpack
+    if len(sol1) == 2:
+        y1 = sol1[0]
+        v1 = sol1[1]
+        y2 = sol2[0]
+        v2 = sol2[1]
+    else:
+        print('Error')
+    # Compute coefficient
+    k = 1./(omega**2*b**2)
+    C1 = k*(omega**2*y1[n]*y2[n] + v1[n]*v2[n])
+    C2 = k*(y1[n]*v2[n] - v1[n]*y2[n])
+
+    # Solution 
+    return 1.3*(C1*y2 + C2*v2) + (y1[0] - y2[0])/2
+
+

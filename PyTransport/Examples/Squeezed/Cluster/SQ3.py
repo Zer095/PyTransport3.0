@@ -173,7 +173,7 @@ print(f"factor[0] = {factor[0]}, factor[-1] = {factor[-1]}")
 
 kS = kpeak * factor[int(inter)]
 
-k1 = kL
+k1 = kL 
 
 k2 = kS
 

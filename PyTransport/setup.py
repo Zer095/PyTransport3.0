@@ -24,8 +24,8 @@ include_dir = [os.path.abspath(os.path.join(os.path.dirname(__file__), 'include'
 os.environ["CXXFLAGS"] = f"-I{include_dir}"
 
 # Define the extension module
-PyTransAxQ0 = Extension(
-    "PyTransAxQ0",
+PyTransSFA = Extension(
+    "PyTransSFA",
     sources=[r"/Users/apx050/Desktop/Projects/PyTransport3.0/PyTransport/PyTransCpp/PyTrans.cpp",r"/Users/apx050/Desktop/Projects/PyTransport3.0/PyTransport/PyTransCpp/cppsrc/stepper/rkf45.cpp"],
     include_dirs = ['/Users/apx050/Desktop/Projects/PyTransport3.0/PyTransport/PyTransCpp', '/Users/apx050/Desktop/Projects/PyTransport3.0/PyTransport/PyTransCpp/cppsrc/stepper', '/Users/apx050/Desktop/Projects/PyTransport3.0/venv/lib/python3.12/site-packages/numpy/_core/include'],
     #extra_compile_args=compile_args,
@@ -34,9 +34,9 @@ PyTransAxQ0 = Extension(
 
 # Setup configuration
 setup(
-    name="PyTransAxQ0",
-    ext_modules=[PyTransAxQ0],
+    name="PyTransSFA",
+    ext_modules=[PyTransSFA],
     package_data={
-        "PyTransAxQ0": [numpy.get_include()],
+        "PyTransSFA": [numpy.get_include()],
     },
 )
