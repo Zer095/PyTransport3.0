@@ -1,0 +1,32 @@
+site_name: PyTransport 3.0
+site_description: Numerical tools for inflationary cosmology.
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - content.code.copy
+  palette:
+    primary: deep purple
+    accent: light blue
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format # Fix here
+
+extra_javascript:
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - Home: index.md
+  - Installation: install.md
+  - Tutorials: usage.md
+  - API Reference: api.md
