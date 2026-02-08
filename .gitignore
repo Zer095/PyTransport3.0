@@ -115,5 +115,5 @@ local_settings.py
 # Examples
 PyTransport/Examples/Dibya
 PyTransport/Examples/SR_PyT
-PyTransport/Examples/Monodromy
+PyTransport/Examples/Monodromy/
 
